@@ -36,7 +36,7 @@ static NSString *checkins = @"checkins";
 {
     if ([key isEqualToString:@"location"]) {
         BPCoordinate *coord = (BPCoordinate *)value;
-        return [NSString stringWithFormat:@"%f,%f", coord.latitude, coord.longitude];
+        return [NSString stringWithFormat:@"%f,%f", coord.lat, coord.lng];
     }
     return nil;
 }

@@ -241,7 +241,9 @@ static NSString *metadataRoute = @"metadata";
         
         __weak typeof(self) weakSelf = self;
         c.identifyDict = ^Class(NSDictionary *dict) {
-            if ([dict valueForKey:@"latitude"]) {
+            if ( ([dict valueForKey:@"lat"]) &&
+            ([dict valueForKey:@"lng"]))
+            {
                 return [BPCoordinate class];
             }
             return [weakSelf class];

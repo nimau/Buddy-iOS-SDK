@@ -119,8 +119,8 @@
     CLLocation *newLocation = [locations lastObject];
     CLLocationCoordinate2D coord = newLocation.coordinate;
     
-    self.currentCoordinate.latitude = coord.latitude;
-    self.currentCoordinate.longitude = coord.longitude;
+    self.currentCoordinate.lat = coord.latitude;
+    self.currentCoordinate.lng = coord.longitude;
     
     if (self.delegate) {
         [self.delegate didUpdateBuddyLocation:self.currentCoordinate];
