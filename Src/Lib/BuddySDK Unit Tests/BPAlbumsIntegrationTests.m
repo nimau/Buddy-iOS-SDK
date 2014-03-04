@@ -62,9 +62,6 @@ describe(@"BPAlbumIntegrationSpec", ^{
         
         it(@"Should allow you to search for albums.", ^{
             __block NSArray *retrievedAlbums;
-//            [[Buddy albums] search:nil callback:^(NSArray *buddyObjects, NSError *error) {
-//                retrievedAlbums = buddyObjects;
-//            }];
             
             [[Buddy albums] searchAlbums:nil callback:^(NSArray *buddyObjects, NSError *error) {
                 retrievedAlbums = buddyObjects;
@@ -140,8 +137,8 @@ describe(@"BPAlbumIntegrationSpec", ^{
         it(@"Should allow you to delete an album.", ^{
             __block NSString *deletedId = tempAlbum.id;
             [tempAlbum deleteMe:^(NSError *error){
-                [[Buddy pictures] getPicture:deletedId callback:^(id newBuddyObject, NSError *error) {
-                    [[error should] beNil];
+                [[Buddy albums] getAlbum:deletedId callback:^(id newBuddyObject, NSError *error) {
+                    [[error should] beNonNil];
                     tempAlbum = newBuddyObject;
                 }];
             }];
