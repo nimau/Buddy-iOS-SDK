@@ -47,7 +47,7 @@
     return [[BPClient defaultClient] checkins];
 }
 
-+ (BPPhotoCollection *) photos
++ (BPPictureCollection *) photos
 {
     return [[BPClient defaultClient] photos];
 }

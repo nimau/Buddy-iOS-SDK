@@ -47,7 +47,7 @@
 //
 //@end
 
-@implementation BPPhoto (Description)
+@implementation BPPicture (Description)
 
 - (NSString *)description
 {

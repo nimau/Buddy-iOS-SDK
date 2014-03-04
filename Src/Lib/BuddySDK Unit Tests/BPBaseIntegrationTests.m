@@ -1,5 +1,5 @@
 //
-//  BPPhotoIntegrationTests.m
+//  BPPictureIntegrationTests.m
 //  BuddySDK
 //
 //  Created by Erik Kerber on 12/3/13.
@@ -19,7 +19,7 @@ SPEC_BEGIN(BuddyObjectSpec)
 
 describe(@"BuddyObjectSpec", ^{
     context(@"With a valid buddy object", ^{
-        __block BPPhoto *newPhoto;
+        __block BPPicture *newPhoto;
         
         beforeAll(^{
             __block BOOL fin = NO;
@@ -40,7 +40,7 @@ describe(@"BuddyObjectSpec", ^{
             NSString *imagePath = [bundle pathForResource:@"1" ofType:@"jpg"];
             UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             
-            [[Buddy photos] addPhoto:image describePhoto:^(id<BPPhotoProperties> photoProperties) {
+            [[Buddy photos] addPhoto:image describePhoto:^(id<BPPictureProperties> photoProperties) {
                 photoProperties.caption = @"Hello, caption!";
             } callback:^(id buddyObject, NSError *error) {
                 newPhoto = buddyObject;
@@ -55,7 +55,7 @@ describe(@"BuddyObjectSpec", ^{
         });
         
         it(@"Should allow retrieving photos", ^{
-            __block BPPhoto *secondPhoto;
+            __block BPPicture *secondPhoto;
             [[Buddy photos] getPhoto:newPhoto.id callback:^(id newBuddyObject, NSError *error) {
                 secondPhoto = newBuddyObject;
             }];

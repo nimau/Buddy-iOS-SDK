@@ -21,7 +21,7 @@
 @class BPSounds;
 @class BPUser;
 @class BPCheckinCollection;
-@class BPPhotoCollection;
+@class BPPictureCollection;
 @class BPBlobCollection;
 @class BPAlbumCollection;
 @class BPLocationCollection;
@@ -122,7 +122,7 @@ typedef void (^BPPingCallback)(NSDecimalNumber *ping);
 /// <summary>
 /// TODO
 /// </summary>
-@property (readonly, nonatomic, strong) BPPhotoCollection *photos;
+@property (readonly, nonatomic, strong) BPPictureCollection *photos;
 
 /// <summary>
 /// TODO

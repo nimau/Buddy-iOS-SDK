@@ -14,11 +14,11 @@
 #import "BPCheckin.h"
 #import "BPCheckinCollection.h"
 #import "BPAlbumCollection.h"
-#import "BPPhoto.h"
+#import "BPPicture.h"
 #import "BPUser.h"
 #import "BPGameBoards.h"
 #import "BPSounds.h"
-#import "BPPhotoCollection.h"
+#import "BPPictureCollection.h"
 #import "BPBlobCollection.h"
 #import "BPUserCollection.h"
 #import "BPUserListCollection.h"
@@ -57,7 +57,7 @@
 /**
  Accessor to create and query photos.
  */
-+ (BPPhotoCollection *)photos;
++ (BPPictureCollection *)photos;
 
 /**
  Accessor to create and query data and files.

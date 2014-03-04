@@ -21,7 +21,7 @@ describe(@"BPAlbumIntegrationSpec", ^{
     context(@"When a user is logged in", ^{
         
         __block BPAlbum *tempAlbum;
-        __block BPPhoto *tempPhoto;
+        __block BPPicture *tempPhoto;
         __block BPAlbumItem *tempItem;
         
         beforeAll(^{
@@ -90,7 +90,7 @@ describe(@"BPAlbumIntegrationSpec", ^{
             NSString *imagePath = [bundle pathForResource:@"1" ofType:@"jpg"];
             UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             
-            [[Buddy photos] addPhoto:image describePhoto:^(id<BPPhotoProperties> photoProperties) {
+            [[Buddy photos] addPhoto:image describePhoto:^(id<BPPictureProperties> photoProperties) {
                 photoProperties.caption = @"Test image for album.";
             } callback:^(id newBuddyObject, NSError *error) {
                 tempPhoto = newBuddyObject;
@@ -104,7 +104,7 @@ describe(@"BPAlbumIntegrationSpec", ^{
         });
         
         it(@"Should allow you to retrieve an item from an album.", ^{
-            __block BPPhoto *retrievedPhoto;
+            __block BPPicture *retrievedPhoto;
             [tempAlbum getAlbumItem:tempItem.id callback:^(id newBuddyObject, NSError *error) {
                 retrievedPhoto = newBuddyObject;
             }];

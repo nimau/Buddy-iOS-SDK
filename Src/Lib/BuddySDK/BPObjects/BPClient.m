@@ -13,7 +13,7 @@
 #import "BPCheckinCollection.h"
 #import "BPGameBoards.h"
 #import "BPSounds.h"
-#import "BPPhotoCollection.h"
+#import "BPPictureCollection.h"
 #import "BPUserCollection.h"
 #import "BPAlbumCollection.h"
 #import "BPBlobCollection.h"
@@ -185,11 +185,11 @@
     return _checkins;
 }
 
--(BPPhotoCollection *)photos
+-(BPPictureCollection *)photos
 {
     if(!_photos)
     {
-        _photos = [[BPPhotoCollection alloc] initWithClient:self];
+        _photos = [[BPPictureCollection alloc] initWithClient:self];
     }
     return _photos;
 }

@@ -8,7 +8,7 @@
 
 #import "BuddyObject.h"
 
-// Not used for now. But may leverage the concept on BPPhoto/BPVideo
+// Not used for now. But may leverage the concept on BPPicture/BPVideo
 @protocol BPAlbumItem <NSObject>
 
 @required

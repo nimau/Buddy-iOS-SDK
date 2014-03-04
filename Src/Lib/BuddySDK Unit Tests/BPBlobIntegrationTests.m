@@ -1,5 +1,5 @@
 //
-//  BPPhotoIntegrationTests.m
+//  BPPictureIntegrationTests.m
 //  BuddySDK
 //
 //  Created by Erik Kerber on 12/3/13.

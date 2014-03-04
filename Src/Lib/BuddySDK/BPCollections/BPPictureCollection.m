@@ -1,25 +1,25 @@
 //
-//  BPPhotoCollection.m
+//  BPPictureCollection.m
 //  BuddySDK
 //
 //  Created by Erik Kerber on 11/22/13.
 //
 //
 
-#import "BPPhotoCollection.h"
-#import "BPPhoto.h"
+#import "BPPictureCollection.h"
+#import "BPPicture.h"
 #import "BPClient.h"
 #import "BuddyObject+Private.h"
 #import "BuddyCollection+Private.h"
 #import "BPSisterObject.h"
 #import "Buddy.h"
 
-@implementation BPPhotoCollection
+@implementation BPPictureCollection
 
 - (instancetype)initWithClient:(id<BPRestProvider>)client {
     self = [super initWithClient:client];
     if(self){
-        self.type = [BPPhoto class];
+        self.type = [BPPicture class];
     }
     return self;
 }
@@ -42,7 +42,7 @@
     id photoProperties = [BPSisterObject new];
     describePhoto ? describePhoto(photoProperties) : nil;
     
-    id parameters = [photoProperties parametersFromProperties:@protocol(BPPhotoProperties)];
+    id parameters = [photoProperties parametersFromProperties:@protocol(BPPictureProperties)];
     
     [self search:parameters callback:callback];
 }

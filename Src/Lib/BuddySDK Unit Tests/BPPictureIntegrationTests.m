@@ -1,5 +1,5 @@
 //
-//  BPPhotoIntegrationTests.m
+//  BPPictureIntegrationTests.m
 //  BuddySDK
 //
 //  Created by Erik Kerber on 12/3/13.
@@ -17,7 +17,7 @@
 
 SPEC_BEGIN(BuddyPhotoSpec)
 
-describe(@"BPPhotoIntegrationSpec", ^{
+describe(@"BPPictureIntegrationSpec", ^{
     
     context(@"When a user is NOT logged in", ^{
         
@@ -32,7 +32,7 @@ describe(@"BPPhotoIntegrationSpec", ^{
             NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
             UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             
-            [[Buddy photos] addPhoto:image describePhoto:^(id<BPPhotoProperties> photoProperties) {
+            [[Buddy photos] addPhoto:image describePhoto:^(id<BPPictureProperties> photoProperties) {
                 photoProperties.caption = @"Hello, caption!";
             } callback:^(id buddyObject, NSError *error) {
                 [[error shouldNot] beNil];
@@ -51,7 +51,7 @@ describe(@"BPPhotoIntegrationSpec", ^{
             NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
             UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             
-            [[Buddy photos] addPhoto:image describePhoto:^(id<BPPhotoProperties>photoProperties) {
+            [[Buddy photos] addPhoto:image describePhoto:^(id<BPPictureProperties>photoProperties) {
                 photoProperties.caption = @"Hello, caption!";
             } callback:^(id newBuddyObject, NSError *error) {
                 [[error shouldNot] beNil];
@@ -64,7 +64,7 @@ describe(@"BPPhotoIntegrationSpec", ^{
     }),
             
     context(@"When a user is logged in", ^{
-        __block BPPhoto *newPhoto;
+        __block BPPicture *newPhoto;
         
         beforeAll(^{
             __block BOOL fin = NO;
@@ -85,7 +85,7 @@ describe(@"BPPhotoIntegrationSpec", ^{
             NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
             UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             
-            [[Buddy photos] addPhoto:image describePhoto:^(id<BPPhotoProperties> photoProperties) {
+            [[Buddy photos] addPhoto:image describePhoto:^(id<BPPictureProperties> photoProperties) {
                 photoProperties.caption = @"Hello, caption!";
             } callback:^(id buddyObject, NSError *error) {
                 newPhoto = buddyObject;
@@ -100,7 +100,7 @@ describe(@"BPPhotoIntegrationSpec", ^{
         });
         
         it(@"Should allow retrieving photos", ^{
-            __block BPPhoto *secondPhoto;
+            __block BPPicture *secondPhoto;
             [[Buddy photos] getPhoto:newPhoto.id callback:^(id newBuddyObject, NSError *error) {
                 secondPhoto = newBuddyObject;
             }];
@@ -113,7 +113,7 @@ describe(@"BPPhotoIntegrationSpec", ^{
         });
         
         it(@"Should allow modifying photos", ^{
-            __block BPPhoto *secondPhoto;
+            __block BPPicture *secondPhoto;
         
             newPhoto.caption = @"Some new photo caption";
             
@@ -130,7 +130,7 @@ describe(@"BPPhotoIntegrationSpec", ^{
         });
         
         it(@"Should allow modifying a *retrieved* photo", ^{
-            __block BPPhoto *retrievedPhoto;
+            __block BPPicture *retrievedPhoto;
             [[Buddy photos] getPhoto:newPhoto.id callback:^(id newBuddyObject, NSError *error) {
                 retrievedPhoto = newBuddyObject;
             }];
@@ -164,12 +164,12 @@ describe(@"BPPhotoIntegrationSpec", ^{
         it(@"Should allow searching for images", ^{
             __block NSArray *retrievedPhotos;
 
-            [[Buddy photos] searchPhotos:^(id<BPPhotoProperties> photoProperties) {
+            [[Buddy photos] searchPhotos:^(id<BPPictureProperties> photoProperties) {
                 photoProperties.caption = @"Hakuna matata";
             } callback:^(NSArray *buddyObjects, NSError *error) {
                 NSArray *p = buddyObjects;
                 
-                for(BPPhoto *photo in p) {
+                for(BPPicture *photo in p) {
                     [[photo.caption should] equal:@"Hakuna matata"];
                 }
                 retrievedPhotos = buddyObjects;
@@ -181,7 +181,7 @@ describe(@"BPPhotoIntegrationSpec", ^{
         it(@"Should allow searching for images2", ^{
             __block NSArray *retrievedPhotos;
             
-            [[Buddy photos] searchPhotos:^(id<BPPhotoProperties> photoProperties) {
+            [[Buddy photos] searchPhotos:^(id<BPPictureProperties> photoProperties) {
                 photoProperties.caption = @"Hello, caption!";
             } callback:^(NSArray *buddyObjects, NSError *error) {
                 retrievedPhotos = buddyObjects;
