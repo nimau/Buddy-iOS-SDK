@@ -16,6 +16,7 @@ dsa_priv.pem
 #*.xcodeproj/project.xcworkspace/
 *.xcodeproj/xcuserdata/
 *.xccheckout
+xcuserdata
 
 #Visual Studio
 *.xccheckout

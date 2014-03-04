@@ -9,15 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BuddyObject.h"
 
-#define BPUserGenderField @"gender"
-#define BPUserEmailField @"email"
-#define BPUserFirstNameField @"firstName"
-#define BPUserLastNameField @"lastName"
-#define BPUserDateOfBirthField @"dateOfBirth"
-
-#define BPUserCelebrityModeField @"celebrityMode"
-#define BPUserFuzzLocationField @"fuzzLocation"
-
 /**
  Enum for specifying gender.
  */
@@ -52,8 +43,9 @@ typedef void(^DescribeUser)(id<BPUserProperties> userProperties);
 
 - (void)requestPasswordReset:(BuddyObjectCallback)callback;
 - (void)resetPassword:(NSString *)resetCode newPassword:(NSString *)newPassword callback:(BuddyCompletionCallback)callback;
-- (void)addIdentityValue:(NSString *)identityValue callback:(BuddyCompletionCallback)callback;
-- (void)removeIdentityValue:(NSString *)identityValue callback:(BuddyCompletionCallback)callback;
+- (void)addIdentity:(NSString *)identityProvider value:(NSString *)value callback:(BuddyCompletionCallback)callback;
+- (void)removeIdentity:(NSString *)identityProvider value:(NSString *)value callback:(BuddyCompletionCallback)callback;
+- (void)getIdentities:(NSString *)identityProvider callback:(BuddyCollectionCallback)callback;
 - (void)setUserProfilePicture:(UIImage *)picture caption:(NSString *)comment callback:(BuddyCompletionCallback)callback;
 - (void)deleteUserProfilePicture:(BuddyCompletionCallback)callback;
 

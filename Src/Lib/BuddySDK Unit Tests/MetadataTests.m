@@ -107,6 +107,10 @@ describe(@"Metadata", ^{
             
         });
         
+        it(@"Should be increment metadata", ^{
+
+        });
+        
         it(@"Should be able to set nil  metadata", ^{
             __block id targetString1 = @"Stuff";
             

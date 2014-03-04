@@ -30,7 +30,7 @@
     [self registerProperty:@selector(distance)];
 }
 
-NSString *location = @"location";
+NSString *location = @"locations";
 + (NSString *)requestPath
 {
     return location;

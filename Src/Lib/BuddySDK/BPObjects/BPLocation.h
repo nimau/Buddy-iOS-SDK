@@ -25,6 +25,7 @@
 @end
 
 typedef void(^DescribeLocation)(id<BPLocationProperties>locationProperties);
+typedef void(^SearchLocation)(id<BPLocationProperties, BPSearchProperties>locationProperties);
 
 @interface BPLocation : BuddyObject
 
