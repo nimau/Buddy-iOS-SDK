@@ -17,17 +17,17 @@
     
     [self registerProperty:@selector(name)];
     [self registerProperty:@selector(description)];
-    [self registerProperty:@selector(streetAddress1)];
-    [self registerProperty:@selector(streetAddress2)];
+    [self registerProperty:@selector(address1)];
+    [self registerProperty:@selector(address2)];
     [self registerProperty:@selector(city)];
-    [self registerProperty:@selector(subCountryDivision)];
+    [self registerProperty:@selector(region)];
     [self registerProperty:@selector(country)];
-    [self registerProperty:@selector(postalCode)];
+    [self registerProperty:@selector(postalcode)];
     [self registerProperty:@selector(fax)];
     [self registerProperty:@selector(phone)];
     [self registerProperty:@selector(website)];
-    [self registerProperty:@selector(category)];
-    [self registerProperty:@selector(distanceFromSearch)];
+    [self registerProperty:@selector(categoryId)];
+    [self registerProperty:@selector(distance)];
 }
 
 NSString *location = @"locations";
