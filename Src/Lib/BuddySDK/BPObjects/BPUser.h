@@ -14,6 +14,8 @@
  */
 typedef NS_ENUM(NSInteger, BPUserGender)
 {
+    /** Unknown */
+    BPUserGender_Unknown = 0,
     /** Male */
 	BPUserGender_Male = 1,
     /** Female */
