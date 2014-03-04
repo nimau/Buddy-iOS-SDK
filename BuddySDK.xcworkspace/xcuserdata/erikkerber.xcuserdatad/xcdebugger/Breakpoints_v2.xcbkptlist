@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Src/Lib/BuddySDK/Networking/BPServiceController.m"
+            timestampString = "415586767.504168"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "-handleFailure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Src/Lib/BuddySDK Unit Tests/BuddyIntegrationTests.m"
+            timestampString = "415587118.296269"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "SPEC_BEGIN()"
+            landmarkType = "6">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Src/Lib/BuddySDK Unit Tests/BPAlbumsIntegrationTests.m"
+            timestampString = "415590636.759693"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "SPEC_BEGIN()"
+            landmarkType = "6">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Src/Lib/BuddySDK Unit Tests/BPAlbumsIntegrationTests.m"
+            timestampString = "415591034.893056"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "SPEC_BEGIN()"
+            landmarkType = "6">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Src/Lib/BuddySDK Unit Tests/BuddyIntegrationTests.m"
+            timestampString = "415591501.022563"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "SPEC_BEGIN()"
+            landmarkType = "6">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__42+[BuddyIntegrationSpec buildExampleGroups]_block_invoke90"
+                  moduleName = "BuddySDK Unit Tests"
+                  urlString = "file:///Users/erikkerber/Dropbox/Projects/Buddy/Buddy-iOS-SDK-V2/Src/Lib/BuddySDK%20Unit%20Tests/BuddyIntegrationTests.m"
+                  timestampString = "415591431.071193"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "678">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__42+[BuddyIntegrationSpec buildExampleGroups]_block_invoke129"
+                  moduleName = "BuddySDK Unit Tests"
+                  urlString = "file:///Users/erikkerber/Dropbox/Projects/Buddy/Buddy-iOS-SDK-V2/Src/Lib/BuddySDK%20Unit%20Tests/BuddyIntegrationTests.m"
+                  timestampString = "415591431.07149"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "22">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_130"
+                  moduleName = "BuddySDK Unit Tests"
+                  urlString = "file:///Users/erikkerber/Dropbox/Projects/Buddy/Buddy-iOS-SDK-V2/Src/Lib/BuddySDK%20Unit%20Tests/BuddyIntegrationTests.m"
+                  timestampString = "415591431.071739"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_131"
+                  moduleName = "BuddySDK Unit Tests"
+                  urlString = "file:///Users/erikkerber/Dropbox/Projects/Buddy/Buddy-iOS-SDK-V2/Src/Lib/BuddySDK%20Unit%20Tests/BuddyIntegrationTests.m"
+                  timestampString = "415591431.071924"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "18">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Src/Lib/BuddySDK Unit Tests/BuddyIntegrationTests.m"
+            timestampString = "415591501.022563"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "SPEC_BEGIN()"
+            landmarkType = "6">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Src/Lib/BuddySDK Unit Tests/BuddyIntegrationTests.m"
+            timestampString = "415591454.596906"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "SPEC_BEGIN()"
+            landmarkType = "6">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__42+[BuddyIntegrationSpec buildExampleGroups]_block_invoke90"
+                  moduleName = "BuddySDK Unit Tests"
+                  urlString = "file:///Users/erikkerber/Dropbox/Projects/Buddy/Buddy-iOS-SDK-V2/Src/Lib/BuddySDK%20Unit%20Tests/BuddyIntegrationTests.m"
+                  timestampString = "415591291.606929"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "1183">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__42+[BuddyIntegrationSpec buildExampleGroups]_block_invoke136"
+                  moduleName = "BuddySDK Unit Tests"
+                  urlString = "file:///Users/erikkerber/Dropbox/Projects/Buddy/Buddy-iOS-SDK-V2/Src/Lib/BuddySDK%20Unit%20Tests/BuddyIntegrationTests.m"
+                  timestampString = "415591291.607259"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "22">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_139"
+                  moduleName = "BuddySDK Unit Tests"
+                  urlString = "file:///Users/erikkerber/Dropbox/Projects/Buddy/Buddy-iOS-SDK-V2/Src/Lib/BuddySDK%20Unit%20Tests/BuddyIntegrationTests.m"
+                  timestampString = "415591291.607537"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_140"
+                  moduleName = "BuddySDK Unit Tests"
+                  urlString = "file:///Users/erikkerber/Dropbox/Projects/Buddy/Buddy-iOS-SDK-V2/Src/Lib/BuddySDK%20Unit%20Tests/BuddyIntegrationTests.m"
+                  timestampString = "415591291.607866"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "18">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Src/Lib/BuddySDK Unit Tests/BuddyIntegrationTests.m"
+            timestampString = "415591452.879064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "SPEC_BEGIN()"
+            landmarkType = "6">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__42+[BuddyIntegrationSpec buildExampleGroups]_block_invoke90"
+                  moduleName = "BuddySDK Unit Tests"
+                  urlString = "file:///Users/erikkerber/Dropbox/Projects/Buddy/Buddy-iOS-SDK-V2/Src/Lib/BuddySDK%20Unit%20Tests/BuddyIntegrationTests.m"
+                  timestampString = "415591501.701287"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "1867">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__42+[BuddyIntegrationSpec buildExampleGroups]_block_invoke144"
+                  moduleName = "BuddySDK Unit Tests"
+                  urlString = "file:///Users/erikkerber/Dropbox/Projects/Buddy/Buddy-iOS-SDK-V2/Src/Lib/BuddySDK%20Unit%20Tests/BuddyIntegrationTests.m"
+                  timestampString = "415591501.701481"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "22">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_147"
+                  moduleName = "BuddySDK Unit Tests"
+                  urlString = "file:///Users/erikkerber/Dropbox/Projects/Buddy/Buddy-iOS-SDK-V2/Src/Lib/BuddySDK%20Unit%20Tests/BuddyIntegrationTests.m"
+                  timestampString = "415591501.701662"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_148"
+                  moduleName = "BuddySDK Unit Tests"
+                  urlString = "file:///Users/erikkerber/Dropbox/Projects/Buddy/Buddy-iOS-SDK-V2/Src/Lib/BuddySDK%20Unit%20Tests/BuddyIntegrationTests.m"
+                  timestampString = "415591501.701834"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "18">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Src/Lib/BuddySDK Unit Tests/MetadataTests.m"
+            timestampString = "415592412.465349"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "SPEC_BEGIN()"
+            landmarkType = "6">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Src/Lib/BuddySDK Unit Tests/MetadataTests.m"
+            timestampString = "415594182.868638"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "SPEC_BEGIN()"
+            landmarkType = "6">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__34+[MetadataSpec buildExampleGroups]_block_invoke_271"
+                  moduleName = "BuddySDK Unit Tests"
+                  urlString = "file:///Users/erikkerber/Dropbox/Projects/Buddy/Buddy-iOS-SDK-V2/Src/Lib/BuddySDK%20Unit%20Tests/MetadataTests.m"
+                  timestampString = "415594192.481058"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "501">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__34+[MetadataSpec buildExampleGroups]_block_invoke_381"
+                  moduleName = "BuddySDK Unit Tests"
+                  urlString = "file:///Users/erikkerber/Dropbox/Projects/Buddy/Buddy-iOS-SDK-V2/Src/Lib/BuddySDK%20Unit%20Tests/MetadataTests.m"
+                  timestampString = "415594192.481329"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "61">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -47,7 +47,7 @@
 
 @synthesize user=_user;
 @synthesize checkins=_checkins;
-@synthesize photos =_photos;
+@synthesize pictures =_pictures;
 @synthesize blobs = _blobs;
 @synthesize albums = _albums;
 @synthesize locations = _locations;
@@ -92,7 +92,7 @@
     
     _users = nil;
     _checkins = nil;
-    _photos = nil;
+    _pictures = nil;
     _blobs = nil;
     _albums = nil;
     _locations = nil;
@@ -185,13 +185,13 @@
     return _checkins;
 }
 
--(BPPictureCollection *)photos
+-(BPPictureCollection *)pictures
 {
-    if(!_photos)
+    if(!_pictures)
     {
-        _photos = [[BPPictureCollection alloc] initWithClient:self];
+        _pictures = [[BPPictureCollection alloc] initWithClient:self];
     }
-    return _photos;
+    return _pictures;
 }
 
 -(BPBlobCollection *)blobs

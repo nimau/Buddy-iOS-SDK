@@ -122,7 +122,7 @@ typedef void (^BPPingCallback)(NSDecimalNumber *ping);
 /// <summary>
 /// TODO
 /// </summary>
-@property (readonly, nonatomic, strong) BPPictureCollection *photos;
+@property (readonly, nonatomic, strong) BPPictureCollection *pictures;
 
 /// <summary>
 /// TODO

@@ -25,31 +25,31 @@
 }
 
 
-- (void)addPhoto:(UIImage *)photo
-   describePhoto:(DescribePhoto)describePhoto
+- (void)addPicture:(UIImage *)picture
+   describePicture:(DescribePicture)describePicture
         callback:(BuddyObjectCallback)callback
 {
-    [[self type] createWithImage:photo describePhoto:describePhoto client:self.client callback:callback];
+    [[self type] createWithImage:picture describePicture:describePicture client:self.client callback:callback];
 }
 
--(void)getPhotos:(BuddyCollectionCallback)callback
+-(void)getPictures:(BuddyCollectionCallback)callback
 {
     [self getAll:callback];
 }
 
--(void)searchPhotos:(DescribePhoto)describePhoto callback:(BuddyCollectionCallback)callback
+-(void)searchPictures:(DescribePicture)describePicture callback:(BuddyCollectionCallback)callback
 {
-    id photoProperties = [BPSisterObject new];
-    describePhoto ? describePhoto(photoProperties) : nil;
+    id pictureProperties= [BPSisterObject new];
+    describePicture ? describePicture(pictureProperties) : nil;
     
-    id parameters = [photoProperties parametersFromProperties:@protocol(BPPictureProperties)];
+    id parameters = [pictureProperties parametersFromProperties:@protocol(BPPictureProperties)];
     
     [self search:parameters callback:callback];
 }
 
-- (void)getPhoto:(NSString *)photoId callback:(BuddyObjectCallback)callback
+- (void)getPicture:(NSString *)pictureId callback:(BuddyObjectCallback)callback
 {
-    [self getItem:photoId callback:callback];
+    [self getItem:pictureId callback:callback];
 }
 
 @end

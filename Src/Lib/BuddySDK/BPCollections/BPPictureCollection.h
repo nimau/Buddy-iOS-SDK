@@ -11,14 +11,14 @@
 
 @interface BPPictureCollection : BuddyCollection
 
-- (void)addPhoto:(UIImage *)photo
-   describePhoto:(DescribePhoto)describePhoto
+- (void)addPicture:(UIImage *)picture
+   describePicture:(DescribePicture)describePicture
         callback:(BuddyObjectCallback)callback;
 
-- (void)getPhotos:(BuddyCollectionCallback)callback;
+- (void)getPictures:(BuddyCollectionCallback)callback;
 
-- (void)searchPhotos:(DescribePhoto)describePhoto callback:(BuddyCollectionCallback)callback;
+- (void)searchPictures:(DescribePicture)describePicture callback:(BuddyCollectionCallback)callback;
 
-- (void)getPhoto:(NSString *)photoId callback:(BuddyObjectCallback)callback;
+- (void)getPicture:(NSString *)pictureId callback:(BuddyObjectCallback)callback;
 
 @end

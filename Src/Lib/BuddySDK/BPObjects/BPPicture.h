@@ -18,14 +18,14 @@
 @class BPPicture;
 
 typedef void(^BuddyImageResponse)(UIImage *image, NSError *error);
-typedef void(^DescribePhoto)(id<BPPictureProperties>photoProperties);
+typedef void(^DescribePicture)(id<BPPictureProperties>pictureProperties);
 
 @interface BPPicture : BPBlob<BPPictureProperties>
 
 //@property (nonatomic, assign) CGSize size;
 
 + (void)createWithImage:(UIImage *)image
-          describePhoto:(DescribePhoto)describePhoto
+          describePicture:(DescribePicture)describePicture
                  client:(id<BPRestProvider>)client
                callback:(BuddyObjectCallback)callback;
 

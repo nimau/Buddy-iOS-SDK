@@ -47,9 +47,8 @@
     return [[BPClient defaultClient] checkins];
 }
 
-+ (BPPictureCollection *) photos
-{
-    return [[BPClient defaultClient] photos];
++ (BPPictureCollection *) pictures{
+    return [[BPClient defaultClient] pictures];
 }
 
 + (BPBlobCollection *) blobs

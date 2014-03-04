@@ -85,6 +85,13 @@
     }];
 }
 
+- (void)incrementMetadata:(NSString *)key delta:(NSInteger)delta callback:(BuddyCompletionCallback)callback
+{
+    [self.client POST:[self metadataPath:key] parameters:nil callback:^(id json, NSError *error) {
+        callback ? callback(error) : nil;
+    }];
+}
+
 - (void)getMetadataWithKey:(NSString *)key permissions:(BuddyPermissions)permissions callback:(BuddyObjectCallback)callback
 {
     NSDictionary *parameters = @{@"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};

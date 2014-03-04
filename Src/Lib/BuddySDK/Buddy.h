@@ -55,9 +55,9 @@
 + (BPCheckinCollection *) checkins;
 
 /**
- Accessor to create and query photos.
+ Accessor to create and query pictures.
  */
-+ (BPPictureCollection *)photos;
++ (BPPictureCollection *) pictures;
 
 /**
  Accessor to create and query data and files.

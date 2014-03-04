@@ -13,9 +13,9 @@
 #ifdef kKW_DEFAULT_PROBE_TIMEOUT
 #undef kKW_DEFAULT_PROBE_TIMEOUT
 #endif
-#define kKW_DEFAULT_PROBE_TIMEOUT 4.0
+#define kKW_DEFAULT_PROBE_TIMEOUT 10.0
 
-SPEC_BEGIN(BuddyPhotoSpec)
+SPEC_BEGIN(BuddyPictureSpec)
 
 describe(@"BPPictureIntegrationSpec", ^{
     
@@ -25,14 +25,14 @@ describe(@"BPPictureIntegrationSpec", ^{
             [BuddyIntegrationHelper bootstrapInit];
         });
         
-        it(@"Should not allow them to add photos.", ^{
+        it(@"Should not allow them to add and describe pictures.", ^{
             __block BOOL fin = NO;
 
             NSBundle *bundle = [NSBundle bundleForClass:[self class]];
             NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
             UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             
-            [[Buddy photos] addPhoto:image describePhoto:^(id<BPPictureProperties> photoProperties) {
+            [[Buddy pictures] addPicture:image describePicture:^(id<BPPictureProperties> photoProperties) {
                 photoProperties.caption = @"Hello, caption!";
             } callback:^(id buddyObject, NSError *error) {
                 [[error shouldNot] beNil];
@@ -51,8 +51,8 @@ describe(@"BPPictureIntegrationSpec", ^{
             NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
             UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             
-            [[Buddy photos] addPhoto:image describePhoto:^(id<BPPictureProperties>photoProperties) {
-                photoProperties.caption = @"Hello, caption!";
+            [[Buddy pictures] addPicture:image describePicture:^(id<BPPictureProperties>pictureProperties) {
+                pictureProperties.caption = @"Hello, caption!";
             } callback:^(id newBuddyObject, NSError *error) {
                 [[error shouldNot] beNil];
                 [[newBuddyObject should] beNil];
@@ -64,7 +64,7 @@ describe(@"BPPictureIntegrationSpec", ^{
     }),
             
     context(@"When a user is logged in", ^{
-        __block BPPicture *newPhoto;
+        __block BPPicture *newPicture;
         
         beforeAll(^{
             __block BOOL fin = NO;
@@ -80,81 +80,81 @@ describe(@"BPPictureIntegrationSpec", ^{
             
         });
         
-        it(@"Should allow users to post photos", ^{
+        it(@"Should allow users to post pictures", ^{
             NSBundle *bundle = [NSBundle bundleForClass:[self class]];
             NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
             UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             
-            [[Buddy photos] addPhoto:image describePhoto:^(id<BPPictureProperties> photoProperties) {
-                photoProperties.caption = @"Hello, caption!";
+            [[Buddy pictures] addPicture:image describePicture:^(id<BPPictureProperties> pictureProperties) {
+                pictureProperties.caption = @"Hello, caption!";
             } callback:^(id buddyObject, NSError *error) {
-                newPhoto = buddyObject;
+                newPicture = buddyObject;
             }];
             
-            [[expectFutureValue(newPhoto) shouldEventually] beNonNil];
-            [[expectFutureValue(theValue(newPhoto.contentLength)) shouldEventually] beGreaterThan:theValue(1)];
-            [[expectFutureValue(newPhoto.contentType) shouldEventually] equal:@"image/png"];
-            [[expectFutureValue(newPhoto.signedUrl) shouldEventually] haveLengthOfAtLeast:1];
-            [[expectFutureValue(newPhoto.caption) shouldEventually] equal:@"Hello, caption!"];
+            [[expectFutureValue(newPicture) shouldEventually] beNonNil];
+            [[expectFutureValue(theValue(newPicture.contentLength)) shouldEventually] beGreaterThan:theValue(1)];
+            [[expectFutureValue(newPicture.contentType) shouldEventually] equal:@"image/png"];
+            [[expectFutureValue(newPicture.signedUrl) shouldEventually] haveLengthOfAtLeast:1];
+            [[expectFutureValue(newPicture.caption) shouldEventually] equal:@"Hello, caption!"];
 
         });
         
-        it(@"Should allow retrieving photos", ^{
-            __block BPPicture *secondPhoto;
-            [[Buddy photos] getPhoto:newPhoto.id callback:^(id newBuddyObject, NSError *error) {
-                secondPhoto = newBuddyObject;
+        it(@"Should allow retrieving pictures", ^{
+            __block BPPicture *secondPicture;
+            [[Buddy pictures] getPicture:newPicture.id callback:^(id newBuddyObject, NSError *error) {
+                secondPicture = newBuddyObject;
             }];
             
-            [[expectFutureValue(secondPhoto) shouldEventually] beNonNil];
-            [[expectFutureValue(theValue(secondPhoto.contentLength)) shouldEventually] equal:theValue(newPhoto.contentLength)];
-            [[expectFutureValue(secondPhoto.contentType) shouldEventually] equal:newPhoto.contentType];
-            [[expectFutureValue([secondPhoto.signedUrl componentsSeparatedByString:@"?"][0]) shouldEventually] equal:[newPhoto.signedUrl componentsSeparatedByString:@"?"][0]];
-            [[expectFutureValue(secondPhoto.caption) shouldEventually] equal:newPhoto.caption];
+            [[expectFutureValue(secondPicture) shouldEventually] beNonNil];
+            [[expectFutureValue(theValue(secondPicture.contentLength)) shouldEventually] equal:theValue(newPicture.contentLength)];
+            [[expectFutureValue(secondPicture.contentType) shouldEventually] equal:newPicture.contentType];
+            [[expectFutureValue([secondPicture.signedUrl componentsSeparatedByString:@"?"][0]) shouldEventually] equal:[newPicture.signedUrl componentsSeparatedByString:@"?"][0]];
+            [[expectFutureValue(secondPicture.caption) shouldEventually] equal:newPicture.caption];
         });
         
-        it(@"Should allow modifying photos", ^{
-            __block BPPicture *secondPhoto;
+        it(@"Should allow modifying pictures", ^{
+            __block BPPicture *secondPicture;
         
-            newPhoto.caption = @"Some new photo caption";
+            newPicture.caption = @"Some new picture caption";
             
-            [newPhoto save:^(NSError *error) {
+            [newPicture save:^(NSError *error) {
                 [[error should] beNil];
-                [[Buddy photos] getPhoto:newPhoto.id callback:^(id newBuddyObject, NSError *error) {
-                    secondPhoto = newBuddyObject;
+                [[Buddy pictures] getPicture:newPicture.id callback:^(id newBuddyObject, NSError *error) {
+                    secondPicture = newBuddyObject;
                 }];
             }];
             
 
-            [[expectFutureValue(secondPhoto) shouldEventually] beNonNil];
-            [[expectFutureValue(secondPhoto.caption) shouldEventually] equal:@"Some new photo caption"];
+            [[expectFutureValue(secondPicture) shouldEventually] beNonNil];
+            [[expectFutureValue(secondPicture.caption) shouldEventually] equal:@"Some new picture caption"];
         });
         
-        it(@"Should allow modifying a *retrieved* photo", ^{
-            __block BPPicture *retrievedPhoto;
-            [[Buddy photos] getPhoto:newPhoto.id callback:^(id newBuddyObject, NSError *error) {
-                retrievedPhoto = newBuddyObject;
+        it(@"Should allow modifying a *retrieved* picture", ^{
+            __block BPPicture *retrievedPicture;
+            [[Buddy pictures] getPicture:newPicture.id callback:^(id newBuddyObject, NSError *error) {
+                retrievedPicture = newBuddyObject;
             }];
             
-            [[expectFutureValue(retrievedPhoto) shouldEventually] beNonNil];
+            [[expectFutureValue(retrievedPicture) shouldEventually] beNonNil];
             
-            retrievedPhoto.caption = @"Hakuna matata";
+            retrievedPicture.caption = @"Hakuna matata";
             
-            [retrievedPhoto save:^(NSError *error) {
+            [retrievedPicture save:^(NSError *error) {
                 [[error should] beNil];
-                retrievedPhoto = nil;
-                [[Buddy photos] getPhoto:newPhoto.id callback:^(id newBuddyObject, NSError *error) {
-                    retrievedPhoto = newBuddyObject;
+                retrievedPicture = nil;
+                [[Buddy pictures] getPicture:newPicture.id callback:^(id newBuddyObject, NSError *error) {
+                    retrievedPicture = newBuddyObject;
                 }];
             }];
             
             
-            [[expectFutureValue(retrievedPhoto) shouldEventually] beNonNil];
-            [[expectFutureValue(retrievedPhoto.caption) shouldEventually] equal:@"Hakuna matata"];
+            [[expectFutureValue(retrievedPicture) shouldEventually] beNonNil];
+            [[expectFutureValue(retrievedPicture.caption) shouldEventually] equal:@"Hakuna matata"];
         });
         
         it(@"Should allow directly retrieving the image file", ^{
             __block UIImage *theImage;
-            [newPhoto getImage:^(UIImage *image, NSError *error) {
+            [newPicture getImage:^(UIImage *image, NSError *error) {
                 theImage = image;
             }];
             
@@ -162,43 +162,43 @@ describe(@"BPPictureIntegrationSpec", ^{
         });
         
         it(@"Should allow searching for images", ^{
-            __block NSArray *retrievedPhotos;
+            __block NSArray *retrievedPictures;
 
-            [[Buddy photos] searchPhotos:^(id<BPPictureProperties> photoProperties) {
-                photoProperties.caption = @"Hakuna matata";
+            [[Buddy pictures] searchPictures:^(id<BPPictureProperties> pictureProperties) {
+                pictureProperties.caption = @"Hakuna matata";
             } callback:^(NSArray *buddyObjects, NSError *error) {
                 NSArray *p = buddyObjects;
                 
-                for(BPPicture *photo in p) {
-                    [[photo.caption should] equal:@"Hakuna matata"];
+                for(BPPicture *picture in p) {
+                    [[picture.caption should] equal:@"Hakuna matata"];
                 }
-                retrievedPhotos = buddyObjects;
+                retrievedPictures = buddyObjects;
             }];
             
-            [[expectFutureValue(theValue([retrievedPhotos count])) shouldEventually] beGreaterThan:theValue(0)];
+            [[expectFutureValue(theValue([retrievedPictures count])) shouldEventually] beGreaterThan:theValue(0)];
         });
         
         it(@"Should allow searching for images2", ^{
-            __block NSArray *retrievedPhotos;
+            __block NSArray *retrievedPictures;
             
-            [[Buddy photos] searchPhotos:^(id<BPPictureProperties> photoProperties) {
-                photoProperties.caption = @"Hello, caption!";
+            [[Buddy pictures] searchPictures:^(id<BPPictureProperties> pictureProperties) {
+                pictureProperties.caption = @"Hello, caption!";
             } callback:^(NSArray *buddyObjects, NSError *error) {
-                retrievedPhotos = buddyObjects;
+                retrievedPictures = buddyObjects;
             }];
             
-            [[expectFutureValue(theValue([retrievedPhotos count])) shouldEventually] beGreaterThan:theValue(0)];
+            [[expectFutureValue(theValue([retrievedPictures count])) shouldEventually] equal:theValue(0)];
         });
         
-        it(@"Should allow the user to delete photos", ^{
+        it(@"Should allow the user to delete pictures", ^{
             return;
-            [newPhoto deleteMe:^(NSError *error){
-                [[Buddy photos] getPhoto:newPhoto.id callback:^(id newBuddyObject, NSError *error) {
-                    newPhoto = newBuddyObject;
+            [newPicture deleteMe:^(NSError *error){
+                [[Buddy pictures] getPicture:newPicture.id callback:^(id newBuddyObject, NSError *error) {
+                    newPicture = newBuddyObject;
                 }];
             }];
             
-            [[expectFutureValue(newPhoto) shouldEventually] beNil];
+            [[expectFutureValue(newPicture) shouldEventually] beNil];
         });
         
         

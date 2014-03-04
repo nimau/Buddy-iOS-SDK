@@ -23,23 +23,23 @@
 }
 
 
-static NSString *photos = @"pictures";
+static NSString *pictures = @"pictures";
 +(NSString *) requestPath{
-    return photos;
+    return pictures;
 }
 
 + (void)createWithImage:(UIImage *)image
-          describePhoto:(DescribePhoto)describePhoto
+          describePicture:(DescribePicture)describePicture
                  client:(id<BPRestProvider>)client
                callback:(BuddyObjectCallback)callback
 {
     //NSData *data = UIImageJPEGRepresentation(image, 1);
     NSData *data = UIImagePNGRepresentation(image);
     
-    id photoProperties= [BPSisterObject new];
-    describePhoto ? describePhoto(photoProperties) : nil;
+    id pictureProperties= [BPSisterObject new];
+    describePicture ? describePicture(pictureProperties) : nil;
 
-    id parameters = [photoProperties parametersFromProperties:@protocol(BPPictureProperties)];
+    id parameters = [pictureProperties parametersFromProperties:@protocol(BPPictureProperties)];
     
     [self createWithData:data parameters:parameters client:client callback:^(id newBuddyObject, NSError *error) {
         callback ? callback(newBuddyObject, error) : nil;

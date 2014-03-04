@@ -13,7 +13,7 @@
 #ifdef kKW_DEFAULT_PROBE_TIMEOUT
 #undef kKW_DEFAULT_PROBE_TIMEOUT
 #endif
-#define kKW_DEFAULT_PROBE_TIMEOUT 4.0
+#define kKW_DEFAULT_PROBE_TIMEOUT 20.0
 
 SPEC_BEGIN(BuddyAlbumSpec)
 
@@ -21,7 +21,7 @@ describe(@"BPAlbumIntegrationSpec", ^{
     context(@"When a user is logged in", ^{
         
         __block BPAlbum *tempAlbum;
-        __block BPPicture *tempPhoto;
+        __block BPPicture *tempPicture;
         __block BPAlbumItem *tempItem;
         
         beforeAll(^{
@@ -62,6 +62,9 @@ describe(@"BPAlbumIntegrationSpec", ^{
         
         it(@"Should allow you to search for albums.", ^{
             __block NSArray *retrievedAlbums;
+//            [[Buddy albums] search:nil callback:^(NSArray *buddyObjects, NSError *error) {
+//                retrievedAlbums = buddyObjects;
+//            }];
             
             [[Buddy albums] searchAlbums:nil callback:^(NSArray *buddyObjects, NSError *error) {
                 retrievedAlbums = buddyObjects;
@@ -90,11 +93,11 @@ describe(@"BPAlbumIntegrationSpec", ^{
             NSString *imagePath = [bundle pathForResource:@"1" ofType:@"jpg"];
             UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             
-            [[Buddy photos] addPhoto:image describePhoto:^(id<BPPictureProperties> photoProperties) {
-                photoProperties.caption = @"Test image for album.";
+            [[Buddy pictures] addPicture:image describePicture:^(id<BPPictureProperties> pictureProperties) {
+                pictureProperties.caption = @"Test image for album.";
             } callback:^(id newBuddyObject, NSError *error) {
-                tempPhoto = newBuddyObject;
-                [tempAlbum addItemToAlbum:tempPhoto caption:@"At the park" callback:^(id newBuddyObject, NSError *error) {
+                tempPicture = newBuddyObject;
+                [tempAlbum addItemToAlbum:tempPicture caption:@"Caption" callback:^(id newBuddyObject, NSError *error) {
                     [[error should] beNil];
                     tempItem = newBuddyObject;
                 }];
@@ -103,13 +106,14 @@ describe(@"BPAlbumIntegrationSpec", ^{
             [[expectFutureValue(tempItem) shouldEventually] beNonNil];
         });
         
+        
         it(@"Should allow you to retrieve an item from an album.", ^{
-            __block BPPicture *retrievedPhoto;
+            __block BPPicture *retrievedPicture;
             [tempAlbum getAlbumItem:tempItem.id callback:^(id newBuddyObject, NSError *error) {
-                retrievedPhoto = newBuddyObject;
+                retrievedPicture = newBuddyObject;
             }];
-            
-            [[expectFutureValue(retrievedPhoto) shouldEventually] beNonNil];
+#pragma message ("TODO: Fix Test")            
+            [[expectFutureValue(retrievedPicture) shouldEventually] beNonNil];
         });
         
         it(@"Should allow you to get the file for an item from an album.", ^{
@@ -136,7 +140,7 @@ describe(@"BPAlbumIntegrationSpec", ^{
         it(@"Should allow you to delete an album.", ^{
             __block NSString *deletedId = tempAlbum.id;
             [tempAlbum deleteMe:^(NSError *error){
-                [[Buddy photos] getPhoto:deletedId callback:^(id newBuddyObject, NSError *error) {
+                [[Buddy pictures] getPicture:deletedId callback:^(id newBuddyObject, NSError *error) {
                     [[error should] beNil];
                     tempAlbum = newBuddyObject;
                 }];
