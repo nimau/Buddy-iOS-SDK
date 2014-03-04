@@ -107,10 +107,6 @@ describe(@"Metadata", ^{
             
         });
         
-        it(@"Should be increment metadata", ^{
-
-        });
-        
         it(@"Should be able to set nil  metadata", ^{
             __block id targetString1 = @"Stuff";
             
@@ -161,6 +157,26 @@ describe(@"Metadata", ^{
             }];
             
             [[expectFutureValue(theValue(targetInteger)) shouldEventually] equal:theValue(testInteger)];
+        });
+        
+        it(@"Should be increment metadata", ^{
+            NSInteger testInteger = 42;
+            NSInteger delta = 11;
+            __block NSInteger targetInteger = -1;
+            
+            __weak BPCheckin *c = checkin1;
+            [c setMetadataWithKey:@"IncrementingMetadata" andInteger:testInteger permissions:BuddyPermissionsDefault callback:^(NSError *error) {
+                [[error should] beNil];
+                
+                [c incrementMetadata:@"IncrementingMetadata" delta:delta callback:^(NSError *error) {
+                    [[error should] beNil];
+                    [c getMetadataWithKey:@"IncrementingMetadata" permissions:BuddyPermissionsDefault callback:^(id newBuddyObject, NSError *error) {
+                        targetInteger = [newBuddyObject integerValue];
+                    }];
+                }];
+            }];
+            
+            [[expectFutureValue(theValue(targetInteger)) shouldEventually] equal:theValue(testInteger + delta)];
         });
         
         it(@"Should be able to delete metadata", ^{

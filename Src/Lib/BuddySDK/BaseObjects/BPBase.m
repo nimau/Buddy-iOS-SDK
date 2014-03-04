@@ -67,7 +67,7 @@
 {
 #pragma message("Convert to 'convertValue' method from enum map")
     
-    NSDictionary *parameters = @{@"value": [NSString stringWithFormat:@"%ld", (long)value],
+    NSDictionary *parameters = @{@"value": @(value),
                                  @"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
     
     [self.client PUT:[self metadataPath:key] parameters:parameters callback:^(id json, NSError *error) {
@@ -87,7 +87,11 @@
 
 - (void)incrementMetadata:(NSString *)key delta:(NSInteger)delta callback:(BuddyCompletionCallback)callback
 {
-    [self.client POST:[self metadataPath:key] parameters:nil callback:^(id json, NSError *error) {
+    NSString *incrementResource = [NSString stringWithFormat:@"%@/increment", [self metadataPath:key]];
+    
+    NSDictionary *parameters = @{@"delta": @(delta)};
+    
+    [self.client POST:incrementResource parameters:parameters callback:^(id json, NSError *error) {
         callback ? callback(error) : nil;
     }];
 }
