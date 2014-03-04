@@ -42,7 +42,7 @@ describe(@"BPLocationIntegrationSpec", ^{
                 locationProperties.name = @"House of Pain";
                 locationProperties.description = @"Where the pain is brought";
                 locationProperties.location = BPCoordinateMake(1.2, 3.4);
-                locationProperties.categoryId = @"So much pain";
+                locationProperties.category = @"So much pain";
             } callback:^(id newBuddyObject, NSError *error) {
                 [[error should] beNil];
                 tempLocation = newBuddyObject;

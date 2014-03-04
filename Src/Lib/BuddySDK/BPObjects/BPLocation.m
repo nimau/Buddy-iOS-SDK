@@ -26,7 +26,7 @@
     [self registerProperty:@selector(fax)];
     [self registerProperty:@selector(phone)];
     [self registerProperty:@selector(website)];
-    [self registerProperty:@selector(categoryId)];
+    [self registerProperty:@selector(category)];
     [self registerProperty:@selector(distance)];
 }
 
