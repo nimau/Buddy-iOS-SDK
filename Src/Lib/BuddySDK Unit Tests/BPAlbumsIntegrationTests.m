@@ -117,24 +117,24 @@ describe(@"BPAlbumIntegrationSpec", ^{
         });
         
         it(@"Should allow you to get the file for an item from an album.", ^{
-            __block UIImage *retrievedPhoto;
+            __block UIImage *retrievedPicture;
             [tempItem getImage:^(UIImage *image, NSError *error) {
                 [[error should] beNil];
-                retrievedPhoto = image;
+                retrievedPicture = image;
             }];
             
-            [[expectFutureValue(retrievedPhoto) shouldEventually] beNonNil];
+            [[expectFutureValue(retrievedPicture) shouldEventually] beNonNil];
         });
         it(@"Should allow you to search for items in an album.", ^{
-            __block NSArray *retrievedPhotos;
+            __block NSArray *retrievedPictures;
             [tempAlbum searchAlbumItems:^(id<BPAlbumItemProperties> albumItemProperties) {
                 
             } callback:^(NSArray *buddyObjects, NSError *error) {
                 [[error should] beNil];
-                retrievedPhotos = buddyObjects;
+                retrievedPictures = buddyObjects;
             }];
             
-            [[expectFutureValue(theValue([retrievedPhotos count])) shouldEventually] beGreaterThan:theValue(0)];
+            [[expectFutureValue(theValue([retrievedPictures count])) shouldEventually] beGreaterThan:theValue(0)];
         });
         
         it(@"Should allow you to delete an album.", ^{

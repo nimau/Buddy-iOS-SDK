@@ -43,7 +43,7 @@
     }];
 }
 
-- (void)getImage:(BuddyAlbumPhotoResponse)callback
+- (void)getImage:(BuddyAlbumPictureResponse)callback
 {
     [self getData:^(NSData *data, NSError *error) {
         UIImage *image = [UIImage imageWithData:data];

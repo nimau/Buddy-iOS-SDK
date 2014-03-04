@@ -23,7 +23,7 @@
 
 - (void)searchAlbumItems:(DescribeAlbumItem)describe callback:(BuddyObjectCallback)callback;
 
-- (void)getAlbumItem:(NSString *)photoId callback:(BuddyObjectCallback)callback;
+- (void)getAlbumItem:(NSString *)pictureId callback:(BuddyObjectCallback)callback;
 
     
 @end

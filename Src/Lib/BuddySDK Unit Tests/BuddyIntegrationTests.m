@@ -34,7 +34,7 @@ describe(@"Buddy", ^{
 
         });
         
-        it(@"Should throw an auth error if they try to access photos.", ^{
+        it(@"Should throw an auth error if they try to access pictures.", ^{
             [[mock shouldEventually] receive:@selector(apiErrorOccurred:)];
             [[[mock shouldEventually] receive] authorizationNeedsUserLogin];
             [[Buddy pictures] searchPictures:nil callback:nil];

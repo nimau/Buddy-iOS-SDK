@@ -14,7 +14,7 @@
 
 @end
 
-typedef void(^DescribeAlbum)(id<BPAlbumProperties>photoProperties);
+typedef void(^DescribeAlbum)(id<BPAlbumProperties>pictureProperties);
 
 @interface BPAlbum : BuddyObject
 

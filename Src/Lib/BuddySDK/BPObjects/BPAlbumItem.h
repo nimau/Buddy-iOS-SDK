@@ -26,13 +26,13 @@
 @end
 
 typedef void(^BuddyAlbumItemResponse)(NSData *data, NSError *error);
-typedef void(^BuddyAlbumPhotoResponse)(UIImage *data, NSError *error);
+typedef void(^BuddyAlbumPictureResponse)(UIImage *data, NSError *error);
 
 typedef void(^DescribeAlbumItem)(id<BPAlbumItemProperties>albumItemProperties);
 
 @interface BPAlbumItem : BuddyObject<BPAlbumItemProperties>
 
 - (void)getData:(BuddyAlbumItemResponse)callback;
-- (void)getImage:(BuddyAlbumPhotoResponse)callback;
+- (void)getImage:(BuddyAlbumPictureResponse)callback;
 
 @end
