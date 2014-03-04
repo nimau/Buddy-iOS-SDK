@@ -1,5 +1,5 @@
 //
-//  BPPictureCollection.h
+//  BPPhotoCollection.h
 //  BuddySDK
 //
 //  Created by Erik Kerber on 11/22/13.
@@ -7,18 +7,18 @@
 //
 
 #import "BuddyCollection.h"
-#import "BPPicture.h"
+#import "BPPhoto.h"
 
-@interface BPPictureCollection : BuddyCollection
+@interface BPPhotoCollection : BuddyCollection
 
-- (void)addPicture:(UIImage *)picture
-   describePicture:(DescribePicture)describePicture
+- (void)addPhoto:(UIImage *)photo
+   describePhoto:(DescribePhoto)describePhoto
         callback:(BuddyObjectCallback)callback;
 
-- (void)getPictures:(BuddyCollectionCallback)callback;
+- (void)getPhotos:(BuddyCollectionCallback)callback;
 
-- (void)searchPictures:(DescribePicture)describePicture callback:(BuddyCollectionCallback)callback;
+- (void)searchPhotos:(DescribePhoto)describePhoto callback:(BuddyCollectionCallback)callback;
 
-- (void)getPicture:(NSString *)pictureId callback:(BuddyObjectCallback)callback;
+- (void)getPhoto:(NSString *)photoId callback:(BuddyObjectCallback)callback;
 
 @end

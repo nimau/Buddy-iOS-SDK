@@ -160,6 +160,8 @@
 		C1C2394E1877C906000D0089 /* BPRestProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = C10F1B7F1870C35A00D5364C /* BPRestProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C1C2395318789594000D0089 /* BPBlob.h in Headers */ = {isa = PBXBuildFile; fileRef = C1C2395118789594000D0089 /* BPBlob.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C1C2395418789594000D0089 /* BPBlob.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C2395218789594000D0089 /* BPBlob.m */; };
+		C1CEA7F718C5543500D5C9DC /* BPAlbumItem.h in Headers */ = {isa = PBXBuildFile; fileRef = C1CEA7F518C5543500D5C9DC /* BPAlbumItem.h */; };
+		C1CEA7F818C5543500D5C9DC /* BPAlbumItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEA7F618C5543500D5C9DC /* BPAlbumItem.m */; };
 		C1D7094818832983003D112C /* BPDescriptors.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D7094618832983003D112C /* BPDescriptors.h */; };
 		C1D7094918832983003D112C /* BPDescriptors.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7094718832983003D112C /* BPDescriptors.m */; };
 		C1E0D1D11831BAD3001A7A01 /* JAGProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = C1E0D1CA1831BAD3001A7A01 /* JAGProperty.h */; };
@@ -355,6 +357,8 @@
 		C1BFD88D187D169500A1FADF /* BPBlobCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = BPBlobCollection.m; path = BPCollections/BPBlobCollection.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C1C2395118789594000D0089 /* BPBlob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPBlob.h; sourceTree = "<group>"; };
 		C1C2395218789594000D0089 /* BPBlob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPBlob.m; sourceTree = "<group>"; };
+		C1CEA7F518C5543500D5C9DC /* BPAlbumItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPAlbumItem.h; sourceTree = "<group>"; };
+		C1CEA7F618C5543500D5C9DC /* BPAlbumItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPAlbumItem.m; sourceTree = "<group>"; };
 		C1D7094618832983003D112C /* BPDescriptors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDescriptors.h; sourceTree = "<group>"; };
 		C1D7094718832983003D112C /* BPDescriptors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDescriptors.m; sourceTree = "<group>"; };
 		C1D7094A1883942D003D112C /* BPEnumMapping.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPEnumMapping.h; sourceTree = "<group>"; };
@@ -665,6 +669,8 @@
 				0183A51C188F4D2C0065C76C /* BPClient+Private.h */,
 				C1B0F54918937B08000403E0 /* BPAlbumItemContainer.h */,
 				C1B0F54A18937B08000403E0 /* BPAlbumItemContainer.m */,
+				C1CEA7F518C5543500D5C9DC /* BPAlbumItem.h */,
+				C1CEA7F618C5543500D5C9DC /* BPAlbumItem.m */,
 				C142766E1898B11500D5DD85 /* BPAlbumItem.h */,
 			);
 			name = BPObjects;
@@ -805,6 +811,7 @@
 				C11E6C93184C57040034E1EB /* BPPictureCollection.h in Headers */,
 				C1B959F91837061F000C8417 /* BuddyObject.h in Headers */,
 				C1B0F534189373F6000403E0 /* AFHTTPRequestOperationManager.h in Headers */,
+				C1CEA7F718C5543500D5C9DC /* BPAlbumItem.h in Headers */,
 				C1B0F4D518937142000403E0 /* NSString+ObjectiveSugar.h in Headers */,
 				C154CEFA187FAE8600EACE4B /* NSDate+JSON.h in Headers */,
 				C1B0F536189373F6000403E0 /* AFHTTPSessionManager.h in Headers */,
@@ -1059,6 +1066,7 @@
 				C1C2395418789594000D0089 /* BPBlob.m in Sources */,
 				C1B0F53A189373F6000403E0 /* AFNetworkReachabilityManager.m in Sources */,
 				C1B0F544189373F6000403E0 /* AFURLSessionManager.m in Sources */,
+				C1CEA7F818C5543500D5C9DC /* BPAlbumItem.m in Sources */,
 				C1E0D1D91831BAD3001A7A01 /* JAGPropertyFinder.m in Sources */,
 				C1B0F533189373F6000403E0 /* AFHTTPRequestOperation.m in Sources */,
 				C1AA90D918371FF70074B7E8 /* BPServiceController.m in Sources */,

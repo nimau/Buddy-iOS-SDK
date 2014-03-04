@@ -84,25 +84,40 @@ static NSString *users = @"users";
     }];
 }
 
-#pragma mark - Identity Value
-
-- (void)addIdentityValue:(NSString *)identityValue callback:(BuddyCompletionCallback)callback;
+- (void)addIdentity:(NSString *)identityProvider value:(NSString *)value callback:(BuddyCompletionCallback)callback
 {
-    NSString *resource = @"users/identity";
-    NSDictionary *parameters = @{@"Identity": identityValue};
+    NSString *resource = [NSString stringWithFormat:@"users/%@/identities", self.id];
+    NSDictionary *parameters = @{
+                                 @"identityProviderName": identityProvider,
+                                 @"identityID": value
+                                 };
     
-    [self.client PATCH:resource parameters:parameters callback:^(id json, NSError *error) {
+    [self.client POST:resource parameters:parameters callback:^(id json, NSError *error) {
         callback ? callback(error) : nil;
     }];
 }
 
-- (void)removeIdentityValue:(NSString *)identityValue callback:(BuddyCompletionCallback)callback;
+- (void)removeIdentity:(NSString *)identityProvider value:(NSString *)value callback:(BuddyCompletionCallback)callback
 {
-    NSString *resource = [@"users/identity/" stringByAppendingString:identityValue];
-    NSDictionary *parameters = @{@"Identity": identityValue};
+    NSString *resource = [NSString stringWithFormat:@"users/%@/identities/%@", self.id, identityProvider];
+
+    NSDictionary *parameters = @{
+                                 @"identityID": value
+                                 };
+    
     [self.client DELETE:resource parameters:parameters callback:^(id json, NSError *error) {
         callback ? callback(error) : nil;
     }];
+}
+
+- (void)getIdentities:(NSString *)identityProvider callback:(BuddyCollectionCallback)callback
+{
+    NSString *resource = [NSString stringWithFormat:@"users/%@/identities/%@", self.id, identityProvider];
+    
+    [self.client GET:resource parameters:nil callback:^(id identityValues, NSError *error) {
+        callback ? callback(identityValues, error) : nil;
+    }];
+
 }
 
 #pragma mark - Profile Picture

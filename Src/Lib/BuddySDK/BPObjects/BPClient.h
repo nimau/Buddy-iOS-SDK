@@ -21,10 +21,12 @@
 @class BPSounds;
 @class BPUser;
 @class BPCheckinCollection;
-@class BPPictureCollection;
+@class BPPhotoCollection;
 @class BPBlobCollection;
 @class BPAlbumCollection;
 @class BPLocationCollection;
+@class BPUserCollection;
+@class BPUserListCollection;
 @class BPCoordinate;
 
 /**
@@ -108,6 +110,11 @@ typedef void (^BPPingCallback)(NSDecimalNumber *ping);
 @property (readonly, nonatomic, strong) BPSounds *sounds;
 
 /// <summary>
+/// Gets an object that can be used to search users.
+/// </summary>
+@property (readonly, nonatomic, strong) BPUserCollection *users;
+
+/// <summary>
 /// Gets an object that can be used to retrieve sounds.
 /// </summary>
 @property (readonly, nonatomic, strong) BPCheckinCollection *checkins;
@@ -115,7 +122,7 @@ typedef void (^BPPingCallback)(NSDecimalNumber *ping);
 /// <summary>
 /// TODO
 /// </summary>
-@property (readonly, nonatomic, strong) BPPictureCollection *pictures;
+@property (readonly, nonatomic, strong) BPPhotoCollection *photos;
 
 /// <summary>
 /// TODO
@@ -131,6 +138,11 @@ typedef void (^BPPingCallback)(NSDecimalNumber *ping);
 /// TODO
 /// </summary>
 @property (readonly, nonatomic, strong) BPLocationCollection *locations;
+
+/// <summary>
+/// TODO
+/// </summary>
+@property (readonly, nonatomic, strong) BPUserListCollection *userLists;
 
 /// <summary>
 /// TODO

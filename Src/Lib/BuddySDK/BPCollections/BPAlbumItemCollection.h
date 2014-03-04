@@ -8,6 +8,7 @@
 
 #import "BuddyCollection.h"
 #import "BPAlbum.h"
+#import "BPAlbumItem.h"
 
 @interface BPAlbumItemCollection : BuddyCollection
 
@@ -19,8 +20,10 @@
 - (void)addAlbumItem:(NSString *)itemId
          withCaption:(NSString *)caption
             callback:(BuddyObjectCallback)callback;
-            
-- (void)getAlbumItem:(NSString *)pictureId callback:(BuddyObjectCallback)callback;
+
+- (void)searchAlbumItems:(DescribeAlbumItem)describe callback:(BuddyObjectCallback)callback;
+
+- (void)getAlbumItem:(NSString *)photoId callback:(BuddyObjectCallback)callback;
 
     
 @end

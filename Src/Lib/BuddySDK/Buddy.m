@@ -27,35 +27,53 @@
     return [BPClient defaultClient].restService;
 }
 
-+ (BPUser *)user{
++ (BPUser *)user
+{
     return [[BPClient defaultClient] user];
 }
 
-+ (BuddyDevice *)device{
++ (BPUserCollection *)users
+{
+    return [[BPClient defaultClient] users];
+}
+
++ (BuddyDevice *)device
+{
     return [[BPClient defaultClient] device];
 }
 
-+ (BPCheckinCollection *) checkins{
++ (BPCheckinCollection *) checkins
+{
     return [[BPClient defaultClient] checkins];
 }
 
-+ (BPPictureCollection *) pictures{
-    return [[BPClient defaultClient] pictures];
++ (BPPhotoCollection *) photos
+{
+    return [[BPClient defaultClient] photos];
 }
 
-+ (BPBlobCollection *) blobs{
++ (BPBlobCollection *) blobs
+{
     return [[BPClient defaultClient] blobs];
 }
 
-+ (BPAlbumCollection *) albums{
++ (BPAlbumCollection *) albums
+{
     return [[BPClient defaultClient] albums];
 }
 
-+ (BPLocationCollection *) locations{
++ (BPLocationCollection *) locations
+{
     return [[BPClient defaultClient] locations];
 }
 
-+ (BOOL) locationEnabled{
++ (BPUserListCollection *) userLists
+{
+    return [[BPClient defaultClient] userLists];
+}
+
++ (BOOL) locationEnabled
+{
     @synchronized(self){
         return [[BPClient defaultClient] locationEnabled];
     }
@@ -107,7 +125,6 @@
                                      @"autoRecordDeviceInfo": @(autoRecordDeviceInfo)};
     
     NSMutableDictionary *combined = [NSMutableDictionary dictionaryWithDictionary:defaultOptions];
-    // TODO - merge options
     
     [[BPClient defaultClient] setupWithApp:appID
             appKey:appKey

@@ -26,8 +26,9 @@
 
 @implementation BuddyObject
 
-@synthesize client=_client;
+@synthesize client = _client;
 
+@synthesize location, created, lastModified, defaultMetadata, readPermissions, writePermissions, id = _id;
 
 #pragma mark - Initializers
 
@@ -152,23 +153,6 @@
     }];
 }
 
-+(void)queryFromServerWithId:(NSString *)identifier client:(id<BPRestProvider>)client callback:(BuddyObjectCallback)callback
-{
-    NSString *resource = [NSString stringWithFormat:@"%@/%@",
-                          [[self class] requestPath],
-                          identifier];
-    
-    [client GET:resource parameters:nil callback:^(id json, NSError *error) {
-
-        BuddyObject *newObject = [[[self class] alloc] initBuddyWithClient:client];
-        newObject.id = json[@"id"];
-        
-        [[[self class] converter] setPropertiesOf:newObject fromDictionary:json];
-#pragma messsage("TODO - Error")
-        callback ? callback(newObject, nil) : nil;
-    }];
-}
-
 -(void)deleteMe
 {
     [self deleteMe:nil];
@@ -224,9 +208,9 @@ static NSString *metadataRoute = @"metadata";
 {
     if(key==nil)
     {
-        return [NSString stringWithFormat:@"%@/%@",metadataRoute,self.id];
+        return [NSString stringWithFormat:@"%@/%@",metadataRoute, self.id];
     }
-    return [NSString stringWithFormat:@"%@/%@/%@",metadataRoute,self.id,key];
+    return [NSString stringWithFormat:@"%@/%@/%@",metadataRoute, self.id, key];
 }
 
 

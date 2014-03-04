@@ -1,5 +1,5 @@
 //
-//  BPBaseIntegrationTests.m
+//  BPPhotoIntegrationTests.m
 //  BuddySDK
 //
 //  Created by Erik Kerber on 12/3/13.
@@ -13,7 +13,7 @@
 #ifdef kKW_DEFAULT_PROBE_TIMEOUT
 #undef kKW_DEFAULT_PROBE_TIMEOUT
 #endif
-#define kKW_DEFAULT_PROBE_TIMEOUT 10.0
+#define kKW_DEFAULT_PROBE_TIMEOUT 4.0
 
 SPEC_BEGIN(BuddyBlobSpec)
 
@@ -52,7 +52,7 @@ describe(@"BPBlobIntegrationSpec", ^{
             
         });
         
-        pending_(@"Should allow retrieving pictures", ^{
+        pending_(@"Should allow retrieving photos", ^{
             
         });
         
@@ -60,7 +60,7 @@ describe(@"BPBlobIntegrationSpec", ^{
             
         });
         
-        it (@"Should allow the user to delete pictures", ^{
+        it (@"Should allow the user to delete photos", ^{
             
         });
         

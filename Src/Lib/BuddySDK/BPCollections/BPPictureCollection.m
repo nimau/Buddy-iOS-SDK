@@ -1,55 +1,55 @@
 //
-//  BPPictureCollection.m
+//  BPPhotoCollection.m
 //  BuddySDK
 //
 //  Created by Erik Kerber on 11/22/13.
 //
 //
 
-#import "BPPictureCollection.h"
-#import "BPPicture.h"
+#import "BPPhotoCollection.h"
+#import "BPPhoto.h"
 #import "BPClient.h"
 #import "BuddyObject+Private.h"
 #import "BuddyCollection+Private.h"
 #import "BPSisterObject.h"
 #import "Buddy.h"
 
-@implementation BPPictureCollection
+@implementation BPPhotoCollection
 
 - (instancetype)initWithClient:(id<BPRestProvider>)client {
     self = [super initWithClient:client];
     if(self){
-        self.type = [BPPicture class];
+        self.type = [BPPhoto class];
     }
     return self;
 }
 
 
-- (void)addPicture:(UIImage *)picture
-   describePicture:(DescribePicture)describePicture
+- (void)addPhoto:(UIImage *)photo
+   describePhoto:(DescribePhoto)describePhoto
         callback:(BuddyObjectCallback)callback
 {
-    [[self type] createWithImage:picture describePicture:describePicture client:self.client callback:callback];
+    [[self type] createWithImage:photo describePhoto:describePhoto client:self.client callback:callback];
 }
 
--(void)getPictures:(BuddyCollectionCallback)callback
+-(void)getPhotos:(BuddyCollectionCallback)callback
 {
     [self getAll:callback];
 }
 
--(void)searchPictures:(DescribePicture)describePicture callback:(BuddyCollectionCallback)callback
+-(void)searchPhotos:(DescribePhoto)describePhoto callback:(BuddyCollectionCallback)callback
 {
-    id pictureProperties= [BPSisterObject new];
-    describePicture ? describePicture(pictureProperties) : nil;
+    id photoProperties = [BPSisterObject new];
+    describePhoto ? describePhoto(photoProperties) : nil;
     
-    id parameters = [pictureProperties parametersFromProperties:@protocol(BPPictureProperties)];
+    id parameters = [photoProperties parametersFromProperties:@protocol(BPPhotoProperties)];
     
     [self search:parameters callback:callback];
 }
 
-- (void)getPicture:(NSString *)pictureId callback:(BuddyObjectCallback)callback
+- (void)getPhoto:(NSString *)photoId callback:(BuddyObjectCallback)callback
 {
-    [self getItem:pictureId callback:callback];
+    [self getItem:photoId callback:callback];
 }
 
 @end

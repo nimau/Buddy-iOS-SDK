@@ -13,7 +13,7 @@
 #ifdef kKW_DEFAULT_PROBE_TIMEOUT
 #undef kKW_DEFAULT_PROBE_TIMEOUT
 #endif
-#define kKW_DEFAULT_PROBE_TIMEOUT 10.0
+#define kKW_DEFAULT_PROBE_TIMEOUT 4.0
 
 SPEC_BEGIN(BuddyIntegrationSpec)
 
@@ -23,8 +23,7 @@ describe(@"Buddy", ^{
         __block id mock = nil;
         beforeAll(^{
             mock = [KWMock mockForProtocol:@protocol(BPClientDelegate)];
-#pragma message ("TODO: Fix Test")
-            // DISABLED[mock shouldEventually] receive:@selector(connectivityChanged:)];
+            // DISABLED AS NOT WORKING [[mock shouldEventually] receive:@selector(connectivityChanged:)];
 
             [Buddy setClientDelegate:mock];
             [Buddy initClient:APP_NAME appKey:APP_KEY];
@@ -34,15 +33,11 @@ describe(@"Buddy", ^{
         afterAll(^{
 
         });
-#pragma message ("TODO: Fix Test")
-
-        it(@"Should throw an auth error if they try to access pictures.", ^{
-            
-
+        
+        it(@"Should throw an auth error if they try to access photos.", ^{
             [[mock shouldEventually] receive:@selector(apiErrorOccurred:)];
             [[[mock shouldEventually] receive] authorizationNeedsUserLogin];
-            [[Buddy pictures] searchPictures:nil callback:nil];
-            
+            [[Buddy photos] searchPhotos:nil callback:nil];
         });
         
         it(@"Should allow you to create a user.", ^{

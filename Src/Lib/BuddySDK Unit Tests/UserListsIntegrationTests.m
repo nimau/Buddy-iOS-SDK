@@ -8,6 +8,7 @@
 
 #import "Buddy.h"
 #import "BuddyIntegrationHelper.h"
+#import "BPCoordinate.h"
 #import <Kiwi/Kiwi.h>
 
 #ifdef kKW_DEFAULT_PROBE_TIMEOUT
@@ -15,12 +16,11 @@
 #endif
 #define kKW_DEFAULT_PROBE_TIMEOUT 4.0
 
-SPEC_BEGIN(BuddyRegionSpec)
+SPEC_BEGIN(BPUserListSpec)
 
-describe(@"BPRegionsIntegrationSpec", ^{
+describe(@"BPUserListSpec", ^{
     context(@"When a user is logged in", ^{
         
-        //__block BPAlbum *tempAlbum;
         
         beforeAll(^{
             __block BOOL fin = NO;
@@ -36,21 +36,18 @@ describe(@"BPRegionsIntegrationSpec", ^{
             
         });
         
-        it(@"Should allow you create an album.", ^{
+        it(@"Should allow creating a user list", ^{
+            __block BPUserList *userList;
+            [[Buddy userLists] addUserList:^(id<BPUserListProperties> userListProperties) {
+                userListProperties.name = @"Erik's list";
+            } callback:^(id newBuddyObject, NSError *error) {
+                [[error should] beNil];
+                userList = newBuddyObject;
+            }];
             
+            [[expectFutureValue(userList) shouldEventually] beNonNil];
         });
-        
-        it(@"Should allow you to retrieve an album.", ^{
-        });
-        
-        it(@"Should allow you to retrieve a specific album.", ^{
-        });
-        
-        it(@"Should allow you to modify an album.", ^{
-        });
-        
-        it(@"Should allow you to delete an album.", ^{
-        });
+
     });
 });
 

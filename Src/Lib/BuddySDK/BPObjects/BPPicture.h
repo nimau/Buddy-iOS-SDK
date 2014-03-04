@@ -1,5 +1,5 @@
 //
-//  BPPicture.h
+//  BPPhoto.h
 //  BuddySDK
 //
 //  Created by Erik Kerber on 11/15/13.
@@ -9,23 +9,23 @@
 #import <UIKit/UIKit.h>
 #import "BPBlob.h"
 
-@protocol BPPictureProperties <BuddyObjectProperties>
+@protocol BPPhotoProperties <BuddyObjectProperties>
 
 @property (nonatomic, copy) NSString *caption;
 
 @end
 
-@class BPPicture;
+@class BPPhoto;
 
 typedef void(^BuddyImageResponse)(UIImage *image, NSError *error);
-typedef void(^DescribePicture)(id<BPPictureProperties>pictureProperties);
+typedef void(^DescribePhoto)(id<BPPhotoProperties>photoProperties);
 
-@interface BPPicture : BPBlob<BPPictureProperties>
+@interface BPPhoto : BPBlob<BPPhotoProperties>
 
 //@property (nonatomic, assign) CGSize size;
 
 + (void)createWithImage:(UIImage *)image
-          describePicture:(DescribePicture)describePicture
+          describePhoto:(DescribePhoto)describePhoto
                  client:(id<BPRestProvider>)client
                callback:(BuddyObjectCallback)callback;
 

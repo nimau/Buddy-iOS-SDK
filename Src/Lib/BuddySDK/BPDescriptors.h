@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BPCheckin.h"
 #import "BPUser.h"
-#import "BPPicture.h"
+#import "BPPhoto.h"
 
 @interface BPUser (Description)
 
@@ -19,6 +19,6 @@
 //
 //@end
 
-@interface BPPicture (Description)
+@interface BPPhoto (Description)
 
 @end

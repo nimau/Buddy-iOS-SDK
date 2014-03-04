@@ -1,17 +1,17 @@
 //
-//  BPPicture.m
+//  BPPhoto.m
 //  BuddySDK
 //
 //  Created by Erik Kerber on 11/15/13.
 //
 //
 
-#import "BPPicture.h"
+#import "BPPhoto.h"
 #import "BuddyObject+Private.h"
 #import "BPSisterObject.h"
 #import <objc/runtime.h>
 
-@implementation BPPicture
+@implementation BPPhoto
 
 @synthesize caption;
 
@@ -23,23 +23,23 @@
 }
 
 
-static NSString *pictures = @"pictures";
+static NSString *photos = @"pictures";
 +(NSString *) requestPath{
-    return pictures;
+    return photos;
 }
 
 + (void)createWithImage:(UIImage *)image
-          describePicture:(DescribePicture)describePicture
+          describePhoto:(DescribePhoto)describePhoto
                  client:(id<BPRestProvider>)client
                callback:(BuddyObjectCallback)callback
 {
     //NSData *data = UIImageJPEGRepresentation(image, 1);
     NSData *data = UIImagePNGRepresentation(image);
     
-    id pictureProperties= [BPSisterObject new];
-    describePicture ? describePicture(pictureProperties) : nil;
+    id photoProperties= [BPSisterObject new];
+    describePhoto ? describePhoto(photoProperties) : nil;
 
-    id parameters = [pictureProperties parametersFromProperties:@protocol(BPPictureProperties)];
+    id parameters = [photoProperties parametersFromProperties:@protocol(BPPhotoProperties)];
     
     [self createWithData:data parameters:parameters client:client callback:^(id newBuddyObject, NSError *error) {
         callback ? callback(newBuddyObject, error) : nil;

@@ -7,8 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BPBase.h"
-
 
 typedef void (^BuddyCollectionCallback)(NSArray *buddyObjects, NSError *error);
 

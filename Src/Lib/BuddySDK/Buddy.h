@@ -9,17 +9,19 @@
 #import <Foundation/Foundation.h>
 
 #import "BuddyDevice.h"
-#import "BPAlbumItemContainer.h"
+#import "BPAlbumItem.h"
 #import "BPClient.h"
 #import "BPCheckin.h"
 #import "BPCheckinCollection.h"
 #import "BPAlbumCollection.h"
-#import "BPPicture.h"
+#import "BPPhoto.h"
 #import "BPUser.h"
 #import "BPGameBoards.h"
 #import "BPSounds.h"
-#import "BPPictureCollection.h"
+#import "BPPhotoCollection.h"
 #import "BPBlobCollection.h"
+#import "BPUserCollection.h"
+#import "BPUserListCollection.h"
 #import "BPCoordinate.h"
 #import "BPBlob.h"
 #import "BPAlbum.h"
@@ -45,28 +47,38 @@
 /**
  Accessor to create and query checkins
  */
++ (BPUserCollection *)users;
+
+/**
+ Accessor to create and query checkins
+ */
 + (BPCheckinCollection *) checkins;
 
 /**
- Accessor to create and query pictures.
+ Accessor to create and query photos.
  */
-+ (BPPictureCollection *) pictures;
++ (BPPhotoCollection *)photos;
 
 /**
  Accessor to create and query data and files.
  */
-+ (BPBlobCollection *) blobs;
-
++ (BPBlobCollection *)blobs;
     
 /**
  Accessor to create and query albums.
  */
-+ (BPAlbumCollection *) albums;
++ (BPAlbumCollection *)albums;
 
 /**
  Accessor to create and query locations.
  */
-+ (BPLocationCollection *) locations;
++ (BPLocationCollection *)locations;
+
+/**
+ Accessor to create and query user lists.
+ */
++ (BPUserListCollection *) userLists;
+
 
 /**
   Public REST provider for passthrough access.

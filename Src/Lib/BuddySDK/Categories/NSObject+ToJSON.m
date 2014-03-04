@@ -18,7 +18,9 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     
     @autoreleasepool {
+        unsigned int numberOfProtocols = 0;
         unsigned int numberOfProperties = 0;
+        Protocol * __unsafe_unretained *protocolArray = protocol_copyProtocolList(protocol, &numberOfProtocols);
         objc_property_t *propertyArray = protocol_copyPropertyList(protocol, &numberOfProperties);
         for (NSUInteger i = 0; i < numberOfProperties; i++)
         {
@@ -36,6 +38,12 @@
                 parameters[name] = val;
             }
         }
+
+        // Recurse derived protocols.
+        for (NSInteger i = 0; i < numberOfProtocols; i++) {
+            [parameters addEntriesFromDictionary:[self parametersFromProperties:protocolArray[i]]];
+        }
+        
         free(propertyArray);
     }
     return parameters;
