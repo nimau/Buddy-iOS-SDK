@@ -8,6 +8,9 @@
 
 #import "BPBase.h"
 #import "BPEnumMapping.h"
+#import "BPSisterObject.h"
+#import "BPMetadataItem.h"
+#import "JAGPropertyConverter.h"
 
 @interface BPBase()<BPEnumMapping>
 
@@ -85,6 +88,25 @@
     }];
 }
 
+- (void)searchMetadata:(SearchMetadata)search callback:(BuddyObjectCallback)callback
+{
+    id searchProperty = [BPSisterObject new];
+    search ? search(searchProperty) : nil;
+    
+    id searchParameters = [searchProperty parametersFromProperties:@protocol(BPMetadataProperties)];
+    
+    NSString *resource = [self metadataPath:nil];
+    
+    [self.client GET:resource parameters:searchParameters callback:^(id json, NSError *error) {
+        NSArray *results = [json[@"pageResults"] map:^id(id object) {
+            id metadata = [[BPMetadataItem alloc] init];
+            [[JAGPropertyConverter converter] setPropertiesOf:metadata fromDictionary:object];
+            return metadata;
+        }];
+        callback ? callback(results, error) : nil;
+    }];
+}
+
 - (void)incrementMetadata:(NSString *)key delta:(NSInteger)delta callback:(BuddyCompletionCallback)callback
 {
     NSString *incrementResource = [NSString stringWithFormat:@"%@/increment", [self metadataPath:key]];
@@ -109,23 +131,6 @@
     }];
 }
 
-/* This needs to be search
-- (void)getMetadataWithPermissions:(BuddyPermissions)permissions callback:(BuddyObjectCallback)callback
-{
-    NSDictionary *parameters = @{@"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
-    
-    parameters = [parameters dictionaryByMergingWith:[self metadataParameters]];
-    
-    [self.client GET:[self metadataPath:nil] parameters:parameters callback:^(id metadata, NSError *error) {
-        id md = nil;
-        if ([NSJSONSerialization isValidJSONObject:metadata]) {
-            md = metadata[@"value"];
-        }
-        callback ? callback(md, error) : nil;
-    }];
-}
-*/
-
 - (void)deleteMetadataWithKey:(NSString *)key permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback 
 {
     NSDictionary *parameters = @{@"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
@@ -133,5 +138,6 @@
         callback ? callback(error) : nil;
     }];
 }
+
 
 @end

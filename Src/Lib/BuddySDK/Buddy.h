@@ -23,11 +23,13 @@
 #import "BPUserCollection.h"
 #import "BPUserListCollection.h"
 #import "BPCoordinate.h"
+#import "BPDateRange.h"
 #import "BPBlob.h"
 #import "BPAlbum.h"
 #import "BPLocationCollection.h"
 #import "BPLocation.h"
 #import "BPMetricCompletionHandler.h"
+#import "BPMetadataItem.h"
 
 /**
  * TODO

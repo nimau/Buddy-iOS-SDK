@@ -61,7 +61,7 @@
     {
         _client = client;
         [self registerProperties];
-        [[[self class] converter] setPropertiesOf:self fromDictionary:response];
+        [[JAGPropertyConverter converter] setPropertiesOf:self fromDictionary:response];
     }
     return self;
 }
@@ -182,7 +182,7 @@
                           self.id];
     
     [self.client GET:resource parameters:nil callback:^(id json, NSError *error) {
-        [[[self class] converter] setPropertiesOf:self fromDictionary:json];
+        [[JAGPropertyConverter converter] setPropertiesOf:self fromDictionary:json];
         callback ? callback(error) : nil;
     }];
 }
@@ -213,26 +213,5 @@ static NSString *metadataRoute = @"metadata";
     return [NSString stringWithFormat:@"%@/%@/%@",metadataRoute, self.id, key];
 }
 
-
-#pragma mark - JSON handling
-
-+(JAGPropertyConverter *)converter
-{
-    static JAGPropertyConverter *c;
-    if(!c)
-    {
-        c = [JAGPropertyConverter new];
-        
-        __weak typeof(self) weakSelf = self;
-        c.identifyDict = ^Class(NSDictionary *dict) {
-            if ([dict valueForKey:@"latitude"]) {
-                return [BPCoordinate class];
-            }
-            return [weakSelf class];
-        };
-        
-    }
-    return c;
-}
 
 @end

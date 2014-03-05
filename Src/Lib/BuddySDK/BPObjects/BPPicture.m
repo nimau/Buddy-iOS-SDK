@@ -9,7 +9,6 @@
 #import "BPPicture.h"
 #import "BuddyObject+Private.h"
 #import "BPSisterObject.h"
-#import <objc/runtime.h>
 
 @implementation BPPicture
 

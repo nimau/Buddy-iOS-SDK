@@ -179,6 +179,44 @@ describe(@"Metadata", ^{
             [[expectFutureValue(theValue(targetInteger)) shouldEventually] equal:theValue(testInteger + delta)];
         });
         
+        it(@"Should be able to search metadata", ^{
+            __block BOOL fin = NO;
+            __weak BPCheckin *c = checkin1;
+            
+            NSDate *start = [NSDate date];
+            
+            [c setMetadataWithKey:@"MYPREFIXHello" andInteger:4 permissions:BuddyPermissionsDefault callback:^(NSError *error) {
+                [[error should] beNil];
+                fin = YES;
+            }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
+            fin = NO;
+            
+            [c searchMetadata:^(id<BPMetadataProperties,BPSearchProperties> metadataSearchProperties) {
+                metadataSearchProperties.keyPrefix = @"MYPREFIX";
+            } callback:^(id newBuddyObject, NSError *error) {
+                [[theValue([newBuddyObject count]) should] beGreaterThan:theValue(0)];
+                for(BPMetadataItem *i in newBuddyObject) {
+                    [[i.key should] startWithString:@"MYPREFIX"];
+                }
+                fin = YES;
+            }];
+            
+            [c searchMetadata:^(id<BPMetadataProperties,BPSearchProperties> metadataSearchProperties) {
+                metadataSearchProperties.created = BPDateRangeMake(start, [NSDate date]);
+            } callback:^(id newBuddyObject, NSError *error) {
+                [[theValue([newBuddyObject count]) should] beGreaterThan:theValue(0)];
+                for(BPMetadataItem *i in newBuddyObject) {
+                    NSLog(@"%@", i.created);
+                    //[[i.created should] startWithString:@"MYPREFIX"];
+                }
+                fin = YES;
+            }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
+        });
+        
         it(@"Should be able to delete metadata", ^{
             __block BPCheckin *c = checkin1;
             __block BOOL fin = NO;
