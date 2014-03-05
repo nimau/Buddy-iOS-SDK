@@ -183,17 +183,16 @@
     [[BPClient defaultClient] setMetadataWithKeyValues:keyValuePaths permissions:permissions callback:callback];
 }
 
++ (void)searchMetadata:(SearchMetadata)search callback:(BuddyObjectCallback)callback
+{
+    [[BPClient defaultClient] searchMetadata:search callback:callback];
+}
+
+
 + (void)getMetadataWithKey:(NSString *)key permissions:(BuddyPermissions) permissions callback:(BuddyObjectCallback)callback
 {
     [[BPClient defaultClient] getMetadataWithKey:key permissions:(BuddyPermissions)permissions callback:callback];
 }
-
-/*
-+ (void)getMetadataWithPermissions:(BuddyPermissions)permissions callback:(BuddyObjectCallback)callback
-{
-    [[BPClient defaultClient] getMetadataWithPermissions:permissions callback:callback];
-}
-*/
 
 + (void)deleteMetadataWithKey:(NSString *)key permissions:(BuddyPermissions) permissions callback:(BuddyCompletionCallback)callback
 {
