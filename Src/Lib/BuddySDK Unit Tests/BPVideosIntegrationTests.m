@@ -13,14 +13,13 @@
 #ifdef kKW_DEFAULT_PROBE_TIMEOUT
 #undef kKW_DEFAULT_PROBE_TIMEOUT
 #endif
-#define kKW_DEFAULT_PROBE_TIMEOUT 10.0
+#define kKW_DEFAULT_PROBE_TIMEOUT 20.0
 
 SPEC_BEGIN(BuddyVideosSpec)
 
 describe(@"BPVideosIntegrationSpec", ^{
     context(@"When a user is logged in", ^{
         
-        //__block BPAlbum *tempAlbum;
         __block BPVideo *tempVideo;
         
         beforeAll(^{
@@ -83,7 +82,8 @@ describe(@"BPVideosIntegrationSpec", ^{
             
             [tempVideo save:^(NSError *error) {
                 [[error should] beNil];
-                [[Buddy pictures] getPicture:tempVideo.id callback:^(id newBuddyObject, NSError *error) {
+                [[Buddy videos] getVideo:tempVideo.id callback:^(id newBuddyObject, NSError *error) {
+                    [[error should] beNil];
                     secondVideo = newBuddyObject;
                 }];
             }];
