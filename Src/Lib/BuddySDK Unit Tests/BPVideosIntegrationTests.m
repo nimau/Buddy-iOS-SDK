@@ -56,6 +56,23 @@ describe(@"BPVideosIntegrationSpec", ^{
         });
         
         it(@"Should allow you to retrieve a video.", ^{
+            __block BPVideo *retrievedVideo;
+            __block BOOL fin = NO;
+
+            [[Buddy videos] getVideo:tempVideo.id callback:^(id newBuddyObject, NSError *error) {
+                retrievedVideo = newBuddyObject;
+                
+                [[retrievedVideo shouldNot] beNil];
+                [[retrievedVideo.id should] equal:tempVideo.id];
+                
+                [[expectFutureValue(retrievedVideo.contentType) shouldEventually] equal:tempVideo.contentType];
+                [[expectFutureValue([retrievedVideo.signedUrl componentsSeparatedByString:@"?"][0]) shouldEventually] equal:[tempVideo.signedUrl componentsSeparatedByString:@"?"][0]];
+                [[expectFutureValue(retrievedVideo.title) shouldEventually] equal:tempVideo.title];
+                
+                fin = YES;
+            }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
         it(@"Should allow you to retrieve a specific video.", ^{
