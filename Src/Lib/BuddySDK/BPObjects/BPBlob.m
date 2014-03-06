@@ -29,7 +29,7 @@ static NSString *blobs = @"blobs";
 + (void)createWithData:(NSData *)data parameters:(NSDictionary *)parameters client:(id<BPRestProvider>)client callback:(BuddyObjectCallback)callback
 
 {
-    NSDictionary *multipartParameters = @{@"data": data};
+    NSDictionary *multipartParameters = @{@"data": BOXNIL(data)};
     
     [client MULTIPART_POST:[[self class] requestPath]
                 parameters:parameters

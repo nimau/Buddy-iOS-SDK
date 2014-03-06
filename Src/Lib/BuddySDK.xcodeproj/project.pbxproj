@@ -32,6 +32,11 @@
 		5B984DA118C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B984D9F18C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.m */; };
 		5B984DA418C6DB9700CE8E2C /* BPDateRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B984DA218C6DB9700CE8E2C /* BPDateRange.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B984DA518C6DB9700CE8E2C /* BPDateRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B984DA318C6DB9700CE8E2C /* BPDateRange.m */; };
+		5B984DAB18C790C700CE8E2C /* BPVideoCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B984DA918C790C700CE8E2C /* BPVideoCollection.h */; };
+		5B984DAC18C790C700CE8E2C /* BPVideoCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B984DAA18C790C700CE8E2C /* BPVideoCollection.m */; };
+		5B984DB018C791C900CE8E2C /* BPVideo.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B984DAE18C791C900CE8E2C /* BPVideo.h */; };
+		5B984DB118C791C900CE8E2C /* BPVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B984DAF18C791C900CE8E2C /* BPVideo.m */; };
+		5B984DB318C7B03A00CE8E2C /* 1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5B984DB218C79E2800CE8E2C /* 1.mp4 */; };
 		A6291F80165C01800051F83C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6291F7F165C01800051F83C /* Foundation.framework */; };
 		C1010D31187A4CC3009EB04E /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1010D2C187A4CC3009EB04E /* 0.jpg */; };
 		C1010D32187A4CC3009EB04E /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1010D2D187A4CC3009EB04E /* 1.jpg */; };
@@ -237,6 +242,11 @@
 		5B984D9F18C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JAGPropertyConverter+BPJSONConverter.m"; sourceTree = "<group>"; };
 		5B984DA218C6DB9700CE8E2C /* BPDateRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDateRange.h; sourceTree = "<group>"; };
 		5B984DA318C6DB9700CE8E2C /* BPDateRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDateRange.m; sourceTree = "<group>"; };
+		5B984DA918C790C700CE8E2C /* BPVideoCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BPVideoCollection.h; path = BPCollections/BPVideoCollection.h; sourceTree = "<group>"; };
+		5B984DAA18C790C700CE8E2C /* BPVideoCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BPVideoCollection.m; path = BPCollections/BPVideoCollection.m; sourceTree = "<group>"; };
+		5B984DAE18C791C900CE8E2C /* BPVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVideo.h; sourceTree = "<group>"; };
+		5B984DAF18C791C900CE8E2C /* BPVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVideo.m; sourceTree = "<group>"; };
+		5B984DB218C79E2800CE8E2C /* 1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.mp4; sourceTree = "<group>"; };
 		81137A46380B4BCCA3A2E417 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A07FFFC093E94E77A9A92AF0 /* libPods-BuddySDK Unit Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BuddySDK Unit Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6291F7C165C01800051F83C /* libBuddySDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBuddySDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -551,6 +561,8 @@
 				C1CEA7FD18C5584000D5C9DC /* BPUserCollection.h */,
 				C1CEA7FE18C5584000D5C9DC /* BPUserCollection.m */,
 				C142766C189899B800D5DD85 /* BuddyCollection+Private.h */,
+				5B984DA918C790C700CE8E2C /* BPVideoCollection.h */,
+				5B984DAA18C790C700CE8E2C /* BPVideoCollection.m */,
 			);
 			name = BPCollections;
 			sourceTree = "<group>";
@@ -699,6 +711,8 @@
 				C1CEA7FA18C5582100D5C9DC /* BPUserList.m */,
 				5B141E3918C6B940002BABBC /* BPMetadataItem.h */,
 				5B141E3A18C6B940002BABBC /* BPMetadataItem.m */,
+				5B984DAE18C791C900CE8E2C /* BPVideo.h */,
+				5B984DAF18C791C900CE8E2C /* BPVideo.m */,
 			);
 			name = BPObjects;
 			path = ../../Lib/BuddySDK/BPObjects;
@@ -707,6 +721,7 @@
 		C1B95A2B183708E8000C8417 /* Test Data */ = {
 			isa = PBXGroup;
 			children = (
+				5B984DB218C79E2800CE8E2C /* 1.mp4 */,
 				C1A46532189753AC00FCCBF9 /* test.png */,
 				C1A46530189750E800FCCBF9 /* help.jpg */,
 				C1BFD88A187D15D000A1FADF /* blob.json */,
@@ -835,6 +850,7 @@
 				5B984DA018C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.h in Headers */,
 				C1C2394E1877C906000D0089 /* BPRestProvider.h in Headers */,
 				C1427677189ECA2300D5DD85 /* BPMetricCompletionHandler.h in Headers */,
+				5B984DB018C791C900CE8E2C /* BPVideo.h in Headers */,
 				C10E2BA3186950D8007A0136 /* BPGameBoards.h in Headers */,
 				C11E6C93184C57040034E1EB /* BPPictureCollection.h in Headers */,
 				C1B959F91837061F000C8417 /* BuddyObject.h in Headers */,
@@ -845,6 +861,7 @@
 				C10E2BA6186950D8007A0136 /* BPPicture.h in Headers */,
 				C142766D189899B800D5DD85 /* BuddyCollection+Private.h in Headers */,
 				C1B0F53F189373F6000403E0 /* AFURLRequestSerialization.h in Headers */,
+				5B984DAB18C790C700CE8E2C /* BPVideoCollection.h in Headers */,
 				C1FBCED617E6718E00275F6A /* BuddyLocation.h in Headers */,
 				C1B0F4CB18937142000403E0 /* NSArray+ObjectiveSugar.h in Headers */,
 				C10E2BB1186951C3007A0136 /* BuddyDevice.h in Headers */,
@@ -980,6 +997,7 @@
 				C1A46533189753AC00FCCBF9 /* test.png in Resources */,
 				C1010D31187A4CC3009EB04E /* 0.jpg in Resources */,
 				C1010D33187A4CC3009EB04E /* 2.jpg in Resources */,
+				5B984DB318C7B03A00CE8E2C /* 1.mp4 in Resources */,
 				C1E0D1EB1831C2E8001A7A01 /* InfoPlist.strings in Resources */,
 				C1BFD88B187D15D000A1FADF /* blob.json in Resources */,
 			);
@@ -1086,6 +1104,7 @@
 				C1B0F53E189373F6000403E0 /* AFURLConnectionOperation.m in Sources */,
 				C1E0D2871835C911001A7A01 /* OpenUDID.m in Sources */,
 				C1AA90DE1837376E0074B7E8 /* NSDictionary+Merge.m in Sources */,
+				5B984DAC18C790C700CE8E2C /* BPVideoCollection.m in Sources */,
 				C1B0F4D618937142000403E0 /* NSString+ObjectiveSugar.m in Sources */,
 				C1B237601865569F005C841E /* NSString+JSON.m in Sources */,
 				C1B0F4CE18937142000403E0 /* NSDictionary+ObjectiveSugar.m in Sources */,
@@ -1110,6 +1129,7 @@
 				C1CEA80018C5584000D5C9DC /* BPUserCollection.m in Sources */,
 				C1ADA71F18AB32D900BCCC12 /* BPBase.m in Sources */,
 				C1B959FA1837061F000C8417 /* BuddyObject.m in Sources */,
+				5B984DB118C791C900CE8E2C /* BPVideo.m in Sources */,
 				C1B3752118A477C3004CCE6D /* NSObject+ToJSON.m in Sources */,
 				C1D7094918832983003D112C /* BPDescriptors.m in Sources */,
 				C1427673189AAC3700D5DD85 /* BPAppSettings.m in Sources */,

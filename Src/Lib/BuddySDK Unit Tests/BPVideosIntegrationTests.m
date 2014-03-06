@@ -21,6 +21,7 @@ describe(@"BPVideosIntegrationSpec", ^{
     context(@"When a user is logged in", ^{
         
         //__block BPAlbum *tempAlbum;
+        __block BPVideo *tempVideo;
         
         beforeAll(^{
             __block BOOL fin = NO;
@@ -38,6 +39,20 @@ describe(@"BPVideosIntegrationSpec", ^{
         
         it(@"Should allow you create a video.", ^{
             
+            __block BOOL fin = NO;
+            
+            NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+            NSString *videoPath = [bundle pathForResource:@"1" ofType:@"mp4"];
+            NSData *video = [NSData dataWithContentsOfFile:videoPath];
+            
+            [[Buddy videos] addVideo:video describeVideo:^(id<BPVideoProperties> videoProperties) {
+                videoProperties.title = @"That cliche bunny video.";
+            } callback:^(id newBuddyObject, NSError *error) {
+                tempVideo = newBuddyObject;
+                fin = YES;
+            }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
         it(@"Should allow you to retrieve a video.", ^{

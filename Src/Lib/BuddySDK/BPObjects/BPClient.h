@@ -13,7 +13,6 @@
 #import "BuddyCollection.h" // TODO - remove dependency
 #import "BPMetricCompletionHandler.h"
 #import "BPUser.h"
-#import "BPBase.h"
 
 @class BuddyDevice;
 @class BPGameBoards;
@@ -22,6 +21,7 @@
 @class BPUser;
 @class BPCheckinCollection;
 @class BPPictureCollection;
+@class BPVideoCollection;
 @class BPBlobCollection;
 @class BPAlbumCollection;
 @class BPLocationCollection;
@@ -123,6 +123,11 @@ typedef void (^BPPingCallback)(NSDecimalNumber *ping);
 /// TODO
 /// </summary>
 @property (readonly, nonatomic, strong) BPPictureCollection *pictures;
+
+/// <summary>
+/// TODO
+/// </summary>
+@property (readonly, nonatomic, strong) BPVideoCollection *videos;
 
 /// <summary>
 /// TODO

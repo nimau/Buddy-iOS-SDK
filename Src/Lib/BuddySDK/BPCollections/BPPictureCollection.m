@@ -24,17 +24,11 @@
     return self;
 }
 
-
 - (void)addPicture:(UIImage *)picture
    describePicture:(DescribePicture)describePicture
         callback:(BuddyObjectCallback)callback
 {
     [[self type] createWithImage:picture describePicture:describePicture client:self.client callback:callback];
-}
-
--(void)getPictures:(BuddyCollectionCallback)callback
-{
-    [self getAll:callback];
 }
 
 -(void)searchPictures:(DescribePicture)describePicture callback:(BuddyCollectionCallback)callback

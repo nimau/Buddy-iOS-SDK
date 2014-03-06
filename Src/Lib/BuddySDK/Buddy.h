@@ -19,6 +19,7 @@
 #import "BPGameBoards.h"
 #import "BPSounds.h"
 #import "BPPictureCollection.h"
+#import "BPVideoCollection.h"
 #import "BPBlobCollection.h"
 #import "BPUserCollection.h"
 #import "BPUserListCollection.h"
@@ -60,6 +61,11 @@
  Accessor to create and query pictures.
  */
 + (BPPictureCollection *) pictures;
+
+/**
+ Accessor to create and query videos.
+ */
++ (BPVideoCollection *) videos;
 
 /**
  Accessor to create and query data and files.

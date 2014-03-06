@@ -14,6 +14,7 @@
 #import "BPGameBoards.h"
 #import "BPSounds.h"
 #import "BPPictureCollection.h"
+#import "BPVideoCollection.h"
 #import "BPUserCollection.h"
 #import "BPAlbumCollection.h"
 #import "BPBlobCollection.h"
@@ -48,6 +49,7 @@
 @synthesize user=_user;
 @synthesize checkins=_checkins;
 @synthesize pictures =_pictures;
+@synthesize videos = _videos;
 @synthesize blobs = _blobs;
 @synthesize albums = _albums;
 @synthesize locations = _locations;
@@ -193,6 +195,16 @@
     }
     return _pictures;
 }
+
+-(BPVideoCollection *)videos
+{
+    if(!_videos)
+    {
+        _videos = [[BPVideoCollection alloc] initWithClient:self];
+    }
+    return _videos;
+}
+
 
 -(BPBlobCollection *)blobs
 {

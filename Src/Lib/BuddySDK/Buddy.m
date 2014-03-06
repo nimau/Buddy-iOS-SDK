@@ -47,8 +47,14 @@
     return [[BPClient defaultClient] checkins];
 }
 
-+ (BPPictureCollection *) pictures{
++ (BPPictureCollection *) pictures
+{
     return [[BPClient defaultClient] pictures];
+}
+
++ (BPVideoCollection *) videos
+{
+    return [[BPClient defaultClient] videos];
 }
 
 + (BPBlobCollection *) blobs
@@ -187,7 +193,6 @@
 {
     [[BPClient defaultClient] searchMetadata:search callback:callback];
 }
-
 
 + (void)getMetadataWithKey:(NSString *)key permissions:(BuddyPermissions) permissions callback:(BuddyObjectCallback)callback
 {
