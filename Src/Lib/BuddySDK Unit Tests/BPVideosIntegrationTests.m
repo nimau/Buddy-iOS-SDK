@@ -75,13 +75,32 @@ describe(@"BPVideosIntegrationSpec", ^{
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
-        it(@"Should allow you to retrieve a specific video.", ^{
-        });
-        
         it(@"Should allow you to modify a video.", ^{
+            
+            __block BPVideo *secondVideo;
+            
+            tempVideo.title = @"Modified title";
+            
+            [tempVideo save:^(NSError *error) {
+                [[error should] beNil];
+                [[Buddy pictures] getPicture:tempVideo.id callback:^(id newBuddyObject, NSError *error) {
+                    secondVideo = newBuddyObject;
+                }];
+            }];
+            
+            [[expectFutureValue(secondVideo) shouldEventually] beNonNil];
+            [[expectFutureValue(secondVideo.title) shouldEventually] equal:@"Modified title"];
         });
         
         it(@"Should allow you to delete a video.", ^{
+            __block BOOL fin = NO;
+
+            [tempVideo deleteMe:^(NSError *error) {
+                [[error should] beNil];
+                fin = YES;
+            }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
     });
 });
