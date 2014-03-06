@@ -80,7 +80,7 @@
 
 - (void)setMetadataWithKeyValues:(NSDictionary *)keyValuePaths permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback
 {
-    NSDictionary *parameters = @{@"keyValuePairs": keyValuePaths,
+    NSDictionary *parameters = @{@"values": keyValuePaths,
                                  @"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
 
     [self.client PUT:[self metadataPath:nil] parameters:parameters callback:^(id json, NSError *error) {

@@ -630,14 +630,14 @@ NSMutableArray *queuedRequests;
 }
 
 
-static NSString *metadataRoute = @"metadata";
+static NSString *metadataRoute = @"metadata/app";
 - (NSString *) metadataPath:(NSString *)key
 {
-    if(key==nil)
-    {
-        return [NSString stringWithFormat:@"%@/%@",metadataRoute,self.appSettings.appID];
+    if (!key) {
+        return metadataRoute;
+    } else {
+        return [NSString stringWithFormat:@"%@/%@", metadataRoute, key];
     }
-    return [NSString stringWithFormat:@"%@/%@/%@",metadataRoute,self.appSettings.appID,key];
 }
 
 
