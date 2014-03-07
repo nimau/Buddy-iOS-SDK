@@ -50,8 +50,9 @@ describe(@"BPVideosIntegrationSpec", ^{
                 tempVideo = newBuddyObject;
                 [[theValue(tempVideo.contentLength) should] beGreaterThan:theValue(1)];
                 [[tempVideo.contentType should] equal:@"video/mp4"];
-                [[tempVideo.signedUrl shouldEventually] haveLengthOfAtLeast:1];
-        
+                [[tempVideo.signedUrl should] haveLengthOfAtLeast:1];
+                [[tempVideo.thumbnailID shouldNot] beNil];
+
                 fin = YES;
             }];
             
