@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BuddyObject.h"
+
 typedef void (^BuddyCollectionCallback)(NSArray *buddyObjects, NSError *error);
 
 @interface BuddyCollection : NSObject

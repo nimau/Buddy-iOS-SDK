@@ -14,7 +14,7 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 
-#import "BuddySDK/Buddy.h"
+#import <BuddySDK/Buddy.h>
 
 @interface MainViewController ()
 @property (nonatomic,strong) MBProgressHUD *HUD;

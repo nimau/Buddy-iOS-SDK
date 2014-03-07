@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BuddyObject.h"
+#import "BuddyCollection.h"
 
 /**
  Enum for specifying gender.

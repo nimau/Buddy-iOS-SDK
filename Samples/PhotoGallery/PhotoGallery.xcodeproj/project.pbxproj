@@ -514,7 +514,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					"/Users/nick/src/V2SDK-iOS/Buddy-iOS-SDK/samples/PhotoGallery",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoGallery/PhotoGallery-Prefix.pch";
@@ -533,7 +532,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					"/Users/nick/src/V2SDK-iOS/Buddy-iOS-SDK/samples/PhotoGallery",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoGallery/PhotoGallery-Prefix.pch";

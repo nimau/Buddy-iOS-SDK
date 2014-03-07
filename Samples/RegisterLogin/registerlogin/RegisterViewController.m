@@ -9,9 +9,8 @@
 #import "MBProgressHUD.h"
 
 
-#import "BuddySDK/BPUser.h"
-#import "BuddySDK/Buddy.h"
-
+#import <BuddySDK/Buddy.h>
+#import <BuddySDK/BPUser.h>
 
 #import "Constants.h"
 
