@@ -12,7 +12,13 @@
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *friendlyName;
-@property (nonatomic, assign) NSInteger thumbnailOffsetInSeconds;
+@property (nonatomic, assign) double thumbnailOffsetInSeconds;
+
+#pragma message("Think about making these readonly with a private BPVideoProperties. Is that too much? They shouldn't be searchable")
+@property (nonatomic, assign) NSInteger bitRate;
+@property (nonatomic, copy) NSString *encoding;
+@property (nonatomic, assign) double lengthInSeconds;
+@property (nonatomic, copy) NSString *thumbnailID;
 
 @end
 

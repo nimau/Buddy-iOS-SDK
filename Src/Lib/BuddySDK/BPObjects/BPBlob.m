@@ -22,8 +22,15 @@
 }
 
 static NSString *blobs = @"blobs";
-+(NSString *) requestPath {
++ (NSString *) requestPath
+{
     return blobs;
+}
+
+static NSString *blobMimeType = @"application/octet-stream";
++ (NSString *)mimeType
+{
+    return blobMimeType;
 }
 
 + (void)createWithData:(NSData *)data parameters:(NSDictionary *)parameters client:(id<BPRestProvider>)client callback:(BuddyObjectCallback)callback
@@ -34,6 +41,7 @@ static NSString *blobs = @"blobs";
     [client MULTIPART_POST:[[self class] requestPath]
                 parameters:parameters
                       data:multipartParameters
+                  mimeType:[[self class] mimeType]
                   callback:^(id json, NSError *error)
     {
         

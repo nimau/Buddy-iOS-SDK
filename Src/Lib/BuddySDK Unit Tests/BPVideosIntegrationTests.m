@@ -48,10 +48,15 @@ describe(@"BPVideosIntegrationSpec", ^{
                 videoProperties.title = @"That cliche bunny video.";
             } callback:^(id newBuddyObject, NSError *error) {
                 tempVideo = newBuddyObject;
+                [[theValue(tempVideo.contentLength) should] beGreaterThan:theValue(1)];
+                [[tempVideo.contentType should] equal:@"video/mp4"];
+                [[tempVideo.signedUrl shouldEventually] haveLengthOfAtLeast:1];
+        
                 fin = YES;
             }];
             
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
+            
         });
         
         it(@"Should allow you to retrieve a video.", ^{

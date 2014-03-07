@@ -13,6 +13,10 @@
 @synthesize title;
 @synthesize friendlyName;
 @synthesize thumbnailOffsetInSeconds;
+@synthesize bitRate;
+@synthesize encoding;
+@synthesize lengthInSeconds;
+@synthesize thumbnailID;
 
 - (void)registerProperties
 {
@@ -24,8 +28,15 @@
 }
 
 static NSString *videos = @"videos";
-+(NSString *) requestPath{
++ (NSString *) requestPath
+{
     return videos;
+}
+
+static NSString *videoMimeType = @"video/mp4";
++ (NSString *)mimeType
+{
+    return videoMimeType;
 }
 
 + (void)createWithVideo:(NSData *)video

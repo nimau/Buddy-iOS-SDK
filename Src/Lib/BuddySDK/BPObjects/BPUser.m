@@ -129,7 +129,7 @@ static NSString *users = @"users";
 
     NSDictionary *data = @{@"data": UIImagePNGRepresentation(picture)};
     
-    [self.client MULTIPART_POST:resource parameters:parameters data:data callback:^(id json, NSError *error) {
+    [self.client MULTIPART_POST:resource parameters:parameters data:data mimeType:@"image/png" callback:^(id json, NSError *error) {
         callback ? callback(error) : nil;
     }];
 }

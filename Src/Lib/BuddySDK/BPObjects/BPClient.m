@@ -385,10 +385,10 @@
     }];
 }
 
-- (void)MULTIPART_POST:(NSString *)servicePath parameters:(NSDictionary *)parameters data:(NSDictionary *)data callback:(RESTCallback)callback
+- (void)MULTIPART_POST:(NSString *)servicePath parameters:(NSDictionary *)parameters data:(NSDictionary *)data mimeType:(NSString *)mimeType callback:(RESTCallback)callback
 {
     [self checkDeviceToken:^{
-        [self.service MULTIPART_POST:servicePath parameters:parameters data:data callback:[self handleResponse:callback]];
+        [self.service MULTIPART_POST:servicePath parameters:parameters data:data mimeType:mimeType callback:[self handleResponse:callback]];
     }];
 }
 

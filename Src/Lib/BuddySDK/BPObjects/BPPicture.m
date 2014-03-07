@@ -23,8 +23,15 @@
 
 
 static NSString *pictures = @"pictures";
-+(NSString *) requestPath{
++ (NSString *) requestPath
+{
     return pictures;
+}
+
+static NSString *pictureMimeType = @"image/png";
++ (NSString *)mimeType
+{
+    return pictureMimeType;
 }
 
 + (void)createWithImage:(UIImage *)image
