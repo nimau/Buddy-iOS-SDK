@@ -40,8 +40,8 @@ describe(@"BPCheckinIntegrationSpec", ^{
         
         it(@"Should allow you to checkin.", ^{
             BPCoordinate *coordinate = [BPCoordinate new];
-            coordinate.latitude = 2.3;
-            coordinate.longitude = 4.4;
+            coordinate.lat = 2.3;
+            coordinate.lng = 4.4;
             
             [[Buddy checkins] checkin:^(id<BPCheckinProperties> checkinProperties) {
                 checkinProperties.comment = @"Checking in!";

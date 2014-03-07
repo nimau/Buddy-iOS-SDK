@@ -183,7 +183,8 @@ describe(@"Metadata", ^{
             __block BOOL fin = NO;
             __weak BPCheckin *c = checkin1;
             
-            NSDate *start = [NSDate date];
+            // Make sure start and end bracked the server timestamp (they may not be completely in sync)
+            NSDate *start = [[NSDate date] dateByAddingTimeInterval:-10];
             
             [c setMetadataWithKey:@"MYPREFIXHello" andInteger:4 permissions:BuddyPermissionsDefault callback:^(NSError *error) {
                 [[error should] beNil];
@@ -203,12 +204,18 @@ describe(@"Metadata", ^{
                 fin = YES;
             }];
             
+            // Make sure start and end bracked the server timestamp (they may not be completely in sync)
+            __block NSDate *end =[[NSDate date] dateByAddingTimeInterval:10];
+            
             [c searchMetadata:^(id<BPMetadataProperties,BPSearchProperties> metadataSearchProperties) {
-                metadataSearchProperties.created = BPDateRangeMake(start, [NSDate date]);
+                
+                metadataSearchProperties.created = BPDateRangeMake(start, end);
             } callback:^(id newBuddyObject, NSError *error) {
+                NSLog(@"METAMETA From: %@ To: %@",start,end);
                 [[theValue([newBuddyObject count]) should] beGreaterThan:theValue(0)];
                 for(BPMetadataItem *i in newBuddyObject) {
                     NSLog(@"%@", i.created);
+                    
                     //[[i.created should] startWithString:@"MYPREFIX"];
                 }
                 fin = YES;
