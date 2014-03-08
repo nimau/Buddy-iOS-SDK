@@ -8,6 +8,7 @@
 
 #import "Buddy.h"
 #import "BuddyIntegrationHelper.h"
+#import "NSDate+BPDateHelper.h"
 #import <Kiwi/Kiwi.h>
 
 #ifdef kKW_DEFAULT_PROBE_TIMEOUT
@@ -193,7 +194,7 @@ describe(@"Metadata", ^{
             
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
             fin = NO;
-            
+
             [c searchMetadata:^(id<BPMetadataProperties,BPSearchProperties> metadataSearchProperties) {
                 metadataSearchProperties.keyPrefix = @"MYPREFIX";
             } callback:^(id newBuddyObject, NSError *error) {
@@ -208,8 +209,7 @@ describe(@"Metadata", ^{
             __block NSDate *end =[[NSDate date] dateByAddingTimeInterval:10];
             
             [c searchMetadata:^(id<BPMetadataProperties,BPSearchProperties> metadataSearchProperties) {
-                
-                metadataSearchProperties.created = BPDateRangeMake(start, end);
+                metadataSearchProperties.created = BPDateRangeMake([NSDate dateWithMinutesBeforeNow:5], [NSDate dateWithMinutesFromNow:5]);
             } callback:^(id newBuddyObject, NSError *error) {
                 NSLog(@"METAMETA From: %@ To: %@",start,end);
                 [[theValue([newBuddyObject count]) should] beGreaterThan:theValue(0)];
