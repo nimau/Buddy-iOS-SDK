@@ -15,8 +15,6 @@
    describePicture:(DescribePicture)describePicture
         callback:(BuddyObjectCallback)callback;
 
-- (void)getPictures:(BuddyCollectionCallback)callback;
-
 - (void)searchPictures:(DescribePicture)describePicture callback:(BuddyCollectionCallback)callback;
 
 - (void)getPicture:(NSString *)pictureId callback:(BuddyObjectCallback)callback;

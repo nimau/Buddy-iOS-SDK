@@ -27,35 +27,58 @@
     return [BPClient defaultClient].restService;
 }
 
-+ (BPUser *)user{
++ (BPUser *)user
+{
     return [[BPClient defaultClient] user];
 }
 
-+ (BuddyDevice *)device{
++ (BPUserCollection *)users
+{
+    return [[BPClient defaultClient] users];
+}
+
++ (BuddyDevice *)device
+{
     return [[BPClient defaultClient] device];
 }
 
-+ (BPCheckinCollection *) checkins{
++ (BPCheckinCollection *) checkins
+{
     return [[BPClient defaultClient] checkins];
 }
 
-+ (BPPictureCollection *) pictures{
++ (BPPictureCollection *) pictures
+{
     return [[BPClient defaultClient] pictures];
 }
 
-+ (BPBlobCollection *) blobs{
++ (BPVideoCollection *) videos
+{
+    return [[BPClient defaultClient] videos];
+}
+
++ (BPBlobCollection *) blobs
+{
     return [[BPClient defaultClient] blobs];
 }
 
-+ (BPAlbumCollection *) albums{
++ (BPAlbumCollection *) albums
+{
     return [[BPClient defaultClient] albums];
 }
 
-+ (BPLocationCollection *) locations{
++ (BPLocationCollection *) locations
+{
     return [[BPClient defaultClient] locations];
 }
 
-+ (BOOL) locationEnabled{
++ (BPUserListCollection *) userLists
+{
+    return [[BPClient defaultClient] userLists];
+}
+
++ (BOOL) locationEnabled
+{
     @synchronized(self){
         return [[BPClient defaultClient] locationEnabled];
     }
@@ -107,7 +130,6 @@
                                      @"autoRecordDeviceInfo": @(autoRecordDeviceInfo)};
     
     NSMutableDictionary *combined = [NSMutableDictionary dictionaryWithDictionary:defaultOptions];
-    // TODO - merge options
     
     [[BPClient defaultClient] setupWithApp:appID
             appKey:appKey
@@ -167,17 +189,15 @@
     [[BPClient defaultClient] setMetadataWithKeyValues:keyValuePaths permissions:permissions callback:callback];
 }
 
++ (void)searchMetadata:(SearchMetadata)search callback:(BuddyObjectCallback)callback
+{
+    [[BPClient defaultClient] searchMetadata:search callback:callback];
+}
+
 + (void)getMetadataWithKey:(NSString *)key permissions:(BuddyPermissions) permissions callback:(BuddyObjectCallback)callback
 {
     [[BPClient defaultClient] getMetadataWithKey:key permissions:(BuddyPermissions)permissions callback:callback];
 }
-
-/*
-+ (void)getMetadataWithPermissions:(BuddyPermissions)permissions callback:(BuddyObjectCallback)callback
-{
-    [[BPClient defaultClient] getMetadataWithPermissions:permissions callback:callback];
-}
-*/
 
 + (void)deleteMetadataWithKey:(NSString *)key permissions:(BuddyPermissions) permissions callback:(BuddyCompletionCallback)callback
 {

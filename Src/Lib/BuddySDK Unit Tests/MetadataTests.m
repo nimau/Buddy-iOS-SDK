@@ -159,6 +159,71 @@ describe(@"Metadata", ^{
             [[expectFutureValue(theValue(targetInteger)) shouldEventually] equal:theValue(testInteger)];
         });
         
+        it(@"Should be increment metadata", ^{
+            NSInteger testInteger = 42;
+            NSInteger delta = 11;
+            __block NSInteger targetInteger = -1;
+            
+            __weak BPCheckin *c = checkin1;
+            [c setMetadataWithKey:@"IncrementingMetadata" andInteger:testInteger permissions:BuddyPermissionsDefault callback:^(NSError *error) {
+                [[error should] beNil];
+                
+                [c incrementMetadata:@"IncrementingMetadata" delta:delta callback:^(NSError *error) {
+                    [[error should] beNil];
+                    [c getMetadataWithKey:@"IncrementingMetadata" permissions:BuddyPermissionsDefault callback:^(id newBuddyObject, NSError *error) {
+                        targetInteger = [newBuddyObject integerValue];
+                    }];
+                }];
+            }];
+            
+            [[expectFutureValue(theValue(targetInteger)) shouldEventually] equal:theValue(testInteger + delta)];
+        });
+        
+        it(@"Should be able to search metadata", ^{
+            __block BOOL fin = NO;
+            __weak BPCheckin *c = checkin1;
+            
+            // Make sure start and end bracked the server timestamp (they may not be completely in sync)
+            NSDate *start = [[NSDate date] dateByAddingTimeInterval:-10];
+            
+            [c setMetadataWithKey:@"MYPREFIXHello" andInteger:4 permissions:BuddyPermissionsDefault callback:^(NSError *error) {
+                [[error should] beNil];
+                fin = YES;
+            }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
+            fin = NO;
+            
+            [c searchMetadata:^(id<BPMetadataProperties,BPSearchProperties> metadataSearchProperties) {
+                metadataSearchProperties.keyPrefix = @"MYPREFIX";
+            } callback:^(id newBuddyObject, NSError *error) {
+                [[theValue([newBuddyObject count]) should] beGreaterThan:theValue(0)];
+                for(BPMetadataItem *i in newBuddyObject) {
+                    [[i.key should] startWithString:@"MYPREFIX"];
+                }
+                fin = YES;
+            }];
+            
+            // Make sure start and end bracked the server timestamp (they may not be completely in sync)
+            __block NSDate *end =[[NSDate date] dateByAddingTimeInterval:10];
+            
+            [c searchMetadata:^(id<BPMetadataProperties,BPSearchProperties> metadataSearchProperties) {
+                
+                metadataSearchProperties.created = BPDateRangeMake(start, end);
+            } callback:^(id newBuddyObject, NSError *error) {
+                NSLog(@"METAMETA From: %@ To: %@",start,end);
+                [[theValue([newBuddyObject count]) should] beGreaterThan:theValue(0)];
+                for(BPMetadataItem *i in newBuddyObject) {
+                    NSLog(@"%@", i.created);
+                    
+                    //[[i.created should] startWithString:@"MYPREFIX"];
+                }
+                fin = YES;
+            }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
+        });
+        
         it(@"Should be able to delete metadata", ^{
             __block BPCheckin *c = checkin1;
             __block BOOL fin = NO;

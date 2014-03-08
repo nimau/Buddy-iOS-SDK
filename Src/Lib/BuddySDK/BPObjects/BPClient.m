@@ -14,9 +14,12 @@
 #import "BPGameBoards.h"
 #import "BPSounds.h"
 #import "BPPictureCollection.h"
+#import "BPVideoCollection.h"
+#import "BPUserCollection.h"
 #import "BPAlbumCollection.h"
 #import "BPBlobCollection.h"
 #import "BPLocationCollection.h"
+#import "BPUserListCollection.h"
 #import "BPRestProvider.h"
 #import "BuddyObject+Private.h"
 #import "BuddyLocation.h"
@@ -46,10 +49,12 @@
 @synthesize user=_user;
 @synthesize checkins=_checkins;
 @synthesize pictures =_pictures;
+@synthesize videos = _videos;
 @synthesize blobs = _blobs;
 @synthesize albums = _albums;
 @synthesize locations = _locations;
-
+@synthesize users = _users;
+@synthesize userLists = _userLists;
 #pragma mark - Init
 
 - (instancetype)init
@@ -74,7 +79,9 @@
                     break;
             }
             
+#ifndef TEST
             [self raiseReachabilityChanged:_reachabilityLevel];
+#endif
         }];
         [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     }
@@ -85,6 +92,7 @@
 {
     _user = nil;
     
+    _users = nil;
     _checkins = nil;
     _pictures = nil;
     _blobs = nil;
@@ -111,7 +119,6 @@
     _appSettings = [[BPAppSettings alloc] initWithBaseUrl:serviceUrl];
     _service = [[BPServiceController alloc] initWithAppSettings:_appSettings];
     
-    // TODO - Does the client need a copy? Do users need to read back key/id?
     _appSettings.appKey = appKey;
     _appSettings.appID = appID;
     
@@ -162,6 +169,15 @@
     [self raiseUserChangedTo:_user from:oldUser];
 }
 
+-(BPUserCollection *)users
+{
+    if(!_users)
+    {
+        _users = [[BPUserCollection alloc] initWithClient:self];;
+    }
+    return _users;
+}
+
 -(BPCheckinCollection *)checkins
 {
     if(!_checkins)
@@ -179,6 +195,16 @@
     }
     return _pictures;
 }
+
+-(BPVideoCollection *)videos
+{
+    if(!_videos)
+    {
+        _videos = [[BPVideoCollection alloc] initWithClient:self];
+    }
+    return _videos;
+}
+
 
 -(BPBlobCollection *)blobs
 {
@@ -208,6 +234,16 @@
         _locations = [[BPLocationCollection alloc] initWithClient:self];
     }
     return _locations;
+}
+
+-(BPUserListCollection *)userLists
+{
+    
+    if(!_userLists)
+    {
+        _userLists = [[BPUserListCollection alloc] initWithClient:self];
+    }
+    return _userLists;
 }
 
 #pragma mark - User
@@ -349,10 +385,10 @@
     }];
 }
 
-- (void)MULTIPART_POST:(NSString *)servicePath parameters:(NSDictionary *)parameters data:(NSDictionary *)data callback:(RESTCallback)callback
+- (void)MULTIPART_POST:(NSString *)servicePath parameters:(NSDictionary *)parameters data:(NSDictionary *)data mimeType:(NSString *)mimeType callback:(RESTCallback)callback
 {
     [self checkDeviceToken:^{
-        [self.service MULTIPART_POST:servicePath parameters:parameters data:data callback:[self handleResponse:callback]];
+        [self.service MULTIPART_POST:servicePath parameters:parameters data:data mimeType:mimeType callback:[self handleResponse:callback]];
     }];
 }
 
@@ -437,21 +473,24 @@ NSMutableArray *queuedRequests;
         // Is it a JSON response (as opposed to raw bytes)?
         if(result && [result isKindOfClass:[NSDictionary class]]) {
             
-            // Grab the result
-            result = response[@"result"];
-            
-            if ([result isKindOfClass:[NSDictionary class]]) {
+#pragma message("Code should be removed when/if https://github.com/BuddyPlatform/BuddySource/issues/271 is resolved")
+            if (result[@"error"]) {
+                responseCode = 400;
+            } else {
+                // Grab the result
+                result = response[@"result"] ?: result;
                 
-                // Grab the access token
-                if ([result hasKey:@"serviceRoot"]) {
-                    self.appSettings.serviceUrl = result[@"serviceRoot"];
+                if ([result isKindOfClass:[NSDictionary class]]) {
+                    
+                    // Grab the access token
+                    if ([result hasKey:@"serviceRoot"]) {
+                        self.appSettings.serviceUrl = result[@"serviceRoot"];
+                    }
                 }
-                
-                
             }
         }
         
-        result = result ?: @"Unknown";
+        result = result ?: [NSDictionary new];
         id responseObject = nil;
         
         switch (responseCode) {
@@ -480,7 +519,7 @@ NSMutableArray *queuedRequests;
             [self.appSettings clear];
         }
         if (buddyError) {
-            [self raiseAPIError:error];
+            [self raiseAPIError:buddyError];
         }
         
         callback(responseObject, buddyError);
@@ -489,25 +528,25 @@ NSMutableArray *queuedRequests;
 
 - (void)raiseUserChangedTo:(BPUser *)user from:(BPUser *)from
 {
-    [self tryRaiseDelegate:@selector(userChangedTo:from:) withArgument:user withArgument:from];
+    [self tryRaiseDelegate:@selector(userChangedTo:from:) withArguments:@[user] numberOfArgs:1];
 }
 
 - (void)raiseReachabilityChanged:(BPReachabilityLevel)level
 {
-    [self tryRaiseDelegate:@selector(connectivityChanged:) withArgument:@(level) withArgument:nil];
+    [self tryRaiseDelegate:@selector(connectivityChanged:) withArguments:@[@(level)] numberOfArgs:1];
 }
 
 - (void)raiseNeedsLoginError
 {
-    [self tryRaiseDelegate:@selector(authorizationNeedsUserLogin) withArgument:nil withArgument:nil];
+    [self tryRaiseDelegate:@selector(authorizationNeedsUserLogin) withArguments:nil numberOfArgs:0];
 }
 
 - (void)raiseAPIError:(NSError *)error
 {
-    [self tryRaiseDelegate:@selector(apiErrorOccurred:) withArgument:error withArgument:nil];
+    [self tryRaiseDelegate:@selector(apiErrorOccurred:) withArguments:@[error] numberOfArgs:1];
 }
 
-- (void)tryRaiseDelegate:(SEL)selector withArgument:(id)argument1 withArgument:(id)argument2
+- (void)tryRaiseDelegate:(SEL)selector withArguments:(NSArray *)arguments numberOfArgs:(NSInteger)number
 {
     id<UIApplicationDelegate> app = [[UIApplication sharedApplication] delegate];
     id target = nil;
@@ -518,10 +557,10 @@ NSMutableArray *queuedRequests;
            target = self.delegate;
        }
        if ([target respondsToSelector:selector]) {
-           if (argument2) {
-               [target performSelector:selector withObject:argument1 withObject:argument2];
-           } else if (argument1) {
-               [target performSelector:selector withObject:argument1];
+           if (number >= 2) {
+               [target performSelector:selector withObject:arguments[0] withObject:arguments[1]];
+           } else if (number == 1) {
+               [target performSelector:selector withObject:arguments[0]];
            } else {
                [target performSelector:selector];
            }
@@ -530,14 +569,17 @@ NSMutableArray *queuedRequests;
 }
 
 
+
 #pragma mark - Location
 
 - (void)setLocationEnabled:(BOOL)locationEnabled
 {
     _locationEnabled = locationEnabled;
     [self.location beginTrackingLocation:^(NSError *error) {
-        // TODO - How do we want users to find out if something went wrong
-        // (such as a user slapping the location request)?
+        if (error) {
+            // TODO - Not really an API error. What should we do?
+            [self raiseAPIError:error];
+        }
     }];
 }
 
@@ -588,14 +630,14 @@ NSMutableArray *queuedRequests;
 }
 
 
-static NSString *metadataRoute = @"metadata";
+static NSString *metadataRoute = @"metadata/app";
 - (NSString *) metadataPath:(NSString *)key
 {
-    if(key==nil)
-    {
-        return [NSString stringWithFormat:@"%@/%@",metadataRoute,self.appSettings.appID];
+    if (!key) {
+        return metadataRoute;
+    } else {
+        return [NSString stringWithFormat:@"%@/%@", metadataRoute, key];
     }
-    return [NSString stringWithFormat:@"%@/%@/%@",metadataRoute,self.appSettings.appID,key];
 }
 
 

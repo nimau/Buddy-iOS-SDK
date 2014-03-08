@@ -6,6 +6,7 @@
 //
 //
 
+#import "BuddyCollection+Private.h"
 #import "BPLocationCollection.h"
 #import "BPClient.h"
 #import "BPLocation.h"
@@ -25,13 +26,23 @@
 - (void)addLocation:(DescribeLocation)describe
            callback:(BuddyObjectCallback)callback
 {
-    // TODO
+    id locationProperties = [BPSisterObject new];
+    describe ? describe(locationProperties) : nil;
+    
+    id parameters = [locationProperties parametersFromProperties:@protocol(BPLocationProperties)];
+    
+    [self.type createFromServerWithParameters:parameters client:self.client callback:callback];
 }
 
 
--(void)findLocation:(BPCoordinateRange *)range callback:(BuddyCollectionCallback)callback
+- (void)findLocation:(SearchLocation)search callback:(BuddyCollectionCallback)callback
 {
-    // TODO
+    id locationProperties = [BPSisterObject new];
+    search ? search(locationProperties) : nil;
+    
+    id parameters = [locationProperties parametersFromProperties:@protocol(BPSearchProperties)];
+    
+    [self search:parameters callback:callback];
 }
 
 @end

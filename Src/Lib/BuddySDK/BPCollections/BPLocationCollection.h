@@ -15,6 +15,6 @@
 - (void)addLocation:(DescribeLocation)describe
            callback:(BuddyObjectCallback)callback;
 
--(void)findLocation:(BPCoordinateRange *)range callback:(BuddyCollectionCallback)callback;
+- (void)findLocation:(SearchLocation)search callback:(BuddyCollectionCallback)callback;
 
 @end

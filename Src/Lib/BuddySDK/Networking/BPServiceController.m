@@ -123,12 +123,13 @@ typedef void (^AFSuccessCallback)(AFHTTPRequestOperation *operation, id response
                failure:[self handleFailure:callback]];
 }
 
-- (void)MULTIPART_POST:(NSString *)servicePath parameters:(NSDictionary *)parameters data:(NSDictionary *)data callback:(ServiceResponse)callback
+- (void)MULTIPART_POST:(NSString *)servicePath parameters:(NSDictionary *)parameters data:(NSDictionary *)data mimeType:(NSString *)mimeType callback:(ServiceResponse)callback
 {
     void (^constructBody)(id <AFMultipartFormData> formData) =^(id<AFMultipartFormData> formData){
         for(NSString *name in [data allKeys]){
 #pragma messsage("TODO - somehow pass in mime type for blob/image POSTs")
-            [formData appendPartWithFileData:data[name] name:name fileName:name mimeType:@"image/png"];
+            //[formData appendPartWithFileData:data[name] name:name fileName:name mimeType:@"image/png"];
+            [formData appendPartWithFileData:data[name] name:name fileName:name mimeType:mimeType];
         }
     };
     

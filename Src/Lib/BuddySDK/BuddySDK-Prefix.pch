@@ -15,6 +15,7 @@
    #import "NSString+JSON.h"
    #import "NSError+BuddyError.h"
    #import "NSObject+ToJSON.h"
+   #import "JAGPropertyConverter+BPJSONConverter.h"
 #endif
 
 #define BOXNIL(x) x ?: [NSNull null]

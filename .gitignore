@@ -16,6 +16,9 @@ dsa_priv.pem
 #*.xcodeproj/project.xcworkspace/
 *.xcodeproj/xcuserdata/
 *.xccheckout
+xcuserdata
+
+BuddySDK.xcworkspace/xcuserdata/
 
 #Visual Studio
 *.xccheckout
@@ -31,6 +34,11 @@ Release-Lib/
 bin/
 obj/
 
-Buddy-iOS-SDK/samples/PhotoGallery/BuddySDK.framework/
-Buddy-iOS-SDK/samples/RegisterLogin/BuddySDK.framework/
+Samples/PhotoGallery/BuddySDK.framework/
+Samples/PhotoGallery/PhotoGallery.xcodeproj/project.xcworkspace/xcuserdata/
+
+Samples/RegisterLogin/BuddySDK.framework/
+Samples/RegisterLogin/registerlogin.xcodeproj/project.xcworkspace/xcuserdata/
+
+
 

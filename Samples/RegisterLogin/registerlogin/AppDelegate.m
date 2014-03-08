@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "BuddySDK/Buddy.h"
+#import <BuddySDK/Buddy.h>
 
 #import "Constants.h"
 

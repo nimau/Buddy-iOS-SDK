@@ -8,7 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#import "BuddySDK/Buddy.h"
+#import <BuddySDK/Buddy.h>
 
 #import "AppDelegate.h"
 

@@ -27,6 +27,25 @@ describe(@"BPPictureIntegrationSpec", ^{
         
         it(@"Should not allow them to add and describe pictures.", ^{
             __block BOOL fin = NO;
+
+            NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+            NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
+            UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+            
+            [[Buddy pictures] addPicture:image describePicture:^(id<BPPictureProperties> pictureProperties) {
+                pictureProperties.caption = @"Hello, caption!";
+            } callback:^(id buddyObject, NSError *error) {
+                [[error shouldNot] beNil];
+                [[buddyObject should] beNil];
+                [[theValue([error code]) should] equal:theValue(0x107)]; // AuthUserAccessTokenRequired = 0x107
+                fin = YES;
+            }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
+        });
+        
+        it(@"Should not allow them to add and describe pictures.", ^{
+            __block BOOL fin = NO;
             
             NSBundle *bundle = [NSBundle bundleForClass:[self class]];
             NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];

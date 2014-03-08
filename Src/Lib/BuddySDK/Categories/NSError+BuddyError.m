@@ -21,8 +21,13 @@ static NSString *NoInternetError = @"NoInternetError";
 
 + (NSError *)buildBuddyError:(id)buddyJSON
 {
-    id jsonData = [buddyJSON dataUsingEncoding:NSUTF8StringEncoding]; //if input is NSString
-    id json = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+    id json;
+    if (![buddyJSON isKindOfClass:[NSDictionary class]]) {
+        id jsonData = [buddyJSON dataUsingEncoding:NSUTF8StringEncoding]; //if input is NSString
+        json = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+    } else {
+        json = buddyJSON;
+    }
     
     if (![NSJSONSerialization isValidJSONObject:json]) {
         return [NSError errorWithDomain:@"UnknownError" code:-1 userInfo:nil];

@@ -26,8 +26,9 @@
 
 @implementation BuddyObject
 
-@synthesize client=_client;
+@synthesize client = _client;
 
+@synthesize location, created, lastModified, defaultMetadata, readPermissions, writePermissions, id = _id;
 
 #pragma mark - Initializers
 
@@ -60,7 +61,7 @@
     {
         _client = client;
         [self registerProperties];
-        [[[self class] converter] setPropertiesOf:self fromDictionary:response];
+        [[JAGPropertyConverter converter] setPropertiesOf:self fromDictionary:response];
     }
     return self;
 }
@@ -152,23 +153,6 @@
     }];
 }
 
-+(void)queryFromServerWithId:(NSString *)identifier client:(id<BPRestProvider>)client callback:(BuddyObjectCallback)callback
-{
-    NSString *resource = [NSString stringWithFormat:@"%@/%@",
-                          [[self class] requestPath],
-                          identifier];
-    
-    [client GET:resource parameters:nil callback:^(id json, NSError *error) {
-
-        BuddyObject *newObject = [[[self class] alloc] initBuddyWithClient:client];
-        newObject.id = json[@"id"];
-        
-        [[[self class] converter] setPropertiesOf:newObject fromDictionary:json];
-#pragma messsage("TODO - Error")
-        callback ? callback(newObject, nil) : nil;
-    }];
-}
-
 -(void)deleteMe
 {
     [self deleteMe:nil];
@@ -198,7 +182,7 @@
                           self.id];
     
     [self.client GET:resource parameters:nil callback:^(id json, NSError *error) {
-        [[[self class] converter] setPropertiesOf:self fromDictionary:json];
+        [[JAGPropertyConverter converter] setPropertiesOf:self fromDictionary:json];
         callback ? callback(error) : nil;
     }];
 }
@@ -224,31 +208,9 @@ static NSString *metadataRoute = @"metadata";
 {
     if(key==nil)
     {
-        return [NSString stringWithFormat:@"%@/%@",metadataRoute,self.id];
+        return [NSString stringWithFormat:@"%@/%@",metadataRoute, self.id];
     }
-    return [NSString stringWithFormat:@"%@/%@/%@",metadataRoute,self.id,key];
-}
-
-
-#pragma mark - JSON handling
-
-+(JAGPropertyConverter *)converter
-{
-    static JAGPropertyConverter *c;
-    if(!c)
-    {
-        c = [JAGPropertyConverter new];
-        
-        __weak typeof(self) weakSelf = self;
-        c.identifyDict = ^Class(NSDictionary *dict) {
-            if ([dict valueForKey:@"latitude"]) {
-                return [BPCoordinate class];
-            }
-            return [weakSelf class];
-        };
-        
-    }
-    return c;
+    return [NSString stringWithFormat:@"%@/%@/%@",metadataRoute, self.id, key];
 }
 
 @end

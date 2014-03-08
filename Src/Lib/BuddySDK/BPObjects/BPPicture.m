@@ -9,7 +9,6 @@
 #import "BPPicture.h"
 #import "BuddyObject+Private.h"
 #import "BPSisterObject.h"
-#import <objc/runtime.h>
 
 @implementation BPPicture
 
@@ -24,8 +23,15 @@
 
 
 static NSString *pictures = @"pictures";
-+(NSString *) requestPath{
++ (NSString *) requestPath
+{
     return pictures;
+}
+
+static NSString *pictureMimeType = @"image/png";
++ (NSString *)mimeType
+{
+    return pictureMimeType;
 }
 
 + (void)createWithImage:(UIImage *)image

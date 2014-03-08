@@ -1,4 +1,4 @@
-    //
+//
 //  BuddyCollection.m
 //  BuddySDK
 //
@@ -19,7 +19,7 @@
 
 @implementation BuddyCollection
 
-@synthesize client=_client;
+@synthesize client = _client;
 
 - (instancetype)initWithClient:(id<BPRestProvider>)client {
     self = [super init];
@@ -35,19 +35,22 @@
     return @"";
 }
 
--(id<BPRestProvider>)client
+- (id<BPRestProvider>)client
 {   
     return _client ?: (id<BPRestProvider>)[BPClient defaultClient];
 }
 
--(void)getAll:(BuddyCollectionCallback)callback
+- (void)getAll:(BuddyCollectionCallback)callback
 {
     [self search:nil callback:callback];
 }
 
--(void)search:(NSDictionary *)searchParmeters callback:(BuddyCollectionCallback)callback
+- (void)search:(NSDictionary *)searchParmeters callback:(BuddyCollectionCallback)callback
 {
-    [self.client GET:[[self type] requestPath] parameters:searchParmeters callback:^(id json, NSError *error) {
+    NSString *resource = [self.requestPrefix stringByAppendingFormat:@"%@",
+                          [[self type] requestPath]];
+    
+    [self.client GET:resource parameters:searchParmeters callback:^(id json, NSError *error) {
         NSArray *results = [json[@"pageResults"] map:^id(id object) {
             return [[self.type alloc] initBuddyWithResponse:object andClient:self.client];
         }];

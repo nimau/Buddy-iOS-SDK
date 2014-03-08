@@ -19,12 +19,13 @@
 @property (nonatomic, copy) NSString *fax;
 @property (nonatomic, copy) NSString *phone;
 @property (nonatomic, copy) NSString *website;
-@property (nonatomic, copy) NSString *categoryId;
+@property (nonatomic, copy) NSString *category;
 @property (nonatomic, assign) double *distance;
 
 @end
 
 typedef void(^DescribeLocation)(id<BPLocationProperties>locationProperties);
+typedef void(^SearchLocation)(id<BPLocationProperties, BPSearchProperties>locationProperties);
 
 @interface BPLocation : BuddyObject
 

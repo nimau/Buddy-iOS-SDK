@@ -102,20 +102,45 @@ describe(@"BPUser", ^{
             
         });
     
-        pending_(@"Should allow adding identity values.", ^{
+        it(@"Should allow adding identity values.", ^{
             __block BOOL done = NO;
-            [[Buddy user] addIdentityValue:@"SomeValue" callback:^(NSError *error) {
+            [[Buddy user] addIdentity:@"Facebook" value:@"sdf" callback:^(NSError *error) {
+                [[error should] beNil];
                 done = YES;
             }];
-            
             [[expectFutureValue(theValue(done)) shouldEventually] beYes];
         });
         
-        pending_(@"Should then allow deleting identity values.", ^{
-            
-            [[Buddy user] removeIdentityValue:@"SomeValue" callback:^(NSError *error) {
-                
+        it(@"Should allow searching identity values", ^{
+            __block NSArray *idenities;
+#pragma message("Braking test. Why does this not return values when the test below does?")
+            [[Buddy users] searchIdentities:@"Facebook" callback:^(NSArray *buddyObjects, NSError *error) {
+               idenities = buddyObjects;
             }];
+            
+            [[expectFutureValue(idenities) shouldEventually] beNonNil];
+        });
+        
+        it(@"Should allow retrieving identity values.", ^{
+            __block BOOL done = NO;
+            [[Buddy user] getIdentities:@"Facebook" callback:^(NSArray *buddyObjects, NSError *error) {
+                [[error should] beNil];
+                done = YES;
+            }];
+            [[expectFutureValue(theValue(done)) shouldEventually] beYes];
+        });
+        
+        it(@"Should then allow deleting identity values.", ^{
+            __block BOOL done = NO;
+            [[Buddy user] removeIdentity:@"Facebook" value:@"sdf" callback:^(NSError *error) {
+                [[error should] beNil];
+                [[Buddy user] getIdentities:@"Facebook" callback:^(NSArray *buddyObjects, NSError *error) {
+                    [[error should] beNil];
+                    [[buddyObjects shouldNot] containObjectsInArray:@[@"sdf"]];
+                    done = YES;
+                }];
+            }];
+            [[expectFutureValue(theValue(done)) shouldEventually] beYes];
         });
         
         it(@"Should allow the user to logout", ^{

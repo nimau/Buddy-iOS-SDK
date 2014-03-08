@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BuddyObject.h"
 #import "BuddyDevice.h"
-#import "BPAlbumItemContainer.h"
+#import "BPAlbumItem.h"
 #import "BPClient.h"
 #import "BPCheckin.h"
 #import "BPCheckinCollection.h"
@@ -19,13 +20,18 @@
 #import "BPGameBoards.h"
 #import "BPSounds.h"
 #import "BPPictureCollection.h"
+#import "BPVideoCollection.h"
 #import "BPBlobCollection.h"
+#import "BPUserCollection.h"
+#import "BPUserListCollection.h"
 #import "BPCoordinate.h"
+#import "BPDateRange.h"
 #import "BPBlob.h"
 #import "BPAlbum.h"
 #import "BPLocationCollection.h"
 #import "BPLocation.h"
 #import "BPMetricCompletionHandler.h"
+#import "BPMetadataItem.h"
 
 /**
  * TODO
@@ -45,6 +51,11 @@
 /**
  Accessor to create and query checkins
  */
++ (BPUserCollection *)users;
+
+/**
+ Accessor to create and query checkins
+ */
 + (BPCheckinCollection *) checkins;
 
 /**
@@ -53,20 +64,30 @@
 + (BPPictureCollection *) pictures;
 
 /**
+ Accessor to create and query videos.
+ */
++ (BPVideoCollection *) videos;
+
+/**
  Accessor to create and query data and files.
  */
-+ (BPBlobCollection *) blobs;
-
++ (BPBlobCollection *)blobs;
     
 /**
  Accessor to create and query albums.
  */
-+ (BPAlbumCollection *) albums;
++ (BPAlbumCollection *)albums;
 
 /**
  Accessor to create and query locations.
  */
-+ (BPLocationCollection *) locations;
++ (BPLocationCollection *)locations;
+
+/**
+ Accessor to create and query user lists.
+ */
++ (BPUserListCollection *) userLists;
+
 
 /**
   Public REST provider for passthrough access.
@@ -134,7 +155,7 @@
 + (void)setMetadataWithKey:(NSString *)key andInteger:(NSInteger)value permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback;
 + (void)setMetadataWithKeyValues:(NSDictionary *)keyValuePaths permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback;
 + (void)getMetadataWithKey:(NSString *)key permissions:(BuddyPermissions) permissions callback:(BuddyObjectCallback)callback;
-/*+ (void)getMetadataWithPermissions:(BuddyPermissions)permissions callback:(BuddyObjectCallback)callback;*/
++ (void)searchMetadata:(SearchMetadata)search callback:(BuddyObjectCallback)callback;
 + (void)deleteMetadataWithKey:(NSString *)key permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback;
 
 @end

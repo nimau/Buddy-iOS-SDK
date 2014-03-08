@@ -8,7 +8,8 @@
 
 #import "BPAlbumItemCollection.h"
 #import "BuddyCollection+Private.h"
-#import "BPAlbumItemContainer.h"
+#import "BPAlbumItem.h"
+#import "BPSisterObject.h"
 
 @interface BPAlbumItemCollection()
 
@@ -22,7 +23,7 @@
 {
     self = [super initWithClient:client];
     if (self) {
-        self.type = [BPAlbumItemContainer class];
+        self.type = [BPAlbumItem class];
         _album = album;
     }
     return self;
@@ -48,9 +49,20 @@
     }];
 }
 
-- (void)getAlbumItem:(NSString *)pictureId
+- (void)searchAlbumItems:(DescribeAlbumItem)describe callback:(BuddyObjectCallback)callback
+{
+    id albumItemProperties = [BPSisterObject new];
+    describe ? describe(albumItemProperties) : nil;
+    
+    id parameters = [albumItemProperties parametersFromProperties:@protocol(BPAlbumItemProperties)];
+    
+    [self search:parameters callback:callback];
+}
+
+
+- (void)getAlbumItem:(NSString *)itemId
             callback:(BuddyObjectCallback)callback
 {
-    [self getItem:pictureId callback:callback];
+    [self getItem:itemId callback:callback];
 }
 @end
