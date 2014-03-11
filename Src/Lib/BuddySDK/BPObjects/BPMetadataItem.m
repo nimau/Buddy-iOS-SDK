@@ -16,4 +16,16 @@
 @synthesize created;
 @synthesize modified;
 
+- (instancetype)initBuddyWithResponse:(id)response
+{
+    if (!response) return nil;
+    
+    self = [super init];
+    if(self)
+    {
+        [[JAGPropertyConverter converter] setPropertiesOf:self fromDictionary:response];
+    }
+    return self;
+}
+
 @end

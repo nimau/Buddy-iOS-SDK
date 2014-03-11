@@ -22,10 +22,12 @@
 //@property (nonatomic, assign) BuddyPermissions permissions;
 
 @end
+@class BPMetadataItem;
 
 typedef void(^SearchMetadata)(id<BPMetadataProperties>metadataSearchProperties);
-
+typedef void(^BPMetadataCallback)(BPMetadataItem *metadata, NSError *error);
 
 @interface BPMetadataItem : NSObject<BPMetadataProperties>
-
+- (instancetype)initBuddyWithResponse:(id)response;
 @end
+

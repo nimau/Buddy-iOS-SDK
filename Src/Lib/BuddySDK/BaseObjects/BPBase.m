@@ -88,7 +88,7 @@
     }];
 }
 
-- (void)searchMetadata:(SearchMetadata)search callback:(BuddyObjectCallback)callback
+- (void)searchMetadata:(SearchMetadata)search callback:(BuddyCollectionCallback)callback
 {
     id searchProperty = [BPSisterObject new];
     search ? search(searchProperty) : nil;
@@ -123,11 +123,8 @@
     NSDictionary *parameters = @{@"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
     
     [self.client GET:[self metadataPath:key] parameters:parameters callback:^(id metadata, NSError *error) {
-        id md = nil;
-        if ([NSJSONSerialization isValidJSONObject:metadata]) {
-            md = metadata[@"value"];
-        }
-        callback ? callback(md, error) : nil;
+        BPMetadataItem *item = [[BPMetadataItem alloc] initBuddyWithResponse:metadata];
+        callback ? callback(item, error) : nil;
     }];
 }
 

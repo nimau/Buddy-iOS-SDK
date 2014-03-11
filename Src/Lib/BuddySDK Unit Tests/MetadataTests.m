@@ -71,32 +71,32 @@ describe(@"Metadata", ^{
             // App-level Metadata with Key Value Pairs
             [Buddy setMetadataWithKeyValues:kvp permissions:BuddyPermissionsDefault callback:^(NSError *error) {
                 [[error should] beNil];
-                [Buddy getMetadataWithKey:@"Hakuna" permissions:BuddyPermissionsDefault callback:^(id newBuddyObject, NSError *error) {
-                    targetString = newBuddyObject;
+                [Buddy getMetadataWithKey:@"Hakuna" permissions:BuddyPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
+                    targetString = metadata.value;
                 }];
             }];
             
             // App-level MetaData with Key/String
             [Buddy setMetadataWithKey:@"Hey" andString:@"There" permissions:BuddyPermissionsApp callback:^(NSError *error) {
                 [[error should] beNil];
-                [Buddy getMetadataWithKey:@"Hey" permissions:BuddyPermissionsApp callback:^(id newBuddyObject, NSError *error) {
-                    targetString2 = newBuddyObject;
+                [Buddy getMetadataWithKey:@"Hey" permissions:BuddyPermissionsApp callback:^(BPMetadataItem *metadata, NSError *error) {
+                    targetString2 = metadata.value;
                 }];
             }];
             
             // App-level Metadata - Check permissions (write as User, Get as App should fail)
             [Buddy setMetadataWithKey:@"HeyHey" andString:@"There" permissions:BuddyPermissionsUser callback:^(NSError *error) {
                 [[error should] beNil];
-                [Buddy getMetadataWithKey:@"HeyHey" permissions:BuddyPermissionsApp callback:^(id newBuddyObject, NSError *error) {
-                    if(error==nil)
+                [Buddy getMetadataWithKey:@"HeyHey" permissions:BuddyPermissionsApp callback:^(BPMetadataItem *metadata, NSError *error) {
+                    if(!error)
                     {
-                        targetString3 = newBuddyObject;
+                        targetString3 = metadata.value;
                     }
                 }];
-                [Buddy getMetadataWithKey:@"HeyHey" permissions:BuddyPermissionsUser callback:^(id newBuddyObject, NSError *error) {
-                    if(error==nil)
+                [Buddy getMetadataWithKey:@"HeyHey" permissions:BuddyPermissionsUser callback:^(BPMetadataItem *metadata, NSError *error) {
+                    if(!error)
                     {
-                        targetString4 = newBuddyObject;
+                        targetString4 = metadata.value;
                     }
                 }];
             }];
@@ -115,8 +115,8 @@ describe(@"Metadata", ^{
 
             [checkin1 setMetadataWithKey:@"StringlyMetadata" andString:@"REMOVE" permissions:BuddyPermissionsDefault callback:^(NSError *error) {
                 [[error should] beNil];
-                [c1 getMetadataWithKey:@"StringlyMetadata" permissions:BuddyPermissionsDefault callback:^(id newBuddyObject, NSError *error) {
-                    targetString1 = newBuddyObject;
+                [c1 getMetadataWithKey:@"StringlyMetadata" permissions:BuddyPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
+                    targetString1 = metadata.value;
                 }];
             }];
             
@@ -133,11 +133,11 @@ describe(@"Metadata", ^{
             
             [checkin1 setMetadataWithKey:@"StringlyMetadata" andString:@"Test String" permissions:BuddyPermissionsDefault callback:^(NSError *error) {
                 [[error should] beNil];
-                [c1 getMetadataWithKey:@"StringlyMetadata" permissions:BuddyPermissionsDefault callback:^(id newBuddyObject, NSError *error) {
-                    targetString1 = newBuddyObject;
+                [c1 getMetadataWithKey:@"StringlyMetadata" permissions:BuddyPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
+                    targetString1 = metadata.value;
                 }];
-                [c2 getMetadataWithKey:@"StringlyMetadata" permissions:BuddyPermissionsDefault callback:^(id newBuddyObject, NSError *error) {
-                    targetString2 = newBuddyObject;
+                [c2 getMetadataWithKey:@"StringlyMetadata" permissions:BuddyPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
+                    targetString2 = metadata.value;
                 }];
             }];
             
@@ -152,8 +152,8 @@ describe(@"Metadata", ^{
             __block BPCheckin *c = checkin1;
             [checkin1 setMetadataWithKey:@"IntlyMetadata" andInteger:testInteger permissions:BuddyPermissionsDefault callback:^(NSError *error) {
                 [[error should] beNil];
-                [c getMetadataWithKey:@"IntlyMetadata" permissions:BuddyPermissionsDefault callback:^(id newBuddyObject, NSError *error) {
-                    targetInteger = [newBuddyObject integerValue];
+                [c getMetadataWithKey:@"IntlyMetadata" permissions:BuddyPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
+                    targetInteger = [metadata.value integerValue];
                 }];
             }];
             
@@ -171,8 +171,8 @@ describe(@"Metadata", ^{
                 
                 [c incrementMetadata:@"IncrementingMetadata" delta:delta callback:^(NSError *error) {
                     [[error should] beNil];
-                    [c getMetadataWithKey:@"IncrementingMetadata" permissions:BuddyPermissionsDefault callback:^(id newBuddyObject, NSError *error) {
-                        targetInteger = [newBuddyObject integerValue];
+                    [c getMetadataWithKey:@"IncrementingMetadata" permissions:BuddyPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
+                        targetInteger = [metadata.value integerValue];
                     }];
                 }];
             }];
@@ -257,20 +257,20 @@ describe(@"Metadata", ^{
             
             [checkin1 setMetadataWithKeyValues:keysValues permissions:BuddyPermissionsDefault callback:^(NSError *error) {
                 [[error should] beNil];
-                [c1 getMetadataWithKey:@"foo" permissions:BuddyPermissionsDefault callback:^(id newBuddyObject, NSError *error) {
+                [c1 getMetadataWithKey:@"foo" permissions:BuddyPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
                     if(error==nil)
                     {
-                        targetString1 = newBuddyObject;
+                        targetString1 = metadata.value;
                     }
                     else
                     {
                         targetString1=nil;
                     }
                 }];
-                [c2 getMetadataWithKey:@"foo" permissions:BuddyPermissionsDefault callback:^(id newBuddyObject, NSError *error) {
+                [c2 getMetadataWithKey:@"foo" permissions:BuddyPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
                     if(error==nil)
                     {
-                        targetString2 = newBuddyObject;
+                        targetString2 = metadata.value;
                     }
                     else
                     {

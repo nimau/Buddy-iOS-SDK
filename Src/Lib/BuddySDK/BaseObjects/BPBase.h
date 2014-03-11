@@ -60,7 +60,7 @@ typedef void (^BuddyObjectCallback)(id newBuddyObject, NSError *error);
 
 - (void)incrementMetadata:(NSString *)key delta:(NSInteger)delta callback:(BuddyCompletionCallback)callback;
 
-- (void)getMetadataWithKey:(NSString *)key permissions:(BuddyPermissions) permissions callback:(BuddyObjectCallback) callback;
+- (void)getMetadataWithKey:(NSString *)key permissions:(BuddyPermissions) permissions callback:(BPMetadataCallback) callback;
 
 - (void)deleteMetadataWithKey:(NSString *)key permissions:(BuddyPermissions) permissions callback:(BuddyCompletionCallback)callback;
 
