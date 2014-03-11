@@ -15,19 +15,34 @@
 #endif
 #define kKW_DEFAULT_PROBE_TIMEOUT 4.0
 
+
 SPEC_BEGIN(BuddyIntegrationSpec)
 
 describe(@"Buddy", ^{
     context(@"A clean boot of your app", ^{
-        __block NSString *testCreateDeleteName = @"ItPutsTheLotionOnItsSkin";
+        
+        __block NSString *testCreateDeleteName = @"ItPutsTheLotionOnItsSkin3";
         __block id mock = nil;
         beforeAll(^{
-            mock = [KWMock mockForProtocol:@protocol(BPClientDelegate)];
+            __block BOOL fin = NO;
+            
             // DISABLED AS NOT WORKING [[mock shouldEventually] receive:@selector(connectivityChanged:)];
 
-            [Buddy setClientDelegate:mock];
             [Buddy initClient:APP_NAME appKey:APP_KEY];
-
+            
+            [Buddy login:testCreateDeleteName password:TEST_PASSWORD callback:^(BPUser *loggedInsUser, NSError *error) {
+                if (!error) {
+                    [loggedInsUser deleteMe:^(NSError *error){
+                        fin = YES;
+                    }];
+                } else {
+                    fin = YES;
+                }
+            }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
+            mock = [KWMock mockForProtocol:@protocol(BPClientDelegate)];
+            [Buddy setClientDelegate:mock];
         });
         
         afterAll(^{
