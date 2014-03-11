@@ -79,7 +79,7 @@
                     break;
             }
             
-#ifndef TEST
+#if !(TARGET_IPHONE_SIMULATOR)
             [self raiseReachabilityChanged:_reachabilityLevel];
 #endif
         }];
