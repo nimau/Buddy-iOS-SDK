@@ -26,8 +26,6 @@ describe(@"Buddy", ^{
         beforeAll(^{
             __block BOOL fin = NO;
             
-            // DISABLED AS NOT WORKING [[mock shouldEventually] receive:@selector(connectivityChanged:)];
-
             [Buddy initClient:APP_NAME appKey:APP_KEY];
             
             [Buddy login:testCreateDeleteName password:TEST_PASSWORD callback:^(BPUser *loggedInsUser, NSError *error) {
@@ -41,8 +39,7 @@ describe(@"Buddy", ^{
             }];
             
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
-            mock = [KWMock mockForProtocol:@protocol(BPClientDelegate)];
-            [Buddy setClientDelegate:mock];
+
         });
         
         afterAll(^{
@@ -50,9 +47,14 @@ describe(@"Buddy", ^{
         });
         
         it(@"Should throw an auth error if they try to access pictures.", ^{
+            mock = [KWMock mockForProtocol:@protocol(BPClientDelegate)];
+            [Buddy setClientDelegate:mock];
+            
             [[mock shouldEventually] receive:@selector(apiErrorOccurred:)];
             [[[mock shouldEventually] receive] authorizationNeedsUserLogin];
-            [[Buddy pictures] searchPictures:nil callback:nil];
+            [[Buddy pictures] searchPictures:nil callback:^(NSArray *buddyObjects, NSError *error) {
+                [Buddy setClientDelegate:nil];
+            }];
         });
         
         it(@"Should allow you to create a user.", ^{
@@ -79,10 +81,13 @@ describe(@"Buddy", ^{
         it(@"Should allow you to login.", ^{
             __block BPUser *newUser;
             
+            [Buddy setClientDelegate:mock];
+
             [[mock shouldEventually] receive:@selector(userChangedTo:from:)];
 
             [Buddy login:testCreateDeleteName password:TEST_PASSWORD callback:^(BPUser *loggedInsUser, NSError *error) {
                 newUser = loggedInsUser;
+                [Buddy setClientDelegate:nil];
             }];
             
             [[expectFutureValue(newUser.userName) shouldEventually] equal:testCreateDeleteName];

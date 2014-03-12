@@ -486,6 +486,12 @@ NSMutableArray *queuedRequests;
                     if ([result hasKey:@"serviceRoot"]) {
                         self.appSettings.serviceUrl = result[@"serviceRoot"];
                     }
+                    
+#pragma message("Temporary hack. This is to grab the access token out of a create user call. Shouldn't be in this method.")
+                    if ([result hasKey:@"accessToken"] && self.appSettings.deviceToken) {
+                        self.appSettings.userToken = result[@"accessToken"];
+                    }
+                    
                 }
             }
         }
