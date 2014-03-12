@@ -194,7 +194,12 @@
     [[BPClient defaultClient] searchMetadata:search callback:callback];
 }
 
-+ (void)getMetadataWithKey:(NSString *)key permissions:(BuddyPermissions) permissions callback:(BuddyObjectCallback)callback
++ (void)incrementMetadata:(NSString *)key delta:(NSInteger)delta callback:(BuddyCompletionCallback)callback
+{
+    [[BPClient defaultClient] incrementMetadata:key delta:delta callback:callback];
+}
+
++ (void)getMetadataWithKey:(NSString *)key permissions:(BuddyPermissions) permissions callback:(BPMetadataCallback)callback
 {
     [[BPClient defaultClient] getMetadataWithKey:key permissions:(BuddyPermissions)permissions callback:callback];
 }

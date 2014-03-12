@@ -118,7 +118,7 @@
     }];
 }
 
-- (void)getMetadataWithKey:(NSString *)key permissions:(BuddyPermissions)permissions callback:(BuddyObjectCallback)callback
+- (void)getMetadataWithKey:(NSString *)key permissions:(BuddyPermissions)permissions callback:(BPMetadataCallback)callback
 {
     NSDictionary *parameters = @{@"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
     

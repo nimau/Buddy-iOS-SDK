@@ -64,7 +64,8 @@ describe(@"Metadata", ^{
             __block NSString *targetString2 = nil;
             __block NSString *targetString3 = @"No Change";
             __block NSString *targetString4 = @"No Change";
-            
+            __block NSInteger targetInteger = 0;
+
             
             NSDictionary *kvp = @{@"Hakuna": @"Matata"};
             
@@ -101,10 +102,24 @@ describe(@"Metadata", ^{
                 }];
             }];
             
+            // App-level Metadata - Set int and increment
+            [Buddy setMetadataWithKey:@"AppInc" andInteger:5 permissions:BuddyPermissionsUser callback:^(NSError *error) {
+                [[error should] beNil];
+                [Buddy incrementMetadata:@"AppInc" delta:2 callback:^(NSError *error) {
+                    [[error should] beNil];
+                    [Buddy getMetadataWithKey:@"AppInc" permissions:BuddyPermissionsUser callback:^(BPMetadataItem *metadata, NSError *error) {
+                        [[error should] beNil];
+                        targetInteger = [metadata.value integerValue];
+                    }];
+                }];
+            }];
+            
             [[expectFutureValue(targetString) shouldEventually] equal:@"Matata"];
             [[expectFutureValue(targetString2) shouldEventually] equal:@"There"];
             [[expectFutureValue(targetString3) shouldEventually] equal:@"No Change"];
             [[expectFutureValue(targetString4) shouldEventually] equal:@"There"];
+            [[expectFutureValue(theValue(targetInteger)) shouldEventually] equal:theValue(7)];
+
             
         });
         
