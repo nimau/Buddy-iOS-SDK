@@ -29,4 +29,7 @@
 - (void)refresh:(BuddyCompletionCallback)callback;
 - (void)save:(BuddyCompletionCallback)callback;
 
+// Implemented in BPBase. Exposed only to BuddyObject.
+- (void)incrementMetadata:(NSString *)key delta:(NSInteger)delta callback:(BuddyCompletionCallback)callback;
+
 @end
