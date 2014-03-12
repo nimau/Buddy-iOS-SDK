@@ -8,23 +8,30 @@
 
 #import <Foundation/Foundation.h>
 
-#import "BPClientDelegate.h"
+#import "BuddyObject.h"
 #import "BuddyDevice.h"
-#import "BPAlbumItemContainer.h"
+#import "BPAlbumItem.h"
 #import "BPClient.h"
 #import "BPCheckin.h"
 #import "BPCheckinCollection.h"
 #import "BPAlbumCollection.h"
-#import "BPPhoto.h"
+#import "BPPicture.h"
 #import "BPUser.h"
 #import "BPGameBoards.h"
 #import "BPSounds.h"
-#import "BPPhotoCollection.h"
+#import "BPPictureCollection.h"
+#import "BPVideoCollection.h"
 #import "BPBlobCollection.h"
+#import "BPUserCollection.h"
+#import "BPUserListCollection.h"
 #import "BPCoordinate.h"
+#import "BPDateRange.h"
 #import "BPBlob.h"
 #import "BPAlbum.h"
+#import "BPLocationCollection.h"
+#import "BPLocation.h"
 #import "BPMetricCompletionHandler.h"
+#import "BPMetadataItem.h"
 
 /**
  * TODO
@@ -44,23 +51,43 @@
 /**
  Accessor to create and query checkins
  */
++ (BPUserCollection *)users;
+
+/**
+ Accessor to create and query checkins
+ */
 + (BPCheckinCollection *) checkins;
 
 /**
- Accessor to create and query photos.
+ Accessor to create and query pictures.
  */
-+ (BPPhotoCollection *) photos;
++ (BPPictureCollection *) pictures;
+
+/**
+ Accessor to create and query videos.
+ */
++ (BPVideoCollection *) videos;
 
 /**
  Accessor to create and query data and files.
  */
-+ (BPBlobCollection *) blobs;
-
++ (BPBlobCollection *)blobs;
     
 /**
  Accessor to create and query albums.
  */
-+ (BPAlbumCollection *) albums;
++ (BPAlbumCollection *)albums;
+
+/**
+ Accessor to create and query locations.
+ */
++ (BPLocationCollection *)locations;
+
+/**
+ Accessor to create and query user lists.
+ */
++ (BPUserListCollection *) userLists;
+
 
 /**
   Public REST provider for passthrough access.
@@ -99,7 +126,7 @@
  *
  * @param options The set of creation options for the user.
  */
-+ (void)createUser:(NSString *)username password:(NSString *)password options:(NSDictionary *)options callback:(BuddyObjectCallback)callback;
++ (void)createUser:(NSString *)username password:(NSString *)password describeUser:(DescribeUser)describeUser callback:(BuddyObjectCallback)callback;
 
 /**
  *
@@ -126,8 +153,9 @@
 
 + (void)setMetadataWithKey:(NSString *)key andString:(NSString *)value permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback;
 + (void)setMetadataWithKey:(NSString *)key andInteger:(NSInteger)value permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback;
-+ (void)setMetadataWithKey:(NSString *)key andKeyValues:(NSDictionary *)keyValuePaths permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback;
-+ (void)getMetadataWithKey:(NSString *)key callback:(BuddyObjectCallback)callback;
-+ (void)deleteMetadataWithKey:(NSString *)key callback:(BuddyCompletionCallback)callback;
++ (void)setMetadataWithKeyValues:(NSDictionary *)keyValuePaths permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback;
++ (void)getMetadataWithKey:(NSString *)key permissions:(BuddyPermissions) permissions callback:(BuddyObjectCallback)callback;
++ (void)searchMetadata:(SearchMetadata)search callback:(BuddyObjectCallback)callback;
++ (void)deleteMetadataWithKey:(NSString *)key permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback;
 
 @end
