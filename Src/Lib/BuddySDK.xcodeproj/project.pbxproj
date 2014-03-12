@@ -28,9 +28,9 @@
 		2F7E079318A2EC08003FC524 /* BuddyAppDelegateDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7E079118A2EC08003FC524 /* BuddyAppDelegateDecorator.m */; };
 		5B141E3B18C6B940002BABBC /* BPMetadataItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B141E3918C6B940002BABBC /* BPMetadataItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B141E3C18C6B940002BABBC /* BPMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B141E3A18C6B940002BABBC /* BPMetadataItem.m */; };
-		5B19875818CB640500FBB502 /* small.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5B19875718CB63FC00FBB502 /* small.mp4 */; };
 		5B19875B18CB67D800FBB502 /* NSDate+BPDateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B19875918CB67D800FBB502 /* NSDate+BPDateHelper.h */; };
 		5B19875C18CB67D800FBB502 /* NSDate+BPDateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19875A18CB67D800FBB502 /* NSDate+BPDateHelper.m */; };
+		5B91C50E18D0CE3900CB7119 /* small.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5B91C50D18D0CE3900CB7119 /* small.mp4 */; };
 		5B984DA018C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B984D9E18C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.h */; };
 		5B984DA118C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B984D9F18C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.m */; };
 		5B984DA418C6DB9700CE8E2C /* BPDateRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B984DA218C6DB9700CE8E2C /* BPDateRange.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -241,9 +241,9 @@
 		2F7E079118A2EC08003FC524 /* BuddyAppDelegateDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuddyAppDelegateDecorator.m; sourceTree = "<group>"; };
 		5B141E3918C6B940002BABBC /* BPMetadataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMetadataItem.h; sourceTree = "<group>"; };
 		5B141E3A18C6B940002BABBC /* BPMetadataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMetadataItem.m; sourceTree = "<group>"; };
-		5B19875718CB63FC00FBB502 /* small.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = small.mp4; path = ../../../../../../../Downloads/small.mp4; sourceTree = "<group>"; };
 		5B19875918CB67D800FBB502 /* NSDate+BPDateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BPDateHelper.h"; sourceTree = "<group>"; };
 		5B19875A18CB67D800FBB502 /* NSDate+BPDateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BPDateHelper.m"; sourceTree = "<group>"; };
+		5B91C50D18D0CE3900CB7119 /* small.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = small.mp4; sourceTree = "<group>"; };
 		5B984D9E18C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JAGPropertyConverter+BPJSONConverter.h"; sourceTree = "<group>"; };
 		5B984D9F18C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JAGPropertyConverter+BPJSONConverter.m"; sourceTree = "<group>"; };
 		5B984DA218C6DB9700CE8E2C /* BPDateRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDateRange.h; sourceTree = "<group>"; };
@@ -729,7 +729,7 @@
 		C1B95A2B183708E8000C8417 /* Test Data */ = {
 			isa = PBXGroup;
 			children = (
-				5B19875718CB63FC00FBB502 /* small.mp4 */,
+				5B91C50D18D0CE3900CB7119 /* small.mp4 */,
 				5B984DB218C79E2800CE8E2C /* bigbunny.mp4 */,
 				C1A46532189753AC00FCCBF9 /* test.png */,
 				C1A46530189750E800FCCBF9 /* help.jpg */,
@@ -1005,7 +1005,7 @@
 				C1010D34187A4CC3009EB04E /* 3.jpg in Resources */,
 				C1010D32187A4CC3009EB04E /* 1.jpg in Resources */,
 				C1A46533189753AC00FCCBF9 /* test.png in Resources */,
-				5B19875818CB640500FBB502 /* small.mp4 in Resources */,
+				5B91C50E18D0CE3900CB7119 /* small.mp4 in Resources */,
 				C1010D31187A4CC3009EB04E /* 0.jpg in Resources */,
 				C1010D33187A4CC3009EB04E /* 2.jpg in Resources */,
 				5B984DB318C7B03A00CE8E2C /* bigbunny.mp4 in Resources */,
