@@ -13,7 +13,7 @@
 #ifdef kKW_DEFAULT_PROBE_TIMEOUT
 #undef kKW_DEFAULT_PROBE_TIMEOUT
 #endif
-#define kKW_DEFAULT_PROBE_TIMEOUT 20.0
+#define kKW_DEFAULT_PROBE_TIMEOUT 10.0
 
 SPEC_BEGIN(BuddyAlbumSpec)
 
@@ -111,6 +111,24 @@ describe(@"BPAlbumIntegrationSpec", ^{
             }];
 #pragma message ("TODO: Fix Test")            
             [[expectFutureValue(retrievedPicture) shouldEventually] beNonNil];
+        });
+        
+        it(@"Should allow searching from retrieved albums (Github issue #23", ^{
+            __block BOOL fin = NO;
+            
+            [[Buddy albums] searchAlbums:nil callback:^(NSArray *buddyObjects, NSError *error) {
+                BPAlbum *album = [buddyObjects firstObject];
+                [album searchAlbumItems:^(id<BPAlbumItemProperties> albumItemProperties) {
+                    
+                } callback:^(NSArray *buddyObjects, NSError *error) {
+                    [[error should] beNil];
+                    [[buddyObjects shouldNot] beNil];
+                    [[theValue([buddyObjects count]) should] beGreaterThan:theValue(0)];
+                    fin = YES;
+                }];
+            }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
         it(@"Should allow you to get the file for an item from an album.", ^{

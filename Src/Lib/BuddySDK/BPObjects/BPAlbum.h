@@ -11,15 +11,13 @@
 @protocol BPAlbumProperties <BuddyObjectProperties>
 
 @property (nonatomic, copy) NSString *caption;
+@property (nonatomic, copy) NSString *name;
 
 @end
 
 typedef void(^DescribeAlbum)(id<BPAlbumProperties>pictureProperties);
 
-@interface BPAlbum : BuddyObject
-
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *caption;
+@interface BPAlbum : BuddyObject<BPAlbumProperties>
 
 - (void)addItemToAlbum:(id)albumItem caption:(NSString *)caption callback:(BuddyObjectCallback)callback;
 
