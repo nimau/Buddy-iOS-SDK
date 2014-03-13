@@ -27,6 +27,7 @@
 #import "BPAppSettings.h"
 #import "BPSisterObject.h"
 #import "BuddyAppDelegateDecorator.h"
+#import "BPCrashManager.h"
 #import <CoreFoundation/CoreFoundation.h>
 
 #define BuddyServiceURL @"BuddyServiceURL"
@@ -41,6 +42,7 @@
 @property (nonatomic, strong) BPAppSettings *appSettings;
 @property (nonatomic, strong) BuddyLocation *location;
 @property (nonatomic, strong) BuddyAppDelegateDecorator *decorator;
+@property (nonatomic, strong) BPCrashManager *crashManager;
 
 @end
 
@@ -121,6 +123,8 @@
     
     _appSettings.appKey = appKey;
     _appSettings.appID = appID;
+    
+    _crashManager = [[BPCrashManager alloc] initWithRestProvider:[self restService]];
     
     if(!([options hasKey:@"disablePush"] && ((BOOL)[options objectForKey:@"disablePush"]) == NO)){
         [self registerForPushes];

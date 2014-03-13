@@ -10,10 +10,9 @@
 
 
 #import "BPRestProvider.h"
-#import "BPClientDelegate.h"
 #import "BuddyCollection.h" // TODO - remove dependency
 #import "BPMetricCompletionHandler.h"
-#import "BPBase.h"
+#import "BPUser.h"
 
 @class BuddyDevice;
 @class BPGameBoards;
@@ -21,9 +20,13 @@
 @class BPSounds;
 @class BPUser;
 @class BPCheckinCollection;
-@class BPPhotoCollection;
+@class BPPictureCollection;
+@class BPVideoCollection;
 @class BPBlobCollection;
 @class BPAlbumCollection;
+@class BPLocationCollection;
+@class BPUserCollection;
+@class BPUserListCollection;
 @class BPCoordinate;
 
 /**
@@ -37,6 +40,30 @@ typedef NS_ENUM(NSInteger, BPAuthenticationLevel) {
     /** User level authentication */
     BPAuthenticationLevelUser
 };
+
+/**
+ Enum specifying the current authentication level.
+ */
+typedef NS_ENUM(NSInteger, BPReachabilityLevel) {
+    /** No network reachability */
+    BPReachabilityNone     = 0,
+    /** Reachable via carrier */
+    BPReachabilityCarrier = 1,
+    /** Reachability not known */
+    BPReachabilityWiFi = 2,
+};
+
+@protocol BPClientDelegate <NSObject>
+
+- (void)userChangedTo:(BPUser *)newUser from:(BPUser *)oldUser;
+
+- (void)connectivityChanged:(BPReachabilityLevel)level;
+
+- (void)apiErrorOccurred:(NSError *)error;
+
+- (void)authorizationNeedsUserLogin;
+
+@end
 
 @interface BPClient : BPBase
 
@@ -83,6 +110,11 @@ typedef void (^BPPingCallback)(NSDecimalNumber *ping);
 @property (readonly, nonatomic, strong) BPSounds *sounds;
 
 /// <summary>
+/// Gets an object that can be used to search users.
+/// </summary>
+@property (readonly, nonatomic, strong) BPUserCollection *users;
+
+/// <summary>
 /// Gets an object that can be used to retrieve sounds.
 /// </summary>
 @property (readonly, nonatomic, strong) BPCheckinCollection *checkins;
@@ -90,7 +122,12 @@ typedef void (^BPPingCallback)(NSDecimalNumber *ping);
 /// <summary>
 /// TODO
 /// </summary>
-@property (readonly, nonatomic, strong) BPPhotoCollection *photos;
+@property (readonly, nonatomic, strong) BPPictureCollection *pictures;
+
+/// <summary>
+/// TODO
+/// </summary>
+@property (readonly, nonatomic, strong) BPVideoCollection *videos;
 
 /// <summary>
 /// TODO
@@ -105,12 +142,28 @@ typedef void (^BPPingCallback)(NSDecimalNumber *ping);
 /// <summary>
 /// TODO
 /// </summary>
+@property (readonly, nonatomic, strong) BPLocationCollection *locations;
+
+/// <summary>
+/// TODO
+/// </summary>
+@property (readonly, nonatomic, strong) BPUserListCollection *userLists;
+
+/// <summary>
+/// TODO
+/// </summary>
 @property (nonatomic, assign) BOOL locationEnabled;
 
 /**
   * Most recent BPCoordinate.
   */
 @property (nonatomic, readonly, strong) BPCoordinate *lastLocation;
+
+/**
+ * Current reachability level.
+ */
+@property (nonatomic, readonly, assign) BPReachabilityLevel reachabilityLevel;
+
 
 /// <summary>
 /// Current BuddyAuthenticatedUser as of the last login
@@ -131,6 +184,11 @@ typedef void (^BPPingCallback)(NSDecimalNumber *ping);
                 appKey:(NSString *)appKey
                 options:(NSDictionary *)options
                 delegate:(id<BPClientDelegate>) delegate;
+
+- (void)createUser:(NSString *)username
+          password:(NSString *)password
+      describeUser:(DescribeUser)describeUser
+          callback:(BuddyObjectCallback)callback;
 
 - (void)login:(NSString *)username password:(NSString *)password callback:(BuddyObjectCallback)callback;
 
