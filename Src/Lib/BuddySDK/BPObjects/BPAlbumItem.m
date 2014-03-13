@@ -12,15 +12,25 @@
 
 @implementation BPAlbumItem
 
-@synthesize caption, albumID, itemID;
+@synthesize caption, albumID, itemID, itemType;
 
 - (void)registerProperties
 {
     [super registerProperties];
     
     [self registerProperty:@selector(albumID)];
-    [self registerProperty:@selector(itemID)];
+    [self registerProperty:@selector(itemType)];
     [self registerProperty:@selector(caption)];
+}
+
++ (NSDictionary *)enumMap
+{
+    return [[[self class] baseEnumMap] dictionaryByMergingWith: @{
+                                                                  NSStringFromSelector(@selector(itemType)) : @{
+                                                                          @(BPAlbumItemTypePicture) : @"Picture",
+                                                                          @(BPAlbumItemTypeVideo) : @"Video",
+                                                                          },
+                                                                  }];
 }
 
 + (NSString *)requestPath
