@@ -28,12 +28,9 @@
 		2F7E079318A2EC08003FC524 /* BuddyAppDelegateDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7E079118A2EC08003FC524 /* BuddyAppDelegateDecorator.m */; };
 		5B141E3B18C6B940002BABBC /* BPMetadataItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B141E3918C6B940002BABBC /* BPMetadataItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B141E3C18C6B940002BABBC /* BPMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B141E3A18C6B940002BABBC /* BPMetadataItem.m */; };
-		5B19875818CB640500FBB502 /* small.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5B19875718CB63FC00FBB502 /* small.mp4 */; };
 		5B19875B18CB67D800FBB502 /* NSDate+BPDateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B19875918CB67D800FBB502 /* NSDate+BPDateHelper.h */; };
 		5B19875C18CB67D800FBB502 /* NSDate+BPDateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19875A18CB67D800FBB502 /* NSDate+BPDateHelper.m */; };
-		5B65E9CB18D00B5100336E38 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B65E9CA18D00B5100336E38 /* CrashReporter.framework */; };
-		5B65E9CE18D00D3300336E38 /* BPCrashManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B65E9CC18D00D3300336E38 /* BPCrashManager.h */; };
-		5B65E9CF18D00D3300336E38 /* BPCrashManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B65E9CD18D00D3300336E38 /* BPCrashManager.m */; };
+		5B91C50E18D0CE3900CB7119 /* small.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5B91C50D18D0CE3900CB7119 /* small.mp4 */; };
 		5B984DA018C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B984D9E18C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.h */; };
 		5B984DA118C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B984D9F18C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.m */; };
 		5B984DA418C6DB9700CE8E2C /* BPDateRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B984DA218C6DB9700CE8E2C /* BPDateRange.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -244,12 +241,9 @@
 		2F7E079118A2EC08003FC524 /* BuddyAppDelegateDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuddyAppDelegateDecorator.m; sourceTree = "<group>"; };
 		5B141E3918C6B940002BABBC /* BPMetadataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMetadataItem.h; sourceTree = "<group>"; };
 		5B141E3A18C6B940002BABBC /* BPMetadataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMetadataItem.m; sourceTree = "<group>"; };
-		5B19875718CB63FC00FBB502 /* small.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = small.mp4; path = ../../../../../../../Downloads/small.mp4; sourceTree = "<group>"; };
 		5B19875918CB67D800FBB502 /* NSDate+BPDateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BPDateHelper.h"; sourceTree = "<group>"; };
 		5B19875A18CB67D800FBB502 /* NSDate+BPDateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BPDateHelper.m"; sourceTree = "<group>"; };
-		5B65E9CA18D00B5100336E38 /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = BuddySDK/Vendor/CrashReporter.framework; sourceTree = "<group>"; };
-		5B65E9CC18D00D3300336E38 /* BPCrashManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCrashManager.h; sourceTree = "<group>"; };
-		5B65E9CD18D00D3300336E38 /* BPCrashManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCrashManager.m; sourceTree = "<group>"; };
+		5B91C50D18D0CE3900CB7119 /* small.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = small.mp4; sourceTree = "<group>"; };
 		5B984D9E18C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JAGPropertyConverter+BPJSONConverter.h"; sourceTree = "<group>"; };
 		5B984D9F18C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JAGPropertyConverter+BPJSONConverter.m"; sourceTree = "<group>"; };
 		5B984DA218C6DB9700CE8E2C /* BPDateRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDateRange.h; sourceTree = "<group>"; };
@@ -443,7 +437,6 @@
 				C1FBCED917E671A900275F6A /* CoreLocation.framework in Frameworks */,
 				29345ABE1773DB3B00EEB8F5 /* UIKit.framework in Frameworks */,
 				A6291F80165C01800051F83C /* Foundation.framework in Frameworks */,
-				5B65E9CB18D00B5100336E38 /* CrashReporter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,7 +484,6 @@
 		A6291F7E165C01800051F83C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5B65E9CA18D00B5100336E38 /* CrashReporter.framework */,
 				C1E0D1F91831D609001A7A01 /* XCTest.framework */,
 				C17E2B501803924300F64FB6 /* MobileCoreServices.framework */,
 				C17E2B4E180391D700F64FB6 /* SystemConfiguration.framework */,
@@ -543,8 +535,6 @@
 				2F7E079118A2EC08003FC524 /* BuddyAppDelegateDecorator.m */,
 				C1A1E29718A35B1A003CC33A /* BPSisterObject.h */,
 				C1A1E29818A35B1A003CC33A /* BPSisterObject.m */,
-				5B65E9CC18D00D3300336E38 /* BPCrashManager.h */,
-				5B65E9CD18D00D3300336E38 /* BPCrashManager.m */,
 			);
 			path = BuddySDK;
 			sourceTree = "<group>";
@@ -739,7 +729,7 @@
 		C1B95A2B183708E8000C8417 /* Test Data */ = {
 			isa = PBXGroup;
 			children = (
-				5B19875718CB63FC00FBB502 /* small.mp4 */,
+				5B91C50D18D0CE3900CB7119 /* small.mp4 */,
 				5B984DB218C79E2800CE8E2C /* bigbunny.mp4 */,
 				C1A46532189753AC00FCCBF9 /* test.png */,
 				C1A46530189750E800FCCBF9 /* help.jpg */,
@@ -889,7 +879,6 @@
 				C1B0F4CB18937142000403E0 /* NSArray+ObjectiveSugar.h in Headers */,
 				C10E2BB1186951C3007A0136 /* BuddyDevice.h in Headers */,
 				C1B959D2183703E8000C8417 /* BuddyCollection.h in Headers */,
-				5B65E9CE18D00D3300336E38 /* BPCrashManager.h in Headers */,
 				C10E2BA0186950D8007A0136 /* BPCoordinate.h in Headers */,
 				C1BFD88E187D169500A1FADF /* BPBlobCollection.h in Headers */,
 				C1B0F4CD18937142000403E0 /* NSDictionary+ObjectiveSugar.h in Headers */,
@@ -1016,7 +1005,7 @@
 				C1010D34187A4CC3009EB04E /* 3.jpg in Resources */,
 				C1010D32187A4CC3009EB04E /* 1.jpg in Resources */,
 				C1A46533189753AC00FCCBF9 /* test.png in Resources */,
-				5B19875818CB640500FBB502 /* small.mp4 in Resources */,
+				5B91C50E18D0CE3900CB7119 /* small.mp4 in Resources */,
 				C1010D31187A4CC3009EB04E /* 0.jpg in Resources */,
 				C1010D33187A4CC3009EB04E /* 2.jpg in Resources */,
 				5B984DB318C7B03A00CE8E2C /* bigbunny.mp4 in Resources */,
@@ -1129,7 +1118,6 @@
 				5B984DAC18C790C700CE8E2C /* BPVideoCollection.m in Sources */,
 				C1B0F4D618937142000403E0 /* NSString+ObjectiveSugar.m in Sources */,
 				C1B237601865569F005C841E /* NSString+JSON.m in Sources */,
-				5B65E9CF18D00D3300336E38 /* BPCrashManager.m in Sources */,
 				C1B0F4CE18937142000403E0 /* NSDictionary+ObjectiveSugar.m in Sources */,
 				C10E2BA1186950D8007A0136 /* BPCoordinate.m in Sources */,
 				C154CEF2187F78E800EACE4B /* BPLocationCollection.m in Sources */,
@@ -1345,10 +1333,6 @@
 				CURRENT_PROJECT_VERSION = 0.1.4;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/BuddySDK.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/BuddySDK/Vendor",
-				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				"GCC_INSTRUMENT_PROGRAM_FLOW_ARCS[arch=*]" = NO;
@@ -1404,10 +1388,6 @@
 				CURRENT_PROJECT_VERSION = 0.1.4;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/BuddySDK.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/BuddySDK/Vendor",
-				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

@@ -22,6 +22,8 @@
 
 @implementation BPAlbum
 
+@synthesize name, caption;
+
 - (instancetype)initBuddyWithClient:(id<BPRestProvider>)client {
     self = [super initBuddyWithClient:client];
     if(self)
@@ -29,6 +31,17 @@
         [self registerProperty:@selector(name)];
         [self registerProperty:@selector(caption)];
         _items = [[BPAlbumItemCollection alloc] initWithAlbum:self andClient:client];
+    }
+    return self;
+}
+
+- (instancetype)initBuddyWithResponse:(id)response andClient:(id<BPRestProvider>)rest {
+    self = [super initBuddyWithResponse:response andClient:rest];
+    if(self)
+    {
+        [self registerProperty:@selector(name)];
+        [self registerProperty:@selector(caption)];
+        _items = [[BPAlbumItemCollection alloc] initWithAlbum:self andClient:rest];
     }
     return self;
 }
