@@ -8,6 +8,12 @@
 
 #import "BuddyObject.h"
 
+typedef NS_ENUM(NSInteger, BPAlbumItemType) {
+    BPAlbumItemTypeUnknown,
+    BPAlbumItemTypePicture,
+    BPAlbumItemTypeVideo
+};
+
 // Not used for now. But may leverage the concept on BPPicture/BPVideo
 @protocol BPAlbumItem <NSObject>
 
@@ -21,6 +27,7 @@
 
 @property (nonatomic, copy) NSString *albumID;
 @property (nonatomic, copy) NSString *itemID;
+@property (nonatomic, assign) BPAlbumItemType itemType;
 @property (nonatomic, copy) NSString *caption;
 
 @end

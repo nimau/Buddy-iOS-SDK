@@ -17,7 +17,6 @@
 @end
 
 @implementation BPCrashManager {
-    //BOOL _crashReportActivated;
     BOOL _isSetup;
     BOOL _didCrashInLastSession;
     PLCrashReporter *_plCrashReporter;
@@ -39,21 +38,17 @@
     [self startManager];
 }
 
-- (void)registerObservers {
+- (void)registerObservers
+{
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(triggerDelayedProcessing)
+                                             selector:@selector(handleCrashReport)
                                                  name:UIApplicationDidBecomeActiveNotification
                                                object:nil];
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(triggerDelayedProcessing)
-//                                                 name:BWQuincyNetworkBecomeReachable
-//                                               object:nil];
 }
 
-- (void)unregisterObservers {
+- (void)unregisterObservers
+{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:BWQuincyNetworkBecomeReachable object:nil];
 }
 
 
@@ -89,7 +84,7 @@
             BOOL debuggerIsAttached = NO;
             if ([self isDebuggerAttached]) {
                 debuggerIsAttached = YES;
-                NSLog(@"[Quincy] WARNING: Detecting crashes is NOT enabled due to running the app with a debugger attached.");
+                NSLog(@"WARNING: Detecting crashes is NOT enabled due to running the app with a debugger attached.");
             }
             
             
@@ -114,21 +109,19 @@
                     NSLog(@"INFO: Exception handler successfully initialized.");
                 } else {
                     // this should never happen, theoretically only if NSSetUncaugtExceptionHandler() has some internal issues
-                    NSLog(@"[Quincy] ERROR: Exception handler could not be set. Make sure there is no other exception handler set up!");
+                    NSLog(@"ERROR: Exception handler could not be set. Make sure there is no other exception handler set up!");
                 }
             }
             _isSetup = YES;
         });
-    }
-    
-    [self triggerDelayedProcessing];
+    }    
 }
 
 #pragma mark - Crash Report Processing
 
 - (void)triggerDelayedProcessing {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(invokeDelayedProcessing) object:nil];
-    [self performSelector:@selector(invokeDelayedProcessing) withObject:nil afterDelay:0.5];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(handleCrashReport) object:nil];
+    [self performSelector:@selector(handleCrashReport) withObject:nil afterDelay:0.5];
 }
 
 - (BOOL)reportIs64Bit:(PLCrashReport *)report
@@ -291,7 +284,8 @@
         uint64_t symOffset = frameInfo.instructionPointer - frameInfo.symbolInfo.startAddress;
         symbolString = [NSString stringWithFormat: @"%@ + %" PRId64, symbolName, symOffset];
     } else {
-        symbolString = [NSString stringWithFormat: @"0x%" PRIx64 " + %" PRId64, baseAddress, pcOffset];
+        symbolString = [NSString stringWithFormat: @"%@ + %" PRId64, frameInfo.symbolInfo.symbolName, pcOffset];
+        //symbolString = [NSString stringWithFormat: @"0x%" PRIx64 " + %" PRId64, baseAddress, pcOffset];
     }
     
     /* Note that width specifiers are ignored for %@, but work for C strings.
@@ -307,22 +301,71 @@
 
 - (void)sendCrashReports:(PLCrashReport *)crashReport onSuccess:(void (^)())onSuccess
 {
-    PLCrashReportExceptionInfo *exception = crashReport.exceptionInfo;
-    NSMutableString *stacks = [NSMutableString string];
-    
     BOOL lp64 = [self reportIs64Bit:crashReport];
+
     
-    /* Write out the frames. In raw reports, Apple writes this out as a simple list of PCs. In the minimally
-     * post-processed report, Apple writes this out as full frame entries. We use the latter format. */
-    for (NSUInteger frame_idx = 0; frame_idx < [exception.stackFrames count]; frame_idx++) {
-        PLCrashReportStackFrameInfo *frameInfo = [exception.stackFrames objectAtIndex: frame_idx];
-        [stacks appendString: [[self class] bw_formatStackFrame: frameInfo frameIndex: frame_idx report:crashReport lp64:lp64]];
+    
+    // Exception
+    NSString *message = nil;
+    NSMutableString *crashedThreadString = [NSMutableString string];
+    NSString *exceptionMethodName = [NSMutableString string];
+    NSString *applicationName = [[crashReport.applicationInfo.applicationIdentifier split:@"."] lastObject];
+    if (crashReport.exceptionInfo) {
+        // The easy way. We have exception info. Common for most crashes.
+        
+        message = crashReport.exceptionInfo.exceptionReason;
+        
+        for (NSUInteger frame_idx = 0; frame_idx < [crashReport.exceptionInfo.stackFrames count]; frame_idx++) {
+            PLCrashReportStackFrameInfo *frameInfo = [crashReport.exceptionInfo.stackFrames objectAtIndex: frame_idx];
+            
+            [crashedThreadString appendString:[[self class] bw_formatStackFrame:frameInfo frameIndex:frame_idx report:crashReport lp64:lp64]];
+        }
+        
+        for (NSUInteger frame_idx = 0; frame_idx < [crashReport.exceptionInfo.stackFrames count]; frame_idx++) {
+            PLCrashReportStackFrameInfo *frameInfo = [crashReport.exceptionInfo.stackFrames objectAtIndex: frame_idx];
+            
+            PLCrashReportBinaryImageInfo *imageInfo = [crashReport imageForAddress:frameInfo.instructionPointer];
+            if (imageInfo != nil) {
+                if ([applicationName isEqualToString:[imageInfo.imageName lastPathComponent]]) {
+                    // We work our way from the bottom of the stack. Report the first application frame we get to.
+                    exceptionMethodName = frameInfo.symbolInfo.symbolName;
+                    break;
+                }
+            }
+        }
+    } else {
+        // Crap. There was something lower level, like overreleasing an object. Try to build the crash info from the thread list.
+        
+        PLCrashReportThreadInfo *crashed_thread = nil;
+        for (PLCrashReportThreadInfo *thread in crashReport.threads) {
+            if (thread.crashed) {
+                crashed_thread = thread;
+                for (NSUInteger frame_idx = 0; frame_idx < [thread.stackFrames count]; frame_idx++) {
+                    PLCrashReportStackFrameInfo *frameInfo = [thread.stackFrames objectAtIndex: frame_idx];
+                    [crashedThreadString appendString:[[self class] bw_formatStackFrame:frameInfo frameIndex:frame_idx report:crashReport lp64:lp64]];
+                }
+                break;
+            }
+        }
+
+        
+        for (NSUInteger frame_idx = 0; frame_idx < [crashed_thread.stackFrames count]; frame_idx++) {
+            PLCrashReportStackFrameInfo *frameInfo = [crashed_thread.stackFrames objectAtIndex: frame_idx];
+            
+            PLCrashReportBinaryImageInfo *imageInfo = [crashReport imageForAddress:frameInfo.instructionPointer];
+            if (imageInfo != nil) {
+                if ([applicationName isEqualToString:[imageInfo.imageName lastPathComponent]]) {
+                    // We work our way from the bottom of the stack. Report the first application frame we get to.
+                    exceptionMethodName = frameInfo.symbolInfo.symbolName;
+                    break;
+                }
+            }
+        }
     }
     
-    NSDictionary *parameters = @{@"methodName": crashReport.exceptionInfo.exceptionName,
-                                 @"stack": crashReport.exceptionInfo.stackFrames,
-                                 @"metadata": @"",
-                                 @"location": @""};
+    NSDictionary *parameters = @{@"message": BOXNIL(message),
+                                 @"methodName": exceptionMethodName,
+                                 @"stackTrace": crashedThreadString};
     
     [self.restProvider POST:@"devices/current/crashreports" parameters:parameters callback:^(id json, NSError *error) {
         if (!error) {
@@ -331,12 +374,6 @@
     }];
 }
 
-
-/**
- *	 Process new crash reports provided by PLCrashReporter
- *
- * Parse the new crash report and gather additional meta data from the app which will be stored along the crash report
- */
 - (void) handleCrashReport {
     NSError *error = NULL;
 	
@@ -345,8 +382,6 @@
         
     // Try loading the crash report
     NSData *crashData = [[NSData alloc] initWithData:[_plCrashReporter loadPendingCrashReportDataAndReturnError: &error]];
-    
-    NSString *cacheFilename = [NSString stringWithFormat: @"%.0f", [NSDate timeIntervalSinceReferenceDate]];
     
     if (crashData == nil) {
         NSLog(@"ERROR: Could not load crash report: %@", error);
@@ -357,14 +392,6 @@
         if (report == nil) {
             NSLog(@"WARNING: Could not parse crash report");
         } else {
-            
-            //[crashData writeToFile:[_crashesDir stringByAppendingPathComponent: cacheFilename] atomically:YES];
-            
-
-//            NSData *plist = [NSPropertyListSerialization dataFromPropertyList:(id)metaDict
-//                                                                       format:NSPropertyListBinaryFormat_v1_0
-//                                                             errorDescription:&errorString];
-            
             [self sendCrashReports:report onSuccess:^{
                 [_plCrashReporter purgePendingCrashReport];
             }];
@@ -395,7 +422,7 @@
         name[3] = getpid();
         
         if (sysctl(name, 4, &info, &info_size, NULL, 0) == -1) {
-            NSLog(@"[HockeySDK] ERROR: Checking for a running debugger via sysctl() failed: %s", strerror(errno));
+            NSLog(@"ERROR: Checking for a running debugger via sysctl() failed: %s", strerror(errno));
             debuggerIsAttached = false;
         }
         

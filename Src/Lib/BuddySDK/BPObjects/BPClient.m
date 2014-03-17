@@ -452,6 +452,9 @@ NSMutableArray *queuedRequests;
                     if ([json hasKey:@"accessToken"] && ![json[@"accessToken"] isEqualToString:self.appSettings.token]) {
                         self.appSettings.deviceToken = json[@"accessToken"];
                         
+                        // We have a device token. Start monitoring for crashes.
+                        [self.crashManager startReporting:self.appSettings.deviceToken];
+                        
                         for (void(^block)() in queuedRequests) {
                             block();
                         }

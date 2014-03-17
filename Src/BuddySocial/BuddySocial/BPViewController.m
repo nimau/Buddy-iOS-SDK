@@ -17,6 +17,9 @@
 @implementation BPViewController
 
 - (IBAction)checkin:(id)sender {
+    
+    
+    
     __block DescribeCheckin d = ^(id<BPCheckinProperties> checkinProperties) {
         checkinProperties.comment = @"Checkin";
         checkinProperties.description = @"Description";
@@ -24,10 +27,14 @@
     };
     
     [[Buddy checkins] checkin:d callback:^(id newBuddyObject, NSError *error) {
-        BPCheckin *c = newBuddyObject;
-        
-        assert([c.comment isEqualToString:@"Checkin"]);
+        //BPCheckin *c = newBuddyObject;
     }];
+}
+
+- (IBAction)crash:(id)sender
+{
+    ((id)[NSObject new])[0];
+//    CFRelease(NULL);
 }
 
 - (void)viewDidLoad
