@@ -56,7 +56,7 @@
         propertyName = [NSString stringWithFormat:@"%@%@",[[propertyName substringToIndex:1] lowercaseString],[propertyName substringFromIndex:1]];
         
 #pragma message ("Determine if the argument is a primitive (enum)")
-        if ((NSInteger)argument < 10) {
+        if ((NSInteger)argument < 1000) {
             argument = @((NSInteger)argument);
         }
         
