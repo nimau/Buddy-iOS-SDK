@@ -30,6 +30,7 @@
 		5B141E3C18C6B940002BABBC /* BPMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B141E3A18C6B940002BABBC /* BPMetadataItem.m */; };
 		5B19875B18CB67D800FBB502 /* NSDate+BPDateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B19875918CB67D800FBB502 /* NSDate+BPDateHelper.h */; };
 		5B19875C18CB67D800FBB502 /* NSDate+BPDateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19875A18CB67D800FBB502 /* NSDate+BPDateHelper.m */; };
+		5B56973718D6B29B00917ED8 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BCF3F4A18D692200065842D /* CrashReporter.framework */; };
 		5B91C50E18D0CE3900CB7119 /* small.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5B91C50D18D0CE3900CB7119 /* small.mp4 */; };
 		5B984DA018C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B984D9E18C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.h */; };
 		5B984DA118C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B984D9F18C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.m */; };
@@ -456,6 +457,7 @@
 				C18875A8186FFF4E00320A00 /* CoreLocation.framework in Frameworks */,
 				C15B5F08186FB465004F2717 /* SenTestingKit.framework in Frameworks */,
 				C1B8077218441D660086B843 /* libBuddySDK.a in Frameworks */,
+				5B56973718D6B29B00917ED8 /* CrashReporter.framework in Frameworks */,
 				C1B8076C18441B1A0086B843 /* XCTest.framework in Frameworks */,
 				C1E0D1E51831C2E8001A7A01 /* UIKit.framework in Frameworks */,
 				C1E0D1E41831C2E8001A7A01 /* Foundation.framework in Frameworks */,
@@ -1501,6 +1503,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)/BuddySDK/Vendor",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BuddySDK Unit Tests/BuddySDK Unit Tests-Prefix.pch";
@@ -1537,6 +1540,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)/BuddySDK/Vendor",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BuddySDK Unit Tests/BuddySDK Unit Tests-Prefix.pch";
