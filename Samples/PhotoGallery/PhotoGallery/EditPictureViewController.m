@@ -9,6 +9,7 @@
 
 #import <BuddySDK/BuddyObject.h>
 #import <BuddySDK/BPPicture.h>
+#import <BuddySDK/BPMetadataItem.h>
 
 #import "Constants.h"
 #import "AppDelegate.h"
@@ -30,7 +31,7 @@
 -(BuddyCompletionCallback) getSavePhotoCallback;
 -(BuddyCompletionCallback) getSaveTagCallback;
 -(BuddyCompletionCallback) getDeletePhotoCallback;
--(BuddyObjectCallback) getFetchMetadataCallback;
+-(BPMetadataCallback) getFetchMetadataCallback;
 
 -(void) loadMetaData;
 @end
@@ -154,7 +155,7 @@
 
 }
 
--(BuddyObjectCallback) getFetchMetadataCallback
+-(BPMetadataCallback) getFetchMetadataCallback
 {
     EditPictureViewController * __weak weakSelf = self;
     return ^(id newBuddyObject, NSError *error)
@@ -164,7 +165,8 @@
         
         if(error==nil)
         {
-            self.tagString = newBuddyObject;
+            BPMetadataItem *metaData = newBuddyObject;
+            self.tagString = metaData.value;
             [self populateUI];
         }
     };
