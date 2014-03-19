@@ -38,8 +38,9 @@ describe(@"Buddy", ^{
                 }
             }];
             
+            mock = [KWMock mockForProtocol:@protocol(BPClientDelegate)];
+            
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
-
         });
         
         afterAll(^{
@@ -47,7 +48,6 @@ describe(@"Buddy", ^{
         });
         
         it(@"Should throw an auth error if they try to access pictures.", ^{
-            mock = [KWMock mockForProtocol:@protocol(BPClientDelegate)];
             [Buddy setClientDelegate:mock];
             
             [[mock shouldEventually] receive:@selector(apiErrorOccurred:)];
@@ -82,8 +82,9 @@ describe(@"Buddy", ^{
             __block BPUser *newUser;
             
             [Buddy setClientDelegate:mock];
-
-            [[mock shouldEventually] receive:@selector(userChangedTo:from:)];
+            
+            // Leaving in inline comment below. Can't verify it receives the object before the object exists.
+            [[mock shouldEventually] receive:@selector(userChangedTo:from:) /*withArguments:[Buddy user], nil*/];
 
             [Buddy login:testCreateDeleteName password:TEST_PASSWORD callback:^(BPUser *loggedInsUser, NSError *error) {
                 newUser = loggedInsUser;

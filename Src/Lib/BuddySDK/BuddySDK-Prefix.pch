@@ -20,6 +20,7 @@
 #endif
 
 #define BOXNIL(x) x ?: [NSNull null]
+#define UNBOXNIL(x) [x isKindOfClass:[NSNull class]] ? nil : x
 
 #define SuppressPerformSelectorLeakWarning(Stuff) \
 do { \

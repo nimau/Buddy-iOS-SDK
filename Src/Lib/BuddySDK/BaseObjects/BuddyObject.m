@@ -20,6 +20,7 @@
 
 @property (nonatomic, readwrite, assign) BOOL isDirty;
 @property (nonatomic, strong) NSMutableArray *keyPaths;
+@property (nonatomic, assign) BOOL deleted;
 
 @end
 
@@ -153,11 +154,6 @@
     }];
 }
 
--(void)deleteMe
-{
-    [self deleteMe:nil];
-}
-
 -(void)deleteMe:(BuddyCompletionCallback)callback
 {
     NSString *resource = [NSString stringWithFormat:@"%@/%@",
@@ -165,6 +161,9 @@
                           _id];
     
     [self.client DELETE:resource parameters:nil callback:^(id json, NSError *error) {
+        if (!error) {
+            self.deleted = YES;
+        }
         callback ? callback(error) : nil;
     }];
 }

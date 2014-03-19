@@ -86,6 +86,7 @@
 #endif
         }];
         [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+        
     }
     return self;
 }
@@ -168,8 +169,16 @@
 
 - (void)setUser:(BPUser *)user
 {
+    
     BPUser *oldUser = _user;
     _user = user;
+    
+    if (_user) {
+        [self addObserver:self forKeyPath:@"user.deleted" options:NSKeyValueObservingOptionNew context:nil];
+    } else {
+        [self removeObserver:self forKeyPath:@"user.deleted"];
+    }
+    
     [self raiseUserChangedTo:_user from:oldUser];
 }
 
@@ -252,6 +261,13 @@
 
 #pragma mark - User
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([object isKindOfClass:[BPUser class]] && [keyPath isEqualToString:@"user.deleted"]) {
+        _user = nil;
+    }
+}
+
 - (void)createUser:(NSString *)username
           password:(NSString *)password
       describeUser:(DescribeUser)describeUser
@@ -329,6 +345,7 @@
         BPUser *user = [[BPUser alloc] initBuddyWithResponse:json andClient:self];
         
         [user refresh:^(NSError *error){
+            self.user = user;
             callback ? callback(user, error) : nil;
         }];
     }];
@@ -541,44 +558,55 @@ NSMutableArray *queuedRequests;
 
 - (void)raiseUserChangedTo:(BPUser *)user from:(BPUser *)from
 {
-    [self tryRaiseDelegate:@selector(userChangedTo:from:) withArguments:@[user] numberOfArgs:1];
+    [self tryRaiseDelegate:@selector(userChangedTo:from:) withArguments:BOXNIL(user), BOXNIL(from), nil];
 }
 
 - (void)raiseReachabilityChanged:(BPReachabilityLevel)level
 {
-    [self tryRaiseDelegate:@selector(connectivityChanged:) withArguments:@[@(level)] numberOfArgs:1];
+    [self tryRaiseDelegate:@selector(connectivityChanged:) withArguments:@(level), nil];
 }
 
 - (void)raiseNeedsLoginError
 {
-    [self tryRaiseDelegate:@selector(authorizationNeedsUserLogin) withArguments:nil numberOfArgs:0];
+    [self tryRaiseDelegate:@selector(authorizationNeedsUserLogin) withArguments:nil];
 }
 
 - (void)raiseAPIError:(NSError *)error
 {
-    [self tryRaiseDelegate:@selector(apiErrorOccurred:) withArguments:@[error] numberOfArgs:1];
+    [self tryRaiseDelegate:@selector(apiErrorOccurred:) withArguments:error, nil];
 }
 
-- (void)tryRaiseDelegate:(SEL)selector withArguments:(NSArray *)arguments numberOfArgs:(NSInteger)number
+- (void)tryRaiseDelegate:(SEL)selector withArguments:(id)firstArgument, ...
 {
+    va_list args;
+    va_start(args, firstArgument);
+    NSMutableArray *argList = [NSMutableArray array];
+    for (id arg = firstArgument; arg != nil; arg = va_arg(args, id))
+    {
+        [argList addObject:arg];
+    }
+    
+    va_end(args);
+    
     id<UIApplicationDelegate> app = [[UIApplication sharedApplication] delegate];
     id target = nil;
-    SuppressPerformSelectorLeakWarning(
+    //SuppressPerformSelectorLeakWarning(
        if (!self.delegate) {// If no delegate, see if we've implemented delegate methods on the AppDelegate.
            target = app;
        } else { // Try the delegate
            target = self.delegate;
        }
        if ([target respondsToSelector:selector]) {
-           if (number >= 2) {
-               [target performSelector:selector withObject:arguments[0] withObject:arguments[1]];
-           } else if (number == 1) {
-               [target performSelector:selector withObject:arguments[0]];
+           
+           if ([argList count] >= 2) {
+               [target performSelector:selector withObject:UNBOXNIL(argList[0]) withObject:UNBOXNIL(argList[1])];
+           } else if ([argList count] == 1) {
+               [target performSelector:selector withObject:UNBOXNIL(argList[0])];
            } else {
                [target performSelector:selector];
            }
        }
-   );
+   //);
 }
 
 
