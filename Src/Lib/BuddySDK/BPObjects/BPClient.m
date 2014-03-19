@@ -590,7 +590,7 @@ NSMutableArray *queuedRequests;
     
     id<UIApplicationDelegate> app = [[UIApplication sharedApplication] delegate];
     id target = nil;
-    //SuppressPerformSelectorLeakWarning(
+    SuppressPerformSelectorLeakWarning(
        if (!self.delegate) {// If no delegate, see if we've implemented delegate methods on the AppDelegate.
            target = app;
        } else { // Try the delegate
@@ -606,7 +606,7 @@ NSMutableArray *queuedRequests;
                [target performSelector:selector];
            }
        }
-   //);
+   );
 }
 
 
