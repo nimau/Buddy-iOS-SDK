@@ -56,8 +56,7 @@ describe(@"BPVideosIntegrationSpec", ^{
                     // Silly framework crashes, not fails the assert if there is no tempVideo.
                     [[tempVideo.signedUrl should] haveLengthOfAtLeast:1];
                 }
-#pragma message("Thumbnail not returning a value for videos.")
-                //[[tempVideo.thumbnailID shouldNot] beNil];
+                [[tempVideo.thumbnailID shouldNot] beNil];
 
                 fin = YES;
             }];
