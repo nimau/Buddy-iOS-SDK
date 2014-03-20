@@ -9,6 +9,10 @@
 #import "BPCrashManager.h"
 #include <sys/sysctl.h>
 
+#ifndef CPU_TYPE_ARM64
+#define CPU_TYPE_ARM64 (CPU_TYPE_ARM | CPU_ARCH_ABI64)
+#endif
+
 @interface BPCrashManager()
 
 @property (weak, nonatomic) id<BPRestProvider> restProvider;
