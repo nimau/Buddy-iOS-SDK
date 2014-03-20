@@ -7,14 +7,22 @@
 //
 #import "BPAlbumItem.h"
 
-@interface BPBlob : BuddyObject<BPAlbumItem>
-
-typedef void(^BuddyDataResponse)(NSData *data, NSError *error);
+@protocol BPBlobProperties <BuddyObjectProperties>
 
 @property (nonatomic, assign) NSInteger contentLength;
 @property (nonatomic, copy) NSString *contentType;
 @property (nonatomic, copy) NSString *signedUrl;
+@property (nonatomic, copy) NSString *friendlyName;
 //@property (nonatomic, copy) NSString *size;
+
+@end
+
+typedef void(^DescribeBlob)(id<BPBlobProperties>blobProperties);
+typedef void(^SearchBlob)(id<BPBlobProperties, BPSearchProperties>blobSearchProperties);
+
+@interface BPBlob : BuddyObject<BPBlobProperties, BPAlbumItem>
+
+typedef void(^BuddyDataResponse)(NSData *data, NSError *error);
 
 + (void)createWithData:(NSData *)data parameters:(NSDictionary *)parameters client:(id<BPRestProvider>)client callback:(BuddyObjectCallback)callback;
 

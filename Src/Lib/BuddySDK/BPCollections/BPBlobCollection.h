@@ -6,11 +6,12 @@
 //
 //
 
-@class BPBlob;
+#import "BPBlob.h"
 
 @interface BPBlobCollection : BuddyCollection
 
 - (void)addBlob:(NSData *)data
+       describe:(DescribeBlob)describe
        callback:(BuddyObjectCallback)callback;
 
 - (void)getBlobs:(BuddyCollectionCallback)callback;

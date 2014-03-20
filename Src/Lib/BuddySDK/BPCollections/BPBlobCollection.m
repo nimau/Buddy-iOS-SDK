@@ -8,6 +8,7 @@
 
 #import "BPBlobCollection.h"
 #import "BuddyCollection+Private.h"
+#import "BPSisterObject.h"
 #import "BPBlob.h"
 
 @implementation BPBlobCollection
@@ -21,9 +22,15 @@
 }
 
 - (void)addBlob:(NSData *)data
-        callback:(BuddyObjectCallback)callback
+       describe:(DescribeBlob)describe
+       callback:(BuddyObjectCallback)callback
 {
-    [BPBlob createWithData:data parameters:nil client:self.client callback:callback ];
+    id blobProperties = [BPSisterObject new];
+    describe ? describe(blobProperties) : nil;
+    
+    id parameters = [blobProperties parametersFromProperties:@protocol(BPBlobProperties)];
+        
+    [BPBlob createWithData:data parameters:parameters client:self.client callback:callback];
 }
 
 -(void)getBlobs:(BuddyCollectionCallback)callback

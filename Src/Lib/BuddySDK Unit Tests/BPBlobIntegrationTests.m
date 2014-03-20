@@ -40,16 +40,16 @@ describe(@"BPBlobIntegrationSpec", ^{
             NSData *blobData = [NSData dataWithContentsOfFile:blobPath];
             
             __block BPBlob *newBlob;
-            [[Buddy blobs] addBlob:blobData callback:^(id newBuddyObject, NSError *error) {
+            [[Buddy blobs] addBlob:blobData describe:^(id<BPBlobProperties> blobProperties) {
+                blobProperties.friendlyName = @"So friendly";
+            } callback:^(id newBuddyObject, NSError *error) {
                 newBlob = newBuddyObject;
             }];
             
             [[expectFutureValue(newBlob) shouldEventually] beNonNil];
             [[expectFutureValue(theValue(newBlob.contentLength)) shouldEventually] equal:theValue(1)];
-#pragma message("TODO - validate mime type.")
-            //[[expectFutureValue(newBlob.contentType) shouldEventually] equal:@"image/png"];
+            [[expectFutureValue(newBlob.friendlyName) shouldEventually] equal:@"So friendly"];
             [[expectFutureValue(newBlob.signedUrl) shouldEventually] haveLengthOfAtLeast:1];
-            
         });
         
         pending_(@"Should allow retrieving pictures", ^{

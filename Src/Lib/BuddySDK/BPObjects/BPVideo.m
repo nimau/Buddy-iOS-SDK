@@ -23,7 +23,6 @@
     [super registerProperties];
     
     [self registerProperty:@selector(title)];
-    [self registerProperty:@selector(friendlyName)];
     [self registerProperty:@selector(thumbnailOffsetInSeconds)];
 }
 

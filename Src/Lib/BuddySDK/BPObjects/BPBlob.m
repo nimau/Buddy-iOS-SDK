@@ -12,13 +12,13 @@
 
 @implementation BPBlob
 
-- (instancetype)initBuddyWithClient:(id<BPRestProvider>)client {
-    self = [super initBuddyWithClient:client];
-    if(self)
-    {
+@synthesize contentLength, contentType, signedUrl, friendlyName;
 
-    }
-    return self;
+- (void)registerProperties
+{
+    [super registerProperties];
+    
+    [self registerProperty:@selector(friendlyName)];
 }
 
 static NSString *blobs = @"blobs";
