@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/Service/BPRestProvider.h
+../../../../../Src/Lib/BuddySDK/Service/BPRestProvider.h

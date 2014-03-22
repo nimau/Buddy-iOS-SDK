@@ -1,1 +1,2 @@
-pod 'BuddySDK'
+pod 'BuddySDK', :path => '../../BuddySDK.podspec'
+pod 'AFNetworking'
