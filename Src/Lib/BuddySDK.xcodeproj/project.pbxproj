@@ -61,7 +61,7 @@
 		5BF07F8F18DD1BD000CC50E9 /* BPVideoCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F7D18DD1BD000CC50E9 /* BPVideoCollection.h */; };
 		5BF07F9018DD1BD000CC50E9 /* BPVideoCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF07F7E18DD1BD000CC50E9 /* BPVideoCollection.m */; };
 		5BF07F9218DD2C1D00CC50E9 /* BuddyCollection+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F9118DD2C1D00CC50E9 /* BuddyCollection+Private.h */; };
-		5BF07F9918DE0CA300CC50E9 /* UIImageView+BPAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F9718DE0CA300CC50E9 /* UIImageView+BPAdditions.h */; };
+		5BF07F9918DE0CA300CC50E9 /* UIImageView+BPAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F9718DE0CA300CC50E9 /* UIImageView+BPAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5BF07F9A18DE0CA300CC50E9 /* UIImageView+BPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF07F9818DE0CA300CC50E9 /* UIImageView+BPAdditions.m */; };
 		A6291F80165C01800051F83C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6291F7F165C01800051F83C /* Foundation.framework */; };
 		C1010D31187A4CC3009EB04E /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1010D2C187A4CC3009EB04E /* 0.jpg */; };
@@ -824,6 +824,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BF07F9918DE0CA300CC50E9 /* UIImageView+BPAdditions.h in Headers */,
 				C1ADA71E18AB32D900BCCC12 /* BPBase.h in Headers */,
 				5BF07F8718DD1BD000CC50E9 /* BPLocationCollection.h in Headers */,
 				C1B0F54B18937B08000403E0 /* BPAlbumItemContainer.h in Headers */,
@@ -841,7 +842,6 @@
 				C1C2394E1877C906000D0089 /* BPRestProvider.h in Headers */,
 				C1427677189ECA2300D5DD85 /* BPMetricCompletionHandler.h in Headers */,
 				5BF07F8F18DD1BD000CC50E9 /* BPVideoCollection.h in Headers */,
-				5BF07F9918DE0CA300CC50E9 /* UIImageView+BPAdditions.h in Headers */,
 				C10E2BA3186950D8007A0136 /* BPGameBoards.h in Headers */,
 				C1B959F91837061F000C8417 /* BuddyObject.h in Headers */,
 				C1B0F534189373F6000403E0 /* AFHTTPRequestOperationManager.h in Headers */,
