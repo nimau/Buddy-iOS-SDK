@@ -1,0 +1,10 @@
+PODS:
+  - BuddySDK (1.9.5)
+
+DEPENDENCIES:
+  - BuddySDK
+
+SPEC CHECKSUMS:
+  BuddySDK: b4e309bf0c5da062bf87784a81a2cafb12f9b765
+
+COCOAPODS: 0.29.0
