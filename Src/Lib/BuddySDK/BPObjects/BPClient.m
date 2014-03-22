@@ -22,8 +22,7 @@
 #import "BPUserListCollection.h"
 #import "BPRestProvider.h"
 #import "BuddyObject+Private.h"
-
-//#import "BuddyLocationn.h"
+#import "BuddyLocation.h"
 #import "BuddyDevice.h"
 #import "BPAppSettings.h"
 #import "BPSisterObject.h"
@@ -41,7 +40,7 @@
 
 @property (nonatomic, strong) BPServiceController *service;
 @property (nonatomic, strong) BPAppSettings *appSettings;
-//@property (nonatomic, strong) BuddyLocation *location;
+@property (nonatomic, strong) BuddyLocation *location;
 @property (nonatomic, strong) BuddyAppDelegateDecorator *decorator;
 @property (nonatomic, strong) BPCrashManager *crashManager;
 
@@ -65,7 +64,7 @@
     self = [super self];
     if(self)
     {
-//        _location = [BuddyLocation new];
+        _location = [BuddyLocation new];
         [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
             switch (status) {
                 case AFNetworkReachabilityStatusNotReachable:
@@ -616,13 +615,13 @@ NSMutableArray *queuedRequests;
 
 - (void)setLocationEnabled:(BOOL)locationEnabled
 {
-//    _locationEnabled = locationEnabled;
-//    [self.location beginTrackingLocation:^(NSError *error) {
-//        if (error) {
-//            // TODO - Not really an API error. What should we do?
-//            [self raiseAPIError:error];
-//        }
-//    }];
+    _locationEnabled = locationEnabled;
+    [self.location beginTrackingLocation:^(NSError *error) {
+        if (error) {
+            // TODO - Not really an API error. What should we do?
+            [self raiseAPIError:error];
+        }
+    }];
 }
 
 - (void)didUpdateBuddyLocation:(BPCoordinate *)newLocation
