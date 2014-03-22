@@ -14,7 +14,4 @@ Pod::Spec.new do |s|
   s.prefix_header_file  = 'Src/Lib/BuddySDK/BuddySDK-Prefix.pch'
   s.preserve_paths      = 'Src/Lib/BuddySDK/Vendor/CrashReporter.framework'
   s.vendored_frameworks = 'Src/Lib/BuddySDK/Vendor/CrashReporter.framework'
-  #s.library             = 'CrashReporter'
-#  s.xcconfig            = { 'LIBRARY_SEARCH_PATHS' => '$(PODS_ROOT)/Src/Lib/BuddySDK/Vendor' }    
-# s.dependency            'PLCrashReporter', '~> 1.2-rc4'
 end
