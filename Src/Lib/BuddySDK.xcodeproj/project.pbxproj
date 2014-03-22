@@ -61,6 +61,8 @@
 		5BF07F8F18DD1BD000CC50E9 /* BPVideoCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F7D18DD1BD000CC50E9 /* BPVideoCollection.h */; };
 		5BF07F9018DD1BD000CC50E9 /* BPVideoCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF07F7E18DD1BD000CC50E9 /* BPVideoCollection.m */; };
 		5BF07F9218DD2C1D00CC50E9 /* BuddyCollection+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F9118DD2C1D00CC50E9 /* BuddyCollection+Private.h */; };
+		5BF07F9918DE0CA300CC50E9 /* UIImageView+BPAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F9718DE0CA300CC50E9 /* UIImageView+BPAdditions.h */; };
+		5BF07F9A18DE0CA300CC50E9 /* UIImageView+BPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF07F9818DE0CA300CC50E9 /* UIImageView+BPAdditions.m */; };
 		A6291F80165C01800051F83C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6291F7F165C01800051F83C /* Foundation.framework */; };
 		C1010D31187A4CC3009EB04E /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1010D2C187A4CC3009EB04E /* 0.jpg */; };
 		C1010D32187A4CC3009EB04E /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1010D2D187A4CC3009EB04E /* 1.jpg */; };
@@ -274,6 +276,8 @@
 		5BF07F7D18DD1BD000CC50E9 /* BPVideoCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVideoCollection.h; sourceTree = "<group>"; };
 		5BF07F7E18DD1BD000CC50E9 /* BPVideoCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVideoCollection.m; sourceTree = "<group>"; };
 		5BF07F9118DD2C1D00CC50E9 /* BuddyCollection+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BuddyCollection+Private.h"; sourceTree = "<group>"; };
+		5BF07F9718DE0CA300CC50E9 /* UIImageView+BPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+BPAdditions.h"; sourceTree = "<group>"; };
+		5BF07F9818DE0CA300CC50E9 /* UIImageView+BPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+BPAdditions.m"; sourceTree = "<group>"; };
 		81137A46380B4BCCA3A2E417 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A07FFFC093E94E77A9A92AF0 /* libPods-BuddySDK Unit Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BuddySDK Unit Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6291F7C165C01800051F83C /* libBuddySDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBuddySDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -579,6 +583,8 @@
 		C14E966A185150AA00BE8C7C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				5BF07F9718DE0CA300CC50E9 /* UIImageView+BPAdditions.h */,
+				5BF07F9818DE0CA300CC50E9 /* UIImageView+BPAdditions.m */,
 				C1B2375D1865569E005C841E /* NSString+JSON.h */,
 				C1B2375E1865569E005C841E /* NSString+JSON.m */,
 				C10F1B791870A6F500D5364C /* NSError+BuddyError.h */,
@@ -835,6 +841,7 @@
 				C1C2394E1877C906000D0089 /* BPRestProvider.h in Headers */,
 				C1427677189ECA2300D5DD85 /* BPMetricCompletionHandler.h in Headers */,
 				5BF07F8F18DD1BD000CC50E9 /* BPVideoCollection.h in Headers */,
+				5BF07F9918DE0CA300CC50E9 /* UIImageView+BPAdditions.h in Headers */,
 				C10E2BA3186950D8007A0136 /* BPGameBoards.h in Headers */,
 				C1B959F91837061F000C8417 /* BuddyObject.h in Headers */,
 				C1B0F534189373F6000403E0 /* AFHTTPRequestOperationManager.h in Headers */,
@@ -1118,6 +1125,7 @@
 				C1B959FA1837061F000C8417 /* BuddyObject.m in Sources */,
 				5B984DB118C791C900CE8E2C /* BPVideo.m in Sources */,
 				5BF07F8618DD1BD000CC50E9 /* BPCheckinCollection.m in Sources */,
+				5BF07F9A18DE0CA300CC50E9 /* UIImageView+BPAdditions.m in Sources */,
 				C1B3752118A477C3004CCE6D /* NSObject+ToJSON.m in Sources */,
 				C1D7094918832983003D112C /* BPDescriptors.m in Sources */,
 				C1427673189AAC3700D5DD85 /* BPAppSettings.m in Sources */,
