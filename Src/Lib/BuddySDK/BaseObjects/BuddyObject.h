@@ -10,6 +10,7 @@
 #import "BPRestProvider.h"
 #import "BPCoordinate.h"
 #import "BPBase.h"
+#import "BuddyCollection.h"
 
 @interface BuddyObject : BPBase<BuddyObjectProperties>
 
