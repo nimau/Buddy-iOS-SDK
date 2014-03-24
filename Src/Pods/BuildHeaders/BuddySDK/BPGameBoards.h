@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/BPObjects/BPGameBoards.h
+../../../Lib/BuddySDK/BPObjects/BPGameBoards.h

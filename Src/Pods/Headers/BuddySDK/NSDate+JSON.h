@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/Categories/NSDate+JSON.h
+../../../Lib/BuddySDK/Categories/NSDate+JSON.h

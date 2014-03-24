@@ -26,6 +26,8 @@ describe(@"BPLocationIntegrationSpec", ^{
         beforeAll(^{
             __block BOOL fin = NO;
             
+            [Buddy setLocationEnabled:YES];
+
             [BuddyIntegrationHelper bootstrapLogin:^{
                 fin = YES;
             }];
@@ -51,11 +53,14 @@ describe(@"BPLocationIntegrationSpec", ^{
             [[expectFutureValue(tempLocation) shouldEventually] beNonNil];
         });
         
+        it(@"Should allow tracking a user's location", ^{
+            
+        });
+        
         pending_(@"Should allow you to search for a location.", ^{
             __block NSArray *locations;
             [[Buddy locations] findLocation:^(id<BPLocationProperties,BPSearchProperties> locationProperties) {
                 locationProperties.range = BPCoordinateRangeMake(1.2345, 3.4567, 100);
-#pragma message ("This exposes my NSObject+JSON hack if over 10 :). Will update after I process information from StackOverflow question.")
                 locationProperties.limit = 9;
             } callback:^(NSArray *buddyObjects, NSError *error) {
                 [[error should] beNil];

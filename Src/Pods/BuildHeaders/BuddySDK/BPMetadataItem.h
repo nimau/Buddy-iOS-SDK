@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/BPObjects/BPMetadataItem.h
+../../../Lib/BuddySDK/BPObjects/BPMetadataItem.h

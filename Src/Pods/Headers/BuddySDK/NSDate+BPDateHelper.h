@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/Categories/NSDate+BPDateHelper.h
+../../../Lib/BuddySDK/Categories/NSDate+BPDateHelper.h

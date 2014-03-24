@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/Vendor/ObjectiveSugar/NSMutableArray+ObjectiveSugar.h
+../../../Lib/BuddySDK/Vendor/ObjectiveSugar/NSMutableArray+ObjectiveSugar.h

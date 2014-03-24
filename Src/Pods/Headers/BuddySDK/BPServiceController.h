@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/Service/BPServiceController.h
+../../../Lib/BuddySDK/Service/BPServiceController.h

@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/Categories/NSObject+ToJSON.h
+../../../Lib/BuddySDK/Categories/NSObject+ToJSON.h

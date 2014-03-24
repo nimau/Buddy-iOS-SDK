@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/BPCrashManager.h
+../../../Lib/BuddySDK/BPCrashManager.h

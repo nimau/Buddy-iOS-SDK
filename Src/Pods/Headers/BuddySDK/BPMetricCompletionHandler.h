@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/BPMetricCompletionHandler.h
+../../../Lib/BuddySDK/BPMetricCompletionHandler.h
