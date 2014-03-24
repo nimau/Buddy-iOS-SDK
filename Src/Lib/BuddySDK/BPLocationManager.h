@@ -17,7 +17,7 @@
 /**
  * Encapsulates and translates CoreLocation framework into Buddy-flavored location tracking.
  */
-@interface BuddyLocation : NSObject
+@interface BPLocationManager : NSObject
 
 ///<summary>
 /// Returns YES if the user has restricted location access for the current app.

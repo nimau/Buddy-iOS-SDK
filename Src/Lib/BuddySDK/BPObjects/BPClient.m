@@ -7,7 +7,6 @@
 //
 
 #import "BPClient.h"
-#import "AFNetworking.h"
 #import "BPServiceController.h"
 #import "AFNetworking.h"
 #import "BPCheckinCollection.h"
@@ -22,7 +21,7 @@
 #import "BPUserListCollection.h"
 #import "BPRestProvider.h"
 #import "BuddyObject+Private.h"
-#import "BuddyLocation.h"
+#import "BPLocationManager.h"
 #import "BuddyDevice.h"
 #import "BPAppSettings.h"
 #import "BPSisterObject.h"
@@ -40,7 +39,7 @@
 
 @property (nonatomic, strong) BPServiceController *service;
 @property (nonatomic, strong) BPAppSettings *appSettings;
-@property (nonatomic, strong) BuddyLocation *location;
+@property (nonatomic, strong) BPLocationManager *location;
 @property (nonatomic, strong) BuddyAppDelegateDecorator *decorator;
 @property (nonatomic, strong) BPCrashManager *crashManager;
 
@@ -64,7 +63,7 @@
     self = [super self];
     if(self)
     {
-        _location = [BuddyLocation new];
+        _location = [BPLocationManager new];
         [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
             switch (status) {
                 case AFNetworkReachabilityStatusNotReachable:

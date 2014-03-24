@@ -6,11 +6,11 @@
 //
 //
 
-#import "BuddyLocation.h"
+#import "BPLocationManager.h"
 #import "BPCoordinate.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface BuddyLocation()<CLLocationManagerDelegate>
+@interface BPLocationManager()<CLLocationManagerDelegate>
 
 @property (strong, nonatomic) CLLocationManager *location;
 @property (assign, readwrite, nonatomic) BOOL isTracking;
@@ -20,7 +20,7 @@
 @end
 
 
-@implementation BuddyLocation
+@implementation BPLocationManager
 
 -(id)init
 {
@@ -40,11 +40,12 @@
 -(void) beginTrackingLocation:(BuddyCompletionCallback)callback;
 {
     self.callback = callback;
-    
+    [self.location startUpdatingLocation];
+
     if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied ||
        [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted)
     {
-        _callback([NSError errorWithDomain:@"BuddyLocation" code:0 userInfo:@{@"message": @"Location denied."}]);
+        _callback([NSError errorWithDomain:@"BPLocationManager" code:0 userInfo:@{@"message": @"Location denied."}]);
     }
     else
     {
@@ -84,7 +85,7 @@
        didFailWithError:(NSError *)error
 {
     if(_callback) {
-        _callback([NSError errorWithDomain:@"BuddyLocation" code:0 userInfo:@{@"message": @"Location initialization failed"}]);
+        _callback([NSError errorWithDomain:@"BPLocationManager" code:0 userInfo:@{@"message": @"Location initialization failed"}]);
     }
     
     _callback = nil;
