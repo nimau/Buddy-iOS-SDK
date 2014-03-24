@@ -1,1 +1,1 @@
-../../../Lib/BuddySDK/BPObjects/BPCheckin.h
+../../BuddySDK/Src/Lib/BuddySDK/BPObjects/BPCheckin.h

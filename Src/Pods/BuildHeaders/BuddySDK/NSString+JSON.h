@@ -1,1 +1,1 @@
-../../../Lib/BuddySDK/Categories/NSString+JSON.h
+../../BuddySDK/Src/Lib/BuddySDK/Categories/NSString+JSON.h

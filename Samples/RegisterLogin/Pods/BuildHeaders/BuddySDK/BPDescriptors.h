@@ -1,1 +1,1 @@
-../../../../../Src/Lib/BuddySDK/BPDescriptors.h
+../../BuddySDK/Src/Lib/BuddySDK/BPDescriptors.h

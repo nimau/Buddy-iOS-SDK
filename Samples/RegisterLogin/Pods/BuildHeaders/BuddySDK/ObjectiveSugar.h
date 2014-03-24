@@ -1,1 +1,1 @@
-../../../../../Src/Lib/BuddySDK/Vendor/ObjectiveSugar/ObjectiveSugar.h
+../../BuddySDK/Src/Lib/BuddySDK/Vendor/ObjectiveSugar/ObjectiveSugar.h

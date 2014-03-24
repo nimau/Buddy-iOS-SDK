@@ -1,1 +1,1 @@
-../../../../../Src/Lib/BuddySDK/BPDateRange.h
+../../BuddySDK/Src/Lib/BuddySDK/BPDateRange.h

@@ -1,1 +1,1 @@
-../../../Lib/BuddySDK/BaseObjects/BuddyCollection.h
+../../BuddySDK/Src/Lib/BuddySDK/BaseObjects/BuddyCollection.h

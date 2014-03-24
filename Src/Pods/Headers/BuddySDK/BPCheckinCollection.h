@@ -1,1 +1,1 @@
-../../../Lib/BuddySDK/BPCollections/BPCheckinCollection.h
+../../BuddySDK/Src/Lib/BuddySDK/BPCollections/BPCheckinCollection.h

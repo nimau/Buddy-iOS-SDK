@@ -1,1 +1,1 @@
-../../../../../Src/Lib/BuddySDK/NSDictionary+Merge.h
+../../BuddySDK/Src/Lib/BuddySDK/NSDictionary+Merge.h

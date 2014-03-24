@@ -1,1 +1,1 @@
-../../../../../Src/Lib/BuddySDK/Vendor/JAGPropertyConverter/JAGPropertyConverter.h
+../../BuddySDK/Src/Lib/BuddySDK/Vendor/JAGPropertyConverter/JAGPropertyConverter.h

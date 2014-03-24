@@ -1,1 +1,1 @@
-../../../Lib/BuddySDK/Service/BPAppSettings.h
+../../BuddySDK/Src/Lib/BuddySDK/Service/BPAppSettings.h

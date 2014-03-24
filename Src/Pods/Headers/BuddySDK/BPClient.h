@@ -1,1 +1,1 @@
-../../../Lib/BuddySDK/BPObjects/BPClient.h
+../../BuddySDK/Src/Lib/BuddySDK/BPObjects/BPClient.h
