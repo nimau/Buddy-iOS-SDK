@@ -8,6 +8,7 @@
 
 #import "BPCrashManager.h"
 #import <CrashReporter/CrashReporter.h>
+#import "ObjectiveSugar.h"
 #include <sys/sysctl.h>
 
 #ifndef CPU_TYPE_ARM64
@@ -308,7 +309,6 @@
 {
     BOOL lp64 = [self reportIs64Bit:crashReport];
 
-    
     
     // Exception
     NSString *message = nil;
