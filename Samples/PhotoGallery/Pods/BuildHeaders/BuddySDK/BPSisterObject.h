@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/BPSisterObject.h
+../../../../../Src/Lib/BuddySDK/BPSisterObject.h

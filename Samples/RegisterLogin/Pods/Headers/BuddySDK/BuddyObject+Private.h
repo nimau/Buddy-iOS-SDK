@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/BaseObjects/BuddyObject+Private.h
+../../../../../Src/Lib/BuddySDK/BaseObjects/BuddyObject+Private.h

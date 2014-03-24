@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/Vendor/ObjectiveSugar/NSString+ObjectiveSugar.h
+../../../../../Src/Lib/BuddySDK/Vendor/ObjectiveSugar/NSString+ObjectiveSugar.h

@@ -7,7 +7,7 @@
 //
 
 #import "BPServiceController.h"
-#import "AFNetworking.h"
+#import "BPAFNetworking.h"
 #import "BuddyDevice.h"
 #import "NSError+BuddyError.h"
 #import "BPClient.h"

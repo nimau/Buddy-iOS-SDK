@@ -94,7 +94,7 @@
         NSLog(@"SavePhotoCallback - success Called");
         [weakSelf.picture setMetadataWithKey:TAG_META_KEY
                                  andString:weakSelf.tagString
-                               permissions: BuddyPermissionsApp
+                               permissions: BPPermissionsApp
                                   callback:[weakSelf getSaveTagCallback]];
         
     };
@@ -242,7 +242,7 @@
     self.HUD.labelText= @"Loading Tag Info";
     self.HUD.dimBackground = YES;
     self.HUD.delegate=self;
-    [self.picture getMetadataWithKey:TAG_META_KEY permissions:BuddyPermissionsApp callback:[self getFetchMetadataCallback]];
+    [self.picture getMetadataWithKey:TAG_META_KEY permissions:BPPermissionsApp callback:[self getFetchMetadataCallback]];
 }
 - (void)didReceiveMemoryWarning
 {

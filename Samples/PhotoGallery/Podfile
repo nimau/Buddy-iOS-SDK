@@ -1,2 +1,2 @@
-#pod 'BuddySDK', :path => '../../BuddySDK.podspec'
-pod 'BuddySDK'
+pod 'BuddySDK', :path => '../../BuddySDK.podspec'
+#pod 'BuddySDK'

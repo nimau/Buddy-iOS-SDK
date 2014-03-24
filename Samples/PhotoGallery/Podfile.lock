@@ -1,10 +1,14 @@
 PODS:
-  - BuddySDK (1.9.5)
+  - BuddySDK (1.9.6)
 
 DEPENDENCIES:
-  - BuddySDK
+  - BuddySDK (from `../../BuddySDK.podspec`)
+
+EXTERNAL SOURCES:
+  BuddySDK:
+    :path: ../../BuddySDK.podspec
 
 SPEC CHECKSUMS:
-  BuddySDK: b4e309bf0c5da062bf87784a81a2cafb12f9b765
+  BuddySDK: 6bf6c62ab6d6a30f7b9267a7cea927a3320ab7f9
 
 COCOAPODS: 0.29.0

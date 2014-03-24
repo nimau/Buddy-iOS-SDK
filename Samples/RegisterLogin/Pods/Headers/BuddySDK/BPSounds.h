@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/BPObjects/BPSounds.h
+../../../../../Src/Lib/BuddySDK/BPObjects/BPSounds.h

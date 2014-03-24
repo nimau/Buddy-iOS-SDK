@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/Categories/NSError+BuddyError.h
+../../../../../Src/Lib/BuddySDK/Categories/NSError+BuddyError.h

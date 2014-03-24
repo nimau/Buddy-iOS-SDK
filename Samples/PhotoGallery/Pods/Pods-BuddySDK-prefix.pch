@@ -12,6 +12,7 @@
    #import <MobileCoreServices/MobileCoreServices.h>
    #import <SystemConfiguration/SystemConfiguration.h>
    #import <UIKit/UIKit.h>
+   #import "BPPermissions.h"
    #import "ObjectiveSugar.h"
    #import "Util.h"
    #import "BuddyObject.h"

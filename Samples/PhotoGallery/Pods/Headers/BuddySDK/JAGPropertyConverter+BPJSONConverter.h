@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/Categories/JAGPropertyConverter+BPJSONConverter.h
+../../../../../Src/Lib/BuddySDK/Categories/JAGPropertyConverter+BPJSONConverter.h

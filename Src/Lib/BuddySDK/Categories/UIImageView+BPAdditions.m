@@ -8,7 +8,7 @@
 
 #import "UIImageView+BPAdditions.h"
 #import "BPPicture.h"
-#import "UIImageView+AFNetworking.h"
+#import "BPUIImageView+AFNetworking.h"
 
 @implementation UIImageView (BPAdditions)
 

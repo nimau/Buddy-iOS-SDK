@@ -1,1 +1,1 @@
-../../BuddySDK/Src/Lib/BuddySDK/Categories/UIImageView+BPAdditions.h
+../../../../../Src/Lib/BuddySDK/Categories/UIImageView+BPAdditions.h
