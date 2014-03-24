@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface BPCoordinate : NSObject
-@property (nonatomic, assign) float lat;
-@property (nonatomic, assign) float lng;
+@property (nonatomic, assign) double lat;
+@property (nonatomic, assign) double lng;
 @end
 
-static inline BPCoordinate *BPCoordinateMake(float lat, float lon)
+static inline BPCoordinate *BPCoordinateMake(double lat, double lon)
 {
     BPCoordinate *coord = [[BPCoordinate alloc] init];
     coord.lat = lat;
@@ -25,7 +25,7 @@ static inline BPCoordinate *BPCoordinateMake(float lat, float lon)
 @property (nonatomic, assign) NSInteger range;
 @end
 
-static inline BPCoordinateRange *BPCoordinateRangeMake(float lat, float lon, NSInteger distanceInMeteres)
+static inline BPCoordinateRange *BPCoordinateRangeMake(double lat, double lon, NSInteger distanceInMeteres)
 {
     BPCoordinateRange *coord = [[BPCoordinateRange alloc] init];
     coord.lat = lat;
