@@ -45,7 +45,7 @@ typedef void (^BuddyObjectCallback)(id newBuddyObject, NSError *error);
 
 - (void)setMetadataWithKeyValues:(NSDictionary *)keyValuePaths permissions:(BPPermissions)permissions callback:(BuddyCompletionCallback)callback;
 
-- (void)searchMetadata:(SearchMetadata)search callback:(BuddyObjectCallback)callback;
+- (void)searchMetadata:(SearchMetadata)search callback:(void (^) (NSArray *buddyObjects, NSError *error))callback;
 
 - (void)incrementMetadata:(NSString *)key delta:(NSInteger)delta callback:(BuddyCompletionCallback)callback;
 

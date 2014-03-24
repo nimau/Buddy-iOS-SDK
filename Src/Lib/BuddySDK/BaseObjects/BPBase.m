@@ -88,7 +88,7 @@
     }];
 }
 
-- (void)searchMetadata:(SearchMetadata)search callback:(BuddyCollectionCallback)callback
+- (void)searchMetadata:(SearchMetadata)search callback:(void (^) (NSArray *buddyObjects, NSError *error))callback
 {
     id searchProperty = [BPSisterObject new];
     search ? search(searchProperty) : nil;
