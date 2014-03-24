@@ -1,1 +1,1 @@
-../../../../../Src/Lib/BuddySDK/BPCollections/BPPictureCollection.h
+../../BuddySDK/Src/Lib/BuddySDK/BPCollections/BPPictureCollection.h

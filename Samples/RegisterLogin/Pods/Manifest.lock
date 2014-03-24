@@ -22,14 +22,10 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - BuddySDK (from `../../BuddySDK.podspec`)
-
-EXTERNAL SOURCES:
-  BuddySDK:
-    :path: ../../BuddySDK.podspec
+  - BuddySDK
 
 SPEC CHECKSUMS:
   AFNetworking: 0121f4b69be3fa58d1ab317866e036e12ac9651d
-  BuddySDK: f2fefe66321e4b8e61ad6bf77af3a8153128b070
+  BuddySDK: b4e309bf0c5da062bf87784a81a2cafb12f9b765
 
 COCOAPODS: 0.29.0

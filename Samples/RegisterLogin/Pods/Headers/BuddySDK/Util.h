@@ -1,1 +1,1 @@
-../../../../../Src/Lib/BuddySDK/Util.h
+../../BuddySDK/Src/Lib/BuddySDK/Util.h

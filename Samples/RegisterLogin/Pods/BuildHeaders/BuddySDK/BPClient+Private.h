@@ -1,1 +1,1 @@
-../../../../../Src/Lib/BuddySDK/BPObjects/BPClient+Private.h
+../../BuddySDK/Src/Lib/BuddySDK/BPObjects/BPClient+Private.h

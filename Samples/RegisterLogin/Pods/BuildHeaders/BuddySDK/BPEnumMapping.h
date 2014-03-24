@@ -1,1 +1,1 @@
-../../../../../Src/Lib/BuddySDK/BPObjects/BPEnumMapping.h
+../../BuddySDK/Src/Lib/BuddySDK/BPObjects/BPEnumMapping.h

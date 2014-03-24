@@ -1,1 +1,1 @@
-../../../../../Src/Lib/BuddySDK/BPObjects/BPAuthenticatedUser.h
+../../BuddySDK/Src/Lib/BuddySDK/BPObjects/BPAuthenticatedUser.h

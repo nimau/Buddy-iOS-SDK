@@ -1,1 +1,1 @@
-../../../../../Src/Lib/BuddySDK/BuddyDevice.h
+../../BuddySDK/Src/Lib/BuddySDK/BuddyDevice.h

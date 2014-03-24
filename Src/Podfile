@@ -8,6 +8,6 @@ target :'BuddySDK Unit Tests', :exclusive => true do
 end
 
 target :'BuddySocial', :exclusive => true do
-    pod 'BuddySDK', :path => '../BuddySDK.podspec'
+    pod 'BuddySDK'#, :path => '../BuddySDK.podspec'
     xcodeproj 'BuddySocial/BuddySocial.xcodeproj'
 end

@@ -1,1 +1,1 @@
-../../../../../Src/Lib/BuddySDK/BPObjects/BPCoordinate.h
+../../BuddySDK/Src/Lib/BuddySDK/BPObjects/BPCoordinate.h

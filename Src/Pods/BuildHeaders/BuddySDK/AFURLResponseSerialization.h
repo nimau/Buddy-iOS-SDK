@@ -1,0 +1,1 @@
+../../../Lib/BuddySDK/Vendor/AFNetworking/AFNetworking/AFURLResponseSerialization.h

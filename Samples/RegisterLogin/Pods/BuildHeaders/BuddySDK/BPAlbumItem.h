@@ -1,1 +1,1 @@
-../../../../../Src/Lib/BuddySDK/BPObjects/BPAlbumItem.h
+../../BuddySDK/Src/Lib/BuddySDK/BPObjects/BPAlbumItem.h

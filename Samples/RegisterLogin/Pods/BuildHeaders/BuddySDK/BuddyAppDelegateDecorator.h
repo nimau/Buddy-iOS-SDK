@@ -1,1 +1,1 @@
-../../../../../Src/Lib/BuddySDK/BuddyAppDelegateDecorator.h
+../../BuddySDK/Src/Lib/BuddySDK/BuddyAppDelegateDecorator.h
