@@ -8,7 +8,6 @@
 
 #import "BPClient.h"
 #import "BPServiceController.h"
-#import "AFNetworking.h"
 #import "BPCheckinCollection.h"
 #import "BPGameBoards.h"
 #import "BPSounds.h"
@@ -64,27 +63,27 @@
     if(self)
     {
         _location = [BPLocationManager new];
-        [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-            switch (status) {
-                case AFNetworkReachabilityStatusNotReachable:
-                case AFNetworkReachabilityStatusUnknown:
-                    _reachabilityLevel = BPReachabilityNone;
-                    break;
-                case AFNetworkReachabilityStatusReachableViaWWAN:
-                    _reachabilityLevel = BPReachabilityCarrier;
-                    break;
-                case AFNetworkReachabilityStatusReachableViaWiFi:
-                    _reachabilityLevel = BPReachabilityWiFi;
-                    break;
-                default:
-                    break;
-            }
-            
-#if !(TARGET_IPHONE_SIMULATOR)
-            [self raiseReachabilityChanged:_reachabilityLevel];
-#endif
-        }];
-        [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+//        [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+//            switch (status) {
+//                case AFNetworkReachabilityStatusNotReachable:
+//                case AFNetworkReachabilityStatusUnknown:
+//                    _reachabilityLevel = BPReachabilityNone;
+//                    break;
+//                case AFNetworkReachabilityStatusReachableViaWWAN:
+//                    _reachabilityLevel = BPReachabilityCarrier;
+//                    break;
+//                case AFNetworkReachabilityStatusReachableViaWiFi:
+//                    _reachabilityLevel = BPReachabilityWiFi;
+//                    break;
+//                default:
+//                    break;
+//            }
+//            
+//#if !(TARGET_IPHONE_SIMULATOR)
+//            [self raiseReachabilityChanged:_reachabilityLevel];
+//#endif
+//        }];
+//        [[AFNetworkReachabilityManager sharedManager] startMonitoring];
         
     }
     return self;

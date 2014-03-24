@@ -79,16 +79,12 @@
 
 + (BOOL) locationEnabled
 {
-    @synchronized(self){
-        return [[BPClient defaultClient] locationEnabled];
-    }
+    return [[BPClient defaultClient] locationEnabled];
 }
 
 + (void) setLocationEnabled:(BOOL)val
 {
-    @synchronized(self){
-        [[BPClient defaultClient] setLocationEnabled:val];
-    }
+    [[BPClient defaultClient] setLocationEnabled:val];
 }
 
 + (void)setClientDelegate:(id<BPClientDelegate>)delegate
