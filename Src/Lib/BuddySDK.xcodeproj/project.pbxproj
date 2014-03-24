@@ -25,6 +25,7 @@
 		291DCC29928046FC88A33799 /* libPods-BuddySDK Unit Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A07FFFC093E94E77A9A92AF0 /* libPods-BuddySDK Unit Tests.a */; };
 		2F7E079218A2EC08003FC524 /* BuddyAppDelegateDecorator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F7E079018A2EC08003FC524 /* BuddyAppDelegateDecorator.h */; };
 		2F7E079318A2EC08003FC524 /* BuddyAppDelegateDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7E079118A2EC08003FC524 /* BuddyAppDelegateDecorator.m */; };
+		5B0302F918DFB81C00EA6B08 /* BPPermissions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B0302F818DFB81C00EA6B08 /* BPPermissions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B141E3B18C6B940002BABBC /* BPMetadataItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B141E3918C6B940002BABBC /* BPMetadataItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B141E3C18C6B940002BABBC /* BPMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B141E3A18C6B940002BABBC /* BPMetadataItem.m */; };
 		5B19875B18CB67D800FBB502 /* NSDate+BPDateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B19875918CB67D800FBB502 /* NSDate+BPDateHelper.h */; };
@@ -236,6 +237,7 @@
 		29345ABD1773DB3B00EEB8F5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2F7E079018A2EC08003FC524 /* BuddyAppDelegateDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuddyAppDelegateDecorator.h; sourceTree = "<group>"; };
 		2F7E079118A2EC08003FC524 /* BuddyAppDelegateDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuddyAppDelegateDecorator.m; sourceTree = "<group>"; };
+		5B0302F818DFB81C00EA6B08 /* BPPermissions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPermissions.h; sourceTree = "<group>"; };
 		5B141E3918C6B940002BABBC /* BPMetadataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMetadataItem.h; sourceTree = "<group>"; };
 		5B141E3A18C6B940002BABBC /* BPMetadataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMetadataItem.m; sourceTree = "<group>"; };
 		5B19875918CB67D800FBB502 /* NSDate+BPDateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BPDateHelper.h"; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 				2F7E079118A2EC08003FC524 /* BuddyAppDelegateDecorator.m */,
 				C1A1E29718A35B1A003CC33A /* BPSisterObject.h */,
 				C1A1E29818A35B1A003CC33A /* BPSisterObject.m */,
+				5B0302F818DFB81C00EA6B08 /* BPPermissions.h */,
 			);
 			path = BuddySDK;
 			sourceTree = "<group>";
@@ -823,6 +826,7 @@
 				C1427677189ECA2300D5DD85 /* BPMetricCompletionHandler.h in Headers */,
 				5BF07F8F18DD1BD000CC50E9 /* BPVideoCollection.h in Headers */,
 				C10E2BA3186950D8007A0136 /* BPGameBoards.h in Headers */,
+				5B0302F918DFB81C00EA6B08 /* BPPermissions.h in Headers */,
 				C1B959F91837061F000C8417 /* BuddyObject.h in Headers */,
 				C1B0F534189373F6000403E0 /* AFHTTPRequestOperationManager.h in Headers */,
 				5BF07F8518DD1BD000CC50E9 /* BPCheckinCollection.h in Headers */,

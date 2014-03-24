@@ -42,12 +42,12 @@
 {
     // Return any enum->string mappings used in responses subclass.
     return @{NSStringFromSelector(@selector(readPermissions)) : @{
-                     @(BuddyPermissionsApp) : @"App",
-                     @(BuddyPermissionsUser) : @"User",
+                     @(BPPermissionsApp) : @"App",
+                     @(BPPermissionsUser) : @"User",
                      },
              NSStringFromSelector(@selector(writePermissions)) : @{
-                     @(BuddyPermissionsApp) : @"App",
-                     @(BuddyPermissionsUser) : @"User",
+                     @(BPPermissionsApp) : @"App",
+                     @(BPPermissionsUser) : @"User",
                      }};
 }
 
@@ -56,7 +56,7 @@
     return @"";
 }
 
-- (void)setMetadataWithKey:(NSString *)key andString:(NSString *)value permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback
+- (void)setMetadataWithKey:(NSString *)key andString:(NSString *)value permissions:(BPPermissions)permissions callback:(BuddyCompletionCallback)callback
 {
     NSDictionary *parameters = @{@"value": BOXNIL(value),
                                  @"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
@@ -66,7 +66,7 @@
     }];
 }
 
-- (void)setMetadataWithKey:(NSString *)key andInteger:(NSInteger)value permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback
+- (void)setMetadataWithKey:(NSString *)key andInteger:(NSInteger)value permissions:(BPPermissions)permissions callback:(BuddyCompletionCallback)callback
 {
 #pragma message("Convert to 'convertValue' method from enum map")
     
@@ -78,7 +78,7 @@
     }];
 }
 
-- (void)setMetadataWithKeyValues:(NSDictionary *)keyValuePaths permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback
+- (void)setMetadataWithKeyValues:(NSDictionary *)keyValuePaths permissions:(BPPermissions)permissions callback:(BuddyCompletionCallback)callback
 {
     NSDictionary *parameters = @{@"values": keyValuePaths,
                                  @"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
@@ -118,7 +118,7 @@
     }];
 }
 
-- (void)getMetadataWithKey:(NSString *)key permissions:(BuddyPermissions)permissions callback:(BPMetadataCallback)callback
+- (void)getMetadataWithKey:(NSString *)key permissions:(BPPermissions)permissions callback:(BPMetadataCallback)callback
 {
     NSDictionary *parameters = @{@"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
     
@@ -128,7 +128,7 @@
     }];
 }
 
-- (void)deleteMetadataWithKey:(NSString *)key permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback 
+- (void)deleteMetadataWithKey:(NSString *)key permissions:(BPPermissions)permissions callback:(BuddyCompletionCallback)callback
 {
     NSDictionary *parameters = @{@"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
     [self.client DELETE:[self metadataPath:key] parameters:parameters callback:^(id metadata, NSError *error) {

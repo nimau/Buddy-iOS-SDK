@@ -17,7 +17,14 @@
 
 @implementation BPUser
 
-@synthesize firstName, lastName, userName, gender, dateOfBirth, profilePicture, profilePictureId, email;
+@synthesize firstName = _firstName;
+@synthesize lastName = _lastName;
+@synthesize userName = _userName;
+@synthesize gender = _gender;
+@synthesize dateOfBirth = _dateOfBirth;
+@synthesize profilePicture = _profilePicture;
+@synthesize profilePictureId = _profilePictureId
+@synthesize email = _email;
 
 - (void)registerProperties
 {

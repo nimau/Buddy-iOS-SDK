@@ -11,7 +11,9 @@
 
 @implementation BPCheckin
 
-@synthesize comment, description, location;
+@synthesize comment = _comment;
+@synthesize description = _description;
+@synthesize location = _location;
 
 - (void)registerProperties
 {

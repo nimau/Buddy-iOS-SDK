@@ -28,8 +28,13 @@
 @implementation BuddyObject
 
 @synthesize client = _client;
-
-@synthesize location, created, lastModified, defaultMetadata, readPermissions, writePermissions, id = _id;
+@synthesize location = _location;
+@synthesize created = _created;
+@synthesize lastModified = _lastModified;
+@synthesize defaultMetadata = _defaultMetadata;
+@synthesize readPermissions = _readPermissions;
+@synthesize writePermissions = _writePermissions;
+@synthesize id = _id;
 
 #pragma mark - Initializers
 

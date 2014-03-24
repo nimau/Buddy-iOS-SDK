@@ -8,18 +8,6 @@
 
 #import "BPMetadataItem.h"
 
-/**
- Permissions scope for Buddy objects.
- */
-typedef NS_ENUM(NSInteger, BuddyPermissions){
-    /** Accessible by App. */
-    BuddyPermissionsApp,
-    /** Accessible by owner. */
-    BuddyPermissionsUser,
-    /** Default (Accessible by Owner). */
-    BuddyPermissionsDefault = BuddyPermissionsUser
-};
-
 @protocol BuddyObjectProperties <NSObject>
 
 @property (nonatomic, strong) BPCoordinate *location;

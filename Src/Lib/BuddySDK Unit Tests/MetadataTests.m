@@ -70,31 +70,31 @@ describe(@"Metadata", ^{
             NSDictionary *kvp = @{@"Hakuna": @"Matata"};
             
             // App-level Metadata with Key Value Pairs
-            [Buddy setMetadataWithKeyValues:kvp permissions:BuddyPermissionsDefault callback:^(NSError *error) {
+            [Buddy setMetadataWithKeyValues:kvp permissions:BPPermissionsDefault callback:^(NSError *error) {
                 [[error should] beNil];
-                [Buddy getMetadataWithKey:@"Hakuna" permissions:BuddyPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
+                [Buddy getMetadataWithKey:@"Hakuna" permissions:BPPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
                     targetString = metadata.value;
                 }];
             }];
             
             // App-level MetaData with Key/String
-            [Buddy setMetadataWithKey:@"Hey" andString:@"There" permissions:BuddyPermissionsApp callback:^(NSError *error) {
+            [Buddy setMetadataWithKey:@"Hey" andString:@"There" permissions:BPPermissionsApp callback:^(NSError *error) {
                 [[error should] beNil];
-                [Buddy getMetadataWithKey:@"Hey" permissions:BuddyPermissionsApp callback:^(BPMetadataItem *metadata, NSError *error) {
+                [Buddy getMetadataWithKey:@"Hey" permissions:BPPermissionsApp callback:^(BPMetadataItem *metadata, NSError *error) {
                     targetString2 = metadata.value;
                 }];
             }];
             
             // App-level Metadata - Check permissions (write as User, Get as App should fail)
-            [Buddy setMetadataWithKey:@"HeyHey" andString:@"There" permissions:BuddyPermissionsUser callback:^(NSError *error) {
+            [Buddy setMetadataWithKey:@"HeyHey" andString:@"There" permissions:BPPermissionsUser callback:^(NSError *error) {
                 [[error should] beNil];
-                [Buddy getMetadataWithKey:@"HeyHey" permissions:BuddyPermissionsApp callback:^(BPMetadataItem *metadata, NSError *error) {
+                [Buddy getMetadataWithKey:@"HeyHey" permissions:BPPermissionsApp callback:^(BPMetadataItem *metadata, NSError *error) {
                     if(!error)
                     {
                         targetString3 = metadata.value;
                     }
                 }];
-                [Buddy getMetadataWithKey:@"HeyHey" permissions:BuddyPermissionsUser callback:^(BPMetadataItem *metadata, NSError *error) {
+                [Buddy getMetadataWithKey:@"HeyHey" permissions:BPPermissionsUser callback:^(BPMetadataItem *metadata, NSError *error) {
                     if(!error)
                     {
                         targetString4 = metadata.value;
@@ -103,11 +103,11 @@ describe(@"Metadata", ^{
             }];
             
             // App-level Metadata - Set int and increment
-            [Buddy setMetadataWithKey:@"AppInc" andInteger:5 permissions:BuddyPermissionsUser callback:^(NSError *error) {
+            [Buddy setMetadataWithKey:@"AppInc" andInteger:5 permissions:BPPermissionsUser callback:^(NSError *error) {
                 [[error should] beNil];
                 [Buddy incrementMetadata:@"AppInc" delta:2 callback:^(NSError *error) {
                     [[error should] beNil];
-                    [Buddy getMetadataWithKey:@"AppInc" permissions:BuddyPermissionsUser callback:^(BPMetadataItem *metadata, NSError *error) {
+                    [Buddy getMetadataWithKey:@"AppInc" permissions:BPPermissionsUser callback:^(BPMetadataItem *metadata, NSError *error) {
                         [[error should] beNil];
                         targetInteger = [metadata.value integerValue];
                     }];
@@ -128,9 +128,9 @@ describe(@"Metadata", ^{
             
             __block BPCheckin *c1 = checkin1;
 
-            [checkin1 setMetadataWithKey:@"StringlyMetadata" andString:@"REMOVE" permissions:BuddyPermissionsDefault callback:^(NSError *error) {
+            [checkin1 setMetadataWithKey:@"StringlyMetadata" andString:@"REMOVE" permissions:BPPermissionsDefault callback:^(NSError *error) {
                 [[error should] beNil];
-                [c1 getMetadataWithKey:@"StringlyMetadata" permissions:BuddyPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
+                [c1 getMetadataWithKey:@"StringlyMetadata" permissions:BPPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
                     targetString1 = metadata.value;
                 }];
             }];
@@ -146,12 +146,12 @@ describe(@"Metadata", ^{
             __block BPCheckin *c1 = checkin1;
             __block BPCheckin *c2 = checkin2;
             
-            [checkin1 setMetadataWithKey:@"StringlyMetadata" andString:@"Test String" permissions:BuddyPermissionsDefault callback:^(NSError *error) {
+            [checkin1 setMetadataWithKey:@"StringlyMetadata" andString:@"Test String" permissions:BPPermissionsDefault callback:^(NSError *error) {
                 [[error should] beNil];
-                [c1 getMetadataWithKey:@"StringlyMetadata" permissions:BuddyPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
+                [c1 getMetadataWithKey:@"StringlyMetadata" permissions:BPPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
                     targetString1 = metadata.value;
                 }];
-                [c2 getMetadataWithKey:@"StringlyMetadata" permissions:BuddyPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
+                [c2 getMetadataWithKey:@"StringlyMetadata" permissions:BPPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
                     targetString2 = metadata.value;
                 }];
             }];
@@ -165,9 +165,9 @@ describe(@"Metadata", ^{
             __block NSInteger targetInteger = -1;
             
             __block BPCheckin *c = checkin1;
-            [checkin1 setMetadataWithKey:@"IntlyMetadata" andInteger:testInteger permissions:BuddyPermissionsDefault callback:^(NSError *error) {
+            [checkin1 setMetadataWithKey:@"IntlyMetadata" andInteger:testInteger permissions:BPPermissionsDefault callback:^(NSError *error) {
                 [[error should] beNil];
-                [c getMetadataWithKey:@"IntlyMetadata" permissions:BuddyPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
+                [c getMetadataWithKey:@"IntlyMetadata" permissions:BPPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
                     targetInteger = [metadata.value integerValue];
                 }];
             }];
@@ -181,12 +181,12 @@ describe(@"Metadata", ^{
             __block NSInteger targetInteger = -1;
             
             __weak BPCheckin *c = checkin1;
-            [c setMetadataWithKey:@"IncrementingMetadata" andInteger:testInteger permissions:BuddyPermissionsDefault callback:^(NSError *error) {
+            [c setMetadataWithKey:@"IncrementingMetadata" andInteger:testInteger permissions:BPPermissionsDefault callback:^(NSError *error) {
                 [[error should] beNil];
                 
                 [c incrementMetadata:@"IncrementingMetadata" delta:delta callback:^(NSError *error) {
                     [[error should] beNil];
-                    [c getMetadataWithKey:@"IncrementingMetadata" permissions:BuddyPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
+                    [c getMetadataWithKey:@"IncrementingMetadata" permissions:BPPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
                         targetInteger = [metadata.value integerValue];
                     }];
                 }];
@@ -202,7 +202,7 @@ describe(@"Metadata", ^{
             // Make sure start and end bracked the server timestamp (they may not be completely in sync)
             NSDate *start = [[NSDate date] dateByAddingTimeInterval:-10];
             
-            [c setMetadataWithKey:@"MYPREFIXHello" andInteger:4 permissions:BuddyPermissionsDefault callback:^(NSError *error) {
+            [c setMetadataWithKey:@"MYPREFIXHello" andInteger:4 permissions:BPPermissionsDefault callback:^(NSError *error) {
                 [[error should] beNil];
                 fin = YES;
             }];
@@ -243,7 +243,7 @@ describe(@"Metadata", ^{
             __block BPCheckin *c = checkin1;
             __block BOOL fin = NO;
             
-            [c getMetadataWithKey:@"StringlyMetadata" permissions:BuddyPermissionsDefault callback:^(id newBuddyObject, NSError *error) {
+            [c getMetadataWithKey:@"StringlyMetadata" permissions:BPPermissionsDefault callback:^(id newBuddyObject, NSError *error) {
                 [[newBuddyObject shouldNot] beNil];
                 fin = YES;
             }];
@@ -251,8 +251,8 @@ describe(@"Metadata", ^{
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
             fin = NO;
             
-            [checkin1 deleteMetadataWithKey:@"StringlyMetadata" permissions:BuddyPermissionsDefault callback:^(NSError *error) {
-                [c getMetadataWithKey:@"StringlyMetadata" permissions:BuddyPermissionsDefault callback:^(id newBuddyObject, NSError *error) {
+            [checkin1 deleteMetadataWithKey:@"StringlyMetadata" permissions:BPPermissionsDefault callback:^(NSError *error) {
+                [c getMetadataWithKey:@"StringlyMetadata" permissions:BPPermissionsDefault callback:^(id newBuddyObject, NSError *error) {
                     [[newBuddyObject should] beNil];
                     fin = YES;
                 }];
@@ -270,9 +270,9 @@ describe(@"Metadata", ^{
             __block BPCheckin *c1 = checkin1;
             __block BPCheckin *c2 = checkin2;
             
-            [checkin1 setMetadataWithKeyValues:keysValues permissions:BuddyPermissionsDefault callback:^(NSError *error) {
+            [checkin1 setMetadataWithKeyValues:keysValues permissions:BPPermissionsDefault callback:^(NSError *error) {
                 [[error should] beNil];
-                [c1 getMetadataWithKey:@"foo" permissions:BuddyPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
+                [c1 getMetadataWithKey:@"foo" permissions:BPPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
                     if(error==nil)
                     {
                         targetString1 = metadata.value;
@@ -282,7 +282,7 @@ describe(@"Metadata", ^{
                         targetString1=nil;
                     }
                 }];
-                [c2 getMetadataWithKey:@"foo" permissions:BuddyPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
+                [c2 getMetadataWithKey:@"foo" permissions:BPPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
                     if(error==nil)
                     {
                         targetString2 = metadata.value;

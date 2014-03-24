@@ -12,7 +12,10 @@
 
 @implementation BPBlob
 
-@synthesize contentLength, contentType, signedUrl, friendlyName;
+@synthesize contentLength = _contentLength;
+@synthesize contentType = _contentType;
+@synthesize signedUrl = _signedUrl;
+@synthesize friendlyName = _friendlyName;
 
 - (void)registerProperties
 {

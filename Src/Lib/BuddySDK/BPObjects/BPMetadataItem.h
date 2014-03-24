@@ -9,6 +9,7 @@
 #import "BPCoordinate.h"
 #import "BPDateRange.h"
 #import "BuddyObject.h"
+#import "BPPermissions.h"
 
 @protocol BPMetadataProperties <NSObject>
 
@@ -18,8 +19,7 @@
 @property (nonatomic, strong) BPCoordinateRange *locationRange;
 @property (nonatomic, strong) BPDateRange *created;
 @property (nonatomic, strong) BPDateRange *modified;
-#pragma message("Fix circular dependency")
-//@property (nonatomic, assign) BuddyPermissions permissions;
+@property (nonatomic, assign) BPPermissions permissions;
 
 @end
 @class BPMetadataItem;

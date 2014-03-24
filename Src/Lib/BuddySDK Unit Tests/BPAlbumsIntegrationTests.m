@@ -109,7 +109,7 @@ describe(@"BPAlbumIntegrationSpec", ^{
             [tempAlbum getAlbumItem:tempItem.id callback:^(id newBuddyObject, NSError *error) {
                 retrievedPicture = newBuddyObject;
             }];
-#pragma message ("TODO: Fix Test")            
+
             [[expectFutureValue(retrievedPicture) shouldEventually] beNonNil];
         });
         

@@ -9,12 +9,12 @@
 #import "BPMetadataItem.h"
 
 @implementation BPMetadataItem
-@synthesize key;
-@synthesize value;
-@synthesize keyPrefix;
-@synthesize locationRange;
-@synthesize created;
-@synthesize modified;
+@synthesize key = _key;
+@synthesize value = _value;
+@synthesize keyPrefix = _keyPrefix;
+@synthesize locationRange = _locationRange;
+@synthesize created = _created;
+@synthesize modified = _modified;
 
 - (instancetype)initBuddyWithResponse:(id)response
 {
