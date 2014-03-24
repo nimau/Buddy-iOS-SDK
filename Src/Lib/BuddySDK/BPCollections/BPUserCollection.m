@@ -29,7 +29,6 @@
 -(void)searchIdentities:(NSString *)identityProvider callback:(BuddyCollectionCallback)callback
 {
     NSDictionary *parameters = @{@"identityProviderName": identityProvider};
-    [self search:parameters callback:callback];
     
 #pragma message("TODO - Breaks design. Most collections query on the request path of the underlying type. Re-think.")
     
