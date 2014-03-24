@@ -154,6 +154,11 @@
     }];
 }
 
+- (void)deleteMe
+{
+    [self deleteMe:nil];
+}
+
 -(void)deleteMe:(BuddyCompletionCallback)callback
 {
     NSString *resource = [NSString stringWithFormat:@"%@/%@",

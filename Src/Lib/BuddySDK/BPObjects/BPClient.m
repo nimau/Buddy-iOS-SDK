@@ -497,26 +497,21 @@ NSMutableArray *queuedRequests;
         // Is it a JSON response (as opposed to raw bytes)?
         if(result && [result isKindOfClass:[NSDictionary class]]) {
             
-#pragma message("Code should be removed when/if https://github.com/BuddyPlatform/BuddySource/issues/271 is resolved")
-            if (result[@"error"]) {
-                responseCode = 400;
-            } else {
-                // Grab the result
-                result = response[@"result"] ?: result;
+            // Grab the result
+            result = response[@"result"] ?: result;
+            
+            if ([result isKindOfClass:[NSDictionary class]]) {
                 
-                if ([result isKindOfClass:[NSDictionary class]]) {
-                    
-                    // Grab the access token
-                    if ([result hasKey:@"serviceRoot"]) {
-                        self.appSettings.serviceUrl = result[@"serviceRoot"];
-                    }
-                    
-#pragma message("Temporary hack. This is to grab the access token out of a create user call. Shouldn't be in this method.")
-                    if ([result hasKey:@"accessToken"] && self.appSettings.deviceToken) {
-                        self.appSettings.userToken = result[@"accessToken"];
-                    }
-                    
+                // Grab the access token
+                if ([result hasKey:@"serviceRoot"]) {
+                    self.appSettings.serviceUrl = result[@"serviceRoot"];
                 }
+                
+#pragma message("Temporary hack. This is to grab the access token out of a create user call. Shouldn't be in this method.")
+                if ([result hasKey:@"accessToken"] && self.appSettings.deviceToken) {
+                    self.appSettings.userToken = result[@"accessToken"];
+                }
+                
             }
         }
         
