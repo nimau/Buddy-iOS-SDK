@@ -27,7 +27,7 @@
 /// <summary>
 /// TODO
 /// </summary>
--(void) beginTrackingLocation:(BuddyCompletionCallback)callback;
+-(void) beginTrackingLocation:(void (^)(NSError *error))callback;
 
 /// <summary>
 /// TODO

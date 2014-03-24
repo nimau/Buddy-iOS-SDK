@@ -14,11 +14,10 @@
 
 @property (strong, nonatomic) CLLocationManager *location;
 @property (assign, readwrite, nonatomic) BOOL isTracking;
-@property (copy, nonatomic) BuddyCompletionCallback callback;
+@property (nonatomic, copy) void (^beginTrackingCallback)(NSError *error);
 
 @property (nonatomic, strong) BPCoordinate *currentCoordinate;
 @end
-
 
 @implementation BPLocationManager
 
@@ -37,15 +36,15 @@
 
 #pragma mark Public interface
 
--(void) beginTrackingLocation:(BuddyCompletionCallback)callback;
+-(void) beginTrackingLocation:(void (^)(NSError *error))callback;
 {
-    self.callback = callback;
+    self.beginTrackingCallback = callback;
     [self.location startUpdatingLocation];
 
     if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied ||
        [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted)
     {
-        _callback([NSError errorWithDomain:@"BPLocationManager" code:0 userInfo:@{@"message": @"Location denied."}]);
+        self.beginTrackingCallback([NSError errorWithDomain:@"BPLocationManager" code:0 userInfo:@{@"message": @"Location denied."}]);
     }
     else
     {
@@ -84,11 +83,11 @@
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
 {
-    if(_callback) {
-        _callback([NSError errorWithDomain:@"BPLocationManager" code:0 userInfo:@{@"message": @"Location initialization failed"}]);
+    if(self.beginTrackingCallback) {
+        self.beginTrackingCallback([NSError errorWithDomain:@"BPLocationManager" code:0 userInfo:@{@"message": @"Location initialization failed"}]);
     }
     
-    _callback = nil;
+    self.beginTrackingCallback = nil;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
@@ -105,10 +104,10 @@
 
 - (void)locationManagerDidResumeLocationUpdates:(CLLocationManager *)manager
 {
-    if (_callback){
-        _callback(nil);
+    if (self.beginTrackingCallback){
+        self.beginTrackingCallback(nil);
     }
-    _callback = nil;
+    self.beginTrackingCallback = nil;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
