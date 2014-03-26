@@ -41,6 +41,4 @@
     [self search:parameters callback:callback];
 }
 
-
-
 @end
