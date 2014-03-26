@@ -8,6 +8,7 @@
 
 #import "BPMetadataItem.h"
 #import "BPPermissions.h"
+#import "BPLocationProvider.h"
 
 @protocol BuddyObjectProperties <NSObject>
 
@@ -53,6 +54,9 @@ typedef void (^BuddyObjectCallback)(id newBuddyObject, NSError *error);
 
 - (void)deleteMetadataWithKey:(NSString *)key permissions:(BPPermissions) permissions callback:(BuddyCompletionCallback)callback;
 
-@property (nonatomic, readonly, strong) id<BPRestProvider> client;
+@property (nonatomic, readonly, weak) id<BPRestProvider> client;
+
+@property (nonatomic, readonly, weak) id<BPLocationProvider> locationProvider;
+
 
 @end

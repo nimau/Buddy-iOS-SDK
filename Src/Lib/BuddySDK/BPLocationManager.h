@@ -6,9 +6,11 @@
 //
 //
 
+#import "BPLocationProvider.h"
+
 @class BPCoordinate;
 
-@protocol BuddyLocationDelegate <NSObject>
+@protocol BPLocationDelegate <NSObject>
 
 - (void)didUpdateBuddyLocation:(BPCoordinate *)newLocation;
 
@@ -17,7 +19,7 @@
 /**
  * Encapsulates and translates CoreLocation framework into Buddy-flavored location tracking.
  */
-@interface BPLocationManager : NSObject
+@interface BPLocationManager : NSObject<BPLocationProvider>
 
 ///<summary>
 /// Returns YES if the user has restricted location access for the current app.
@@ -36,6 +38,7 @@
 
 @property (readonly, assign) BOOL isTracking;
 
-@property (nonatomic, weak) id<BuddyLocationDelegate> delegate;
+@property (nonatomic, weak) id<BPLocationDelegate> delegate;
+
 
 @end

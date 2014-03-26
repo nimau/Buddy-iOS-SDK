@@ -33,7 +33,7 @@ static NSString *blobMimeType = @"application/octet-stream";
     return blobMimeType;
 }
 
-+ (void)createWithData:(NSData *)data parameters:(NSDictionary *)parameters client:(id<BPRestProvider>)client callback:(BuddyObjectCallback)callback
++ (void)createWithData:(NSData *)data parameters:(NSDictionary *)parameters client:(id<BPRestProvider, BPLocationProvider>)client callback:(BuddyObjectCallback)callback
 
 {
     NSDictionary *multipartParameters = @{@"data": BOXNIL(data)};
@@ -44,7 +44,6 @@ static NSString *blobMimeType = @"application/octet-stream";
                   mimeType:[[self class] mimeType]
                   callback:^(id json, NSError *error)
     {
-        
         if(error){
             callback ? callback(nil, error) : nil;
             return;

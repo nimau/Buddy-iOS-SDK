@@ -11,6 +11,8 @@
 @interface BPCoordinate : NSObject
 @property (nonatomic, assign) double lat;
 @property (nonatomic, assign) double lng;
+
+- (NSString *)stringValue;
 @end
 
 static inline BPCoordinate *BPCoordinateMake(double lat, double lon)

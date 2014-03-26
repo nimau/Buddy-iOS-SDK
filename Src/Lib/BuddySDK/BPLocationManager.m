@@ -16,10 +16,11 @@
 @property (assign, readwrite, nonatomic) BOOL isTracking;
 @property (nonatomic, copy) void (^beginTrackingCallback)(NSError *error);
 
-@property (nonatomic, strong) BPCoordinate *currentCoordinate;
 @end
 
 @implementation BPLocationManager
+
+@synthesize currentLocation = _currentLocation;
 
 -(id)init
 {
@@ -70,11 +71,6 @@
     return [CLLocationManager authorizationStatus];
 }
 
--(CLLocation *)currentLocation
-{
-    return [self.location location];
-}
-
 #pragma mark helpers
 
 
@@ -112,18 +108,18 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    if (!self.currentCoordinate) {
-        self.currentCoordinate = [BPCoordinate new];
+    if (!_currentLocation) {
+        _currentLocation = [BPCoordinate new];
     }
     
     CLLocation *newLocation = [locations lastObject];
     CLLocationCoordinate2D coord = newLocation.coordinate;
     
-    self.currentCoordinate.lat = coord.latitude;
-    self.currentCoordinate.lng = coord.longitude;
+    _currentLocation.lat = coord.latitude;
+    _currentLocation.lng = coord.longitude;
     
     if (self.delegate) {
-        [self.delegate didUpdateBuddyLocation:self.currentCoordinate];
+        [self.delegate didUpdateBuddyLocation:_currentLocation];
     }
 }
 

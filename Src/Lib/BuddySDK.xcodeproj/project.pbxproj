@@ -70,7 +70,7 @@
 		5BF07F8418DD1BD000CC50E9 /* BPBlobCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF07F7218DD1BD000CC50E9 /* BPBlobCollection.m */; };
 		5BF07F8518DD1BD000CC50E9 /* BPCheckinCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F7318DD1BD000CC50E9 /* BPCheckinCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5BF07F8618DD1BD000CC50E9 /* BPCheckinCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF07F7418DD1BD000CC50E9 /* BPCheckinCollection.m */; };
-		5BF07F8718DD1BD000CC50E9 /* BPLocationCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F7518DD1BD000CC50E9 /* BPLocationCollection.h */; };
+		5BF07F8718DD1BD000CC50E9 /* BPLocationCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F7518DD1BD000CC50E9 /* BPLocationCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5BF07F8818DD1BD000CC50E9 /* BPLocationCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF07F7618DD1BD000CC50E9 /* BPLocationCollection.m */; };
 		5BF07F8918DD1BD000CC50E9 /* BPPictureCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F7718DD1BD000CC50E9 /* BPPictureCollection.h */; };
 		5BF07F8A18DD1BD000CC50E9 /* BPPictureCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF07F7818DD1BD000CC50E9 /* BPPictureCollection.m */; };
@@ -83,7 +83,7 @@
 		5BF07F9218DD2C1D00CC50E9 /* BuddyCollection+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F9118DD2C1D00CC50E9 /* BuddyCollection+Private.h */; };
 		5BF07F9918DE0CA300CC50E9 /* UIImageView+BPAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F9718DE0CA300CC50E9 /* UIImageView+BPAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5BF07F9A18DE0CA300CC50E9 /* UIImageView+BPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF07F9818DE0CA300CC50E9 /* UIImageView+BPAdditions.m */; };
-		5BF07F9D18DE108400CC50E9 /* BPLocationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F9B18DE108400CC50E9 /* BPLocationManager.h */; };
+		5BF07F9D18DE108400CC50E9 /* BPLocationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F9B18DE108400CC50E9 /* BPLocationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5BF07F9E18DE108400CC50E9 /* BPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF07F9C18DE108400CC50E9 /* BPLocationManager.m */; };
 		C1010D31187A4CC3009EB04E /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1010D2C187A4CC3009EB04E /* 0.jpg */; };
 		C1010D32187A4CC3009EB04E /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1010D2D187A4CC3009EB04E /* 1.jpg */; };
@@ -270,6 +270,7 @@
 		5B984DAE18C791C900CE8E2C /* BPVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVideo.h; sourceTree = "<group>"; };
 		5B984DAF18C791C900CE8E2C /* BPVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVideo.m; sourceTree = "<group>"; };
 		5B984DB218C79E2800CE8E2C /* bigbunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigbunny.mp4; sourceTree = "<group>"; };
+		5BB7738C18E26916007428B8 /* BPLocationProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPLocationProvider.h; sourceTree = "<group>"; };
 		5BCF3F1518D641440065842D /* BPCrashManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCrashManager.h; sourceTree = "<group>"; };
 		5BCF3F1618D641440065842D /* BPCrashManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCrashManager.m; sourceTree = "<group>"; };
 		5BCF3F4A18D692200065842D /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = BuddySDK/Vendor/CrashReporter.framework; sourceTree = "<group>"; };
@@ -387,7 +388,7 @@
 		C1B8076E18441BD30086B843 /* BuddyIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = BuddyIntegrationTests.m; path = "../../Lib/BuddySDK Unit Tests/BuddyIntegrationTests.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C1B959D1183703E8000C8417 /* BuddyCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuddyCollection.h; sourceTree = "<group>"; };
 		C1B959F71837061F000C8417 /* BuddyObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BuddyObject.h; sourceTree = "<group>"; };
-		C1B959F81837061F000C8417 /* BuddyObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BuddyObject.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		C1B959F81837061F000C8417 /* BuddyObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BuddyObject.m; sourceTree = "<group>"; };
 		C1BFD888187D14B500A1FADF /* BPBlobIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPBlobIntegrationTests.m; sourceTree = "<group>"; };
 		C1BFD88A187D15D000A1FADF /* blob.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blob.json; sourceTree = "<group>"; };
 		C1C2395118789594000D0089 /* BPBlob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPBlob.h; sourceTree = "<group>"; };
@@ -531,6 +532,7 @@
 				C1A1E29718A35B1A003CC33A /* BPSisterObject.h */,
 				C1A1E29818A35B1A003CC33A /* BPSisterObject.m */,
 				5B0302F818DFB81C00EA6B08 /* BPPermissions.h */,
+				5BB7738C18E26916007428B8 /* BPLocationProvider.h */,
 			);
 			path = BuddySDK;
 			sourceTree = "<group>";
@@ -804,10 +806,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BF07F9918DE0CA300CC50E9 /* UIImageView+BPAdditions.h in Headers */,
+				5BF07F9D18DE108400CC50E9 /* BPLocationManager.h in Headers */,
+				5BF07F8718DD1BD000CC50E9 /* BPLocationCollection.h in Headers */,
 				5B32F37318E071C600C07019 /* BPAFSecurityPolicy.h in Headers */,
 				5BF07F8518DD1BD000CC50E9 /* BPCheckinCollection.h in Headers */,
 				C1ADA71E18AB32D900BCCC12 /* BPBase.h in Headers */,
-				5BF07F8718DD1BD000CC50E9 /* BPLocationCollection.h in Headers */,
 				C1B0F54B18937B08000403E0 /* BPAlbumItemContainer.h in Headers */,
 				C1427672189AAC3700D5DD85 /* BPAppSettings.h in Headers */,
 				C142766F1898BED100D5DD85 /* BPAlbumItem.h in Headers */,
@@ -869,7 +872,6 @@
 				C1B0F4D118937142000403E0 /* NSNumber+ObjectiveSugar.h in Headers */,
 				C1A1E29918A35B1A003CC33A /* BPSisterObject.h in Headers */,
 				C1E0D1D41831BAD3001A7A01 /* JAGPropertyConverter-Prefix.pch in Headers */,
-				5BF07F9D18DE108400CC50E9 /* BPLocationManager.h in Headers */,
 				5BF07F8D18DD1BD000CC50E9 /* BPUserListCollection.h in Headers */,
 				5BF07F8918DD1BD000CC50E9 /* BPPictureCollection.h in Headers */,
 				C1C2395318789594000D0089 /* BPBlob.h in Headers */,

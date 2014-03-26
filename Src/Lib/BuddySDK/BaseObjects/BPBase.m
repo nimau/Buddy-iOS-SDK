@@ -71,6 +71,7 @@
 #pragma message("Convert to 'convertValue' method from enum map")
     
     NSDictionary *parameters = @{@"value": @(value),
+                                 @"location": BOXNIL([[self.locationProvider currentLocation] stringValue]),
                                  @"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
     
     [self.client PUT:[self metadataPath:key] parameters:parameters callback:^(id json, NSError *error) {
@@ -81,6 +82,7 @@
 - (void)setMetadataWithKeyValues:(NSDictionary *)keyValuePaths permissions:(BPPermissions)permissions callback:(BuddyCompletionCallback)callback
 {
     NSDictionary *parameters = @{@"values": keyValuePaths,
+                                 @"location": BOXNIL([[self.locationProvider currentLocation] stringValue]),
                                  @"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
 
     [self.client PUT:[self metadataPath:nil] parameters:parameters callback:^(id json, NSError *error) {

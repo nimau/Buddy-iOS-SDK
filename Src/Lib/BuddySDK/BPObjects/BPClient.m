@@ -27,14 +27,13 @@
 #import "BuddyAppDelegateDecorator.h"
 #import "BPCrashManager.h"
 #import <CoreFoundation/CoreFoundation.h>
-
 #define BuddyServiceURL @"BuddyServiceURL"
 
 #define BuddyDefaultURL @"https://api.buddyplatform.com"
 
 #define HiddenArgumentCount 2
 
-@interface BPClient()<BPRestProvider>
+@interface BPClient()<BPRestProvider, BPLocationDelegate, BPLocationProvider>
 
 @property (nonatomic, strong) BPServiceController *service;
 @property (nonatomic, strong) BPAppSettings *appSettings;
@@ -63,6 +62,7 @@
     if(self)
     {
         _location = [BPLocationManager new];
+        _location.delegate = self;
 //        [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
 //            switch (status) {
 //                case AFNetworkReachabilityStatusNotReachable:
@@ -622,6 +622,12 @@ NSMutableArray *queuedRequests;
     _lastLocation = newLocation;
 }
 
+// Provide self as a simple passthrough of BPLocationProvider for convenience.
+- (BPCoordinate *)currentLocation
+{
+    return self.location.currentLocation;
+}
+
 #pragma mark - Metrics
 
 - (void)recordMetric:(NSString *)key andValue:(NSDictionary *)value callback:(BuddyCompletionCallback)callback
@@ -673,7 +679,6 @@ static NSString *metadataRoute = @"metadata/app";
         return [NSString stringWithFormat:@"%@/%@", metadataRoute, key];
     }
 }
-
 
 #pragma mark - Push Notification
 
