@@ -1,16 +1,14 @@
 PODS:
   - BuddySDK (1.9.6)
-  - Kiwi (2.2.4):
-    - Kiwi/SenTestingKit
   - Kiwi/ARC (2.2.4)
   - Kiwi/NonARC (2.2.4)
-  - Kiwi/SenTestingKit (2.2.4):
+  - Kiwi/XCTest (2.2.4):
     - Kiwi/ARC
     - Kiwi/NonARC
 
 DEPENDENCIES:
   - BuddySDK (from `../BuddySDK.podspec`)
-  - Kiwi (= 2.2.4)
+  - Kiwi/XCTest (= 2.2.4)
 
 EXTERNAL SOURCES:
   BuddySDK:

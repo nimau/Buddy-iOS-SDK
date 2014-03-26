@@ -5,6 +5,5 @@
 #import "Pods-BuddySDK Unit Tests-environment.h"
 
 
-
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
