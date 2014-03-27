@@ -386,42 +386,42 @@
 - (void)GET:(NSString *)servicePath parameters:(NSDictionary *)parameters callback:(RESTCallback)callback
 {
     [self checkDeviceToken:^{
-        [self.service GET:servicePath parameters:parameters callback:[self handleResponse:callback]];
+        [self.service GET:servicePath parameters:[self injectLocation:parameters] callback:[self handleResponse:callback]];
     }];
 }
 
 - (void)GET_FILE:(NSString *)servicePath parameters:(NSDictionary *)parameters callback:(RESTCallback)callback
 {
     [self checkDeviceToken:^{
-        [self.service GET_FILE:servicePath parameters:parameters callback:[self handleResponse:callback]];
+        [self.service GET_FILE:servicePath parameters:[self injectLocation:parameters] callback:[self handleResponse:callback]];
     }];
 }
 
 - (void)POST:(NSString *)servicePath parameters:(NSDictionary *)parameters callback:(RESTCallback)callback
 {
     [self checkDeviceToken:^{
-        [self.service POST:servicePath parameters:parameters callback:[self handleResponse:callback]];
+        [self.service POST:servicePath parameters:[self injectLocation:parameters] callback:[self handleResponse:callback]];
     }];
 }
 
 - (void)MULTIPART_POST:(NSString *)servicePath parameters:(NSDictionary *)parameters data:(NSDictionary *)data mimeType:(NSString *)mimeType callback:(RESTCallback)callback
 {
     [self checkDeviceToken:^{
-        [self.service MULTIPART_POST:servicePath parameters:parameters data:data mimeType:mimeType callback:[self handleResponse:callback]];
+        [self.service MULTIPART_POST:servicePath parameters:[self injectLocation:parameters] data:data mimeType:mimeType callback:[self handleResponse:callback]];
     }];
 }
 
 - (void)PATCH:(NSString *)servicePath parameters:(NSDictionary *)parameters callback:(RESTCallback)callback
 {
     [self checkDeviceToken:^{
-        [self.service PATCH:servicePath parameters:parameters callback:[self handleResponse:callback]];
+        [self.service PATCH:servicePath parameters:[self injectLocation:parameters] callback:[self handleResponse:callback]];
     }];
 }
 
 - (void)PUT:(NSString *)servicePath parameters:(NSDictionary *)parameters callback:(RESTCallback)callback
 {
     [self checkDeviceToken:^{
-        [self.service PUT:servicePath parameters:parameters callback:[self handleResponse:callback]];
+        [self.service PUT:servicePath parameters:[self injectLocation:parameters] callback:[self handleResponse:callback]];
     }];
 }
 
@@ -628,6 +628,15 @@ NSMutableArray *queuedRequests;
     return self.location.currentLocation;
 }
 
+- (NSDictionary *)injectLocation:(NSDictionary *)parameters
+{
+    // Inject location only if it wasn't manually provided (and it's enabled, of course)
+    if (!parameters[@"location"] && self.locationEnabled) {
+        return [parameters dictionaryByMergingWith:@{@"location": BOXNIL(self.location.currentLocation)}];
+    } else {
+        return parameters;
+    }
+}
 #pragma mark - Metrics
 
 - (void)recordMetric:(NSString *)key andValue:(NSDictionary *)value callback:(BuddyCompletionCallback)callback
