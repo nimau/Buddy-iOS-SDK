@@ -72,8 +72,8 @@ static NSString *users = @"users";
 {
     NSString *resource = @"users/password";
     NSDictionary *parameters = @{@"username": self.userName,
-                                 @"subject": @"Your new password",
-                                 @"body": @"Here is your reset code: @ResetCode"};
+                                 @"subject": BOXNIL(subject),
+                                 @"body": BOXNIL(body)};
                                  
 
     [self.client POST:resource parameters:parameters callback:^(id json, NSError *error) {

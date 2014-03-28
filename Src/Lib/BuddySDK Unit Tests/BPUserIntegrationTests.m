@@ -72,24 +72,33 @@ describe(@"BPUser", ^{
             [[expectFutureValue([Buddy user].dateOfBirth) shouldEventually] equal:randomDate];
         });
 
-        pending_(@"Should provide a method to request a password reset.", ^{
+        it(@"Should provide a method to request a password reset.", ^{
 //            {"status":400,
 //            "error":"PasswordResetNotConfigured",
 //            "message":"Password Reset values must be configured in the Developer Dashboard->Security",
 //            "request_id":"7dc04781-41e0-483f-850c-186324a9cb29"}
             
 #pragma messsage("TODO - This can be turned on/off in the dev portal (response above). Look into it.")
-            [[Buddy user] requestPasswordReset:^(id newBuddyObject, NSError *error) {
+            [[Buddy user] requestPasswordResetWithSubject:@"Your new password"
+                                                     body:@"Here is your reset code: @ResetCode"
+                                                 callback:^(id newBuddyObject, NSError *error)
+            {
+                [[error should] beNil];
                 resetCode = newBuddyObject;
             }];
             
             [[expectFutureValue(resetCode) shouldEventually] beNonNil];
         });
         
-        pending_(@"Should then a method to reset the password with a reset code.", ^{
-            [[Buddy user] resetPassword:resetCode newPassword:@"TODO" callback:^(id buddyObject) {
-                
+        it(@"Should then a method to reset the password with a reset code.", ^{
+            __block BOOL fin = NO;
+
+            [[Buddy user] resetPassword:resetCode newPassword:@"TODO" callback:^(NSError *error) {
+                [[error should] beNil];
             }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
+
         });
         
         pending_(@"Should allow the user to set a profile picture", ^{
