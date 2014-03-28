@@ -68,10 +68,12 @@ static NSString *users = @"users";
 
 #pragma mark - Password
 
-- (void)requestPasswordReset:(BuddyObjectCallback)callback
+- (void)requestPasswordResetWithSubject:(NSString *)subject body:(NSString *)body callback:(BuddyObjectCallback)callback
 {
     NSString *resource = @"users/password";
-    NSDictionary *parameters = @{@"UserName": self.userName};
+    NSDictionary *parameters = @{@"username": self.userName,
+                                 @"subject": @"Your new password",
+                                 @"body": @"Here is your reset code: @ResetCode"};
                                  
 
     [self.client POST:resource parameters:parameters callback:^(id json, NSError *error) {
@@ -82,12 +84,12 @@ static NSString *users = @"users";
 - (void)resetPassword:(NSString *)resetCode newPassword:(NSString *)newPassword callback:(BuddyCompletionCallback)callback
 {
     NSString *resource = @"users/password";
-    NSDictionary *parameters = @{@"UserName": self.userName,
-                                 @"ResetCode": resetCode,
-                                 @"NewPassword": newPassword};
+    NSDictionary *parameters = @{@"username": self.userName,
+                                 @"resetCode": BOXNIL(resetCode),
+                                 @"newPassword": BOXNIL(newPassword)};
     
     [self.client PATCH:resource parameters:parameters callback:^(id json, NSError *error) {
-        callback ? callback(nil) : nil;
+        callback ? callback(error) : nil;
     }];
 }
 

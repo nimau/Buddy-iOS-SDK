@@ -42,7 +42,7 @@ typedef void(^DescribeUser)(id<BPUserProperties> userProperties);
 
 - (NSInteger)age;
 
-- (void)requestPasswordReset:(BuddyObjectCallback)callback;
+- (void)requestPasswordResetWithSubject:(NSString *)subject body:(NSString *)body callback:(BuddyObjectCallback)callback;
 - (void)resetPassword:(NSString *)resetCode newPassword:(NSString *)newPassword callback:(BuddyCompletionCallback)callback;
 - (void)addIdentity:(NSString *)identityProvider value:(NSString *)value callback:(BuddyCompletionCallback)callback;
 - (void)removeIdentity:(NSString *)identityProvider value:(NSString *)value callback:(BuddyCompletionCallback)callback;
