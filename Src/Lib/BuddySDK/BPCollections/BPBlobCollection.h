@@ -18,4 +18,6 @@
 
 - (void)searchBlobs:(NSDictionary *)parameters callback:(BuddyCollectionCallback)callback;
 
+- (void)getBlob:(NSString *)blobId callback:(BuddyObjectCallback)callback;
+
 @end
