@@ -19,16 +19,18 @@ SPEC_BEGIN(BPUserIntegrationSpec)
 
 describe(@"BPUser", ^{
     context(@"When a user is logged in", ^{
-        __block NSString *resetCode;    
 
+        __block BOOL fin = NO;
         beforeAll(^{
-            __block BOOL fin = NO;
-            
             [BuddyIntegrationHelper bootstrapLogin:^{
                 fin = YES;
             }];
             
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
+        });
+        
+        beforeEach(^{
+            fin = NO;
         });
         
         it(@"Should be allow modifying and saving", ^{
@@ -72,37 +74,35 @@ describe(@"BPUser", ^{
             [[expectFutureValue([Buddy user].dateOfBirth) shouldEventually] equal:randomDate];
         });
 
-        it(@"Should provide a method to request a password reset.", ^{
-//            {"status":400,
-//            "error":"PasswordResetNotConfigured",
-//            "message":"Password Reset values must be configured in the Developer Dashboard->Security",
-//            "request_id":"7dc04781-41e0-483f-850c-186324a9cb29"}
+        /*
+         * NOTE: Leave these as pending_ for automated tests. Password reset testing needs manual intervention at the email level.
+         */
+        pending_(@"Should provide a method to request a password reset.", ^{
             
-#pragma messsage("TODO - This can be turned on/off in the dev portal (response above). Look into it.")
             [[Buddy user] requestPasswordResetWithSubject:@"Your new password"
                                                      body:@"Here is your reset code: @ResetCode"
                                                  callback:^(id newBuddyObject, NSError *error)
             {
                 [[error should] beNil];
-                resetCode = newBuddyObject;
+                fin = YES;
             }];
             
-            [[expectFutureValue(resetCode) shouldEventually] beNonNil];
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
-        it(@"Should then a method to reset the password with a reset code.", ^{
-            __block BOOL fin = NO;
+        pending_(@"Should then a method to reset the password with a reset code.", ^{
 
-            [[Buddy user] resetPassword:resetCode newPassword:@"TODO" callback:^(NSError *error) {
+            [[Buddy user] resetPassword:@"mbcjt" newPassword:TEST_PASSWORD callback:^(NSError *error) {
                 [[error should] beNil];
+                fin = YES;
             }];
             
             [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
 
         });
         
-        pending_(@"Should allow the user to set a profile picture", ^{
-            
+        it(@"Should allow the user to set a profile picture", ^{
+
         });
         
         pending_(@"Should allow the user to delete the profile picture", ^{
@@ -110,12 +110,11 @@ describe(@"BPUser", ^{
         });
     
         it(@"Should allow adding identity values.", ^{
-            __block BOOL done = NO;
             [[Buddy user] addIdentity:@"Facebook" value:@"sdf" callback:^(NSError *error) {
                 [[error should] beNil];
-                done = YES;
+                fin = YES;
             }];
-            [[expectFutureValue(theValue(done)) shouldEventually] beYes];
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
         pending_(@"Should allow searching identity values", ^{
@@ -130,36 +129,33 @@ describe(@"BPUser", ^{
         });
         
         it(@"Should allow retrieving identity values.", ^{
-            __block BOOL done = NO;
             [[Buddy user] getIdentities:@"Facebook" callback:^(NSArray *buddyObjects, NSError *error) {
                 [[error should] beNil];
                 [[buddyObjects should] haveLengthOfAtLeast:1];
-                done = YES;
+                fin = YES;
             }];
-            [[expectFutureValue(theValue(done)) shouldEventually] beYes];
+            [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
         });
         
         it(@"Should then allow deleting identity values.", ^{
-            __block BOOL done = NO;
             [[Buddy user] removeIdentity:@"Facebook" value:@"sdf" callback:^(NSError *error) {
                 [[error should] beNil];
                 [[Buddy user] getIdentities:@"Facebook" callback:^(NSArray *buddyObjects, NSError *error) {
                     [[error should] beNil];
                     [[buddyObjects shouldNot] containObjectsInArray:@[@"sdf"]];
-                    done = YES;
+                    fin = YES;
                 }];
             }];
-            [[expectFutureValue(theValue(done)) shouldEventually] beYes];
+            [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
         });
         
         it(@"Should allow the user to logout", ^{
-            __block BOOL done = NO;
             [Buddy logout:^(NSError *error) {
                 [[error should] beNil];
-                done = YES;
+                fin = YES;
             }];
             
-            [[expectFutureValue(theValue(done)) shouldEventually] beYes];
+            [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
 
         });
         
