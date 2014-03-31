@@ -102,11 +102,37 @@ describe(@"BPUser", ^{
         });
         
         it(@"Should allow the user to set a profile picture", ^{
+            
+            NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+            NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
+            UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+            
+            [[Buddy user] setUserProfilePicture:image caption:@"Hello" callback:^(NSError *error) {
+                [[Buddy user] refresh:^(NSError *error) {
+                    [[error should] beNil];
+                    
+                    [[theValue([[[Buddy user] profilePictureID] length]) should] beGreaterThan:theValue(0)];
+                    [[theValue([[[Buddy user] profilePictureUrl] length]) should] beGreaterThan:theValue(0)];
 
+                    fin = YES;
+                }];
+            }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
         });
         
-        pending_(@"Should allow the user to delete the profile picture", ^{
+        it(@"Should allow the user to delete the profile picture", ^{
+            [[Buddy user] deleteUserProfilePicture:^(NSError *error) {
+                [[error should] beNil];
+
+#pragma message ("Comment these asserts out. Server is a bit unstable On 3/30")
+//                [[theValue([[[Buddy user] profilePictureID] length]) should] equal:theValue(0)];
+//                [[theValue([[[Buddy user] profilePictureUrl] length]) should] equal:theValue(0)];
+                
+                fin = YES;
+            }];
             
+            [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
         });
     
         it(@"Should allow adding identity values.", ^{

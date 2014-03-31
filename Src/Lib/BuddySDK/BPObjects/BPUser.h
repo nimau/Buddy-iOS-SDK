@@ -31,8 +31,10 @@ typedef NS_ENUM(NSInteger, BPUserGender)
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic, assign) BPUserGender gender;
 @property (nonatomic, strong) NSDate *dateOfBirth;
-@property (nonatomic, strong) NSURL *profilePicture;
-@property (nonatomic, copy) NSString *profilePictureId;
+@property (nonatomic, readonly, copy) NSString *profilePictureID;
+@property (nonatomic, readonly, copy) NSString *profilePictureUrl;
+@property (nonatomic, assign) BOOL locationFuzzing;
+@property (nonatomic, assign) BOOL celebMode;
 
 @end
 

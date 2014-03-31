@@ -12,7 +12,8 @@
 #import "BPEnumMapping.h"
 
 @interface BPUser()
-
+@property (nonatomic, copy) NSString *profilePictureID;
+@property (nonatomic, copy) NSString *profilePictureUrl;
 @end
 
 @implementation BPUser
@@ -22,9 +23,11 @@
 @synthesize userName = _userName;
 @synthesize gender = _gender;
 @synthesize dateOfBirth = _dateOfBirth;
-@synthesize profilePicture = _profilePicture;
-@synthesize profilePictureId = _profilePictureId;
+@synthesize profilePictureUrl = _profilePictureUrl;
+@synthesize profilePictureID = _profilePictureID;
 @synthesize email = _email;
+@synthesize locationFuzzing = _locationFuzzing;
+@synthesize celebMode = _celebMode;
 
 - (void)registerProperties
 {
@@ -35,8 +38,11 @@
     [self registerProperty:@selector(userName)];
     [self registerProperty:@selector(gender)];
     [self registerProperty:@selector(dateOfBirth)];
-    [self registerProperty:@selector(profilePicture)];
-    [self registerProperty:@selector(profilePictureId)];
+    [self registerProperty:@selector(profilePictureUrl)];
+    [self registerProperty:@selector(profilePictureID)];
+    [self registerProperty:@selector(email)];
+    [self registerProperty:@selector(locationFuzzing)];
+    [self registerProperty:@selector(celebMode)];
 }
 
 + (NSDictionary *)enumMap
@@ -133,22 +139,31 @@ static NSString *users = @"users";
 
 - (void)setUserProfilePicture:(UIImage *)picture caption:(NSString *)caption callback:(BuddyCompletionCallback)callback
 {
-    NSString *resource = [NSString stringWithFormat:@"user/%@/profilepicture", self.id];
+    NSString *resource = [NSString stringWithFormat:@"users/%@/profilepicture", self.id];
     NSDictionary *parameters = @{@"caption": caption};
 
     NSDictionary *data = @{@"data": UIImagePNGRepresentation(picture)};
     
     [self.client MULTIPART_POST:resource parameters:parameters data:data mimeType:@"image/png" callback:^(id json, NSError *error) {
-        callback ? callback(error) : nil;
+        if (error) {
+            callback ? callback(error) : nil;
+            return;
+        }
+        
+        [self refresh:^(NSError *error) {
+           callback ? callback(error) : nil;
+        }];
     }];
 }
 
 - (void)deleteUserProfilePicture:(BuddyCompletionCallback)callback
 {
-    NSString *resource = [NSString stringWithFormat:@"user/%@/profilepicture", self.id];
+    NSString *resource = [NSString stringWithFormat:@"users/%@/profilepicture", self.id];
     
     [self.client DELETE:resource parameters:nil callback:^(id json, NSError *error) {
-        callback ? callback(error) : nil;
+        [self refresh:^(NSError *error) {
+            callback ? callback(error) : nil;
+        }];
     }];
 }
 
