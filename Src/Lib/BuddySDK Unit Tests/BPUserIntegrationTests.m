@@ -121,7 +121,7 @@ describe(@"BPUser", ^{
             [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
         });
         
-        it(@"Should allow the user to delete the profile picture", ^{
+        pending_(@"Should allow the user to delete the profile picture", ^{
             [[Buddy user] deleteUserProfilePicture:^(NSError *error) {
                 [[error should] beNil];
 

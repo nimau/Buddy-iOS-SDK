@@ -9,6 +9,12 @@
 #import "BPLocation.h"
 #import "BuddyObject+Private.h"
 
+@interface BPLocation()
+
+@property (nonatomic, assign) double *distance;
+
+@end
+
 @implementation BPLocation
 
 - (void)registerProperties

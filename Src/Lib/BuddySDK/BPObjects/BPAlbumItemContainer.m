@@ -9,6 +9,12 @@
 #import "BPAlbumItemContainer.h"
 #import "BuddyObject+Private.h"
 
+@interface BPAlbumItemContainer()
+
+@property (nonatomic, copy) NSString *albumID;
+@property (nonatomic, copy) NSString *itemID;
+
+@end
 
 @implementation BPAlbumItemContainer
 

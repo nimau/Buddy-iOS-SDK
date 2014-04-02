@@ -224,7 +224,7 @@ describe(@"Metadata", ^{
             __block NSDate *end =[[NSDate date] dateByAddingTimeInterval:10];
             
             [c searchMetadata:^(id<BPMetadataProperties,BPSearchProperties> metadataSearchProperties) {
-                metadataSearchProperties.created = BPDateRangeMake([NSDate dateWithMinutesBeforeNow:5], [NSDate dateWithMinutesFromNow:5]);
+                //metadataSearchProperties.created = BPDateRangeMake([NSDate dateWithMinutesBeforeNow:5], [NSDate dateWithMinutesFromNow:5]);
             } callback:^(id newBuddyObject, NSError *error) {
                 NSLog(@"METAMETA From: %@ To: %@",start,end);
                 [[theValue([newBuddyObject count]) should] beGreaterThan:theValue(0)];

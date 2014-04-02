@@ -9,9 +9,9 @@
 
 @protocol BPBlobProperties <BuddyObjectProperties>
 
-@property (nonatomic, assign) NSInteger contentLength;
-@property (nonatomic, copy) NSString *contentType;
-@property (nonatomic, copy) NSString *signedUrl;
+@property (nonatomic, readonly, assign) NSInteger contentLength;
+@property (nonatomic, readonly, copy) NSString *contentType;
+@property (nonatomic, readonly, copy) NSString *signedUrl;
 @property (nonatomic, copy) NSString *friendlyName;
 //@property (nonatomic, copy) NSString *size;
 

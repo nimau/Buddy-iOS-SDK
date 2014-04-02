@@ -17,9 +17,9 @@
 @property (nonatomic, strong) id value;
 @property (nonatomic, copy) NSString *keyPrefix;
 @property (nonatomic, strong) BPCoordinateRange *locationRange;
-@property (nonatomic, strong) BPDateRange *created;
-@property (nonatomic, strong) BPDateRange *modified;
-@property (nonatomic, assign) BPPermissions permissions;
+@property (nonatomic, readonly, strong) BPDateRange *created;
+@property (nonatomic, readonly, strong) BPDateRange *modified;
+@property (nonatomic, readonly, assign) BPPermissions permissions;
 
 @end
 @class BPMetadataItem;

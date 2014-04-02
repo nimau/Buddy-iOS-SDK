@@ -20,7 +20,7 @@
 @property (nonatomic, copy) NSString *phone;
 @property (nonatomic, copy) NSString *website;
 @property (nonatomic, copy) NSString *category;
-@property (nonatomic, assign) double *distance;
+@property (nonatomic, readonly, assign) double *distance;
 
 @end
 

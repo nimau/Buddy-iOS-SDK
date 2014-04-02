@@ -25,9 +25,9 @@ typedef NS_ENUM(NSInteger, BPAlbumItemType) {
 
 @protocol BPAlbumItemProperties <BuddyObjectProperties>
 
-@property (nonatomic, copy) NSString *albumID;
-@property (nonatomic, copy) NSString *itemID;
-@property (nonatomic, assign) BPAlbumItemType itemType;
+@property (nonatomic, readonly, copy) NSString *albumID;
+@property (nonatomic, readonly, copy) NSString *itemID;
+@property (nonatomic, readonly, assign) BPAlbumItemType itemType;
 @property (nonatomic, copy) NSString *caption;
 
 @end

@@ -9,6 +9,15 @@
 #import "BPVideo.h"
 #import "BPSisterObject.h"
 
+@interface BPVideo()
+
+@property (nonatomic, assign) NSInteger bitRate;
+@property (nonatomic, copy) NSString *encoding;
+@property (nonatomic, assign) double lengthInSeconds;
+@property (nonatomic, copy) NSString *thumbnailID;
+
+@end
+
 @implementation BPVideo
 @synthesize title;
 @synthesize friendlyName;

@@ -8,7 +8,16 @@
 
 #import "BPMetadataItem.h"
 
+@interface BPMetadataItem()
+
+@property (nonatomic, strong) BPDateRange *created;
+@property (nonatomic, strong) BPDateRange *modified;
+@property (nonatomic, assign) BPPermissions permissions;
+
+@end
+
 @implementation BPMetadataItem
+
 @synthesize key = _key;
 @synthesize value = _value;
 @synthesize keyPrefix = _keyPrefix;

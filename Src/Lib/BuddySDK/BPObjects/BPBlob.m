@@ -10,6 +10,14 @@
 #import "BuddyObject+Private.h"
 #import "Buddy.h"
 
+@interface BPBlob()
+
+@property (nonatomic, copy) NSString *contentType;
+@property (nonatomic, copy) NSString *signedUrl;
+@property (nonatomic, assign) NSInteger contentLength;
+
+@end
+
 @implementation BPBlob
 
 @synthesize contentLength, contentType, signedUrl, friendlyName;
