@@ -23,7 +23,7 @@
 - (void)addUserList:(DescribeUserList)describe
         callback:(BuddyObjectCallback)callback
 {
-    id userList= [BPSisterObject new];
+    id userList= [[BPSisterObject alloc] parametersFromProperties:@protocol(BPUserListProperties)];
     describe ? describe(userList) : nil;
     
     id parameters = [userList parametersFromProperties:@protocol(BPUserListProperties)];

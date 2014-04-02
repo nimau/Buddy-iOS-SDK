@@ -30,7 +30,7 @@
 
 - (void)searchVideos:(SearchVideo)describeVideo callback:(BuddyCollectionCallback)callback;
 {
-    id videoProperties = [BPSisterObject new];
+    id videoProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPVideoProperties)];
     describeVideo ? describeVideo(videoProperties) : nil;
     
     id parameters = [videoProperties parametersFromProperties:@protocol(BPVideoProperties)];

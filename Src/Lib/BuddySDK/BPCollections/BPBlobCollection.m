@@ -25,7 +25,7 @@
        describe:(DescribeBlob)describe
        callback:(BuddyObjectCallback)callback
 {
-    id blobProperties = [BPSisterObject new];
+    id blobProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPBlobProperties)];
     describe ? describe(blobProperties) : nil;
     
     id parameters = [blobProperties parametersFromProperties:@protocol(BPBlobProperties)];

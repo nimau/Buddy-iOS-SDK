@@ -274,7 +274,8 @@
     NSDictionary *parameters = @{@"username": username,
                                  @"password": password };
     
-    id newUser= [BPSisterObject new];
+    id newUser= [[BPSisterObject alloc] initWithProtocol:@protocol(BPUserProperties)];
+
     describeUser ? describeUser(newUser) : nil;
     
     id options = [newUser parametersFromProperties:@protocol(BPUserProperties)];

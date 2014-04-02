@@ -33,7 +33,7 @@
 
 -(void)searchPictures:(DescribePicture)describePicture callback:(BuddyCollectionCallback)callback
 {
-    id pictureProperties= [BPSisterObject new];
+    id pictureProperties= [[BPSisterObject alloc] initWithProtocol:@protocol(BPPictureProperties)];
     describePicture ? describePicture(pictureProperties) : nil;
     
     id parameters = [pictureProperties parametersFromProperties:@protocol(BPPictureProperties)];

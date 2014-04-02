@@ -68,8 +68,7 @@
 
 - (void)setMetadataWithKey:(NSString *)key andInteger:(NSInteger)value permissions:(BPPermissions)permissions callback:(BuddyCompletionCallback)callback
 {
-#pragma message("Convert to 'convertValue' method from enum map")
-    
+    // Convert value?
     NSDictionary *parameters = @{@"value": @(value),
                                  @"location": BOXNIL([[self.locationProvider currentLocation] stringValue]),
                                  @"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
@@ -92,7 +91,7 @@
 
 - (void)searchMetadata:(SearchMetadata)search callback:(void (^) (NSArray *buddyObjects, NSError *error))callback
 {
-    id searchProperty = [BPSisterObject new];
+    id searchProperty = [[BPSisterObject alloc] initWithProtocol:@protocol(BPMetadataProperties)];
     search ? search(searchProperty) : nil;
     
     id searchParameters = [searchProperty parametersFromProperties:@protocol(BPMetadataProperties)];

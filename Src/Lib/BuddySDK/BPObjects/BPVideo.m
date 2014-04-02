@@ -52,7 +52,7 @@ static NSString *videoMimeType = @"video/mp4";
                  client:(id<BPRestProvider>)client
                callback:(BuddyObjectCallback)callback
 {
-    id videoProperties = [BPSisterObject new];
+    id videoProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPVideoProperties)];
     describeVideo ? describeVideo(videoProperties) : nil;
     
     id parameters = [videoProperties parametersFromProperties:@protocol(BPVideoProperties)];
