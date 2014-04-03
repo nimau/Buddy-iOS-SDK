@@ -283,7 +283,18 @@
     parameters = [NSDictionary dictionaryByMerging:parameters with:options];
     
     // On BPUser for now for consistency. Probably will move.
-    [BPUser createFromServerWithParameters:parameters client:[BPClient defaultClient] callback:callback];
+    [BPUser createFromServerWithParameters:parameters client:[BPClient defaultClient] callback:^(id newBuddyObject, NSError *error) {
+        if (error) {
+            callback ? callback(nil, error) : nil;
+            return;
+        }
+        
+        self.user = newBuddyObject;
+        
+        [self.user refresh:^(NSError *error){
+            callback ? callback(self.user, error) : nil;
+        }];
+    }];
 }
 
 #pragma mark - Login
