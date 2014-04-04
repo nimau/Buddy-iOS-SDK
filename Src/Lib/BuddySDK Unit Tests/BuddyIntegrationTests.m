@@ -75,22 +75,15 @@ describe(@"Buddy", ^{
             } callback:^(BPUser *newBuddyObject, NSError *error) {
                 newUser = newBuddyObject;
                 
-//                [[newUser.userName should] equal:testCreateDeleteName];
-//                [[newUser.firstName should] equal:@"Erik"];
-//                [[newUser.lastName should] equal:@"Kerber"];
-//                [[theValue(newUser.gender) should] equal:theValue(BPUserGender_Female)];
-//                [[newUser.dateOfBirth should] equal:randomDate];
+                [[newUser.userName should] equal:testCreateDeleteName];
+                [[newUser.firstName should] equal:@"Erik"];
+                [[newUser.lastName should] equal:@"Kerber"];
+                [[theValue(newUser.gender) should] equal:theValue(BPUserGender_Female)];
+                [[newUser.dateOfBirth should] equal:randomDate];
                 fin = YES;
             }];
             
-            
-            [[expectFutureValue(newUser.userName) shouldEventually] equal:testCreateDeleteName];
-            [[expectFutureValue(newUser.firstName) shouldEventually] equal:@"Erik"];
-            [[expectFutureValue(newUser.lastName) shouldEventually] equal:@"Kerber"];
-            [[expectFutureValue(theValue(newUser.gender)) shouldEventually] equal:theValue(BPUserGender_Female)];
-            [[expectFutureValue(newUser.dateOfBirth) shouldEventually] equal:randomDate];
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
-
         });
         
         it(@"Should allow you to login.", ^{

@@ -32,10 +32,7 @@
                 userProperties.email = @"erik@buddy.com";
                 userProperties.dateOfBirth = [BuddyIntegrationHelper randomDate];
             } callback:^(BPUser *newBuddyObject, NSError *error) {
-                [Buddy login:TEST_USERNAME password:TEST_PASSWORD callback:^(BPUser *loggedInsUser, NSError *error) {
-
-                    callback();
-                }];
+                callback();
             }];
         }
     }];
