@@ -43,9 +43,14 @@
     [self getItem:blobId callback:callback];
 }
 
-- (void)searchBlobs:(NSDictionary *)parameters callback:(BuddyCollectionCallback)callback
+
+- (void)searchBlobs:(DescribeBlob)describeBlob callback:(BuddyCollectionCallback)callback
 {
-    [self search:parameters callback:callback];
-}
+    id blobProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPBlobProperties)];
+    describeBlob ? describeBlob(blobProperties) : nil;
+    
+    id parameters = [blobProperties parametersFromProperties:@protocol(BPBlobProperties)];
+    
+    [self search:parameters callback:callback];}
 
 @end
