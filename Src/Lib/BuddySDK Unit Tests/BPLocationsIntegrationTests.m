@@ -22,9 +22,9 @@ describe(@"BPLocationIntegrationSpec", ^{
     context(@"When a user is logged in", ^{
         
         __block BPLocation *tempLocation;
-        
+        __block BOOL fin = NO;
+
         beforeAll(^{
-            __block BOOL fin = NO;
             
             [Buddy setLocationEnabled:YES];
 
@@ -35,7 +35,7 @@ describe(@"BPLocationIntegrationSpec", ^{
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
-        afterAll(^{
+        beforeEach(^{
             
         });
         
@@ -47,28 +47,30 @@ describe(@"BPLocationIntegrationSpec", ^{
                 locationProperties.category = @"So much pain";
             } callback:^(id newBuddyObject, NSError *error) {
                 [[error should] beNil];
-                tempLocation = newBuddyObject;
+                [[tempLocation should] beNonNil];
+                
             }];
             
-            [[expectFutureValue(tempLocation) shouldEventually] beNonNil];
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
-        it(@"Should allow tracking a user's location", ^{
+        pending_(@"Should allow tracking a user's location", ^{
             
         });
         
-        pending_(@"Should allow you to search for a location.", ^{
+        it(@"Should allow you to search for a location.", ^{
             __block NSArray *locations;
             [[Buddy locations] findLocation:^(id<BPLocationProperties,BPSearchProperties> locationProperties) {
                 locationProperties.range = BPCoordinateRangeMake(1.2345, 3.4567, 100);
                 locationProperties.limit = 9;
             } callback:^(NSArray *buddyObjects, NSError *error) {
                 [[error should] beNil];
+                [[locations should] beNonNil];
+                [[theValue([locations count]) should] beGreaterThan:theValue(0)];
                 locations = buddyObjects;
             }];
             
-            [[expectFutureValue(locations) shouldEventually] beNonNil];
-            [[expectFutureValue(theValue([locations count])) shouldEventually] beGreaterThan:theValue(0)];
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
     });
