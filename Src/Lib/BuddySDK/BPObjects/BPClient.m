@@ -21,6 +21,7 @@
 #import "BPRestProvider.h"
 #import "BuddyObject+Private.h"
 #import "BPLocationManager.h"
+#import "BPNotificationManager.h"
 #import "BuddyDevice.h"
 #import "BPAppSettings.h"
 #import "BPSisterObject.h"
@@ -38,6 +39,7 @@
 @property (nonatomic, strong) BPServiceController *service;
 @property (nonatomic, strong) BPAppSettings *appSettings;
 @property (nonatomic, strong) BPLocationManager *location;
+@property (nonatomic, strong) BPNotificationManager *notifications;
 @property (nonatomic, strong) BuddyAppDelegateDecorator *decorator;
 @property (nonatomic, strong) BPCrashManager *crashManager;
 
@@ -61,6 +63,7 @@
     self = [super self];
     if(self)
     {
+        _notifications = [[BPNotificationManager alloc] initWithClient:self];
         _location = [BPLocationManager new];
         _location.delegate = self;
 //        [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
@@ -644,11 +647,19 @@ NSMutableArray *queuedRequests;
 {
     // Inject location only if it wasn't manually provided (and it's enabled, of course)
     if (!parameters[@"location"] && self.locationEnabled) {
-        return [parameters dictionaryByMergingWith:@{@"location": BOXNIL(self.location.currentLocation)}];
+        return [parameters dictionaryByMergingWith:@{@"location": BOXNIL([self.location.currentLocation stringValue])}];
     } else {
         return parameters;
     }
 }
+
+#pragma mark - Notifications
+
+- (void)sendPushNotification:(BPNotification *)notification callback:(BuddyCompletionCallback)callback
+{
+    [self.notifications sendPushNotification:notification callback:callback];
+}
+
 #pragma mark - Metrics
 
 - (void)recordMetric:(NSString *)key andValue:(NSDictionary *)value callback:(BuddyCompletionCallback)callback

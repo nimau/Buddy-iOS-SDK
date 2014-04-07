@@ -32,6 +32,7 @@
 #import "BPLocation.h"
 #import "BPMetricCompletionHandler.h"
 #import "BPMetadataItem.h"
+#import "BPNotification.h"
 
 /**
  * TODO
@@ -145,6 +146,11 @@
  * Logout of the current app
  */
 + (void)logout:(BuddyCompletionCallback)callback;
+
+/* 
+ * Notification
+ */
++ (void)sendPushNotification:(BPNotification *)notification callback:(BuddyCompletionCallback)callback;
 
 
 + (void)recordMetric:(NSString *)key andValue:(NSDictionary *)value callback:(BuddyCompletionCallback)callback;

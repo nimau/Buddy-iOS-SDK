@@ -160,6 +160,11 @@
     [[BPClient defaultClient] logout:callback];
 }
 
++ (void)sendPushNotification:(BPNotification *)notification callback:(BuddyCompletionCallback)callback;
+{
+    [[BPClient defaultClient] sendPushNotification:notification callback:callback];
+}
+
 + (void)recordMetric:(NSString *)key andValue:(NSDictionary *)value callback:(BuddyCompletionCallback)callback
 {
     [[BPClient defaultClient] recordMetric:key andValue:value callback:callback];

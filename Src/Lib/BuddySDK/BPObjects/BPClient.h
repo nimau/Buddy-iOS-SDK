@@ -28,6 +28,7 @@
 @class BPUserCollection;
 @class BPUserListCollection;
 @class BPCoordinate;
+@class BPNotification;
 
 /**
  Enum specifying the current authentication level.
@@ -197,6 +198,8 @@ typedef void (^BPPingCallback)(NSDecimalNumber *ping);
 - (void)logout:(BuddyCompletionCallback)callback;
 
 - (void)ping:(BPPingCallback)callback;
+
+- (void)sendPushNotification:(BPNotification *)notification callback:(BuddyCompletionCallback)callback;
 
 - (void)recordMetric:(NSString *)key andValue:(NSDictionary *)value callback:(BuddyCompletionCallback)callback;
 
