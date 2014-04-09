@@ -18,6 +18,7 @@
 @property (nonatomic, copy) NSString *defaultMetadata;
 @property (nonatomic, assign) BPPermissions readPermissions;
 @property (nonatomic, assign) BPPermissions writePermissions;
+@property (nonatomic, assign) NSString *tag;
 @property (nonatomic, copy) NSString *id;
 
 @end

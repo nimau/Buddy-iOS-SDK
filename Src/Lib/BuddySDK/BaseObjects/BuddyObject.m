@@ -34,6 +34,7 @@
 @synthesize defaultMetadata = _defaultMetadata;
 @synthesize readPermissions = _readPermissions;
 @synthesize writePermissions = _writePermissions;
+@synthesize tag = _tag;
 @synthesize id = _id;
 
 #pragma mark - Initializers
@@ -93,6 +94,7 @@
     [self registerProperty:@selector(created)];
     [self registerProperty:@selector(lastModified)];
     [self registerProperty:@selector(defaultMetadata)];
+    [self registerProperty:@selector(tag)];
     [self registerProperty:@selector(id)];
 }
 

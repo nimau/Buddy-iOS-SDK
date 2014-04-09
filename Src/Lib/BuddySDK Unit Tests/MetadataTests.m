@@ -23,6 +23,8 @@ describe(@"Metadata", ^{
         
         __block BPCheckin *checkin1;
         __block BPCheckin *checkin2;
+        __block BOOL fin = NO;
+        
         beforeAll(^{
             
             DescribeCheckin d1 = ^(id<BPCheckinProperties> checkinProperties) {
@@ -52,6 +54,10 @@ describe(@"Metadata", ^{
             
             [[expectFutureValue(checkin1) shouldEventually] beNonNil];
             [[expectFutureValue(checkin2) shouldEventually] beNonNil];
+        });
+        
+        beforeEach(^{
+            fin = NO;
         });
         
         afterAll(^{
@@ -296,6 +302,21 @@ describe(@"Metadata", ^{
             
             [[expectFutureValue(targetString1) shouldEventually] equal:@"bar"];
             [[expectFutureValue(targetString2) shouldNotEventually] equal:@"bar"];
+        });
+        
+        it(@"Should allow setting a tag on an object", ^{
+            NSString *myTag = @"Hello there!";
+            checkin1.tag = myTag;
+            
+            [checkin1 save:^(NSError *error) {
+                [[error should] beNil];
+                [[Buddy checkins] getCheckin:checkin1.id callback:^(BPCheckin *newCheckin, NSError *error) {
+                    [[newCheckin.tag should] equal:myTag];
+                    fin = YES;
+                }];
+            }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
     });
 });
