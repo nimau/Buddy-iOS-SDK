@@ -47,6 +47,7 @@ describe(@"BPLocationIntegrationSpec", ^{
                 locationProperties.category = @"So much pain";
             } callback:^(id newBuddyObject, NSError *error) {
                 [[error should] beNil];
+                tempLocation = newBuddyObject;
                 [[tempLocation should] beNonNil];
                 
             }];

@@ -87,7 +87,7 @@ describe(@"BPAlbumIntegrationSpec", ^{
         
         it(@"Should allow you to add items to an album.", ^{
             NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-            NSString *imagePath = [bundle pathForResource:@"1" ofType:@"jpg"];
+            NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
             UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             
             [[Buddy pictures] addPicture:image describePicture:^(id<BPPictureProperties> pictureProperties) {

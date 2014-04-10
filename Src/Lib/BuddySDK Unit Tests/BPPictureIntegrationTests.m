@@ -19,6 +19,12 @@ SPEC_BEGIN(BuddyPictureSpec)
 
 describe(@"BPPictureIntegrationSpec", ^{
     
+    __block BOOL fin = NO;
+    
+    beforeEach(^{
+        fin = NO;
+    });
+    
     context(@"When a user is NOT logged in", ^{
         
         beforeAll(^{
@@ -26,8 +32,6 @@ describe(@"BPPictureIntegrationSpec", ^{
         });
         
         it(@"Should not allow them to add and describe pictures.", ^{
-            __block BOOL fin = NO;
-
             NSBundle *bundle = [NSBundle bundleForClass:[self class]];
             NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
             UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
@@ -45,7 +49,6 @@ describe(@"BPPictureIntegrationSpec", ^{
         });
         
         it(@"Should not allow them to add and describe pictures.", ^{
-            __block BOOL fin = NO;
             
             NSBundle *bundle = [NSBundle bundleForClass:[self class]];
             NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
@@ -66,9 +69,11 @@ describe(@"BPPictureIntegrationSpec", ^{
     context(@"When a user is logged in", ^{
         __block BPPicture *newPicture;
         
-        beforeAll(^{
-            __block BOOL fin = NO;
-            
+        beforeEach(^{
+            fin = NO;
+        });
+        
+        beforeAll(^{            
             [BuddyIntegrationHelper bootstrapLogin:^{
                 fin = YES;
             }];
@@ -80,6 +85,7 @@ describe(@"BPPictureIntegrationSpec", ^{
             
         });
         
+        
         it(@"Should allow users to post pictures", ^{
             NSBundle *bundle = [NSBundle bundleForClass:[self class]];
             NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
@@ -87,29 +93,39 @@ describe(@"BPPictureIntegrationSpec", ^{
             
             [[Buddy pictures] addPicture:image describePicture:^(id<BPPictureProperties> pictureProperties) {
                 pictureProperties.caption = @"Hello, caption!";
-            } callback:^(id buddyObject, NSError *error) {
-                newPicture = buddyObject;
+            } callback:^(BPPicture *p, NSError *error) {
+                newPicture = p;
+                
+                [[error should] beNil];
+                if (error) return;
+                
+                [[theValue(newPicture.contentLength) should] beGreaterThan:theValue(1)];
+                [[newPicture.contentType should] equal:@"image/png"];
+                [[newPicture.signedUrl should] haveLengthOfAtLeast:1];
+                [[newPicture.caption should] equal:@"Hello, caption!"];
+                fin = YES;
             }];
             
-            [[expectFutureValue(newPicture) shouldEventually] beNonNil];
-            [[expectFutureValue(theValue(newPicture.contentLength)) shouldEventually] beGreaterThan:theValue(1)];
-            [[expectFutureValue(newPicture.contentType) shouldEventually] equal:@"image/png"];
-            [[expectFutureValue(newPicture.signedUrl) shouldEventually] haveLengthOfAtLeast:1];
-            [[expectFutureValue(newPicture.caption) shouldEventually] equal:@"Hello, caption!"];
-
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
         it(@"Should allow retrieving pictures", ^{
             __block BPPicture *secondPicture;
             [[Buddy pictures] getPicture:newPicture.id callback:^(id newBuddyObject, NSError *error) {
                 secondPicture = newBuddyObject;
+                
+                [[error should] beNil];
+                
+                if (error) return;
+                
+                [[theValue(secondPicture.contentLength) should] equal:theValue(newPicture.contentLength)];
+                [[secondPicture.contentType should] equal:@"image/png"];
+                [[[secondPicture.signedUrl componentsSeparatedByString:@"?"][0] should] equal:[newPicture.signedUrl componentsSeparatedByString:@"?"][0]];
+                [[secondPicture.caption should] equal:newPicture.caption];
+                fin = YES;
             }];
             
-            [[expectFutureValue(secondPicture) shouldEventually] beNonNil];
-            [[expectFutureValue(theValue(secondPicture.contentLength)) shouldEventually] equal:theValue(newPicture.contentLength)];
-            [[expectFutureValue(secondPicture.contentType) shouldEventually] equal:newPicture.contentType];
-            [[expectFutureValue([secondPicture.signedUrl componentsSeparatedByString:@"?"][0]) shouldEventually] equal:[newPicture.signedUrl componentsSeparatedByString:@"?"][0]];
-            [[expectFutureValue(secondPicture.caption) shouldEventually] equal:newPicture.caption];
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
         it(@"Should allow modifying pictures", ^{

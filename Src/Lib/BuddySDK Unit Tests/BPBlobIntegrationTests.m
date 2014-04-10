@@ -20,6 +20,7 @@ SPEC_BEGIN(BuddyBlobSpec)
 describe(@"BPBlobIntegrationSpec", ^{
     context(@"When a user is logged in", ^{
         __block BPBlob *newBlob;
+        __block BPBlob *retrievedBlob;
         __block BOOL fin = NO;
 
         beforeAll(^{
@@ -53,10 +54,30 @@ describe(@"BPBlobIntegrationSpec", ^{
         });
         
         it(@"Should allow retrieving blobs", ^{
-            [[Buddy blobs] getBlob:newBlob.id callback:^(BPBlob *retrievedBlob, NSError *error) {
+            [[Buddy blobs] getBlob:newBlob.id callback:^(BPBlob *blob, NSError *error) {
+                retrievedBlob = blob;
                 [[retrievedBlob.id should] equal:newBlob.id];
                 [[error should] beNil];
                 fin = YES;
+            }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
+        });
+        
+        it(@"Should allow modifying blobs", ^{
+            
+            NSString *newFriendly = @"Not so friendly?";
+            retrievedBlob.friendlyName = newFriendly;
+            
+            [retrievedBlob save:^(NSError *error) {
+                [[error should] beNil];
+                [[Buddy blobs] getBlob:newBlob.id callback:^(BPBlob *blob, NSError *error) {
+                    retrievedBlob = blob;
+                    [[retrievedBlob.id should] equal:newBlob.id];
+                    [[retrievedBlob.friendlyName should] equal:newFriendly];
+                    [[error should] beNil];
+                    fin = YES;
+                }];
             }];
             
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
