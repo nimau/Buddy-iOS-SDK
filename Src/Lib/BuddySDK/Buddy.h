@@ -98,7 +98,6 @@
 
 + (BOOL) locationEnabled;
 
-#pragma message("Implement location")
 + (void) setLocationEnabled:(BOOL)enabled;
 
 + (void)setClientDelegate:(id<BPClientDelegate>)delegate;
