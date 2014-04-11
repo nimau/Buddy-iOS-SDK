@@ -175,25 +175,21 @@
     [[BPClient defaultClient] recordTimedMetric:key andValue:value timeout:seconds callback:callback];
 }
 
-+ (void)setMetadataWithKey:(NSString *)key andString:(NSString *)value permissions:(BPPermissions)permissions callback:(BuddyCompletionCallback)callback
++ (void)setMetadata:(DescribeMetadata)describeMetadata callback:(BuddyCompletionCallback)callback
 {
-    [[BPClient defaultClient] setMetadataWithKey:key andString:value permissions:permissions callback:callback];
+    [[BPClient defaultClient] setMetadata:describeMetadata callback:callback];
 }
 
-+ (void)setMetadataWithKey:(NSString *)key andInteger:(NSInteger)value permissions:(BPPermissions)permissions callback:(BuddyCompletionCallback)callback
++ (void)setMetadataValues:(DescribeMetadataCollection)describeMetadata callback:(BuddyCompletionCallback)callback
 {
-    [[BPClient defaultClient] setMetadataWithKey:key andInteger:value permissions:permissions callback:callback];
-}
-
-+ (void)setMetadataWithKeyValues:(NSDictionary *)keyValuePaths permissions:(BPPermissions)permissions callback:(BuddyCompletionCallback)callback
-{
-    [[BPClient defaultClient] setMetadataWithKeyValues:keyValuePaths permissions:permissions callback:callback];
+    [[BPClient defaultClient] setMetadataValues:describeMetadata callback:callback];
 }
 
 + (void)searchMetadata:(SearchMetadata)search callback:(BuddyObjectCallback)callback
 {
     [[BPClient defaultClient] searchMetadata:search callback:callback];
 }
+
 
 + (void)incrementMetadata:(NSString *)key delta:(NSInteger)delta callback:(BuddyCompletionCallback)callback
 {

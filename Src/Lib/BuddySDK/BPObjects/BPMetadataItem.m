@@ -12,7 +12,6 @@
 
 @property (nonatomic, strong) BPDateRange *created;
 @property (nonatomic, strong) BPDateRange *modified;
-@property (nonatomic, assign) BPPermissions permissions;
 
 @end
 
