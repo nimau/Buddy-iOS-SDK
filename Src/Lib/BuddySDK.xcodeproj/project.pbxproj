@@ -57,6 +57,7 @@
 		5B5FE15C18E3CD1C00518440 /* BPNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5FE15A18E3CD1C00518440 /* BPNotification.m */; };
 		5B6E84CE18F2138E005E7FEE /* NotificationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E84CD18F2138E005E7FEE /* NotificationTests.m */; };
 		5B91C50E18D0CE3900CB7119 /* small.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5B91C50D18D0CE3900CB7119 /* small.mp4 */; };
+		5B94D05B18FE0DFB00ED3292 /* PasswordResetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B94D05A18FE0DFB00ED3292 /* PasswordResetTests.m */; };
 		5B984DA018C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B984D9E18C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.h */; };
 		5B984DA118C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B984D9F18C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.m */; };
 		5B984DA418C6DB9700CE8E2C /* BPDateRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B984DA218C6DB9700CE8E2C /* BPDateRange.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -272,6 +273,7 @@
 		5B5FE15A18E3CD1C00518440 /* BPNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPNotification.m; sourceTree = "<group>"; };
 		5B6E84CD18F2138E005E7FEE /* NotificationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationTests.m; sourceTree = "<group>"; };
 		5B91C50D18D0CE3900CB7119 /* small.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = small.mp4; sourceTree = "<group>"; };
+		5B94D05A18FE0DFB00ED3292 /* PasswordResetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordResetTests.m; sourceTree = "<group>"; };
 		5B984D9E18C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JAGPropertyConverter+BPJSONConverter.h"; sourceTree = "<group>"; };
 		5B984D9F18C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JAGPropertyConverter+BPJSONConverter.m"; sourceTree = "<group>"; };
 		5B984DA218C6DB9700CE8E2C /* BPDateRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDateRange.h; sourceTree = "<group>"; };
@@ -782,6 +784,7 @@
 				C1E0D1E71831C2E8001A7A01 /* Supporting Files */,
 				C1427679189ECC1600D5DD85 /* MetricsTests.m */,
 				5B6E84CD18F2138E005E7FEE /* NotificationTests.m */,
+				5B94D05A18FE0DFB00ED3292 /* PasswordResetTests.m */,
 				C1AA90E318373BF80074B7E8 /* BPUserIntegrationTests.m */,
 				C1A58FFC1890A57A00C5A50F /* MetadataTests.m */,
 				C1B8076E18441BD30086B843 /* BuddyIntegrationTests.m */,
@@ -1162,6 +1165,7 @@
 				C1FEEB51187E493400B45505 /* BPLocationsIntegrationTests.m in Sources */,
 				C1BFD889187D14B500A1FADF /* BPBlobIntegrationTests.m in Sources */,
 				C142767A189ECC1600D5DD85 /* MetricsTests.m in Sources */,
+				5B94D05B18FE0DFB00ED3292 /* PasswordResetTests.m in Sources */,
 				C1FEEB53187E4B0300B45505 /* BPMessagesIntegrationTests.m in Sources */,
 				C1B8076F18441BD30086B843 /* BuddyIntegrationTests.m in Sources */,
 			);

@@ -73,33 +73,6 @@ describe(@"BPUser", ^{
             
             [[expectFutureValue([Buddy user].dateOfBirth) shouldEventually] equal:randomDate];
         });
-
-        /*
-         * NOTE: Leave these as pending_ for automated tests. Password reset testing needs manual intervention at the email level.
-         */
-        pending_(@"Should provide a method to request a password reset.", ^{
-            
-            [[Buddy user] requestPasswordResetWithSubject:@"Your new password"
-                                                     body:@"Here is your reset code: @ResetCode"
-                                                 callback:^(id newBuddyObject, NSError *error)
-            {
-                [[error should] beNil];
-                fin = YES;
-            }];
-            
-            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
-        });
-        
-        pending_(@"Should then a method to reset the password with a reset code.", ^{
-
-            [[Buddy user] resetPassword:@"mbcjt" newPassword:TEST_PASSWORD callback:^(NSError *error) {
-                [[error should] beNil];
-                fin = YES;
-            }];
-            
-            [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
-
-        });
         
         it(@"Should allow the user to set a profile picture", ^{
             
