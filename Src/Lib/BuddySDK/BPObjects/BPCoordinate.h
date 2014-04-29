@@ -27,11 +27,11 @@ static inline BPCoordinate *BPCoordinateMake(double lat, double lon)
 @property (nonatomic, assign) NSInteger range;
 @end
 
-static inline BPCoordinateRange *BPCoordinateRangeMake(double lat, double lon, NSInteger distanceInMeteres)
+static inline BPCoordinateRange *BPCoordinateRangeMake(double lat, double lon, NSInteger distanceInMeters)
 {
     BPCoordinateRange *coord = [[BPCoordinateRange alloc] init];
     coord.lat = lat;
     coord.lng = lon;
-    coord.range = distanceInMeteres;
+    coord.range = distanceInMeters;
     return coord;
 };
