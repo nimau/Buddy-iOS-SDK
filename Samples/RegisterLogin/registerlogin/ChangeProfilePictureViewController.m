@@ -74,7 +74,7 @@
     self.HUD.dimBackground = YES;
     self.HUD.delegate=self;
     
-    NSURL *picURL = Buddy.user.profilePictureUrl;
+    NSURL *picURL = [NSURL URLWithString:Buddy.user.profilePictureUrl];
     
     if (picURL==nil)
     {

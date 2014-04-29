@@ -172,7 +172,10 @@
     self.HUD.dimBackground = YES;
     self.HUD.delegate=self;
     
-    [Buddy.user requestPasswordReset:[self getPasswordResetRequestCallback]];
+    
+    [[Buddy user] requestPasswordResetWithSubject:@"Your new password"
+                                             body:@"Here is your reset code: @ResetCode"
+                                         callback:[self getPasswordResetRequestCallback]];
 }
 
 -(BuddyObjectCallback) getPasswordResetRequestCallback
