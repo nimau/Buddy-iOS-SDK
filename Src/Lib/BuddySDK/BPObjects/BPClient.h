@@ -56,6 +56,7 @@ typedef NS_ENUM(NSInteger, BPReachabilityLevel) {
 
 @protocol BPClientDelegate <NSObject>
 
+@optional
 - (void)userChangedTo:(BPUser *)newUser from:(BPUser *)oldUser;
 
 - (void)connectivityChanged:(BPReachabilityLevel)level;
