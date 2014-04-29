@@ -34,7 +34,7 @@
     
     mainVC.title = @"Gallery";
     
-    self.topController =mainVC;
+    self.topController = mainVC;
     
     self.navController=[[UINavigationController alloc] initWithRootViewController:self.topController];
     

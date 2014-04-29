@@ -15,10 +15,13 @@
 #import "Constants.h"
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
+#import "SocialLoginViewController.h"
 #import "MainViewController.h"
 
 @interface LoginViewController ()
+
 @property (nonatomic,strong) MBProgressHUD *HUD;
+
 -(BuddyObjectCallback) getLoginCallback;
 
 @end
@@ -48,13 +51,16 @@
     self.goRegisterBut.layer.borderWidth = DEFAULT_BUT_BORDER_WIDTH;
     self.goRegisterBut.layer.borderColor = [UIColor blackColor].CGColor;
     self.goRegisterBut.clipsToBounds = YES;
-
+    
+    self.socialLoginBut.layer.cornerRadius = DEFAULT_BUT_CORNER_RAD;
+    self.socialLoginBut.layer.borderWidth = DEFAULT_BUT_BORDER_WIDTH;
+    self.socialLoginBut.layer.borderColor = [UIColor blackColor].CGColor;
+    self.socialLoginBut.clipsToBounds = YES;
     
     if ([CommonAppDelegate isUsernameSet])
     {
         [self populateFields];
     }
-        
 }
 
 -(BuddyObjectCallback) getLoginCallback
@@ -126,6 +132,18 @@
         password:self.passwordTextField.text
         callback:[self getLoginCallback]];
     
+}
+
+- (IBAction)doSocialLogin:(id)sender {
+    NSLog(@"Social Login Called");
+    
+    
+    SocialLoginViewController *socialLoginView = [[SocialLoginViewController alloc] initWithNibName:
+                                            @"SocialLoginViewController" bundle:nil];
+    
+    [[[CommonAppDelegate navController] topViewController] dismissViewControllerAnimated:FALSE completion:nil];
+    
+    [[[CommonAppDelegate navController] topViewController] presentViewController:socialLoginView animated:FALSE completion:nil];
 }
 
 -(IBAction) goRegister:(id)sender

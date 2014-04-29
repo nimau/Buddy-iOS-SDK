@@ -13,11 +13,22 @@
 #import "Constants.h"
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "ChangeProfilePictureViewController.h"
+#import "ResetPasswordViewController.h"
+#import "ChangeNameBirthdayVC.h"
+#import "SearchUsersViewController.h"
+#import "IdentitiesViewController.h"
 
 #import <BuddySDK/Buddy.h>
 
 @interface MainViewController ()
+
 @property (nonatomic,strong) MBProgressHUD *HUD;
+
+- (BuddyCompletionCallback) getRefreshCallback;
+- (BuddyCompletionCallback) getClearUserCallback;
+- (BuddyCompletionCallback) getDeleteCallback;
+
 @end
 
 @implementation MainViewController
@@ -25,7 +36,9 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -51,9 +64,39 @@
     self.clearUserBut.layer.borderWidth = DEFAULT_BUT_BORDER_WIDTH;
     self.clearUserBut.layer.borderColor = [UIColor blackColor].CGColor;
     self.clearUserBut.clipsToBounds = YES;
+    
+    self.changeNameBirthdayBut.layer.cornerRadius = DEFAULT_BUT_CORNER_RAD;
+    self.changeNameBirthdayBut.layer.borderWidth = DEFAULT_BUT_BORDER_WIDTH;
+    self.changeNameBirthdayBut.layer.borderColor = [UIColor blackColor].CGColor;
+    self.changeNameBirthdayBut.clipsToBounds = YES;
+    
+    self.changeProfilePictureBut.layer.cornerRadius = DEFAULT_BUT_CORNER_RAD;
+    self.changeProfilePictureBut.layer.borderWidth = DEFAULT_BUT_BORDER_WIDTH;
+    self.changeProfilePictureBut.layer.borderColor = [UIColor blackColor].CGColor;
+    self.changeProfilePictureBut.clipsToBounds = YES;
+    
+    self.resetPasswordBut.layer.cornerRadius = DEFAULT_BUT_CORNER_RAD;
+    self.resetPasswordBut.layer.borderWidth = DEFAULT_BUT_BORDER_WIDTH;
+    self.resetPasswordBut.layer.borderColor = [UIColor blackColor].CGColor;
+    self.resetPasswordBut.clipsToBounds = YES;
+    
+    self.searchUserBut.layer.cornerRadius = DEFAULT_BUT_CORNER_RAD;
+    self.searchUserBut.layer.borderWidth = DEFAULT_BUT_BORDER_WIDTH;
+    self.searchUserBut.layer.borderColor = [UIColor blackColor].CGColor;
+    self.searchUserBut.clipsToBounds = YES;
+    
+    self.deleteUserBut.layer.cornerRadius = DEFAULT_BUT_CORNER_RAD;
+    self.deleteUserBut.layer.borderWidth = DEFAULT_BUT_BORDER_WIDTH;
+    self.deleteUserBut.layer.borderColor = [UIColor blackColor].CGColor;
+    self.deleteUserBut.clipsToBounds = YES;
+    
+    self.identitiesBut.layer.cornerRadius = DEFAULT_BUT_CORNER_RAD;
+    self.identitiesBut.layer.borderWidth = DEFAULT_BUT_BORDER_WIDTH;
+    self.identitiesBut.layer.borderColor = [UIColor blackColor].CGColor;
+    self.identitiesBut.clipsToBounds = YES;
 }
 
--(void) updateFields
+- (void) updateFields
 {
     [[CommonAppDelegate navController] setNavigationBarHidden:YES];
     self.mainLabel.text = [NSString stringWithFormat:@"Hi %@ %@",
@@ -61,7 +104,7 @@
     
 }
 
--(BuddyCompletionCallback) getRefreshCallback
+- (BuddyCompletionCallback) getRefreshCallback
 {
     MainViewController * __weak weakSelf = self;
     
@@ -72,7 +115,7 @@
     };
 }
 
--(BuddyCompletionCallback) getClearUserCallback
+- (BuddyCompletionCallback) getClearUserCallback
 {
     MainViewController * __weak weakSelf = self;
     
@@ -83,17 +126,17 @@
     };
 }
 
--(void)doLogout
+- (void)doLogout
 {
     [Buddy logout:^(NSError *error)
      {
          NSLog(@"Logout Callback Called");
      }];
-    
+ 
     [CommonAppDelegate authorizationNeedsUserLogin];
 }
 
--(IBAction)doRefresh:(id)sender
+- (IBAction)doRefresh:(id)sender
 {
     self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.HUD.labelText= @"Refresh";
@@ -104,7 +147,7 @@
     
 }
 
--(IBAction)doClearUser:(id)sender
+- (IBAction)doClearUser:(id)sender
 {
     self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.HUD.labelText= @"Clear User";
@@ -112,7 +155,85 @@
     self.HUD.delegate=self;
 
     [Buddy logout:[self getClearUserCallback]];
+    [CommonAppDelegate authorizationNeedsUserLogin];
 }
+
+- (IBAction)doChangeProfilePicture:(id)sender
+{
+    ChangeProfilePictureViewController *subVC = [[ChangeProfilePictureViewController alloc]
+                                            initWithNibName:@"ChangeProfilePictureViewController" bundle:nil];
+    
+    [ [CommonAppDelegate navController] pushViewController:subVC animated:YES];
+}
+
+- (IBAction)doResetPassword:(id)sender
+{
+    ResetPasswordViewController *subVC = [[ResetPasswordViewController alloc]
+                                                      initWithNibName:@"ResetPasswordViewController" bundle:nil];
+    
+    [ [CommonAppDelegate navController] pushViewController:subVC animated:YES];
+}
+
+- (IBAction)doChangeNameBirthday:(id)sender
+{
+    ChangeNameBirthdayVC *subVC = [[ChangeNameBirthdayVC alloc]
+                                                 initWithNibName:@"ChangeNameBirthdayVC" bundle:nil];
+    
+    [ [CommonAppDelegate navController] pushViewController:subVC animated:YES];
+}
+
+- (IBAction)doSearchUsers:(id)sender
+{
+    SearchUsersViewController *subVC = [[SearchUsersViewController alloc]
+                                   initWithNibName:@"SearchUsersViewController" bundle:nil];
+    
+    [ [CommonAppDelegate navController] pushViewController:subVC animated:YES];
+}
+
+- (IBAction)doDeleteUser:(id)sender
+{
+    self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.HUD.labelText= @"Deleting...";
+    self.HUD.dimBackground = YES;
+    self.HUD.delegate=self;
+    
+    [[Buddy user] deleteMe:[self getDeleteCallback]];
+}
+
+- (IBAction)doIdentities:(id)sender {
+    IdentitiesViewController *subVC = [[IdentitiesViewController alloc]
+                                        initWithNibName:@"IdentitiesViewController" bundle:nil];
+    
+    [ [CommonAppDelegate navController] pushViewController:subVC animated:YES];
+}
+
+- (BuddyCompletionCallback) getDeleteCallback
+{
+    MainViewController * __weak weakSelf = self;
+    
+    return ^(NSError *error)
+    {
+        [weakSelf.HUD hide:TRUE afterDelay:0.1];
+        weakSelf.HUD=nil;
+        
+        if(error!=nil)
+        {
+            NSLog(@"Deleting user - error Called");
+            UIAlertView *alert =
+            [[UIAlertView alloc] initWithTitle: @"Deleting user"
+                                       message: [error localizedDescription]
+                                      delegate: self
+                             cancelButtonTitle: @"OK"
+                             otherButtonTitles: nil];
+            [alert show];
+            return;
+        }
+        
+        NSLog(@"Deleting user - success Called");
+        [CommonAppDelegate authorizationNeedsUserLogin];
+    };
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];

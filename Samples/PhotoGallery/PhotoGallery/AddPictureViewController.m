@@ -64,7 +64,6 @@
     self.addBut.layer.borderColor = [UIColor blackColor].CGColor;
     self.addBut.clipsToBounds = YES;
 
-
 }
 
 -(BuddyObjectCallback) getAddPhotoCallback

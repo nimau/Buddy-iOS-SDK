@@ -1,0 +1,27 @@
+//
+//  UserDetailViewController.h
+//  registerlogin
+//
+//  Created by devmania on 3/28/14.
+//  Copyright (c) 2014 Buddy Platform. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import <BuddySDK/BPUser.h>
+#import "MBProgressHUD.h"
+
+@interface UserDetailViewController : UIViewController<MBProgressHUDDelegate>
+
+@property (retain) BPUser *user;
+
+@property (weak, nonatomic) IBOutlet UITextField *userNameField;
+@property (weak, nonatomic) IBOutlet UITextField *firstNameField;
+@property (weak, nonatomic) IBOutlet UITextField *lastNameField;
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UITextField *birthdayField;
+
+@property (weak, nonatomic) IBOutlet UIButton *backBut;
+
+- (IBAction)doBack:(id)sender;
+
+@end
