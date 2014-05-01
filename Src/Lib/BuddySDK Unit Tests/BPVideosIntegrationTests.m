@@ -13,7 +13,7 @@
 #ifdef kKW_DEFAULT_PROBE_TIMEOUT
 #undef kKW_DEFAULT_PROBE_TIMEOUT
 #endif
-#define kKW_DEFAULT_PROBE_TIMEOUT 20.0
+#define kKW_DEFAULT_PROBE_TIMEOUT 60.0
 
 SPEC_BEGIN(BuddyVideosSpec)
 
@@ -57,7 +57,8 @@ describe(@"BPVideosIntegrationSpec", ^{
                     [[tempVideo.signedUrl should] haveLengthOfAtLeast:1];
                 }
                 if (!tempVideo.thumbnailID) {
-                    fail(@"thumbnailID nil");
+                    // This is now asynchronous, and is not guarenteed to come back.
+                    //fail(@"thumbnailID nil");
                 } else {
                     [[tempVideo.thumbnailID shouldNot] beNil];
                 }
@@ -74,6 +75,12 @@ describe(@"BPVideosIntegrationSpec", ^{
             __block BOOL fin = NO;
 
             [[Buddy videos] getVideo:tempVideo.id callback:^(id newBuddyObject, NSError *error) {
+                [[error should] beNil];
+
+                if (error) {
+                    fin = YES;
+                    return;
+                }
                 retrievedVideo = newBuddyObject;
                 
                 [[retrievedVideo shouldNot] beNil];

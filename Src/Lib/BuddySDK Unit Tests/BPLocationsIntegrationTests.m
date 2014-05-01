@@ -66,9 +66,9 @@ describe(@"BPLocationIntegrationSpec", ^{
                 locationProperties.limit = 9;
             } callback:^(NSArray *buddyObjects, NSError *error) {
                 [[error should] beNil];
+                locations = buddyObjects;
                 [[locations should] beNonNil];
                 [[theValue([locations count]) should] beGreaterThan:theValue(0)];
-                locations = buddyObjects;
             }];
             
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
