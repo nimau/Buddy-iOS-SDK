@@ -9,6 +9,7 @@
 #import "BPUserCollection.h"
 #import "BuddyCollection+Private.h"
 #import "BPUser.h"
+#import "NSArray+BPSugar.h"
 
 @implementation BPUserCollection
 
@@ -36,7 +37,7 @@
                           [[self type] requestPath]];
     
     [self.client GET:resource parameters:parameters callback:^(id json, NSError *error) {
-        NSArray *results = [json[@"pageResults"] map:^id(id object) {
+        NSArray *results = [json[@"pageResults"] bp_map:^id(id object) {
             return [[self.type alloc] initBuddyWithResponse:object andClient:self.client];
         }];
         callback ? callback(results, error) : nil;

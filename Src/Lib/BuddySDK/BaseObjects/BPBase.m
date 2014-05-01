@@ -99,7 +99,7 @@
     NSString *resource = [self metadataPath:nil];
     
     [self.client GET:resource parameters:searchParameters callback:^(id json, NSError *error) {
-        NSArray *results = [json[@"pageResults"] map:^id(id object) {
+        NSArray *results = [json[@"pageResults"] bp_map:^id(id object) {
             id metadata = [[BPMetadataItem alloc] init];
             [[JAGPropertyConverter converter] setPropertiesOf:metadata fromDictionary:object];
             return metadata;

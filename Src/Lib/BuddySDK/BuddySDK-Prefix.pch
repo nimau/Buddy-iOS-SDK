@@ -8,12 +8,12 @@
    #import <SystemConfiguration/SystemConfiguration.h>
    #import <UIKit/UIKit.h>
    #import "BPPermissions.h"
-   #import "ObjectiveSugar.h"
    #import "Util.h"
    #import "BuddyObject.h"
    #import "BuddyCollection.h"
    #import "NSDictionary+Merge.h"
    #import "NSString+JSON.h"
+   #import "NSArray+BPSugar.h"
    #import "NSError+BuddyError.h"
    #import "NSObject+ToJSON.h"
    #import "JAGPropertyConverter+BPJSONConverter.h"

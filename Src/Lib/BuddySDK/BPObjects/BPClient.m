@@ -128,7 +128,7 @@
     
     _crashManager = [[BPCrashManager alloc] initWithRestProvider:[self restService]];
     
-    if(!([options hasKey:@"disablePush"] && ((BOOL)[options objectForKey:@"disablePush"]) == NO)){
+    if(![options[@"disablePush"] boolValue]){
         [self registerForPushes];
     }
 }
@@ -334,7 +334,7 @@
         BPUser *user = [[BPUser alloc] initBuddyWithResponse:json andClient:self];
         
         // Grab the potentially different base url.
-        if ([json hasKey:@"accessToken"] && ![json[@"accessToken"] isEqualToString:self.appSettings.token]) {
+        if (json[@"accessToken"] && ![json[@"accessToken"] isEqualToString:self.appSettings.token]) {
             self.appSettings.userToken = json[@"accessToken"];
         }
         
@@ -479,7 +479,7 @@ NSMutableArray *queuedRequests;
                                                  };
                 [self.service POST:@"devices" parameters:getTokenParams callback:[self handleResponse:^(id json, NSError *error) {
                     // Grab the potentially different base url.
-                    if ([json hasKey:@"accessToken"] && ![json[@"accessToken"] isEqualToString:self.appSettings.token]) {
+                    if (json[@"accessToken"] && ![json[@"accessToken"] isEqualToString:self.appSettings.token]) {
                         self.appSettings.deviceToken = json[@"accessToken"];
                         
                         // We have a device token. Start monitoring for crashes.
@@ -516,12 +516,12 @@ NSMutableArray *queuedRequests;
             if ([result isKindOfClass:[NSDictionary class]]) {
                 
                 // Grab the access token
-                if ([result hasKey:@"serviceRoot"]) {
+                if (result[@"serviceRoot"]) {
                     self.appSettings.serviceUrl = result[@"serviceRoot"];
                 }
                 
 #pragma message("Temporary hack. This is to grab the access token out of a create user call. Shouldn't be in this method.")
-                if ([result hasKey:@"accessToken"] && self.appSettings.deviceToken) {
+                if (result[@"accessToken"] && self.appSettings.deviceToken) {
                     self.appSettings.userToken = result[@"accessToken"];
                 }
                 
