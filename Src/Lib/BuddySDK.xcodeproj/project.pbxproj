@@ -27,6 +27,8 @@
 		3FAAE60BA41844428107236D /* libPods-BuddySDK Unit Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B6B8A0BC8C4474A7F6BC3E /* libPods-BuddySDK Unit Tests.a */; };
 		5B0302F918DFB81C00EA6B08 /* BPPermissions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B0302F818DFB81C00EA6B08 /* BPPermissions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B0302FB18DFDB2000EA6B08 /* BPRestProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B0302FA18DFDB2000EA6B08 /* BPRestProvider.h */; };
+		5B0B23D019131DE3005CB913 /* BPIdentityValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B0B23CE19131DE3005CB913 /* BPIdentityValue.h */; };
+		5B0B23D119131DE3005CB913 /* BPIdentityValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B23CF19131DE3005CB913 /* BPIdentityValue.m */; };
 		5B141E3B18C6B940002BABBC /* BPMetadataItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B141E3918C6B940002BABBC /* BPMetadataItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B141E3C18C6B940002BABBC /* BPMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B141E3A18C6B940002BABBC /* BPMetadataItem.m */; };
 		5B19875B18CB67D800FBB502 /* NSDate+BPDateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B19875918CB67D800FBB502 /* NSDate+BPDateHelper.h */; };
@@ -233,6 +235,8 @@
 		2F7E079118A2EC08003FC524 /* BuddyAppDelegateDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuddyAppDelegateDecorator.m; sourceTree = "<group>"; };
 		5B0302F818DFB81C00EA6B08 /* BPPermissions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPermissions.h; sourceTree = "<group>"; };
 		5B0302FA18DFDB2000EA6B08 /* BPRestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPRestProvider.h; sourceTree = "<group>"; };
+		5B0B23CE19131DE3005CB913 /* BPIdentityValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPIdentityValue.h; sourceTree = "<group>"; };
+		5B0B23CF19131DE3005CB913 /* BPIdentityValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPIdentityValue.m; sourceTree = "<group>"; };
 		5B141E3918C6B940002BABBC /* BPMetadataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMetadataItem.h; sourceTree = "<group>"; };
 		5B141E3A18C6B940002BABBC /* BPMetadataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMetadataItem.m; sourceTree = "<group>"; };
 		5B19875918CB67D800FBB502 /* NSDate+BPDateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BPDateHelper.h"; sourceTree = "<group>"; };
@@ -679,6 +683,8 @@
 				5B141E3A18C6B940002BABBC /* BPMetadataItem.m */,
 				5B984DAE18C791C900CE8E2C /* BPVideo.h */,
 				5B984DAF18C791C900CE8E2C /* BPVideo.m */,
+				5B0B23CE19131DE3005CB913 /* BPIdentityValue.h */,
+				5B0B23CF19131DE3005CB913 /* BPIdentityValue.m */,
 			);
 			name = BPObjects;
 			path = ../../Lib/BuddySDK/BPObjects;
@@ -803,6 +809,7 @@
 				5B0302F918DFB81C00EA6B08 /* BPPermissions.h in Headers */,
 				5B32F37018E071C600C07019 /* BPAFNetworking.h in Headers */,
 				C1B959F91837061F000C8417 /* BuddyObject.h in Headers */,
+				5B0B23D019131DE3005CB913 /* BPIdentityValue.h in Headers */,
 				5B32F37118E071C600C07019 /* BPAFNetworkReachabilityManager.h in Headers */,
 				5B5FE15B18E3CD1C00518440 /* BPNotification.h in Headers */,
 				C154CEFA187FAE8600EACE4B /* NSDate+JSON.h in Headers */,
@@ -1036,6 +1043,7 @@
 				5BCF3F1818D641440065842D /* BPCrashManager.m in Sources */,
 				C10E2BA1186950D8007A0136 /* BPCoordinate.m in Sources */,
 				5BF07F8418DD1BD000CC50E9 /* BPBlobCollection.m in Sources */,
+				5B0B23D119131DE3005CB913 /* BPIdentityValue.m in Sources */,
 				C10E2B98186950D8007A0136 /* BPAuthenticatedUser.m in Sources */,
 				5B5FE15C18E3CD1C00518440 /* BPNotification.m in Sources */,
 				C10F1B7C1870A6F500D5364C /* NSError+BuddyError.m in Sources */,

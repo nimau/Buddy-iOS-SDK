@@ -23,6 +23,19 @@ typedef NS_ENUM(NSInteger, BPUserGender)
 	BPUserGender_Female = 2,
 } ;
 
+/**
+ Enum for specifying gender.
+ */
+typedef NS_ENUM(NSInteger, BPUserIdentityType)
+{
+    /** Unknown */
+    BPUserIdentityType_Facebook = 0,
+    /** Male */
+	BPUserIdentityType_Twitter = 1,
+    /** Female */
+	BPUserIdentityType_asdf = 2,
+} ;
+
 @protocol BPUserProperties <BuddyObjectProperties>
 
 @property (nonatomic, copy) NSString *firstName;

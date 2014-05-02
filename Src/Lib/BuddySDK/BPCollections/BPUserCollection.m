@@ -27,20 +27,19 @@
     [self getAll:callback];
 }
 
--(void)searchIdentities:(NSString *)identityProvider callback:(BuddyCollectionCallback)callback
+-(void)getUserIdForIdentityProvider:(NSString *)identityProvider identityProviderId:(NSString *)identityProviderId callback:(BuddyIdCallback)callback
 {
     NSDictionary *parameters = @{@"identityProviderName": identityProvider};
     
 #pragma message("TODO - Breaks design. Most collections query on the request path of the underlying type. Re-think.")
     
-    NSString *resource = [self.requestPrefix stringByAppendingFormat:@"%@/identities",
-                          [[self type] requestPath]];
+    NSString *resource = [self.requestPrefix stringByAppendingFormat:@"%@/identities/%@/%@",
+                          [[self type] requestPath],
+                          identityProvider,
+                          identityProviderId];
     
     [self.client GET:resource parameters:parameters callback:^(id json, NSError *error) {
-        NSArray *results = [json[@"pageResults"] bp_map:^id(id object) {
-            return [[self.type alloc] initBuddyWithResponse:object andClient:self.client];
-        }];
-        callback ? callback(results, error) : nil;
+        callback ? callback(json, error) : nil;
     }];
 }
 

@@ -10,6 +10,7 @@
 #import "BuddyObject+Private.h"
 #import "BPClient.h"
 #import "BPEnumMapping.h"
+#import "BPIdentityValue.h"
 
 @interface BPUser()
 @property (nonatomic, copy) NSString *profilePictureID;
@@ -101,9 +102,8 @@ static NSString *users = @"users";
 
 - (void)addIdentity:(NSString *)identityProvider value:(NSString *)value callback:(BuddyCompletionCallback)callback
 {
-    NSString *resource = [NSString stringWithFormat:@"users/%@/identities", self.id];
+    NSString *resource = [NSString stringWithFormat:@"users/me/identities/%@", identityProvider];
     NSDictionary *parameters = @{
-                                 @"identityProviderName": identityProvider,
                                  @"identityID": value
                                  };
     
@@ -114,7 +114,7 @@ static NSString *users = @"users";
 
 - (void)removeIdentity:(NSString *)identityProvider value:(NSString *)value callback:(BuddyCompletionCallback)callback
 {
-    NSString *resource = [NSString stringWithFormat:@"users/%@/identities/%@", self.id, identityProvider];
+    NSString *resource = [NSString stringWithFormat:@"users/me/identities/%@", identityProvider];
 
     NSDictionary *parameters = @{
                                  @"identityID": value
@@ -127,10 +127,13 @@ static NSString *users = @"users";
 
 - (void)getIdentities:(NSString *)identityProvider callback:(BuddyCollectionCallback)callback
 {
-    NSString *resource = [NSString stringWithFormat:@"users/%@/identities/%@", self.id, identityProvider];
+    NSString *resource = [NSString stringWithFormat:@"users/me/identities/%@", identityProvider];
     
-    [self.client GET:resource parameters:nil callback:^(id identityValues, NSError *error) {
-        callback ? callback(identityValues, error) : nil;
+    [self.client GET:resource parameters:nil callback:^(NSArray *identityValues, NSError *error) {
+        NSArray *bpIdentityValues = [identityValues bp_map:^id(id object) {
+            return [[BPIdentityValue alloc] initBuddyWithResponse:object];
+        }];
+        callback ? callback(bpIdentityValues, error) : nil;
     }];
 
 }

@@ -8,6 +8,7 @@
 
 #import "Buddy.h"
 #import "BuddyIntegrationHelper.h"
+#import "BPIdentityValue.h"
 #import <Kiwi/Kiwi.h>
 
 #ifdef kKW_DEFAULT_PROBE_TIMEOUT
@@ -94,13 +95,13 @@ describe(@"BPUser", ^{
             [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
         });
         
+#pragma message ("Deleting a profile picture has breaking consequences: 5/1")
         pending_(@"Should allow the user to delete the profile picture", ^{
             [[Buddy user] deleteUserProfilePicture:^(NSError *error) {
                 [[error should] beNil];
 
-#pragma message ("Comment these asserts out. Server is a bit unstable On 3/30")
-//                [[theValue([[[Buddy user] profilePictureID] length]) should] equal:theValue(0)];
-//                [[theValue([[[Buddy user] profilePictureUrl] length]) should] equal:theValue(0)];
+                [[theValue([[[Buddy user] profilePictureID] length]) should] equal:theValue(0)];
+                [[theValue([[[Buddy user] profilePictureUrl] length]) should] equal:theValue(0)];
                 
                 fin = YES;
             }];
@@ -116,23 +117,24 @@ describe(@"BPUser", ^{
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
-        pending_(@"Should allow searching identity values", ^{
-            __block NSArray *idenities;
-#pragma message("Braking test. Why does this not return values when the test below does?")
-            [[Buddy users] searchIdentities:@"Facebook" callback:^(NSArray *buddyObjects, NSError *error) {
-               idenities = buddyObjects;
-                [[buddyObjects should] haveLengthOfAtLeast:1];
-            }];
-            
-            [[expectFutureValue(idenities) shouldEventually] beNonNil];
-        });
-        
+        __block NSString *identityId;
         it(@"Should allow retrieving identity values.", ^{
             [[Buddy user] getIdentities:@"Facebook" callback:^(NSArray *buddyObjects, NSError *error) {
                 [[error should] beNil];
                 [[buddyObjects should] haveLengthOfAtLeast:1];
+                identityId = [[buddyObjects firstObject] identityProviderID];
                 fin = YES;
             }];
+            [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
+        });
+        
+        it(@"Should allow retrieving a users identity values", ^{
+            [[Buddy users] getUserIdForIdentityProvider:@"Facebook" identityProviderId:identityId callback:^(NSString *buddyId, NSError *error) {
+                [[error should] beNil];
+                [[buddyId shouldNot] beNil];
+                fin = YES;
+            }];
+            
             [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
         });
         

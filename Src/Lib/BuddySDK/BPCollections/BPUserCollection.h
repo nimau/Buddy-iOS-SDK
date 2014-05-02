@@ -12,6 +12,6 @@
 
 -(void)getUsers:(BuddyCollectionCallback)callback;
 
--(void)searchIdentities:(NSString *)identityProvider callback:(BuddyCollectionCallback)callback;
+-(void)getUserIdForIdentityProvider:(NSString *)identityProvider identityProviderId:(NSString *)identityProviderId callback:(BuddyIdCallback)callback;
 
 @end
