@@ -35,9 +35,7 @@
 - (void)getUserIdForIdentityProvider:(NSString *)identityProvider identityProviderId:(NSString *)identityProviderId callback:(BuddyIdCallback)callback
 {
     NSDictionary *parameters = @{@"identityProviderName": identityProvider};
-    
-#pragma message("TODO - Breaks design. Most collections query on the request path of the underlying type. Re-think.")
-    
+        
     NSString *resource = [self.requestPrefix stringByAppendingFormat:@"%@/identities/%@/%@",
                           [[self type] requestPath],
                           identityProvider,
