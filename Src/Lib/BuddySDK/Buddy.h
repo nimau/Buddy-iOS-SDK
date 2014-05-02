@@ -33,6 +33,8 @@
 #import "BPMetricCompletionHandler.h"
 #import "BPMetadataItem.h"
 #import "BPNotification.h"
+#import "BPIdentityValue.h"
+#import "BPSize.h"
 
 /**
  * TODO

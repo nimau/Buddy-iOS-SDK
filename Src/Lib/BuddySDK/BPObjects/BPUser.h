@@ -10,6 +10,8 @@
 #import "BuddyObject.h"
 #import "BuddyCollection.h"
 
+@class BPSize;
+
 /**
  Enum for specifying gender.
  */
@@ -63,6 +65,7 @@ typedef void(^DescribeUser)(id<BPUserProperties> userProperties);
 - (void)removeIdentity:(NSString *)identityProvider value:(NSString *)value callback:(BuddyCompletionCallback)callback;
 - (void)getIdentities:(NSString *)identityProvider callback:(BuddyCollectionCallback)callback;
 - (void)setUserProfilePicture:(UIImage *)picture caption:(NSString *)comment callback:(BuddyCompletionCallback)callback;
+- (void)getUserProfilePictureWithSize:(BPSize *)size callback:(BuddyObjectCallback)callback;
 - (void)deleteUserProfilePicture:(BuddyCompletionCallback)callback;
 
 @end

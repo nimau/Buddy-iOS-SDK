@@ -13,6 +13,7 @@
 @implementation BPPicture
 
 @synthesize caption = _caption;
+@synthesize size = _size;
 
 - (void)registerProperties
 {

@@ -95,6 +95,20 @@ describe(@"BPUser", ^{
             [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
         });
         
+        it(@"Should allow the user to retrieve a profile picture", ^{
+            
+            [[Buddy user] getUserProfilePictureWithSize:BPSizeMake(100,100) callback:^(BPPicture *picture, NSError *error) {
+                [[error should] beNil];
+
+                
+                [[theValue(picture.size.w) should] equal:theValue(100)];
+                
+                fin = YES;
+            }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
+        });
+        
 #pragma message ("Deleting a profile picture has breaking consequences: 5/1")
         pending_(@"Should allow the user to delete the profile picture", ^{
             [[Buddy user] deleteUserProfilePicture:^(NSError *error) {

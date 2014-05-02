@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "BPBlob.h"
+#import "BPSize.h"
 
 @protocol BPPictureProperties <BuddyObjectProperties>
 
 @property (nonatomic, copy) NSString *caption;
+@property (nonatomic, strong) BPSize *size;
 
 @end
 
@@ -22,10 +24,8 @@ typedef void(^DescribePicture)(id<BPPictureProperties>pictureProperties);
 
 @interface BPPicture : BPBlob<BPPictureProperties>
 
-//@property (nonatomic, assign) CGSize size;
-
 + (void)createWithImage:(UIImage *)image
-          describePicture:(DescribePicture)describePicture
+        describePicture:(DescribePicture)describePicture
                  client:(id<BPRestProvider>)client
                callback:(BuddyObjectCallback)callback;
 

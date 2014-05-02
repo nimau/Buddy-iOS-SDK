@@ -11,6 +11,8 @@
 #import "BPClient.h"
 #import "BPEnumMapping.h"
 #import "BPIdentityValue.h"
+#import "BPPicture.h"
+#import "BPSize.h"
 
 @interface BPUser()
 @property (nonatomic, copy) NSString *profilePictureID;
@@ -159,9 +161,30 @@ static NSString *users = @"users";
     }];
 }
 
+- (void)getUserProfilePictureWithSize:(BPSize *)size callback:(BuddyObjectCallback)callback
+{
+    NSString *resource = [NSString stringWithFormat:@"users/me/profilepicture"];
+    
+    NSDictionary *parameters = @{@"size": BOXNIL([size stringValue])};
+    
+    [self.client GET:resource parameters:parameters callback:^(id json, NSError *error) {
+        
+        if (error) {
+            callback ? callback(nil, error) : nil;
+            return;
+        }
+        
+        BPPicture *newObject = [[BPPicture alloc] initBuddyWithResponse:json andClient:self.client];
+        
+        newObject.id = json[@"id"];
+        
+        callback ? callback(newObject, error) : nil;
+    }];
+}
+
 - (void)deleteUserProfilePicture:(BuddyCompletionCallback)callback
 {
-    NSString *resource = [NSString stringWithFormat:@"users/%@/profilepicture", self.id];
+    NSString *resource = [NSString stringWithFormat:@"users/me/profilepicture"];
     
     [self.client DELETE:resource parameters:nil callback:^(id json, NSError *error) {
         [self refresh:^(NSError *error) {

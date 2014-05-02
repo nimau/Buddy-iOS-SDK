@@ -29,6 +29,8 @@
 		5B0302FB18DFDB2000EA6B08 /* BPRestProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B0302FA18DFDB2000EA6B08 /* BPRestProvider.h */; };
 		5B0B23D019131DE3005CB913 /* BPIdentityValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B0B23CE19131DE3005CB913 /* BPIdentityValue.h */; };
 		5B0B23D119131DE3005CB913 /* BPIdentityValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B23CF19131DE3005CB913 /* BPIdentityValue.m */; };
+		5B0B23D419133E4E005CB913 /* BPSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B0B23D219133E4E005CB913 /* BPSize.h */; };
+		5B0B23D519133E4E005CB913 /* BPSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B23D319133E4E005CB913 /* BPSize.m */; };
 		5B141E3B18C6B940002BABBC /* BPMetadataItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B141E3918C6B940002BABBC /* BPMetadataItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B141E3C18C6B940002BABBC /* BPMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B141E3A18C6B940002BABBC /* BPMetadataItem.m */; };
 		5B19875B18CB67D800FBB502 /* NSDate+BPDateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B19875918CB67D800FBB502 /* NSDate+BPDateHelper.h */; };
@@ -237,6 +239,8 @@
 		5B0302FA18DFDB2000EA6B08 /* BPRestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPRestProvider.h; sourceTree = "<group>"; };
 		5B0B23CE19131DE3005CB913 /* BPIdentityValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPIdentityValue.h; sourceTree = "<group>"; };
 		5B0B23CF19131DE3005CB913 /* BPIdentityValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPIdentityValue.m; sourceTree = "<group>"; };
+		5B0B23D219133E4E005CB913 /* BPSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSize.h; sourceTree = "<group>"; };
+		5B0B23D319133E4E005CB913 /* BPSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSize.m; sourceTree = "<group>"; };
 		5B141E3918C6B940002BABBC /* BPMetadataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMetadataItem.h; sourceTree = "<group>"; };
 		5B141E3A18C6B940002BABBC /* BPMetadataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMetadataItem.m; sourceTree = "<group>"; };
 		5B19875918CB67D800FBB502 /* NSDate+BPDateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BPDateHelper.h"; sourceTree = "<group>"; };
@@ -500,6 +504,8 @@
 				C10E2BB5186951FA007A0136 /* Buddy.m */,
 				C10E2B88186950D8007A0136 /* BPClient.h */,
 				C10E2B89186950D8007A0136 /* BPClient.m */,
+				5B0B23D219133E4E005CB913 /* BPSize.h */,
+				5B0B23D319133E4E005CB913 /* BPSize.m */,
 				C10E2B8A186950D8007A0136 /* BPCoordinate.h */,
 				C10E2B8B186950D8007A0136 /* BPCoordinate.m */,
 				5B984DA218C6DB9700CE8E2C /* BPDateRange.h */,
@@ -847,6 +853,7 @@
 				5BF07F8318DD1BD000CC50E9 /* BPBlobCollection.h in Headers */,
 				C1D7094818832983003D112C /* BPDescriptors.h in Headers */,
 				C1E0D1D11831BAD3001A7A01 /* JAGProperty.h in Headers */,
+				5B0B23D419133E4E005CB913 /* BPSize.h in Headers */,
 				C1A1E29918A35B1A003CC33A /* BPSisterObject.h in Headers */,
 				C1E0D1D41831BAD3001A7A01 /* JAGPropertyConverter-Prefix.pch in Headers */,
 				5BF07F8D18DD1BD000CC50E9 /* BPUserListCollection.h in Headers */,
@@ -1084,6 +1091,7 @@
 				C1B0F54C18937B08000403E0 /* BPAlbumItemContainer.m in Sources */,
 				C154CEEE187F750C00EACE4B /* BPLocation.m in Sources */,
 				5B984DA518C6DB9700CE8E2C /* BPDateRange.m in Sources */,
+				5B0B23D519133E4E005CB913 /* BPSize.m in Sources */,
 				C10E2BB2186951C3007A0136 /* BuddyDevice.m in Sources */,
 				5BF07F8A18DD1BD000CC50E9 /* BPPictureCollection.m in Sources */,
 				C10E2BA7186950D8007A0136 /* BPPicture.m in Sources */,
