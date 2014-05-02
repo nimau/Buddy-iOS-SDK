@@ -27,9 +27,9 @@
 		3FAAE60BA41844428107236D /* libPods-BuddySDK Unit Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B6B8A0BC8C4474A7F6BC3E /* libPods-BuddySDK Unit Tests.a */; };
 		5B0302F918DFB81C00EA6B08 /* BPPermissions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B0302F818DFB81C00EA6B08 /* BPPermissions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B0302FB18DFDB2000EA6B08 /* BPRestProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B0302FA18DFDB2000EA6B08 /* BPRestProvider.h */; };
-		5B0B23D019131DE3005CB913 /* BPIdentityValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B0B23CE19131DE3005CB913 /* BPIdentityValue.h */; };
+		5B0B23D019131DE3005CB913 /* BPIdentityValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B0B23CE19131DE3005CB913 /* BPIdentityValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B0B23D119131DE3005CB913 /* BPIdentityValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B23CF19131DE3005CB913 /* BPIdentityValue.m */; };
-		5B0B23D419133E4E005CB913 /* BPSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B0B23D219133E4E005CB913 /* BPSize.h */; };
+		5B0B23D419133E4E005CB913 /* BPSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B0B23D219133E4E005CB913 /* BPSize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B0B23D519133E4E005CB913 /* BPSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B23D319133E4E005CB913 /* BPSize.m */; };
 		5B141E3B18C6B940002BABBC /* BPMetadataItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B141E3918C6B940002BABBC /* BPMetadataItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B141E3C18C6B940002BABBC /* BPMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B141E3A18C6B940002BABBC /* BPMetadataItem.m */; };
@@ -57,7 +57,7 @@
 		5B56973718D6B29B00917ED8 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BCF3F4A18D692200065842D /* CrashReporter.framework */; };
 		5B5FE15718E3C90C00518440 /* BPNotificationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B5FE15518E3C90C00518440 /* BPNotificationManager.h */; };
 		5B5FE15818E3C90C00518440 /* BPNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5FE15618E3C90C00518440 /* BPNotificationManager.m */; };
-		5B5FE15B18E3CD1C00518440 /* BPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B5FE15918E3CD1C00518440 /* BPNotification.h */; };
+		5B5FE15B18E3CD1C00518440 /* BPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B5FE15918E3CD1C00518440 /* BPNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B5FE15C18E3CD1C00518440 /* BPNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5FE15A18E3CD1C00518440 /* BPNotification.m */; };
 		5B6E84CE18F2138E005E7FEE /* NotificationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E84CD18F2138E005E7FEE /* NotificationTests.m */; };
 		5B91C50E18D0CE3900CB7119 /* small.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5B91C50D18D0CE3900CB7119 /* small.mp4 */; };
@@ -815,9 +815,10 @@
 				5B0302F918DFB81C00EA6B08 /* BPPermissions.h in Headers */,
 				5B32F37018E071C600C07019 /* BPAFNetworking.h in Headers */,
 				C1B959F91837061F000C8417 /* BuddyObject.h in Headers */,
-				5B0B23D019131DE3005CB913 /* BPIdentityValue.h in Headers */,
 				5B32F37118E071C600C07019 /* BPAFNetworkReachabilityManager.h in Headers */,
+				5B0B23D019131DE3005CB913 /* BPIdentityValue.h in Headers */,
 				5B5FE15B18E3CD1C00518440 /* BPNotification.h in Headers */,
+				5B0B23D419133E4E005CB913 /* BPSize.h in Headers */,
 				C154CEFA187FAE8600EACE4B /* NSDate+JSON.h in Headers */,
 				C10E2BA6186950D8007A0136 /* BPPicture.h in Headers */,
 				C1CEA7FB18C5582100D5C9DC /* BPUserList.h in Headers */,
@@ -853,7 +854,6 @@
 				5BF07F8318DD1BD000CC50E9 /* BPBlobCollection.h in Headers */,
 				C1D7094818832983003D112C /* BPDescriptors.h in Headers */,
 				C1E0D1D11831BAD3001A7A01 /* JAGProperty.h in Headers */,
-				5B0B23D419133E4E005CB913 /* BPSize.h in Headers */,
 				C1A1E29918A35B1A003CC33A /* BPSisterObject.h in Headers */,
 				C1E0D1D41831BAD3001A7A01 /* JAGPropertyConverter-Prefix.pch in Headers */,
 				5BF07F8D18DD1BD000CC50E9 /* BPUserListCollection.h in Headers */,
