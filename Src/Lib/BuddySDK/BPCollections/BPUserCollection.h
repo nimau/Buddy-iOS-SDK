@@ -10,7 +10,7 @@
 
 @interface BPUserCollection : BuddyCollection
 
--(void)getUsers:(BuddyCollectionCallback)callback;
+- (void)getUser:(NSString *)userId callback:(BuddyObjectCallback)callback;
 
 -(void)getUserIdForIdentityProvider:(NSString *)identityProvider identityProviderId:(NSString *)identityProviderId callback:(BuddyIdCallback)callback;
 

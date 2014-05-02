@@ -27,7 +27,12 @@
     [self getAll:callback];
 }
 
--(void)getUserIdForIdentityProvider:(NSString *)identityProvider identityProviderId:(NSString *)identityProviderId callback:(BuddyIdCallback)callback
+- (void)getUser:(NSString *)userId callback:(BuddyObjectCallback)callback
+{
+    [self getItem:userId callback:callback];
+}
+
+- (void)getUserIdForIdentityProvider:(NSString *)identityProvider identityProviderId:(NSString *)identityProviderId callback:(BuddyIdCallback)callback
 {
     NSDictionary *parameters = @{@"identityProviderName": identityProvider};
     

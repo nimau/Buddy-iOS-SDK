@@ -128,10 +128,22 @@ describe(@"BPUser", ^{
             [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
         });
         
+        __block NSString *retrievedUserId;
         it(@"Should allow retrieving a users identity values", ^{
             [[Buddy users] getUserIdForIdentityProvider:@"Facebook" identityProviderId:identityId callback:^(NSString *buddyId, NSError *error) {
                 [[error should] beNil];
                 [[buddyId shouldNot] beNil];
+                retrievedUserId = buddyId;
+                fin = YES;
+            }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
+        });
+        
+        it(@"Should allow retrieving a user based on ID", ^{
+            [[Buddy users] getUser:retrievedUserId callback:^(id newBuddyObject, NSError *error) {
+                [[error should] beNil];
+                [[newBuddyObject shouldNot] beNil];
                 fin = YES;
             }];
             
