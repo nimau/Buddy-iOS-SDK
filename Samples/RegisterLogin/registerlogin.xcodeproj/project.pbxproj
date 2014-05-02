@@ -583,7 +583,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					"/Volumes/WORK_2/Buddy/iOS/Buddy-iOS-SDK-V2/Samples/RegisterLogin",
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -606,7 +605,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					"/Volumes/WORK_2/Buddy/iOS/Buddy-iOS-SDK-V2/Samples/RegisterLogin",
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

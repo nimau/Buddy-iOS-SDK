@@ -85,20 +85,20 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSString *aValue = [self.identityList objectAtIndex:indexPath.row];
-    cell.textLabel.text = aValue;
+    BPIdentityValue *aValue = [self.identityList objectAtIndex:indexPath.row];
+    cell.textLabel.text = aValue.identityProviderID;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *aValue = [self.identityList objectAtIndex:indexPath.row];
+    BPIdentityValue *aValue = [self.identityList objectAtIndex:indexPath.row];
     
     IdentityDetailViewController *subVC = [[IdentityDetailViewController alloc]
                                            initWithNibName:@"IdentityDetailViewController" bundle:nil];
     subVC.identityProviderString = self.searchField.text;
-    subVC.valueString = aValue;
+    subVC.valueString = aValue.identityProviderID;
     subVC.isNew = NO;
     [ [CommonAppDelegate navController] pushViewController:subVC animated:YES];
 }
