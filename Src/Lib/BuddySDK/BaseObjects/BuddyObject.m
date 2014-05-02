@@ -151,7 +151,7 @@
             return;
         }
         
-        BuddyObject *newObject = [[[self class] alloc] initBuddyWithClient:client];
+        BuddyObject *newObject = [[[self class] alloc] initBuddyWithResponse:json andClient:client];
 
         newObject.id = json[@"id"];
         

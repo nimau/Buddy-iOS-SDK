@@ -8,6 +8,7 @@
 
 #import "BPUser.h"
 #import "BuddyObject+Private.h"
+#import "BPUser+Private.h"
 #import "BPClient.h"
 #import "BPEnumMapping.h"
 #import "BPIdentityValue.h"
@@ -17,6 +18,7 @@
 @interface BPUser()
 @property (nonatomic, copy) NSString *profilePictureID;
 @property (nonatomic, copy) NSString *profilePictureUrl;
+@property (copy, nonatomic) NSString *accessToken;
 @end
 
 @implementation BPUser

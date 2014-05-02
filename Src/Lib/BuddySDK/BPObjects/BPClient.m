@@ -27,6 +27,8 @@
 #import "BPSisterObject.h"
 #import "BuddyAppDelegateDecorator.h"
 #import "BPCrashManager.h"
+#import "BPUser+Private.h"
+
 #import <CoreFoundation/CoreFoundation.h>
 #define BuddyServiceURL @"BuddyServiceURL"
 
@@ -291,9 +293,10 @@
             callback ? callback(nil, error) : nil;
             return;
         }
-        
+    
         self.user = newBuddyObject;
-        
+        self.appSettings.userToken = self.user.accessToken;
+
         [self.user refresh:^(NSError *error){
             callback ? callback(self.user, error) : nil;
         }];
@@ -332,11 +335,7 @@
         }
         
         BPUser *user = [[BPUser alloc] initBuddyWithResponse:json andClient:self];
-        
-        // Grab the potentially different base url.
-        if (json[@"accessToken"] && ![json[@"accessToken"] isEqualToString:self.appSettings.token]) {
-            self.appSettings.userToken = json[@"accessToken"];
-        }
+        self.appSettings.userToken = user.accessToken;
         
         [user refresh:^(NSError *error) {
             self.user = user;
@@ -356,7 +355,8 @@
         }
         
         BPUser *user = [[BPUser alloc] initBuddyWithResponse:json andClient:self];
-        
+        self.appSettings.userToken = user.accessToken;
+
         [user refresh:^(NSError *error){
             self.user = user;
             callback ? callback(user, error) : nil;
@@ -519,12 +519,6 @@ NSMutableArray *queuedRequests;
                 if (result[@"serviceRoot"]) {
                     self.appSettings.serviceUrl = result[@"serviceRoot"];
                 }
-                
-#pragma message("Temporary hack. This is to grab the access token out of a create user call. Shouldn't be in this method.")
-                if (result[@"accessToken"] && self.appSettings.deviceToken) {
-                    self.appSettings.userToken = result[@"accessToken"];
-                }
-                
             }
         }
         
