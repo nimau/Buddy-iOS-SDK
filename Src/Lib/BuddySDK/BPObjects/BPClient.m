@@ -60,7 +60,7 @@
 
 - (instancetype)init
 {
-    self = [super self];
+    self = [super init];
     if(self)
     {
         _notifications = [[BPNotificationManager alloc] initWithClient:self];
