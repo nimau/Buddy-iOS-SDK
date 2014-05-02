@@ -36,13 +36,15 @@
 
 - (void)sendPushNotification:(BPNotification *)notification callback:(BuddyCompletionCallback)callback
 {
-    NSString *url = [NSString stringWithFormat:@"notifications/%@", notification.notificationType == BPNotificationType_Alert ? @"Alert" : @"Raw"];
+    NSString *url = @"notifications";
     
-    NSDictionary *parameters = @{@"Message": BOXNIL(notification.message),
-                                 @"Payload": BOXNIL(notification.payload),
+    NSDictionary *parameters = @{
+                                 @"type": notification.notificationType == BPNotificationType_Alert ? @"alert" : @"raw",
+                                 @"message": BOXNIL(notification.message),
+                                 @"payload": BOXNIL(notification.payload),
                                  @"counterValue": @(notification.counterValue),
-                                 @"OSCustomData": BOXNIL(notification.osCustomData),
-                                 @"Recipients": BOXNIL(notification.recipients)
+                                 @"osCustomData": BOXNIL(notification.osCustomData),
+                                 @"recipients": BOXNIL(notification.recipients)
                                  };
     
     [self.client POST:url parameters:parameters callback:^(id json, NSError *error) {
