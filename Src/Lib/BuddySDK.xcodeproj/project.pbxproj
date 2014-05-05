@@ -241,6 +241,7 @@
 		5B0B23CF19131DE3005CB913 /* BPIdentityValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPIdentityValue.m; sourceTree = "<group>"; };
 		5B0B23D219133E4E005CB913 /* BPSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSize.h; sourceTree = "<group>"; };
 		5B0B23D319133E4E005CB913 /* BPSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSize.m; sourceTree = "<group>"; };
+		5B0B23D619135379005CB913 /* BPUser+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BPUser+Private.h"; sourceTree = "<group>"; };
 		5B141E3918C6B940002BABBC /* BPMetadataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMetadataItem.h; sourceTree = "<group>"; };
 		5B141E3A18C6B940002BABBC /* BPMetadataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMetadataItem.m; sourceTree = "<group>"; };
 		5B19875918CB67D800FBB502 /* NSDate+BPDateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BPDateHelper.h"; sourceTree = "<group>"; };
@@ -670,6 +671,7 @@
 				C10E2B90186950D8007A0136 /* BPSounds.h */,
 				C10E2B91186950D8007A0136 /* BPSounds.m */,
 				C10E2B92186950D8007A0136 /* BPUser.h */,
+				5B0B23D619135379005CB913 /* BPUser+Private.h */,
 				C10E2B93186950D8007A0136 /* BPUser.m */,
 				C1C2395118789594000D0089 /* BPBlob.h */,
 				C1C2395218789594000D0089 /* BPBlob.m */,
