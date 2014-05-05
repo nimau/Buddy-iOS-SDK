@@ -113,11 +113,6 @@ describe(@"Buddy", ^{
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
-        pending_(@"Should allow you to perform a social login.", ^{
-            // Social tokens cannot be retrieved programatically
-            // See Sample Facebook app.
-        });
-        
         it(@"Should allow you to delete a user.", ^{
             __block BOOL deleted = NO;
             
