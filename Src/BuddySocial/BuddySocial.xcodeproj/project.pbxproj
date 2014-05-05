@@ -355,7 +355,7 @@
 				INFOPLIST_FILE = "BuddySocial/BuddySocial-Info.plist";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "9DE2BFC6-DB8D-48EF-9361-E830CBAC1C9F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -378,7 +378,7 @@
 				INFOPLIST_FILE = "BuddySocial/BuddySocial-Info.plist";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "9DE2BFC6-DB8D-48EF-9361-E830CBAC1C9F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

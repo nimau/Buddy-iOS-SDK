@@ -10,7 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <BuddySDK/Buddy.h>
 
-#define TEST_USERNAME @"erik55555555"
+#define TEST_USERNAME @"erik8"
 #define TEST_PASSWORD @"password"
 
 @interface BPViewController () <FBLoginViewDelegate>

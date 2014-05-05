@@ -110,7 +110,7 @@ describe(@"BPUser", ^{
         });
         
 #pragma message ("Deleting a profile picture has breaking consequences: 5/1")
-        pending_(@"Should allow the user to delete the profile picture", ^{
+        xit(@"Should allow the user to delete the profile picture", ^{
             [[Buddy user] deleteUserProfilePicture:^(NSError *error) {
                 [[error should] beNil];
 
