@@ -14,12 +14,15 @@
 
 @synthesize caption = _caption;
 @synthesize size = _size;
+@synthesize watermark = _watermark;
 
 - (void)registerProperties
 {
     [super registerProperties];
     
     [self registerProperty:@selector(caption)];
+    [self registerProperty:@selector(size)];
+    [self registerProperty:@selector(watermark)];
 }
 
 

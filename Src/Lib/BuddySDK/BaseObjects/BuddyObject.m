@@ -91,9 +91,13 @@
 - (void)registerProperties
 {
     self.keyPaths = [NSMutableArray array];
+    
+    [self registerProperty:@selector(location)];
     [self registerProperty:@selector(created)];
     [self registerProperty:@selector(lastModified)];
     [self registerProperty:@selector(defaultMetadata)];
+    [self registerProperty:@selector(readPermissions)];
+    [self registerProperty:@selector(writePermissions)];
     [self registerProperty:@selector(tag)];
     [self registerProperty:@selector(id)];
 }
@@ -103,7 +107,6 @@
     [NSException raise:@"requestPathNotSpecified" format:@"Class did not specify requestPath"];
     return nil;
 }
-
 
 -(void)registerProperty:(SEL)property
 {
@@ -194,6 +197,11 @@
     
     [self.client GET:resource parameters:nil callback:^(id json, NSError *error) {
         [[JAGPropertyConverter converter] setPropertiesOf:self fromDictionary:json];
+        
+        if (!error) {
+            self.isDirty = NO;
+        }
+        
         callback ? callback(error) : nil;
     }];
 }
@@ -208,6 +216,9 @@
     NSDictionary *parameters = [self buildUpdateDictionary];
 
     [self.client PATCH:resource parameters:parameters callback:^(id json, NSError *error) {
+        if (!error) {
+            self.isDirty = NO;
+        }
         callback ? callback(error) : nil;
     }];
 }

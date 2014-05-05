@@ -9,15 +9,12 @@
 #import "BPClient.h"
 #import "BPServiceController.h"
 #import "BPCheckinCollection.h"
-#import "BPGameBoards.h"
-#import "BPSounds.h"
 #import "BPPictureCollection.h"
 #import "BPVideoCollection.h"
 #import "BPUserCollection.h"
 #import "BPAlbumCollection.h"
 #import "BPBlobCollection.h"
 #import "BPLocationCollection.h"
-#import "BPUserListCollection.h"
 #import "BPRestProvider.h"
 #import "BuddyObject+Private.h"
 #import "BPLocationManager.h"
@@ -57,7 +54,6 @@
 @synthesize albums = _albums;
 @synthesize locations = _locations;
 @synthesize users = _users;
-@synthesize userLists = _userLists;
 #pragma mark - Init
 
 - (instancetype)init
@@ -250,16 +246,6 @@
         _locations = [[BPLocationCollection alloc] initWithClient:self];
     }
     return _locations;
-}
-
--(BPUserListCollection *)userLists
-{
-    
-    if(!_userLists)
-    {
-        _userLists = [[BPUserListCollection alloc] initWithClient:self];
-    }
-    return _userLists;
 }
 
 #pragma mark - User

@@ -17,13 +17,10 @@
 #import "BPAlbumCollection.h"
 #import "BPPicture.h"
 #import "BPUser.h"
-#import "BPGameBoards.h"
-#import "BPSounds.h"
 #import "BPPictureCollection.h"
 #import "BPVideoCollection.h"
 #import "BPBlobCollection.h"
 #import "BPUserCollection.h"
-#import "BPUserListCollection.h"
 #import "BPCoordinate.h"
 #import "BPDateRange.h"
 #import "BPBlob.h"
@@ -85,12 +82,6 @@
  Accessor to create and query locations.
  */
 + (BPLocationCollection *)locations;
-
-/**
- Accessor to create and query user lists.
- */
-+ (BPUserListCollection *) userLists;
-
 
 /**
   Public REST provider for passthrough access.

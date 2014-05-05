@@ -72,11 +72,6 @@
     return [[BPClient defaultClient] locations];
 }
 
-+ (BPUserListCollection *) userLists
-{
-    return [[BPClient defaultClient] userLists];
-}
-
 + (BOOL) locationEnabled
 {
     return [[BPClient defaultClient] locationEnabled];

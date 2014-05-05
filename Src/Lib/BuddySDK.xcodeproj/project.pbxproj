@@ -88,8 +88,6 @@
 		5BF07F8A18DD1BD000CC50E9 /* BPPictureCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF07F7818DD1BD000CC50E9 /* BPPictureCollection.m */; };
 		5BF07F8B18DD1BD000CC50E9 /* BPUserCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F7918DD1BD000CC50E9 /* BPUserCollection.h */; };
 		5BF07F8C18DD1BD000CC50E9 /* BPUserCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF07F7A18DD1BD000CC50E9 /* BPUserCollection.m */; };
-		5BF07F8D18DD1BD000CC50E9 /* BPUserListCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F7B18DD1BD000CC50E9 /* BPUserListCollection.h */; };
-		5BF07F8E18DD1BD000CC50E9 /* BPUserListCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF07F7C18DD1BD000CC50E9 /* BPUserListCollection.m */; };
 		5BF07F8F18DD1BD000CC50E9 /* BPVideoCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F7D18DD1BD000CC50E9 /* BPVideoCollection.h */; };
 		5BF07F9018DD1BD000CC50E9 /* BPVideoCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF07F7E18DD1BD000CC50E9 /* BPVideoCollection.m */; };
 		5BF07F9218DD2C1D00CC50E9 /* BuddyCollection+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF07F9118DD2C1D00CC50E9 /* BuddyCollection+Private.h */; };
@@ -102,20 +100,14 @@
 		C1010D33187A4CC3009EB04E /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1010D2E187A4CC3009EB04E /* 2.jpg */; };
 		C1010D34187A4CC3009EB04E /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1010D2F187A4CC3009EB04E /* 3.jpg */; };
 		C1010D35187A4CC3009EB04E /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1010D30187A4CC3009EB04E /* 4.jpg */; };
-		C10E2B97186950D8007A0136 /* BPAuthenticatedUser.h in Headers */ = {isa = PBXBuildFile; fileRef = C10E2B84186950D8007A0136 /* BPAuthenticatedUser.h */; };
-		C10E2B98186950D8007A0136 /* BPAuthenticatedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E2B85186950D8007A0136 /* BPAuthenticatedUser.m */; };
 		C10E2B9A186950D8007A0136 /* BPCheckin.h in Headers */ = {isa = PBXBuildFile; fileRef = C10E2B86186950D8007A0136 /* BPCheckin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C10E2B9B186950D8007A0136 /* BPCheckin.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E2B87186950D8007A0136 /* BPCheckin.m */; };
 		C10E2B9D186950D8007A0136 /* BPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = C10E2B88186950D8007A0136 /* BPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C10E2B9E186950D8007A0136 /* BPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E2B89186950D8007A0136 /* BPClient.m */; };
 		C10E2BA0186950D8007A0136 /* BPCoordinate.h in Headers */ = {isa = PBXBuildFile; fileRef = C10E2B8A186950D8007A0136 /* BPCoordinate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C10E2BA1186950D8007A0136 /* BPCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E2B8B186950D8007A0136 /* BPCoordinate.m */; };
-		C10E2BA3186950D8007A0136 /* BPGameBoards.h in Headers */ = {isa = PBXBuildFile; fileRef = C10E2B8C186950D8007A0136 /* BPGameBoards.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C10E2BA4186950D8007A0136 /* BPGameBoards.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E2B8D186950D8007A0136 /* BPGameBoards.m */; };
 		C10E2BA6186950D8007A0136 /* BPPicture.h in Headers */ = {isa = PBXBuildFile; fileRef = C10E2B8E186950D8007A0136 /* BPPicture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C10E2BA7186950D8007A0136 /* BPPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E2B8F186950D8007A0136 /* BPPicture.m */; };
-		C10E2BA9186950D8007A0136 /* BPSounds.h in Headers */ = {isa = PBXBuildFile; fileRef = C10E2B90186950D8007A0136 /* BPSounds.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C10E2BAA186950D8007A0136 /* BPSounds.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E2B91186950D8007A0136 /* BPSounds.m */; };
 		C10E2BAC186950D8007A0136 /* BPUser.h in Headers */ = {isa = PBXBuildFile; fileRef = C10E2B92186950D8007A0136 /* BPUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C10E2BAD186950D8007A0136 /* BPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C10E2B93186950D8007A0136 /* BPUser.m */; };
 		C10E2BB1186951C3007A0136 /* BuddyDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C10E2BAF186951C3007A0136 /* BuddyDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -176,8 +168,6 @@
 		C1C2395318789594000D0089 /* BPBlob.h in Headers */ = {isa = PBXBuildFile; fileRef = C1C2395118789594000D0089 /* BPBlob.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C1C2395418789594000D0089 /* BPBlob.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C2395218789594000D0089 /* BPBlob.m */; };
 		C1CEA7F818C5543500D5C9DC /* BPAlbumItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEA7F618C5543500D5C9DC /* BPAlbumItem.m */; };
-		C1CEA7FB18C5582100D5C9DC /* BPUserList.h in Headers */ = {isa = PBXBuildFile; fileRef = C1CEA7F918C5582100D5C9DC /* BPUserList.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1CEA7FC18C5582100D5C9DC /* BPUserList.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEA7FA18C5582100D5C9DC /* BPUserList.m */; };
 		C1D7094818832983003D112C /* BPDescriptors.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D7094618832983003D112C /* BPDescriptors.h */; };
 		C1D7094918832983003D112C /* BPDescriptors.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7094718832983003D112C /* BPDescriptors.m */; };
 		C1E0D1D11831BAD3001A7A01 /* JAGProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = C1E0D1CA1831BAD3001A7A01 /* JAGProperty.h */; };
@@ -299,8 +289,6 @@
 		5BF07F7818DD1BD000CC50E9 /* BPPictureCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPPictureCollection.m; sourceTree = "<group>"; };
 		5BF07F7918DD1BD000CC50E9 /* BPUserCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPUserCollection.h; sourceTree = "<group>"; };
 		5BF07F7A18DD1BD000CC50E9 /* BPUserCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPUserCollection.m; sourceTree = "<group>"; };
-		5BF07F7B18DD1BD000CC50E9 /* BPUserListCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPUserListCollection.h; sourceTree = "<group>"; };
-		5BF07F7C18DD1BD000CC50E9 /* BPUserListCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPUserListCollection.m; sourceTree = "<group>"; };
 		5BF07F7D18DD1BD000CC50E9 /* BPVideoCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVideoCollection.h; sourceTree = "<group>"; };
 		5BF07F7E18DD1BD000CC50E9 /* BPVideoCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVideoCollection.m; sourceTree = "<group>"; };
 		5BF07F9118DD2C1D00CC50E9 /* BuddyCollection+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BuddyCollection+Private.h"; sourceTree = "<group>"; };
@@ -317,20 +305,14 @@
 		C1010D2E187A4CC3009EB04E /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		C1010D2F187A4CC3009EB04E /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
 		C1010D30187A4CC3009EB04E /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
-		C10E2B84186950D8007A0136 /* BPAuthenticatedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPAuthenticatedUser.h; sourceTree = "<group>"; };
-		C10E2B85186950D8007A0136 /* BPAuthenticatedUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPAuthenticatedUser.m; sourceTree = "<group>"; };
 		C10E2B86186950D8007A0136 /* BPCheckin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPCheckin.h; sourceTree = "<group>"; };
 		C10E2B87186950D8007A0136 /* BPCheckin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCheckin.m; sourceTree = "<group>"; };
 		C10E2B88186950D8007A0136 /* BPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = BPClient.h; path = BPObjects/BPClient.h; sourceTree = "<group>"; };
 		C10E2B89186950D8007A0136 /* BPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = BPClient.m; path = BPObjects/BPClient.m; sourceTree = "<group>"; };
 		C10E2B8A186950D8007A0136 /* BPCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BPCoordinate.h; path = BPObjects/BPCoordinate.h; sourceTree = "<group>"; };
 		C10E2B8B186950D8007A0136 /* BPCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BPCoordinate.m; path = BPObjects/BPCoordinate.m; sourceTree = "<group>"; };
-		C10E2B8C186950D8007A0136 /* BPGameBoards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPGameBoards.h; sourceTree = "<group>"; };
-		C10E2B8D186950D8007A0136 /* BPGameBoards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPGameBoards.m; sourceTree = "<group>"; };
 		C10E2B8E186950D8007A0136 /* BPPicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPicture.h; sourceTree = "<group>"; };
 		C10E2B8F186950D8007A0136 /* BPPicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPPicture.m; sourceTree = "<group>"; };
-		C10E2B90186950D8007A0136 /* BPSounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSounds.h; sourceTree = "<group>"; };
-		C10E2B91186950D8007A0136 /* BPSounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSounds.m; sourceTree = "<group>"; };
 		C10E2B92186950D8007A0136 /* BPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPUser.h; sourceTree = "<group>"; };
 		C10E2B93186950D8007A0136 /* BPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPUser.m; sourceTree = "<group>"; };
 		C10E2BAF186951C3007A0136 /* BuddyDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = BuddyDevice.h; path = ../../Lib/BuddySDK/BuddyDevice.h; sourceTree = "<group>"; };
@@ -391,8 +373,6 @@
 		C1C2395118789594000D0089 /* BPBlob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPBlob.h; sourceTree = "<group>"; };
 		C1C2395218789594000D0089 /* BPBlob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPBlob.m; sourceTree = "<group>"; };
 		C1CEA7F618C5543500D5C9DC /* BPAlbumItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPAlbumItem.m; sourceTree = "<group>"; };
-		C1CEA7F918C5582100D5C9DC /* BPUserList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPUserList.h; sourceTree = "<group>"; };
-		C1CEA7FA18C5582100D5C9DC /* BPUserList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPUserList.m; sourceTree = "<group>"; };
 		C1D7094618832983003D112C /* BPDescriptors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPDescriptors.h; sourceTree = "<group>"; };
 		C1D7094718832983003D112C /* BPDescriptors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPDescriptors.m; sourceTree = "<group>"; };
 		C1D7094A1883942D003D112C /* BPEnumMapping.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPEnumMapping.h; sourceTree = "<group>"; };
@@ -566,8 +546,6 @@
 				5BF07F7818DD1BD000CC50E9 /* BPPictureCollection.m */,
 				5BF07F7918DD1BD000CC50E9 /* BPUserCollection.h */,
 				5BF07F7A18DD1BD000CC50E9 /* BPUserCollection.m */,
-				5BF07F7B18DD1BD000CC50E9 /* BPUserListCollection.h */,
-				5BF07F7C18DD1BD000CC50E9 /* BPUserListCollection.m */,
 				5BF07F7D18DD1BD000CC50E9 /* BPVideoCollection.h */,
 				5BF07F7E18DD1BD000CC50E9 /* BPVideoCollection.m */,
 			);
@@ -660,16 +638,10 @@
 		C1B807691840609F0086B843 /* BPObjects */ = {
 			isa = PBXGroup;
 			children = (
-				C10E2B84186950D8007A0136 /* BPAuthenticatedUser.h */,
-				C10E2B85186950D8007A0136 /* BPAuthenticatedUser.m */,
 				C10E2B86186950D8007A0136 /* BPCheckin.h */,
 				C10E2B87186950D8007A0136 /* BPCheckin.m */,
-				C10E2B8C186950D8007A0136 /* BPGameBoards.h */,
-				C10E2B8D186950D8007A0136 /* BPGameBoards.m */,
 				C10E2B8E186950D8007A0136 /* BPPicture.h */,
 				C10E2B8F186950D8007A0136 /* BPPicture.m */,
-				C10E2B90186950D8007A0136 /* BPSounds.h */,
-				C10E2B91186950D8007A0136 /* BPSounds.m */,
 				C10E2B92186950D8007A0136 /* BPUser.h */,
 				5B0B23D619135379005CB913 /* BPUser+Private.h */,
 				C10E2B93186950D8007A0136 /* BPUser.m */,
@@ -683,10 +655,8 @@
 				0183A51C188F4D2C0065C76C /* BPClient+Private.h */,
 				C1B0F54918937B08000403E0 /* BPAlbumItemContainer.h */,
 				C1B0F54A18937B08000403E0 /* BPAlbumItemContainer.m */,
-				C1CEA7F618C5543500D5C9DC /* BPAlbumItem.m */,
 				C142766E1898B11500D5DD85 /* BPAlbumItem.h */,
-				C1CEA7F918C5582100D5C9DC /* BPUserList.h */,
-				C1CEA7FA18C5582100D5C9DC /* BPUserList.m */,
+				C1CEA7F618C5543500D5C9DC /* BPAlbumItem.m */,
 				5B141E3918C6B940002BABBC /* BPMetadataItem.h */,
 				5B141E3A18C6B940002BABBC /* BPMetadataItem.m */,
 				5B984DAE18C791C900CE8E2C /* BPVideo.h */,
@@ -805,7 +775,6 @@
 				C10E2BB6186951FA007A0136 /* Buddy.h in Headers */,
 				C10E2B9D186950D8007A0136 /* BPClient.h in Headers */,
 				C10E2BAC186950D8007A0136 /* BPUser.h in Headers */,
-				C10E2BA9186950D8007A0136 /* BPSounds.h in Headers */,
 				5B19875B18CB67D800FBB502 /* NSDate+BPDateHelper.h in Headers */,
 				5B984DA018C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.h in Headers */,
 				C1427677189ECA2300D5DD85 /* BPMetricCompletionHandler.h in Headers */,
@@ -813,7 +782,6 @@
 				5B32F37B18E071C600C07019 /* BPAFURLSessionManager.h in Headers */,
 				5B32F36C18E071C600C07019 /* BPAFHTTPRequestOperationManager.h in Headers */,
 				5BF07F8F18DD1BD000CC50E9 /* BPVideoCollection.h in Headers */,
-				C10E2BA3186950D8007A0136 /* BPGameBoards.h in Headers */,
 				5B0302F918DFB81C00EA6B08 /* BPPermissions.h in Headers */,
 				5B32F37018E071C600C07019 /* BPAFNetworking.h in Headers */,
 				C1B959F91837061F000C8417 /* BuddyObject.h in Headers */,
@@ -823,7 +791,6 @@
 				5B0B23D419133E4E005CB913 /* BPSize.h in Headers */,
 				C154CEFA187FAE8600EACE4B /* NSDate+JSON.h in Headers */,
 				C10E2BA6186950D8007A0136 /* BPPicture.h in Headers */,
-				C1CEA7FB18C5582100D5C9DC /* BPUserList.h in Headers */,
 				5B984DB018C791C900CE8E2C /* BPVideo.h in Headers */,
 				5B32F37518E071C600C07019 /* BPAFURLConnectionOperation.h in Headers */,
 				C10E2BB1186951C3007A0136 /* BuddyDevice.h in Headers */,
@@ -850,7 +817,6 @@
 				C11E6C9A184D58670034E1EB /* BuddyObject+Private.h in Headers */,
 				C1B0F518189373EB000403E0 /* BPUIImageView+AFNetworking.h in Headers */,
 				5BF07F7F18DD1BD000CC50E9 /* BPAlbumCollection.h in Headers */,
-				C10E2B97186950D8007A0136 /* BPAuthenticatedUser.h in Headers */,
 				C1AA90D818371FF70074B7E8 /* BPServiceController.h in Headers */,
 				C1B3752018A477C3004CCE6D /* NSObject+ToJSON.h in Headers */,
 				5BF07F8318DD1BD000CC50E9 /* BPBlobCollection.h in Headers */,
@@ -858,7 +824,6 @@
 				C1E0D1D11831BAD3001A7A01 /* JAGProperty.h in Headers */,
 				C1A1E29918A35B1A003CC33A /* BPSisterObject.h in Headers */,
 				C1E0D1D41831BAD3001A7A01 /* JAGPropertyConverter-Prefix.pch in Headers */,
-				5BF07F8D18DD1BD000CC50E9 /* BPUserListCollection.h in Headers */,
 				5BF07F8918DD1BD000CC50E9 /* BPPictureCollection.h in Headers */,
 				C1C2395318789594000D0089 /* BPBlob.h in Headers */,
 				2F7E079218A2EC08003FC524 /* BuddyAppDelegateDecorator.h in Headers */,
@@ -1053,7 +1018,6 @@
 				C10E2BA1186950D8007A0136 /* BPCoordinate.m in Sources */,
 				5BF07F8418DD1BD000CC50E9 /* BPBlobCollection.m in Sources */,
 				5B0B23D119131DE3005CB913 /* BPIdentityValue.m in Sources */,
-				C10E2B98186950D8007A0136 /* BPAuthenticatedUser.m in Sources */,
 				5B5FE15C18E3CD1C00518440 /* BPNotification.m in Sources */,
 				C10F1B7C1870A6F500D5364C /* NSError+BuddyError.m in Sources */,
 				5B141E3C18C6B940002BABBC /* BPMetadataItem.m in Sources */,
@@ -1066,7 +1030,6 @@
 				5B32F37618E071C600C07019 /* BPAFURLConnectionOperation.m in Sources */,
 				5B19875C18CB67D800FBB502 /* NSDate+BPDateHelper.m in Sources */,
 				5B32F37A18E071C600C07019 /* BPAFURLResponseSerialization.m in Sources */,
-				C10E2BAA186950D8007A0136 /* BPSounds.m in Sources */,
 				5BCF829A191300DD00A26EA7 /* NSArray+BPSugar.m in Sources */,
 				5B984DA118C6BFE400CE8E2C /* JAGPropertyConverter+BPJSONConverter.m in Sources */,
 				C10E2B9E186950D8007A0136 /* BPClient.m in Sources */,
@@ -1085,7 +1048,6 @@
 				C1427673189AAC3700D5DD85 /* BPAppSettings.m in Sources */,
 				C154CEFB187FAE8600EACE4B /* NSDate+JSON.m in Sources */,
 				C10E2BAD186950D8007A0136 /* BPUser.m in Sources */,
-				C1CEA7FC18C5582100D5C9DC /* BPUserList.m in Sources */,
 				C1E0D1D61831BAD3001A7A01 /* JAGPropertyConverter.m in Sources */,
 				5B32F36D18E071C600C07019 /* BPAFHTTPRequestOperationManager.m in Sources */,
 				5B32F37418E071C600C07019 /* BPAFSecurityPolicy.m in Sources */,
@@ -1104,9 +1066,7 @@
 				5B32F36B18E071C600C07019 /* BPAFHTTPRequestOperation.m in Sources */,
 				5B32F37218E071C600C07019 /* BPAFNetworkReachabilityManager.m in Sources */,
 				5BF07F8218DD1BD000CC50E9 /* BPAlbumItemCollection.m in Sources */,
-				5BF07F8E18DD1BD000CC50E9 /* BPUserListCollection.m in Sources */,
 				5BF07F8C18DD1BD000CC50E9 /* BPUserCollection.m in Sources */,
-				C10E2BA4186950D8007A0136 /* BPGameBoards.m in Sources */,
 				C10E2BB7186951FA007A0136 /* Buddy.m in Sources */,
 				C1427678189ECA2300D5DD85 /* BPMetricCompletionHandler.m in Sources */,
 				C1FEEB4F187E483100B45505 /* BPAlbum.m in Sources */,

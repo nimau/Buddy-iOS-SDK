@@ -13,7 +13,6 @@
 
 @property (nonatomic, copy) NSString *comment;
 @property (nonatomic, copy) NSString *description;
-@property (nonatomic, strong) BPCoordinate *location;
 
 @end
 

@@ -13,6 +13,7 @@
 @protocol BPPictureProperties <BuddyObjectProperties>
 
 @property (nonatomic, copy) NSString *caption;
+@property (nonatomic, copy) NSString *watermark;
 @property (nonatomic, strong) BPSize *size;
 
 @end

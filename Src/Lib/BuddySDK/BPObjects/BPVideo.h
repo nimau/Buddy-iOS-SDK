@@ -19,8 +19,6 @@
 
 @end
 
-@class BPPicture;
-
 typedef void(^DescribeVideo)(id<BPVideoProperties>videoProperties);
 typedef void(^SearchVideo)(id<BPVideoProperties, BPSearchProperties>videoSearchProperties);
 

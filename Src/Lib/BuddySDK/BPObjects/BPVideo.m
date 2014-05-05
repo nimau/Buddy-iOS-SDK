@@ -33,6 +33,10 @@
     
     [self registerProperty:@selector(title)];
     [self registerProperty:@selector(thumbnailOffsetInSeconds)];
+    [self registerProperty:@selector(encoding)];
+    [self registerProperty:@selector(lengthInSeconds)];
+    [self registerProperty:@selector(thumbnailID)];
+
 }
 
 static NSString *videos = @"videos";

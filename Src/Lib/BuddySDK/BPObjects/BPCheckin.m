@@ -13,7 +13,6 @@
 
 @synthesize comment = _comment;
 @synthesize description = _description;
-@synthesize location = _location;
 
 - (void)registerProperties
 {
@@ -21,7 +20,6 @@
     
     [self registerProperty:@selector(comment)];
     [self registerProperty:@selector(description)];
-    [self registerProperty:@selector(location)];
 }
 
 static NSString *checkins = @"checkins";
