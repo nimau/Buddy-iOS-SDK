@@ -91,7 +91,7 @@
 
 - (void)searchMetadata:(SearchMetadata)search callback:(void (^) (NSArray *buddyObjects, NSError *error))callback
 {
-    id searchProperty = [[BPSisterObject alloc] initWithProtocol:@protocol(BPMetadataProperties)];
+    id searchProperty = [[BPSisterObject alloc] initWithProtocols:@[@protocol(BPMetadataProperties), @protocol(BPSearchProperties)]];
     search ? search(searchProperty) : nil;
     
     id searchParameters = [searchProperty parametersFromProperties:@protocol(BPMetadataProperties)];

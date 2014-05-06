@@ -8,8 +8,8 @@
 
 #import "BPUserCollection.h"
 #import "BuddyCollection+Private.h"
-#import "BPUser.h"
 #import "NSArray+BPSugar.h"
+#import "BPSisterObject.h"
 
 @implementation BPUserCollection
 
@@ -30,6 +30,16 @@
 - (void)getUser:(NSString *)userId callback:(BuddyObjectCallback)callback
 {
     [self getItem:userId callback:callback];
+}
+
+- (void)searchUsers:(SearchUsers)searchUsers callback:(BuddyCollectionCallback)callback
+{
+    id searchPropertiers = [[BPSisterObject alloc] initWithProtocols:@[@protocol(BPUserProperties), @protocol(BPSearchProperties)]];
+    searchUsers ? searchUsers(searchPropertiers) : nil;
+    
+    id parameters = [searchPropertiers parametersFromProperties:@protocol(BPUserProperties)];
+    
+    [self search:parameters callback:callback];
 }
 
 - (void)getUserIdForIdentityProvider:(NSString *)identityProvider identityProviderId:(NSString *)identityProviderId callback:(BuddyIdCallback)callback

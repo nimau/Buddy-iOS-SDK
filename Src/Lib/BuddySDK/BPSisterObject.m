@@ -12,7 +12,7 @@
 @interface BPSisterObject()
 
 @property (nonatomic, strong) NSMutableDictionary *properties;
-@property (nonatomic, strong) Protocol *brotherProtocol;
+@property (nonatomic, strong) NSArray *brotherProtocols;
 
 
 @end
@@ -24,7 +24,17 @@
     self = [super init];
     if (self) {
         _properties = [NSMutableDictionary dictionary];
-        _brotherProtocol = protocol;
+        _brotherProtocols = @[protocol];
+    }
+    return self;
+}
+
+- (instancetype)initWithProtocols:(NSArray *)protocols
+{
+    self = [super init];
+    if (self) {
+        _properties = [NSMutableDictionary dictionary];
+        _brotherProtocols = protocols;
     }
     return self;
 }
@@ -66,17 +76,25 @@ static void setPropertyIMP(id self, SEL _cmd, __unsafe_unretained id aValue) {
     NSString *firstChar = [key substringToIndex:1];
     [key replaceCharactersInRange:NSMakeRange(0, 1) withString:[firstChar lowercaseString]];
     
-    objc_property_t p = protocol_getProperty([self brotherProtocol], [(NSString *)key cStringUsingEncoding:NSStringEncodingConversionAllowLossy], YES, YES);
-    const char *pa = property_getAttributes(p);
-    
-    id value;
-    NSString *encoding = [NSString stringWithCString:pa encoding:NSStringEncodingConversionAllowLossy];
-    if ([[encoding substringWithRange:NSMakeRange(1,1)] isEqualToString:@"@"]) {
-        value = aValue;
-    } else {
-        value = @((NSInteger)aValue);
+    for (Protocol *brotherProtocol in [self brotherProtocols]) {
+        
+        objc_property_t p = protocol_getProperty(brotherProtocol, [(NSString *)key cStringUsingEncoding:NSStringEncodingConversionAllowLossy], YES, YES);
+        
+        if (!p) {
+            continue;
+        }
+        
+        const char *pa = property_getAttributes(p);
+        
+        id value;
+        NSString *encoding = [NSString stringWithCString:pa encoding:NSStringEncodingConversionAllowLossy];
+        if ([[encoding substringWithRange:NSMakeRange(1,1)] isEqualToString:@"@"]) {
+            value = aValue;
+        } else {
+            value = @((NSInteger)aValue);
+        }
+        
+        [[self properties] setValue:value forKey:key];
     }
-    
-    [[self properties] setValue:value forKey:key];
 }
 @end

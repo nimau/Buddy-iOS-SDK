@@ -164,6 +164,19 @@ describe(@"BPUser", ^{
             [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
         });
         
+        it(@"Should allow searching for users", ^{
+            [[Buddy users] searchUsers:^(id<BPUserProperties,BPSearchProperties> searchUser) {
+                searchUser.gender = BPUserGender_Unknown;
+            } callback:^(NSArray *buddyObjects, NSError *error) {
+                [[error should] beNil];
+                [[theValue([buddyObjects count]) should] beGreaterThan:theValue(0)];
+                [[theValue([[buddyObjects firstObject] gender]) should] equal:theValue(BPUserGender_Unknown)];
+                fin = YES;
+            }];
+            [[expectFutureValue(theValue(fin)) shouldEventually] beYes];
+
+        });
+        
         it(@"Should then allow deleting identity values.", ^{
             [[Buddy user] removeIdentity:@"Facebook" value:@"sdf" callback:^(NSError *error) {
                 [[error should] beNil];
