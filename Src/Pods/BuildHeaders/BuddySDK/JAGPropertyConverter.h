@@ -1,0 +1,1 @@
+../../../Lib/BuddySDK/Vendor/JAGPropertyConverter/JAGPropertyConverter.h

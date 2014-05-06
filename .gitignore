@@ -34,11 +34,4 @@ Release-Lib/
 bin/
 obj/
 
-Samples/PhotoGallery/BuddySDK.framework/
-Samples/PhotoGallery/PhotoGallery.xcodeproj/project.xcworkspace/xcuserdata/
-
-Samples/RegisterLogin/BuddySDK.framework/
-Samples/RegisterLogin/registerlogin.xcodeproj/project.xcworkspace/xcuserdata/
-
-
-
+Samples/**/Pods

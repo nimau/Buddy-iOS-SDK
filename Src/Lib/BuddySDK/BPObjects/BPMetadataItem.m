@@ -8,13 +8,22 @@
 
 #import "BPMetadataItem.h"
 
+@interface BPMetadataItem()
+
+@property (nonatomic, strong) BPDateRange *created;
+@property (nonatomic, strong) BPDateRange *modified;
+
+@end
+
 @implementation BPMetadataItem
-@synthesize key;
-@synthesize value;
-@synthesize keyPrefix;
-@synthesize locationRange;
-@synthesize created;
-@synthesize modified;
+
+@synthesize key = _key;
+@synthesize value = _value;
+@synthesize keyPrefix = _keyPrefix;
+@synthesize locationRange = _locationRange;
+@synthesize created = _created;
+@synthesize modified = _modified;
+@synthesize permissions = _permissions;
 
 - (instancetype)initBuddyWithResponse:(id)response
 {

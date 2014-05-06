@@ -26,7 +26,7 @@
 - (void)addLocation:(DescribeLocation)describe
            callback:(BuddyObjectCallback)callback
 {
-    id locationProperties = [BPSisterObject new];
+    id locationProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPLocationProperties)];
     describe ? describe(locationProperties) : nil;
     
     id parameters = [locationProperties parametersFromProperties:@protocol(BPLocationProperties)];
@@ -37,7 +37,7 @@
 
 - (void)findLocation:(SearchLocation)search callback:(BuddyCollectionCallback)callback
 {
-    id locationProperties = [BPSisterObject new];
+    id locationProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPSearchProperties)];
     search ? search(locationProperties) : nil;
     
     id parameters = [locationProperties parametersFromProperties:@protocol(BPSearchProperties)];

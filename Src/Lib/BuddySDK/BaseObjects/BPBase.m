@@ -42,12 +42,12 @@
 {
     // Return any enum->string mappings used in responses subclass.
     return @{NSStringFromSelector(@selector(readPermissions)) : @{
-                     @(BuddyPermissionsApp) : @"App",
-                     @(BuddyPermissionsUser) : @"User",
+                     @(BPPermissionsApp) : @"App",
+                     @(BPPermissionsUser) : @"User",
                      },
              NSStringFromSelector(@selector(writePermissions)) : @{
-                     @(BuddyPermissionsApp) : @"App",
-                     @(BuddyPermissionsUser) : @"User",
+                     @(BPPermissionsApp) : @"App",
+                     @(BPPermissionsUser) : @"User",
                      }};
 }
 
@@ -56,41 +56,42 @@
     return @"";
 }
 
-- (void)setMetadataWithKey:(NSString *)key andString:(NSString *)value permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback
+- (void)setMetadata:(DescribeMetadata)describeMetadata callback:(BuddyCompletionCallback)callback
 {
-    NSDictionary *parameters = @{@"value": BOXNIL(value),
-                                 @"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
+    id metadataProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPMetadataProperties)];
+    describeMetadata ? describeMetadata(metadataProperties) : nil;
     
-    [self.client PUT:[self metadataPath:key] parameters:parameters callback:^(id json, NSError *error) {
+    id parameters = (NSMutableDictionary *)[metadataProperties parametersFromProperties:@protocol(BPMetadataProperties)];
+    
+    if (parameters[@"permissions"]) {
+        parameters[@"permissions"] = [[self class] enumMap][@"readPermissions"][parameters[@"permissions"]];
+    }
+    
+    [self.client PUT:[self metadataPath:parameters[@"key"]] parameters:parameters callback:^(id json, NSError *error) {
         callback ? callback(error) : nil;
     }];
 }
 
-- (void)setMetadataWithKey:(NSString *)key andInteger:(NSInteger)value permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback
+- (void)setMetadataValues:(DescribeMetadataCollection)describeMetadata callback:(BuddyCompletionCallback)callback
 {
-#pragma message("Convert to 'convertValue' method from enum map")
+    id metadataProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPMetadataCollectionProperties)];
+    describeMetadata ? describeMetadata(metadataProperties) : nil;
     
-    NSDictionary *parameters = @{@"value": @(value),
-                                 @"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
+    id parameters = (NSMutableDictionary *)[metadataProperties parametersFromProperties:@protocol(BPMetadataCollectionProperties)];
     
-    [self.client PUT:[self metadataPath:key] parameters:parameters callback:^(id json, NSError *error) {
-        callback ? callback(error) : nil;
-    }];
-}
-
-- (void)setMetadataWithKeyValues:(NSDictionary *)keyValuePaths permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback
-{
-    NSDictionary *parameters = @{@"values": keyValuePaths,
-                                 @"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
-
+    if (parameters[@"permissions"]) {
+        parameters[@"permissions"] = [[self class] enumMap][@"readPermissions"][parameters[@"permissions"]];
+    }
+    
     [self.client PUT:[self metadataPath:nil] parameters:parameters callback:^(id json, NSError *error) {
         callback ? callback(error) : nil;
     }];
 }
 
-- (void)searchMetadata:(SearchMetadata)search callback:(BuddyCollectionCallback)callback
+
+- (void)searchMetadata:(SearchMetadata)search callback:(void (^) (NSArray *buddyObjects, NSError *error))callback
 {
-    id searchProperty = [BPSisterObject new];
+    id searchProperty = [[BPSisterObject alloc] initWithProtocols:@[@protocol(BPMetadataProperties), @protocol(BPSearchProperties)]];
     search ? search(searchProperty) : nil;
     
     id searchParameters = [searchProperty parametersFromProperties:@protocol(BPMetadataProperties)];
@@ -98,7 +99,7 @@
     NSString *resource = [self metadataPath:nil];
     
     [self.client GET:resource parameters:searchParameters callback:^(id json, NSError *error) {
-        NSArray *results = [json[@"pageResults"] map:^id(id object) {
+        NSArray *results = [json[@"pageResults"] bp_map:^id(id object) {
             id metadata = [[BPMetadataItem alloc] init];
             [[JAGPropertyConverter converter] setPropertiesOf:metadata fromDictionary:object];
             return metadata;
@@ -118,7 +119,7 @@
     }];
 }
 
-- (void)getMetadataWithKey:(NSString *)key permissions:(BuddyPermissions)permissions callback:(BPMetadataCallback)callback
+- (void)getMetadataWithKey:(NSString *)key permissions:(BPPermissions)permissions callback:(BPMetadataCallback)callback
 {
     NSDictionary *parameters = @{@"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
     
@@ -128,7 +129,7 @@
     }];
 }
 
-- (void)deleteMetadataWithKey:(NSString *)key permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback 
+- (void)deleteMetadataWithKey:(NSString *)key permissions:(BPPermissions)permissions callback:(BuddyCompletionCallback)callback
 {
     NSDictionary *parameters = @{@"permission": [[self class] enumMap][@"readPermissions"][@(permissions)]};
     [self.client DELETE:[self metadataPath:key] parameters:parameters callback:^(id metadata, NSError *error) {

@@ -17,7 +17,6 @@
 @class BuddyDevice;
 @class BPGameBoards;
 @class BPAppMetadata;
-@class BPSounds;
 @class BPUser;
 @class BPCheckinCollection;
 @class BPPictureCollection;
@@ -26,8 +25,8 @@
 @class BPAlbumCollection;
 @class BPLocationCollection;
 @class BPUserCollection;
-@class BPUserListCollection;
 @class BPCoordinate;
+@class BPNotification;
 
 /**
  Enum specifying the current authentication level.
@@ -55,6 +54,7 @@ typedef NS_ENUM(NSInteger, BPReachabilityLevel) {
 
 @protocol BPClientDelegate <NSObject>
 
+@optional
 - (void)userChangedTo:(BPUser *)newUser from:(BPUser *)oldUser;
 
 - (void)connectivityChanged:(BPReachabilityLevel)level;
@@ -105,11 +105,6 @@ typedef void (^BPPingCallback)(NSDecimalNumber *ping);
 @property (readonly, nonatomic, strong) BPAppMetadata *metadata;
 
 /// <summary>
-/// Gets an object that can be used to retrieve sounds.
-/// </summary>
-@property (readonly, nonatomic, strong) BPSounds *sounds;
-
-/// <summary>
 /// Gets an object that can be used to search users.
 /// </summary>
 @property (readonly, nonatomic, strong) BPUserCollection *users;
@@ -143,11 +138,6 @@ typedef void (^BPPingCallback)(NSDecimalNumber *ping);
 /// TODO
 /// </summary>
 @property (readonly, nonatomic, strong) BPLocationCollection *locations;
-
-/// <summary>
-/// TODO
-/// </summary>
-@property (readonly, nonatomic, strong) BPUserListCollection *userLists;
 
 /// <summary>
 /// TODO
@@ -197,6 +187,8 @@ typedef void (^BPPingCallback)(NSDecimalNumber *ping);
 - (void)logout:(BuddyCompletionCallback)callback;
 
 - (void)ping:(BPPingCallback)callback;
+
+- (void)sendPushNotification:(BPNotification *)notification callback:(BuddyCompletionCallback)callback;
 
 - (void)recordMetric:(NSString *)key andValue:(NSDictionary *)value callback:(BuddyCompletionCallback)callback;
 

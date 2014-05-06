@@ -1,0 +1,1 @@
+../../../Lib/BuddySDK/BPCollections/BPUserCollection.h

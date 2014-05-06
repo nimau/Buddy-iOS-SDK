@@ -9,10 +9,19 @@
 #import "BPAlbumItem.h"
 #import "BuddyObject+Private.h"
 
+@interface BPAlbumItem()
 
+@property (nonatomic, copy) NSString *albumID;
+@property (nonatomic, copy) NSString *itemID;
+@property (nonatomic, assign) BPAlbumItemType itemType;
+
+@end
 @implementation BPAlbumItem
 
-@synthesize caption, albumID, itemID, itemType;
+@synthesize caption = _caption;
+@synthesize albumID = _albumID;
+@synthesize itemID = _itemID;
+@synthesize itemType = _itemType;
 
 - (void)registerProperties
 {

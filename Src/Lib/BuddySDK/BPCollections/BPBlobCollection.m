@@ -8,6 +8,7 @@
 
 #import "BPBlobCollection.h"
 #import "BuddyCollection+Private.h"
+#import "BPSisterObject.h"
 #import "BPBlob.h"
 
 @implementation BPBlobCollection
@@ -21,9 +22,15 @@
 }
 
 - (void)addBlob:(NSData *)data
-        callback:(BuddyObjectCallback)callback
+       describe:(DescribeBlob)describe
+       callback:(BuddyObjectCallback)callback
 {
-    [BPBlob createWithData:data parameters:nil client:self.client callback:callback ];
+    id blobProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPBlobProperties)];
+    describe ? describe(blobProperties) : nil;
+    
+    id parameters = [blobProperties parametersFromProperties:@protocol(BPBlobProperties)];
+        
+    [BPBlob createWithData:data parameters:parameters client:self.client callback:callback];
 }
 
 -(void)getBlobs:(BuddyCollectionCallback)callback
@@ -36,11 +43,15 @@
     [self getItem:blobId callback:callback];
 }
 
-- (void)searchBlobs:(NSDictionary *)parameters callback:(BuddyCollectionCallback)callback
+
+- (void)searchBlobs:(DescribeBlob)describeBlob callback:(BuddyCollectionCallback)callback
 {
+    id blobProperties = [[BPSisterObject alloc] initWithProtocols:@[@protocol(BPBlobProperties), @protocol(BPSearchProperties)]];
+    describeBlob ? describeBlob(blobProperties) : nil;
+    
+    id parameters = [blobProperties parametersFromProperties:@protocol(BPBlobProperties)];
+    
     [self search:parameters callback:callback];
 }
-
-
 
 @end

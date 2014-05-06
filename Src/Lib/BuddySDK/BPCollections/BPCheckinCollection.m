@@ -26,7 +26,7 @@
 -(void)checkin:(DescribeCheckin)describeCheckin
       callback:(BuddyObjectCallback)callback
 {
-    id checkinCollection= [BPSisterObject new];
+    id checkinCollection= [[BPSisterObject alloc] initWithProtocol:@protocol(BPCheckinProperties)];
     describeCheckin ? describeCheckin(checkinCollection) : nil;
 
     id parameters = [checkinCollection parametersFromProperties:@protocol(BPCheckinProperties)];
@@ -36,7 +36,7 @@
 
 - (void)searchCheckins:(DescribeCheckin)describeCheckin callback:(BuddyCollectionCallback)callback;
 {
-    id checkinCollection= [BPSisterObject new];
+    id checkinCollection= [[BPSisterObject alloc] initWithProtocol:@protocol(BPCheckinProperties)];
     describeCheckin ? describeCheckin(checkinCollection) : nil;
     
     id parameters = [checkinCollection parametersFromProperties:@protocol(BPCheckinProperties)];

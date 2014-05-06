@@ -13,8 +13,8 @@
 #define PASSWORD_PREF_KEY @"BD_PASSWORD"
 
 #pragma message ("Insert your own AppID and Key")
-#define APP_ID @"YOUR_APP_ID"
-#define APP_KEY @"YOUR_APP_KEY"
+#define APP_ID @"bbbbbc.xkdbbdKlvKgj"
+#define APP_KEY @"EFE64026-B01A-4475-A75F-9F86B040094F"
 
 #define DEFAULT_BUT_CORNER_RAD 10
 #define DEFAULT_BUT_BORDER_WIDTH 1

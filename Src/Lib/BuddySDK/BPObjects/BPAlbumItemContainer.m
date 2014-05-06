@@ -9,6 +9,12 @@
 #import "BPAlbumItemContainer.h"
 #import "BuddyObject+Private.h"
 
+@interface BPAlbumItemContainer()
+
+@property (nonatomic, copy) NSString *albumID;
+@property (nonatomic, copy) NSString *itemID;
+
+@end
 
 @implementation BPAlbumItemContainer
 
@@ -18,6 +24,8 @@
     
     [self registerProperty:@selector(albumID)];
     [self registerProperty:@selector(itemID)];
+    [self registerProperty:@selector(itemType)];
+    [self registerProperty:@selector(comment)];
 }
 
 + (NSString *)requestPath

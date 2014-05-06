@@ -21,10 +21,11 @@ SPEC_BEGIN(BuddyIntegrationSpec)
 describe(@"Buddy", ^{
     context(@"A clean boot of your app", ^{
         
-        __block NSString *testCreateDeleteName = @"ItPutsTheLotionOnItsSkin3";
+        __block NSString *testCreateDeleteName = @"ItPutsTheLotionOnItsSkin5";
         __block id mock = nil;
+        __block BOOL fin = NO;
+
         beforeAll(^{
-            __block BOOL fin = NO;
             
             [Buddy initClient:APP_NAME appKey:APP_KEY];
             
@@ -38,8 +39,13 @@ describe(@"Buddy", ^{
                 }
             }];
             
+            mock = [KWMock mockForProtocol:@protocol(BPClientDelegate)];
+            
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
-
+        });
+        
+        beforeEach(^{
+            fin = NO;
         });
         
         afterAll(^{
@@ -47,7 +53,6 @@ describe(@"Buddy", ^{
         });
         
         it(@"Should throw an auth error if they try to access pictures.", ^{
-            mock = [KWMock mockForProtocol:@protocol(BPClientDelegate)];
             [Buddy setClientDelegate:mock];
             
             [[mock shouldEventually] receive:@selector(apiErrorOccurred:)];
@@ -69,21 +74,25 @@ describe(@"Buddy", ^{
                 userProperties.dateOfBirth = randomDate;
             } callback:^(BPUser *newBuddyObject, NSError *error) {
                 newUser = newBuddyObject;
+                
+                [[newUser.userName should] equal:testCreateDeleteName];
+                [[newUser.firstName should] equal:@"Erik"];
+                [[newUser.lastName should] equal:@"Kerber"];
+                [[theValue(newUser.gender) should] equal:theValue(BPUserGender_Female)];
+                [[newUser.dateOfBirth should] equal:randomDate];
+                fin = YES;
             }];
             
-            [[expectFutureValue(newUser.userName) shouldEventually] equal:testCreateDeleteName];
-            [[expectFutureValue(newUser.firstName) shouldEventually] equal:@"Erik"];
-            [[expectFutureValue(newUser.lastName) shouldEventually] equal:@"Kerber"];
-            [[expectFutureValue(theValue(newUser.gender)) shouldEventually] equal:theValue(BPUserGender_Female)];
-            [[expectFutureValue(newUser.dateOfBirth) shouldEventually] equal:randomDate];
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
         it(@"Should allow you to login.", ^{
             __block BPUser *newUser;
             
             [Buddy setClientDelegate:mock];
-
-            [[mock shouldEventually] receive:@selector(userChangedTo:from:)];
+            
+            // Leaving in inline comment below. Can't verify it receives the object before the object exists.
+            [[mock shouldEventually] receive:@selector(userChangedTo:from:) /*withArguments:[Buddy user], nil*/];
 
             [Buddy login:testCreateDeleteName password:TEST_PASSWORD callback:^(BPUser *loggedInsUser, NSError *error) {
                 newUser = loggedInsUser;
@@ -102,11 +111,6 @@ describe(@"Buddy", ^{
             }];
             
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
-        });
-        
-        pending_(@"Should allow you to perform a social login.", ^{
-            // Social tokens cannot be retrieved programatically
-            // See Sample Facebook app.
         });
         
         it(@"Should allow you to delete a user.", ^{

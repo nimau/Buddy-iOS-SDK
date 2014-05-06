@@ -72,23 +72,14 @@
     return [[BPClient defaultClient] locations];
 }
 
-+ (BPUserListCollection *) userLists
-{
-    return [[BPClient defaultClient] userLists];
-}
-
 + (BOOL) locationEnabled
 {
-    @synchronized(self){
-        return [[BPClient defaultClient] locationEnabled];
-    }
+    return [[BPClient defaultClient] locationEnabled];
 }
 
 + (void) setLocationEnabled:(BOOL)val
 {
-    @synchronized(self){
-        [[BPClient defaultClient] setLocationEnabled:val];
-    }
+    [[BPClient defaultClient] setLocationEnabled:val];
 }
 
 + (void)setClientDelegate:(id<BPClientDelegate>)delegate
@@ -164,6 +155,11 @@
     [[BPClient defaultClient] logout:callback];
 }
 
++ (void)sendPushNotification:(BPNotification *)notification callback:(BuddyCompletionCallback)callback;
+{
+    [[BPClient defaultClient] sendPushNotification:notification callback:callback];
+}
+
 + (void)recordMetric:(NSString *)key andValue:(NSDictionary *)value callback:(BuddyCompletionCallback)callback
 {
     [[BPClient defaultClient] recordMetric:key andValue:value callback:callback];
@@ -174,19 +170,14 @@
     [[BPClient defaultClient] recordTimedMetric:key andValue:value timeout:seconds callback:callback];
 }
 
-+ (void)setMetadataWithKey:(NSString *)key andString:(NSString *)value permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback
++ (void)setMetadata:(DescribeMetadata)describeMetadata callback:(BuddyCompletionCallback)callback
 {
-    [[BPClient defaultClient] setMetadataWithKey:key andString:value permissions:permissions callback:callback];
+    [[BPClient defaultClient] setMetadata:describeMetadata callback:callback];
 }
 
-+ (void)setMetadataWithKey:(NSString *)key andInteger:(NSInteger)value permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback
++ (void)setMetadataValues:(DescribeMetadataCollection)describeMetadata callback:(BuddyCompletionCallback)callback
 {
-    [[BPClient defaultClient] setMetadataWithKey:key andInteger:value permissions:permissions callback:callback];
-}
-
-+ (void)setMetadataWithKeyValues:(NSDictionary *)keyValuePaths permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback
-{
-    [[BPClient defaultClient] setMetadataWithKeyValues:keyValuePaths permissions:permissions callback:callback];
+    [[BPClient defaultClient] setMetadataValues:describeMetadata callback:callback];
 }
 
 + (void)searchMetadata:(SearchMetadata)search callback:(BuddyObjectCallback)callback
@@ -194,19 +185,20 @@
     [[BPClient defaultClient] searchMetadata:search callback:callback];
 }
 
+
 + (void)incrementMetadata:(NSString *)key delta:(NSInteger)delta callback:(BuddyCompletionCallback)callback
 {
     [[BPClient defaultClient] incrementMetadata:key delta:delta callback:callback];
 }
 
-+ (void)getMetadataWithKey:(NSString *)key permissions:(BuddyPermissions) permissions callback:(BPMetadataCallback)callback
++ (void)getMetadataWithKey:(NSString *)key permissions:(BPPermissions) permissions callback:(BPMetadataCallback)callback
 {
-    [[BPClient defaultClient] getMetadataWithKey:key permissions:(BuddyPermissions)permissions callback:callback];
+    [[BPClient defaultClient] getMetadataWithKey:key permissions:(BPPermissions)permissions callback:callback];
 }
 
-+ (void)deleteMetadataWithKey:(NSString *)key permissions:(BuddyPermissions) permissions callback:(BuddyCompletionCallback)callback
++ (void)deleteMetadataWithKey:(NSString *)key permissions:(BPPermissions) permissions callback:(BuddyCompletionCallback)callback
 {
-    [[BPClient defaultClient] deleteMetadataWithKey:key permissions:(BuddyPermissions)permissions callback:callback];
+    [[BPClient defaultClient] deleteMetadataWithKey:key permissions:(BPPermissions)permissions callback:callback];
 }
 
 @end

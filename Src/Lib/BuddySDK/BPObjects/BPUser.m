@@ -8,16 +8,31 @@
 
 #import "BPUser.h"
 #import "BuddyObject+Private.h"
+#import "BPUser+Private.h"
 #import "BPClient.h"
 #import "BPEnumMapping.h"
+#import "BPIdentityValue.h"
+#import "BPPicture.h"
+#import "BPSize.h"
 
 @interface BPUser()
-
+@property (nonatomic, copy) NSString *profilePictureID;
+@property (nonatomic, copy) NSString *profilePictureUrl;
+@property (copy, nonatomic) NSString *accessToken;
 @end
 
 @implementation BPUser
 
-@synthesize firstName, lastName, userName, gender, dateOfBirth, profilePicture, profilePictureId, email;
+@synthesize firstName = _firstName;
+@synthesize lastName = _lastName;
+@synthesize userName = _userName;
+@synthesize gender = _gender;
+@synthesize dateOfBirth = _dateOfBirth;
+@synthesize profilePictureUrl = _profilePictureUrl;
+@synthesize profilePictureID = _profilePictureID;
+@synthesize email = _email;
+@synthesize locationFuzzing = _locationFuzzing;
+@synthesize celebMode = _celebMode;
 
 - (void)registerProperties
 {
@@ -28,8 +43,11 @@
     [self registerProperty:@selector(userName)];
     [self registerProperty:@selector(gender)];
     [self registerProperty:@selector(dateOfBirth)];
-    [self registerProperty:@selector(profilePicture)];
-    [self registerProperty:@selector(profilePictureId)];
+    [self registerProperty:@selector(profilePictureUrl)];
+    [self registerProperty:@selector(profilePictureID)];
+    [self registerProperty:@selector(email)];
+    [self registerProperty:@selector(locationFuzzing)];
+    [self registerProperty:@selector(celebMode)];
 }
 
 + (NSDictionary *)enumMap
@@ -61,10 +79,12 @@ static NSString *users = @"users";
 
 #pragma mark - Password
 
-- (void)requestPasswordReset:(BuddyObjectCallback)callback
+- (void)requestPasswordResetWithSubject:(NSString *)subject body:(NSString *)body callback:(BuddyObjectCallback)callback
 {
     NSString *resource = @"users/password";
-    NSDictionary *parameters = @{@"UserName": self.userName};
+    NSDictionary *parameters = @{@"username": self.userName,
+                                 @"subject": BOXNIL(subject),
+                                 @"body": BOXNIL(body)};
                                  
 
     [self.client POST:resource parameters:parameters callback:^(id json, NSError *error) {
@@ -75,20 +95,19 @@ static NSString *users = @"users";
 - (void)resetPassword:(NSString *)resetCode newPassword:(NSString *)newPassword callback:(BuddyCompletionCallback)callback
 {
     NSString *resource = @"users/password";
-    NSDictionary *parameters = @{@"UserName": self.userName,
-                                 @"ResetCode": resetCode,
-                                 @"NewPassword": newPassword};
+    NSDictionary *parameters = @{@"username": self.userName,
+                                 @"resetCode": BOXNIL(resetCode),
+                                 @"newPassword": BOXNIL(newPassword)};
     
     [self.client PATCH:resource parameters:parameters callback:^(id json, NSError *error) {
-        callback ? callback(nil) : nil;
+        callback ? callback(error) : nil;
     }];
 }
 
 - (void)addIdentity:(NSString *)identityProvider value:(NSString *)value callback:(BuddyCompletionCallback)callback
 {
-    NSString *resource = [NSString stringWithFormat:@"users/%@/identities", self.id];
+    NSString *resource = [NSString stringWithFormat:@"users/me/identities/%@", identityProvider];
     NSDictionary *parameters = @{
-                                 @"identityProviderName": identityProvider,
                                  @"identityID": value
                                  };
     
@@ -99,7 +118,7 @@ static NSString *users = @"users";
 
 - (void)removeIdentity:(NSString *)identityProvider value:(NSString *)value callback:(BuddyCompletionCallback)callback
 {
-    NSString *resource = [NSString stringWithFormat:@"users/%@/identities/%@", self.id, identityProvider];
+    NSString *resource = [NSString stringWithFormat:@"users/me/identities/%@", identityProvider];
 
     NSDictionary *parameters = @{
                                  @"identityID": value
@@ -112,10 +131,13 @@ static NSString *users = @"users";
 
 - (void)getIdentities:(NSString *)identityProvider callback:(BuddyCollectionCallback)callback
 {
-    NSString *resource = [NSString stringWithFormat:@"users/%@/identities/%@", self.id, identityProvider];
+    NSString *resource = [NSString stringWithFormat:@"users/me/identities/%@", identityProvider];
     
-    [self.client GET:resource parameters:nil callback:^(id identityValues, NSError *error) {
-        callback ? callback(identityValues, error) : nil;
+    [self.client GET:resource parameters:nil callback:^(NSArray *identityValues, NSError *error) {
+        NSArray *bpIdentityValues = [identityValues bp_map:^id(id object) {
+            return [[BPIdentityValue alloc] initBuddyWithResponse:object];
+        }];
+        callback ? callback(bpIdentityValues, error) : nil;
     }];
 
 }
@@ -124,22 +146,52 @@ static NSString *users = @"users";
 
 - (void)setUserProfilePicture:(UIImage *)picture caption:(NSString *)caption callback:(BuddyCompletionCallback)callback
 {
-    NSString *resource = [NSString stringWithFormat:@"user/%@/profilepicture", self.id];
+    NSString *resource = [NSString stringWithFormat:@"users/%@/profilepicture", self.id];
     NSDictionary *parameters = @{@"caption": caption};
 
     NSDictionary *data = @{@"data": UIImagePNGRepresentation(picture)};
     
     [self.client MULTIPART_POST:resource parameters:parameters data:data mimeType:@"image/png" callback:^(id json, NSError *error) {
-        callback ? callback(error) : nil;
+        if (error) {
+            callback ? callback(error) : nil;
+            return;
+        }
+        
+        [self refresh:^(NSError *error) {
+           callback ? callback(error) : nil;
+        }];
+    }];
+}
+
+- (void)getUserProfilePictureWithSize:(BPSize *)size callback:(BuddyObjectCallback)callback
+{
+    NSString *resource = [NSString stringWithFormat:@"users/me/profilepicture"];
+    
+    NSDictionary *parameters = @{@"size": BOXNIL([size stringValue])};
+    
+    [self.client GET:resource parameters:parameters callback:^(id json, NSError *error) {
+        
+        if (error) {
+            callback ? callback(nil, error) : nil;
+            return;
+        }
+        
+        BPPicture *newObject = [[BPPicture alloc] initBuddyWithResponse:json andClient:self.client];
+        
+        newObject.id = json[@"id"];
+        
+        callback ? callback(newObject, error) : nil;
     }];
 }
 
 - (void)deleteUserProfilePicture:(BuddyCompletionCallback)callback
 {
-    NSString *resource = [NSString stringWithFormat:@"user/%@/profilepicture", self.id];
+    NSString *resource = [NSString stringWithFormat:@"users/me/profilepicture"];
     
     [self.client DELETE:resource parameters:nil callback:^(id json, NSError *error) {
-        callback ? callback(error) : nil;
+        [self refresh:^(NSError *error) {
+            callback ? callback(error) : nil;
+        }];
     }];
 }
 

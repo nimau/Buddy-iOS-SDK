@@ -22,7 +22,8 @@
 
 @implementation BPAlbum
 
-@synthesize name, caption;
+@synthesize name = _name;
+@synthesize caption = _caption;
 
 - (instancetype)initBuddyWithClient:(id<BPRestProvider>)client {
     self = [super initBuddyWithClient:client];

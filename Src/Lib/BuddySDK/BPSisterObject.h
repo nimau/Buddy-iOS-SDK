@@ -10,4 +10,9 @@
 
 @interface BPSisterObject : NSObject
 
+- (instancetype) init __attribute__((unavailable("Use initWithProtocol:")));
++ (instancetype) new __attribute__((unavailable("Use initWithProtocol:")));
+- (instancetype)initWithProtocol:(Protocol *)protocol;
+- (instancetype)initWithProtocols:(NSArray *)protocols;
+
 @end

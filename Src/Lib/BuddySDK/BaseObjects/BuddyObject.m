@@ -20,6 +20,7 @@
 
 @property (nonatomic, readwrite, assign) BOOL isDirty;
 @property (nonatomic, strong) NSMutableArray *keyPaths;
+@property (nonatomic, assign) BOOL deleted;
 
 @end
 
@@ -27,8 +28,14 @@
 @implementation BuddyObject
 
 @synthesize client = _client;
-
-@synthesize location, created, lastModified, defaultMetadata, readPermissions, writePermissions, id = _id;
+@synthesize location = _location;
+@synthesize created = _created;
+@synthesize lastModified = _lastModified;
+@synthesize defaultMetadata = _defaultMetadata;
+@synthesize readPermissions = _readPermissions;
+@synthesize writePermissions = _writePermissions;
+@synthesize tag = _tag;
+@synthesize id = _id;
 
 #pragma mark - Initializers
 
@@ -84,9 +91,14 @@
 - (void)registerProperties
 {
     self.keyPaths = [NSMutableArray array];
+    
+    [self registerProperty:@selector(location)];
     [self registerProperty:@selector(created)];
     [self registerProperty:@selector(lastModified)];
     [self registerProperty:@selector(defaultMetadata)];
+    [self registerProperty:@selector(readPermissions)];
+    [self registerProperty:@selector(writePermissions)];
+    [self registerProperty:@selector(tag)];
     [self registerProperty:@selector(id)];
 }
 
@@ -95,7 +107,6 @@
     [NSException raise:@"requestPathNotSpecified" format:@"Class did not specify requestPath"];
     return nil;
 }
-
 
 -(void)registerProperty:(SEL)property
 {
@@ -143,7 +154,7 @@
             return;
         }
         
-        BuddyObject *newObject = [[[self class] alloc] initBuddyWithClient:client];
+        BuddyObject *newObject = [[[self class] alloc] initBuddyWithResponse:json andClient:client];
 
         newObject.id = json[@"id"];
         
@@ -153,7 +164,7 @@
     }];
 }
 
--(void)deleteMe
+- (void)deleteMe
 {
     [self deleteMe:nil];
 }
@@ -165,6 +176,9 @@
                           _id];
     
     [self.client DELETE:resource parameters:nil callback:^(id json, NSError *error) {
+        if (!error) {
+            self.deleted = YES;
+        }
         callback ? callback(error) : nil;
     }];
 }
@@ -183,6 +197,11 @@
     
     [self.client GET:resource parameters:nil callback:^(id json, NSError *error) {
         [[JAGPropertyConverter converter] setPropertiesOf:self fromDictionary:json];
+        
+        if (!error) {
+            self.isDirty = NO;
+        }
+        
         callback ? callback(error) : nil;
     }];
 }
@@ -197,6 +216,9 @@
     NSDictionary *parameters = [self buildUpdateDictionary];
 
     [self.client PATCH:resource parameters:parameters callback:^(id json, NSError *error) {
+        if (!error) {
+            self.isDirty = NO;
+        }
         callback ? callback(error) : nil;
     }];
 }

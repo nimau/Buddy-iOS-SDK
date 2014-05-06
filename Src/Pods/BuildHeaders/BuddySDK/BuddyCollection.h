@@ -1,0 +1,1 @@
+../../../Lib/BuddySDK/BaseObjects/BuddyCollection.h

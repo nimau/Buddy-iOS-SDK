@@ -11,7 +11,8 @@
 
 @implementation BPCheckin
 
-@synthesize comment, description, location;
+@synthesize comment = _comment;
+@synthesize description = _description;
 
 - (void)registerProperties
 {
@@ -19,7 +20,6 @@
     
     [self registerProperty:@selector(comment)];
     [self registerProperty:@selector(description)];
-    [self registerProperty:@selector(location)];
 }
 
 static NSString *checkins = @"checkins";

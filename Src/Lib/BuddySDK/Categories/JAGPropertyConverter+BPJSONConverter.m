@@ -7,6 +7,7 @@
 //
 
 #import "JAGPropertyConverter+BPJSONConverter.h"
+#import "BPSize.h"
 
 @implementation JAGPropertyConverter (BPJSONConverter)
 
@@ -21,6 +22,8 @@
         c.identifyDict = ^Class(NSDictionary *dict) {
             if ([dict valueForKey:@"latitude"]) {
                 return [BPCoordinate class];
+            } else if ([dict valueForKey:@"h"]) {
+                return [BPSize class];
             }
             return [weakSelf class];
         };

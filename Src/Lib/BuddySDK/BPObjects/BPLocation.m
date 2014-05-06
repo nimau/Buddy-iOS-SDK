@@ -9,7 +9,27 @@
 #import "BPLocation.h"
 #import "BuddyObject+Private.h"
 
+@interface BPLocation()
+
+@property (nonatomic, assign) double *distance;
+
+@end
+
 @implementation BPLocation
+
+@synthesize name;
+@synthesize description;
+@synthesize address1;
+@synthesize address2;
+@synthesize city;
+@synthesize region;
+@synthesize country;
+@synthesize postalcode;
+@synthesize fax;
+@synthesize phone;
+@synthesize website;
+@synthesize category;
+@synthesize isPublic;
 
 - (void)registerProperties
 {
@@ -27,7 +47,7 @@
     [self registerProperty:@selector(phone)];
     [self registerProperty:@selector(website)];
     [self registerProperty:@selector(category)];
-    [self registerProperty:@selector(distance)];
+    [self registerProperty:@selector(isPublic)];
 }
 
 NSString *location = @"locations";

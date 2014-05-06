@@ -38,6 +38,7 @@
 		01AEB8DA18909D24003B051A /* AddPictureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01AEB8D818909D24003B051A /* AddPictureViewController.xib */; };
 		01B718E018917BAD0079495F /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B718DF18917BAD0079495F /* ImageCache.m */; };
 		01B718EB189197E80079495F /* PictureList.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B718EA189197E80079495F /* PictureList.m */; };
+		BA030D2643994ADBAAA6B334 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B76C766856424C499747BCFA /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,8 @@
 		01B718DF18917BAD0079495F /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageCache.m; path = ../ImageCache.m; sourceTree = "<group>"; };
 		01B718E9189197E80079495F /* PictureList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PictureList.h; path = ../PictureList.h; sourceTree = "<group>"; };
 		01B718EA189197E80079495F /* PictureList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PictureList.m; path = ../PictureList.m; sourceTree = "<group>"; };
+		9E1CDE07B78147AD89C54F18 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		B76C766856424C499747BCFA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE595DF718DCCF7700123A12 /* BuddySDK.framework in Frameworks */,
 				016822DC18A937EF00977BCB /* MobileCoreServices.framework in Frameworks */,
 				01AEB8D11890957B003B051A /* CoreLocation.framework in Frameworks */,
 				01AEB8CF189093C7003B051A /* QuartzCore.framework in Frameworks */,
@@ -110,6 +114,7 @@
 				01AEB8891890914C003B051A /* CoreGraphics.framework in Frameworks */,
 				01AEB88B1890914C003B051A /* UIKit.framework in Frameworks */,
 				01AEB8871890914C003B051A /* Foundation.framework in Frameworks */,
+				BA030D2643994ADBAAA6B334 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +138,7 @@
 				01AEB8A51890914C003B051A /* PhotoGalleryTests */,
 				01AEB8851890914C003B051A /* Frameworks */,
 				01AEB8841890914C003B051A /* Products */,
+				9E1CDE07B78147AD89C54F18 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,6 +154,7 @@
 		01AEB8851890914C003B051A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EE595DF618DCCF7700123A12 /* BuddySDK.framework */,
 				016822DB18A937EF00977BCB /* MobileCoreServices.framework */,
 				01AEB8D01890957B003B051A /* CoreLocation.framework */,
 				01AEB8CE189093C7003B051A /* QuartzCore.framework */,
@@ -156,6 +163,7 @@
 				01AEB8881890914C003B051A /* CoreGraphics.framework */,
 				01AEB88A1890914C003B051A /* UIKit.framework */,
 				01AEB89F1890914C003B051A /* XCTest.framework */,
+				B76C766856424C499747BCFA /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -288,9 +296,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01AEB8AF1890914C003B051A /* Build configuration list for PBXNativeTarget "PhotoGallery" */;
 			buildPhases = (
+				B0432765AE404B5AB95209F7 /* Check Pods Manifest.lock */,
 				01AEB87F1890914C003B051A /* Sources */,
 				01AEB8801890914C003B051A /* Frameworks */,
 				01AEB8811890914C003B051A /* Resources */,
+				C17115D0CD4648C2AD7B5DA4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -376,6 +386,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B0432765AE404B5AB95209F7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C17115D0CD4648C2AD7B5DA4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		01AEB87F1890914C003B051A /* Sources */ = {
@@ -508,6 +551,7 @@
 		};
 		01AEB8B01890914C003B051A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E1CDE07B78147AD89C54F18 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -518,7 +562,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoGallery/PhotoGallery-Prefix.pch";
 				INFOPLIST_FILE = "PhotoGallery/PhotoGallery-Info.plist";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					CrashReporter,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -526,6 +573,7 @@
 		};
 		01AEB8B11890914C003B051A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E1CDE07B78147AD89C54F18 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -536,7 +584,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoGallery/PhotoGallery-Prefix.pch";
 				INFOPLIST_FILE = "PhotoGallery/PhotoGallery-Info.plist";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					CrashReporter,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

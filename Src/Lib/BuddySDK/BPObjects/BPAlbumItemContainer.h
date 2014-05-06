@@ -10,7 +10,7 @@
 
 @interface BPAlbumItemContainer : BuddyObject
 
-@property (nonatomic, copy) NSString *albumID;
-@property (nonatomic, copy) NSString *itemID;
+@property (nonatomic, readonly, copy) NSString *albumID;
+@property (nonatomic, readonly, copy) NSString *itemID;
 
 @end

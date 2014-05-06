@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CrashReporter/CrashReporter.h>
+#import "BPRestProvider.h"
+#import "Buddy.h"
 
 @interface BPCrashManager : NSObject
 

@@ -14,7 +14,6 @@
  * the License.
  */
 
-#import "OpenUDID.h"
 #import "BuddyDevice.h"
 #import <UIKit/UIKit.h>
 #include <sys/sysctl.h>
@@ -48,7 +47,8 @@ static NSString* _pushToken = @"";
     }
     else
     {
-        return [BuddyOpenUDID value];
+        // id for vendor is iOS 6+. Return @"" unless there is demand for pre-iOS 6 support.
+        return @"";
     }
 }
 

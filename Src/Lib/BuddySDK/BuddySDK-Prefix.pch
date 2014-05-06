@@ -7,12 +7,13 @@
    #import <MobileCoreServices/MobileCoreServices.h>
    #import <SystemConfiguration/SystemConfiguration.h>
    #import <UIKit/UIKit.h>
-   #import "ObjectiveSugar.h"
+   #import "BPPermissions.h"
    #import "Util.h"
    #import "BuddyObject.h"
    #import "BuddyCollection.h"
    #import "NSDictionary+Merge.h"
    #import "NSString+JSON.h"
+   #import "NSArray+BPSugar.h"
    #import "NSError+BuddyError.h"
    #import "NSObject+ToJSON.h"
    #import "JAGPropertyConverter+BPJSONConverter.h"
@@ -20,6 +21,7 @@
 #endif
 
 #define BOXNIL(x) x ?: [NSNull null]
+#define UNBOXNIL(x) [x isKindOfClass:[NSNull class]] ? nil : x
 
 #define SuppressPerformSelectorLeakWarning(Stuff) \
 do { \

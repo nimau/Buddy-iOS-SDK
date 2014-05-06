@@ -12,13 +12,17 @@
 
 @implementation BPPicture
 
-@synthesize caption;
+@synthesize caption = _caption;
+@synthesize size = _size;
+@synthesize watermark = _watermark;
 
 - (void)registerProperties
 {
     [super registerProperties];
     
     [self registerProperty:@selector(caption)];
+    [self registerProperty:@selector(size)];
+    [self registerProperty:@selector(watermark)];
 }
 
 
@@ -42,7 +46,7 @@ static NSString *pictureMimeType = @"image/png";
     //NSData *data = UIImageJPEGRepresentation(image, 1);
     NSData *data = UIImagePNGRepresentation(image);
     
-    id pictureProperties= [BPSisterObject new];
+    id pictureProperties= [[BPSisterObject alloc] initWithProtocol:@protocol(BPPictureProperties)];
     describePicture ? describePicture(pictureProperties) : nil;
 
     id parameters = [pictureProperties parametersFromProperties:@protocol(BPPictureProperties)];

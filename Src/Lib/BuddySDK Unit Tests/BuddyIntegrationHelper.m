@@ -29,7 +29,7 @@
                 userProperties.firstName = @"Erik";
                 userProperties.lastName = @"Erik";
                 userProperties.gender = BPUserGender_Male;
-                userProperties.email = @"erik.kerber@gmail.com";
+                userProperties.email = @"erik@buddy.com";
                 userProperties.dateOfBirth = [BuddyIntegrationHelper randomDate];
             } callback:^(BPUser *newBuddyObject, NSError *error) {
                 callback();

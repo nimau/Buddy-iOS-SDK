@@ -10,6 +10,8 @@
 #import "BuddyObject.h"
 #import "BuddyCollection.h"
 
+@class BPSize;
+
 /**
  Enum for specifying gender.
  */
@@ -21,7 +23,7 @@ typedef NS_ENUM(NSInteger, BPUserGender)
 	BPUserGender_Male = 1,
     /** Female */
 	BPUserGender_Female = 2,
-} ;
+};
 
 @protocol BPUserProperties <BuddyObjectProperties>
 
@@ -31,23 +33,27 @@ typedef NS_ENUM(NSInteger, BPUserGender)
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic, assign) BPUserGender gender;
 @property (nonatomic, strong) NSDate *dateOfBirth;
-@property (nonatomic, strong) NSURL *profilePicture;
-@property (nonatomic, copy) NSString *profilePictureId;
+@property (nonatomic, readonly, copy) NSString *profilePictureID;
+@property (nonatomic, readonly, copy) NSString *profilePictureUrl;
+@property (nonatomic, assign) BOOL locationFuzzing;
+@property (nonatomic, assign) BOOL celebMode;
 
 @end
 
 typedef void(^DescribeUser)(id<BPUserProperties> userProperties);
+typedef void(^SearchUsers)(id<BPUserProperties, BPSearchProperties> searchUser);
 
 @interface BPUser : BuddyObject<BPUserProperties>
 
 - (NSInteger)age;
 
-- (void)requestPasswordReset:(BuddyObjectCallback)callback;
+- (void)requestPasswordResetWithSubject:(NSString *)subject body:(NSString *)body callback:(BuddyObjectCallback)callback;
 - (void)resetPassword:(NSString *)resetCode newPassword:(NSString *)newPassword callback:(BuddyCompletionCallback)callback;
 - (void)addIdentity:(NSString *)identityProvider value:(NSString *)value callback:(BuddyCompletionCallback)callback;
 - (void)removeIdentity:(NSString *)identityProvider value:(NSString *)value callback:(BuddyCompletionCallback)callback;
 - (void)getIdentities:(NSString *)identityProvider callback:(BuddyCollectionCallback)callback;
 - (void)setUserProfilePicture:(UIImage *)picture caption:(NSString *)comment callback:(BuddyCompletionCallback)callback;
+- (void)getUserProfilePictureWithSize:(BPSize *)size callback:(BuddyObjectCallback)callback;
 - (void)deleteUserProfilePicture:(BuddyCompletionCallback)callback;
 
 @end

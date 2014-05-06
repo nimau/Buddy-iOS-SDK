@@ -8,7 +8,8 @@
 
 #import "BPUserCollection.h"
 #import "BuddyCollection+Private.h"
-#import "BPUser.h"
+#import "NSArray+BPSugar.h"
+#import "BPSisterObject.h"
 
 @implementation BPUserCollection
 
@@ -26,21 +27,32 @@
     [self getAll:callback];
 }
 
--(void)searchIdentities:(NSString *)identityProvider callback:(BuddyCollectionCallback)callback
+- (void)getUser:(NSString *)userId callback:(BuddyObjectCallback)callback
+{
+    [self getItem:userId callback:callback];
+}
+
+- (void)searchUsers:(SearchUsers)searchUsers callback:(BuddyCollectionCallback)callback
+{
+    id searchPropertiers = [[BPSisterObject alloc] initWithProtocols:@[@protocol(BPUserProperties), @protocol(BPSearchProperties)]];
+    searchUsers ? searchUsers(searchPropertiers) : nil;
+    
+    id parameters = [searchPropertiers parametersFromProperties:@protocol(BPUserProperties)];
+    
+    [self search:parameters callback:callback];
+}
+
+- (void)getUserIdForIdentityProvider:(NSString *)identityProvider identityProviderId:(NSString *)identityProviderId callback:(BuddyIdCallback)callback
 {
     NSDictionary *parameters = @{@"identityProviderName": identityProvider};
-    [self search:parameters callback:callback];
-    
-#pragma message("TODO - Breaks design. Most collections query on the request path of the underlying type. Re-think.")
-    
-    NSString *resource = [self.requestPrefix stringByAppendingFormat:@"%@/identities",
-                          [[self type] requestPath]];
+        
+    NSString *resource = [self.requestPrefix stringByAppendingFormat:@"%@/identities/%@/%@",
+                          [[self type] requestPath],
+                          identityProvider,
+                          identityProviderId];
     
     [self.client GET:resource parameters:parameters callback:^(id json, NSError *error) {
-        NSArray *results = [json[@"pageResults"] map:^id(id object) {
-            return [[self.type alloc] initBuddyWithResponse:object andClient:self.client];
-        }];
-        callback ? callback(results, error) : nil;
+        callback ? callback(json, error) : nil;
     }];
 }
 

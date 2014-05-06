@@ -17,13 +17,10 @@
 #import "BPAlbumCollection.h"
 #import "BPPicture.h"
 #import "BPUser.h"
-#import "BPGameBoards.h"
-#import "BPSounds.h"
 #import "BPPictureCollection.h"
 #import "BPVideoCollection.h"
 #import "BPBlobCollection.h"
 #import "BPUserCollection.h"
-#import "BPUserListCollection.h"
 #import "BPCoordinate.h"
 #import "BPDateRange.h"
 #import "BPBlob.h"
@@ -32,6 +29,9 @@
 #import "BPLocation.h"
 #import "BPMetricCompletionHandler.h"
 #import "BPMetadataItem.h"
+#import "BPNotification.h"
+#import "BPIdentityValue.h"
+#import "BPSize.h"
 
 /**
  * TODO
@@ -84,12 +84,6 @@
 + (BPLocationCollection *)locations;
 
 /**
- Accessor to create and query user lists.
- */
-+ (BPUserListCollection *) userLists;
-
-
-/**
   Public REST provider for passthrough access.
  */
 + (id<BPRestProvider>)buddyRestProvider;
@@ -97,7 +91,6 @@
 
 + (BOOL) locationEnabled;
 
-#pragma message("Implement location")
 + (void) setLocationEnabled:(BOOL)enabled;
 
 + (void)setClientDelegate:(id<BPClientDelegate>)delegate;
@@ -146,17 +139,21 @@
  */
 + (void)logout:(BuddyCompletionCallback)callback;
 
+/* 
+ * Notification
+ */
++ (void)sendPushNotification:(BPNotification *)notification callback:(BuddyCompletionCallback)callback;
+
 
 + (void)recordMetric:(NSString *)key andValue:(NSDictionary *)value callback:(BuddyCompletionCallback)callback;
 
 + (void)recordTimedMetric:(NSString *)key andValue:(NSDictionary *)value timeout:(NSInteger)seconds callback:(BuddyMetricCallback)callback;
 
-+ (void)setMetadataWithKey:(NSString *)key andString:(NSString *)value permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback;
-+ (void)setMetadataWithKey:(NSString *)key andInteger:(NSInteger)value permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback;
-+ (void)setMetadataWithKeyValues:(NSDictionary *)keyValuePaths permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback;
-+ (void)getMetadataWithKey:(NSString *)key permissions:(BuddyPermissions) permissions callback:(BPMetadataCallback)callback;
++ (void)setMetadata:(DescribeMetadata)describeMetadata callback:(BuddyCompletionCallback)callback;
++ (void)setMetadataValues:(DescribeMetadataCollection)describeMetadata callback:(BuddyCompletionCallback)callback;
++ (void)getMetadataWithKey:(NSString *)key permissions:(BPPermissions) permissions callback:(BPMetadataCallback)callback;
 + (void)searchMetadata:(SearchMetadata)search callback:(BuddyObjectCallback)callback;
 + (void)incrementMetadata:(NSString *)key delta:(NSInteger)delta callback:(BuddyCompletionCallback)callback;
-+ (void)deleteMetadataWithKey:(NSString *)key permissions:(BuddyPermissions)permissions callback:(BuddyCompletionCallback)callback;
++ (void)deleteMetadataWithKey:(NSString *)key permissions:(BPPermissions)permissions callback:(BuddyCompletionCallback)callback;
 
 @end

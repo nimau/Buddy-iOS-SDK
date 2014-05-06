@@ -7,7 +7,12 @@
 //
 
 #import "BPCrashManager.h"
+#import <CrashReporter/CrashReporter.h>
 #include <sys/sysctl.h>
+
+#ifndef CPU_TYPE_ARM64
+#define CPU_TYPE_ARM64 (CPU_TYPE_ARM | CPU_ARCH_ABI64)
+#endif
 
 @interface BPCrashManager()
 
@@ -304,12 +309,11 @@
     BOOL lp64 = [self reportIs64Bit:crashReport];
 
     
-    
     // Exception
     NSString *message = nil;
     NSMutableString *crashedThreadString = [NSMutableString string];
     NSString *exceptionMethodName = [NSMutableString string];
-    NSString *applicationName = [[crashReport.applicationInfo.applicationIdentifier split:@"."] lastObject];
+    NSString *applicationName = [[crashReport.applicationInfo.applicationIdentifier componentsSeparatedByString:@"."] lastObject];
     if (crashReport.exceptionInfo) {
         // The easy way. We have exception info. Common for most crashes.
         

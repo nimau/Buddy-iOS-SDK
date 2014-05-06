@@ -20,12 +20,8 @@ typedef void(^DescribeAlbum)(id<BPAlbumProperties>pictureProperties);
 @interface BPAlbum : BuddyObject<BPAlbumProperties>
 
 - (void)addItemToAlbum:(id)albumItem caption:(NSString *)caption callback:(BuddyObjectCallback)callback;
-
 - (void)addItemIdToAlbum:(NSString *)itemId caption:(NSString *)caption callback:(BuddyObjectCallback)callback;
-
 - (void)getAlbumItem:(NSString *)itemId callback:(BuddyObjectCallback)callback;
-
 - (void)searchAlbumItems:(DescribeAlbumItem)describe callback:(BuddyCollectionCallback)callback;
-
 
 @end

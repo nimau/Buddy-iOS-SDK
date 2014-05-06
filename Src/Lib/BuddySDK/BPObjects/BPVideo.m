@@ -9,6 +9,15 @@
 #import "BPVideo.h"
 #import "BPSisterObject.h"
 
+@interface BPVideo()
+
+@property (nonatomic, assign) NSInteger bitRate;
+@property (nonatomic, copy) NSString *encoding;
+@property (nonatomic, assign) double lengthInSeconds;
+@property (nonatomic, copy) NSString *thumbnailID;
+
+@end
+
 @implementation BPVideo
 @synthesize title;
 @synthesize friendlyName;
@@ -23,8 +32,11 @@
     [super registerProperties];
     
     [self registerProperty:@selector(title)];
-    [self registerProperty:@selector(friendlyName)];
     [self registerProperty:@selector(thumbnailOffsetInSeconds)];
+    [self registerProperty:@selector(encoding)];
+    [self registerProperty:@selector(lengthInSeconds)];
+    [self registerProperty:@selector(thumbnailID)];
+
 }
 
 static NSString *videos = @"videos";
@@ -44,7 +56,7 @@ static NSString *videoMimeType = @"video/mp4";
                  client:(id<BPRestProvider>)client
                callback:(BuddyObjectCallback)callback
 {
-    id videoProperties = [BPSisterObject new];
+    id videoProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPVideoProperties)];
     describeVideo ? describeVideo(videoProperties) : nil;
     
     id parameters = [videoProperties parametersFromProperties:@protocol(BPVideoProperties)];

@@ -167,10 +167,11 @@
     [Buddy createUser:self.userNameTextField.text
                       password:self.passwordTextField.text
                       describeUser:^(id<BPUserProperties> userProperties) {
-                          userProperties.firstName =self.firstNameTextField.text;
-                          userProperties.lastName =self.lastNameTextField.text;
-                          userProperties.gender =BPUserGender_Unknown;
-                          userProperties.dateOfBirth=nil;
+                          userProperties.firstName = self.firstNameTextField.text;
+                          userProperties.lastName = self.lastNameTextField.text;
+                          userProperties.gender = BPUserGender_Unknown;
+                          userProperties.dateOfBirth= nil;
+                          userProperties.email = self.emailTextField.text;
                       }
                       callback:[self getRegisterCallback]];
 }

@@ -10,25 +10,55 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <BuddySDK/Buddy.h>
 
+#define TEST_USERNAME @"erik8"
+#define TEST_PASSWORD @"password"
+
 @interface BPViewController () <FBLoginViewDelegate>
 
 @end
 
 @implementation BPViewController
 
+- (IBAction)login:(id)sender
+{
+    [Buddy login:TEST_USERNAME password:TEST_PASSWORD callback:^(id newBuddyObject, NSError *error) {
+        
+    }];
+}
+
+- (IBAction)pushNotification:(id)sender
+{
+    
+    BPNotification *note = [BPNotification new];
+    note.recipients = @[[Buddy user].id];
+    note.message = @"Message";
+    note.payload = @"Payload";
+    note.osCustomData = @"{}";
+    note.notificationType = BPNotificationType_Raw;
+    
+    [Buddy sendPushNotification:note callback:^(NSError *error) {
+        int a = 5;
+    }];
+    
+}
+
 - (IBAction)checkin:(id)sender {
     
-    
-    
-    __block DescribeCheckin d = ^(id<BPCheckinProperties> checkinProperties) {
-        checkinProperties.comment = @"Checkin";
-        checkinProperties.description = @"Description";
-        checkinProperties.location = BPCoordinateMake(1.2, 3.4);;
-    };
-    
-    [[Buddy checkins] checkin:d callback:^(id newBuddyObject, NSError *error) {
-        //BPCheckin *c = newBuddyObject;
+    [[Buddy pictures] addPicture:[UIImage imageNamed:@"test.png"] describePicture:^(id<BPPictureProperties> pictureProperties) {
+        pictureProperties.caption = @"Hello, caption!";
+    } callback:^(id buddyObject, NSError *error) {
+        int a = 5;
     }];
+    
+//    __block DescribeCheckin d = ^(id<BPCheckinProperties> checkinProperties) {
+//        checkinProperties.comment = @"Checkin";
+//        checkinProperties.description = @"Description";
+//        checkinProperties.location = BPCoordinateMake(1.2, 3.4);;
+//    };
+//    
+//    [[Buddy checkins] checkin:d callback:^(id newBuddyObject, NSError *error) {
+//        //BPCheckin *c = newBuddyObject;
+//    }];
 }
 
 - (IBAction)crash:(id)sender
@@ -54,7 +84,7 @@
     NSLog(@"%@", user);
     NSString *fbAccessToken = [[[FBSession activeSession] accessTokenData] accessToken];
 
-    [Buddy socialLogin:@"Facebook" providerId:user.id token:fbAccessToken success:^(id newBuddyObject, NSError *error) {
+    [Buddy socialLogin:@"Facebook" providerId:user.id token:fbAccessToken success:^(BPUser *newBuddyObject, NSError *error) {
         NSLog(@"Hello");
     }];
 }

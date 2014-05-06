@@ -28,7 +28,9 @@
             NSString *name = [[NSString alloc] initWithUTF8String:property_getName(property)];
             id val = [self valueForKey:name];
             
-            if ([val respondsToSelector:@selector(stringValue)]) {
+            if ([val isKindOfClass:[NSNumber class]]) {
+                // Don't convert
+            } else if ([val respondsToSelector:@selector(stringValue)]) {
                 val = [val stringValue];
             } else if([[val class] isSubclassOfClass:[NSDate class]]){
                 val = [val serializeDateToJson];

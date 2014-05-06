@@ -10,9 +10,11 @@
 #import "BPRestProvider.h"
 #import "BPCoordinate.h"
 #import "BPBase.h"
+#import "BuddyCollection.h"
 
 @interface BuddyObject : BPBase<BuddyObjectProperties>
 
+@property (nonatomic, readonly, assign) BOOL deleted;
 @property (nonatomic, readonly, assign) BOOL isDirty;
 
 - (instancetype) init __attribute__((unavailable("init not available")));

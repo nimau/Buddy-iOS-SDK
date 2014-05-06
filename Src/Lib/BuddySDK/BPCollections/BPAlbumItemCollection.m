@@ -51,7 +51,7 @@
 
 - (void)searchAlbumItems:(DescribeAlbumItem)describe callback:(BuddyObjectCallback)callback
 {
-    id albumItemProperties = [BPSisterObject new];
+    id albumItemProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPAlbumItemProperties)];
     describe ? describe(albumItemProperties) : nil;
     
     id parameters = [albumItemProperties parametersFromProperties:@protocol(BPAlbumItemProperties)];

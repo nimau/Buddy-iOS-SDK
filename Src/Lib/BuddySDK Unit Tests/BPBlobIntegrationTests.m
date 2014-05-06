@@ -19,9 +19,11 @@ SPEC_BEGIN(BuddyBlobSpec)
 
 describe(@"BPBlobIntegrationSpec", ^{
     context(@"When a user is logged in", ^{
-        
+        __block BPBlob *newBlob;
+        __block BPBlob *retrievedBlob;
+        __block BOOL fin = NO;
+
         beforeAll(^{
-            __block BOOL fin = NO;
             
             [BuddyIntegrationHelper bootstrapLogin:^{
                 fin = YES;
@@ -30,8 +32,8 @@ describe(@"BPBlobIntegrationSpec", ^{
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
-        afterAll(^{
-            
+        beforeEach(^{
+            fin = NO;
         });
         
         it(@"Should allow users to upload blobs", ^{
@@ -39,29 +41,66 @@ describe(@"BPBlobIntegrationSpec", ^{
             NSString *blobPath = [bundle pathForResource:@"help" ofType:@"jpg"];
             NSData *blobData = [NSData dataWithContentsOfFile:blobPath];
             
-            __block BPBlob *newBlob;
-            [[Buddy blobs] addBlob:blobData callback:^(id newBuddyObject, NSError *error) {
+            [[Buddy blobs] addBlob:blobData describe:^(id<BPBlobProperties> blobProperties) {
+                blobProperties.friendlyName = @"So friendly";
+            } callback:^(id newBuddyObject, NSError *error) {
                 newBlob = newBuddyObject;
             }];
             
             [[expectFutureValue(newBlob) shouldEventually] beNonNil];
             [[expectFutureValue(theValue(newBlob.contentLength)) shouldEventually] equal:theValue(1)];
-#pragma message("TODO - validate mime type.")
-            //[[expectFutureValue(newBlob.contentType) shouldEventually] equal:@"image/png"];
+            [[expectFutureValue(newBlob.friendlyName) shouldEventually] equal:@"So friendly"];
             [[expectFutureValue(newBlob.signedUrl) shouldEventually] haveLengthOfAtLeast:1];
-            
         });
         
-        pending_(@"Should allow retrieving pictures", ^{
+        it(@"Should allow retrieving blobs", ^{
+            [[Buddy blobs] getBlob:newBlob.id callback:^(BPBlob *blob, NSError *error) {
+                retrievedBlob = blob;
+                [[retrievedBlob.id should] equal:newBlob.id];
+                [[error should] beNil];
+                fin = YES;
+            }];
             
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
-        pending_(@"Should allow searching for images", ^{
+        it(@"Should allow modifying blobs", ^{
             
+            NSString *newFriendly = @"Not so friendly?";
+            retrievedBlob.friendlyName = newFriendly;
+            
+            [retrievedBlob save:^(NSError *error) {
+                [[error should] beNil];
+                [[Buddy blobs] getBlob:newBlob.id callback:^(BPBlob *blob, NSError *error) {
+                    retrievedBlob = blob;
+                    [[retrievedBlob.id should] equal:newBlob.id];
+                    [[retrievedBlob.friendlyName should] equal:newFriendly];
+                    [[error should] beNil];
+                    fin = YES;
+                }];
+            }];
+            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
-        it (@"Should allow the user to delete pictures", ^{
+        it(@"Should allow searching for blobs", ^{
+            [[Buddy blobs] searchBlobs:^(id<BPBlobProperties> blobProperties) {
+                blobProperties.friendlyName = @"So friendly";
+            } callback:^(NSArray *buddyObjects, NSError *error) {
+                [[theValue([buddyObjects count]) should] beGreaterThan:theValue(0)];
+                fin = YES;
+            }];
+
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
+        });
+        
+        it (@"Should allow the user to delete blobs", ^{
+            [newBlob deleteMe:^(NSError *error) {
+                [[error should] beNil];
+                fin = YES;
+            }];
             
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
         
