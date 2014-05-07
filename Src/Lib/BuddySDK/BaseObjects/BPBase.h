@@ -15,7 +15,6 @@
 @property (nonatomic, strong) BPCoordinate *location;
 @property (nonatomic, strong) NSDate *created;
 @property (nonatomic, strong) NSDate *lastModified;
-@property (nonatomic, copy) NSString *defaultMetadata;
 @property (nonatomic, assign) BPPermissions readPermissions;
 @property (nonatomic, assign) BPPermissions writePermissions;
 @property (nonatomic, assign) NSString *tag;
