@@ -186,7 +186,6 @@
 		C1FEEB4F187E483100B45505 /* BPAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FEEB4D187E483100B45505 /* BPAlbum.m */; };
 		C1FEEB51187E493400B45505 /* BPLocationsIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FEEB50187E493400B45505 /* BPLocationsIntegrationTests.m */; };
 		C1FEEB53187E4B0300B45505 /* BPMessagesIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FEEB52187E4B0300B45505 /* BPMessagesIntegrationTests.m */; };
-		C1FEEB55187E4B2800B45505 /* BPRegionsIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FEEB54187E4B2800B45505 /* BPRegionsIntegrationTests.m */; };
 		C1FEEB57187E4B4500B45505 /* BPVideosIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FEEB56187E4B4500B45505 /* BPVideosIntegrationTests.m */; };
 /* End PBXBuildFile section */
 
@@ -396,7 +395,6 @@
 		C1FEEB4D187E483100B45505 /* BPAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPAlbum.m; sourceTree = "<group>"; };
 		C1FEEB50187E493400B45505 /* BPLocationsIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPLocationsIntegrationTests.m; sourceTree = "<group>"; };
 		C1FEEB52187E4B0300B45505 /* BPMessagesIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMessagesIntegrationTests.m; sourceTree = "<group>"; };
-		C1FEEB54187E4B2800B45505 /* BPRegionsIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPRegionsIntegrationTests.m; sourceTree = "<group>"; };
 		C1FEEB56187E4B4500B45505 /* BPVideosIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVideosIntegrationTests.m; sourceTree = "<group>"; };
 		C45C2FF5422A4DFABC595DCB /* Pods-BuddySDK Unit Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuddySDK Unit Tests.xcconfig"; path = "../Pods/Pods-BuddySDK Unit Tests.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -740,7 +738,6 @@
 				C1FEEB4A187E481800B45505 /* BPAlbumsIntegrationTests.m */,
 				C1FEEB52187E4B0300B45505 /* BPMessagesIntegrationTests.m */,
 				C1FEEB50187E493400B45505 /* BPLocationsIntegrationTests.m */,
-				C1FEEB54187E4B2800B45505 /* BPRegionsIntegrationTests.m */,
 				C1FEEB56187E4B4500B45505 /* BPVideosIntegrationTests.m */,
 			);
 			path = "BuddySDK Unit Tests";
@@ -1082,7 +1079,6 @@
 				C10F1B80187103E500D5364C /* BPUserIntegrationTests.m in Sources */,
 				C10F1B78187095EA00D5364C /* BuddyIntegrationHelper.m in Sources */,
 				C1A58FFD1890A57A00C5A50F /* MetadataTests.m in Sources */,
-				C1FEEB55187E4B2800B45505 /* BPRegionsIntegrationTests.m in Sources */,
 				C1FEEB57187E4B4500B45505 /* BPVideosIntegrationTests.m in Sources */,
 				C1FEEB4B187E481900B45505 /* BPAlbumsIntegrationTests.m in Sources */,
 				C1ADD127184D96B800246313 /* CheckinIntegrationTests.m in Sources */,

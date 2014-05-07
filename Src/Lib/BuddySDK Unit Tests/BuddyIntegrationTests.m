@@ -21,7 +21,7 @@ SPEC_BEGIN(BuddyIntegrationSpec)
 describe(@"Buddy", ^{
     context(@"A clean boot of your app", ^{
         
-        __block NSString *testCreateDeleteName = @"ItPutsTheLotionOnItsSkin5";
+        __block NSString *testCreateDeleteName = @"ItPutsTheLotionOnItsSkin";
         __block id mock = nil;
         __block BOOL fin = NO;
 
@@ -70,11 +70,15 @@ describe(@"Buddy", ^{
                 userProperties.firstName = @"Erik";
                 userProperties.lastName = @"Kerber";
                 userProperties.gender = BPUserGender_Female;
-                userProperties.email = @"erik.kerber@gmail.com";
+                userProperties.email = TEST_EMAIL;
                 userProperties.dateOfBirth = randomDate;
             } callback:^(BPUser *newBuddyObject, NSError *error) {
                 newUser = newBuddyObject;
-                
+                [[error should] beNil];
+                if (error) {
+                    fin = YES;
+                    return;
+                }
                 [[newUser.userName should] equal:testCreateDeleteName];
                 [[newUser.firstName should] equal:@"Erik"];
                 [[newUser.lastName should] equal:@"Kerber"];
@@ -117,7 +121,9 @@ describe(@"Buddy", ^{
             __block BOOL deleted = NO;
             
             [Buddy login:testCreateDeleteName password:TEST_PASSWORD callback:^(BPUser *loggedInsUser, NSError *error) {
+                [[error should] beNil];
                 [loggedInsUser deleteMe:^(NSError *error){
+                    [[error should] beNil];
                     deleted = YES;
                 }];
             }];
