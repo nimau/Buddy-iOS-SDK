@@ -78,12 +78,20 @@ describe(@"BPLocationIntegrationSpec", ^{
                 locations = buddyObjects;
                 [[locations should] beNonNil];
                 [[theValue([locations count]) should] beGreaterThan:theValue(0)];
+
                 fin = YES;
             }];
             
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
+        it(@"Should allow deleting a location.", ^{
+            [tempLocation deleteMe:^(NSError *error) {
+                [[error should] beNil];
+                fin = YES;
+            }];
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
+        });
     });
 });
 
