@@ -19,7 +19,7 @@ SPEC_BEGIN(MetricsSpec)
 
 describe(@"Metrics", ^{
     context(@"When an app has a valid device token", ^{
-        
+        __block BOOL fin = NO;
         beforeAll(^{
             [Buddy initClient:APP_NAME appKey:APP_KEY];
         });
@@ -27,9 +27,11 @@ describe(@"Metrics", ^{
         afterAll(^{
         });
         
+        beforeEach(^{
+            fin = NO;
+        });
+        
         it(@"Should allow recording untimed metrics", ^{
-            __block BOOL fin = NO;
-
             NSDictionary *myVals = @{@"Foo": @"Bar"};
             
             [Buddy recordMetric:@"MetricKey" andValue:myVals callback:^(NSError *error) {
@@ -41,7 +43,6 @@ describe(@"Metrics", ^{
         });
         
         it(@"Should allow recording timed metrics", ^{
-            __block BOOL fin = NO;
             NSDictionary *myVals = @{@"Foo": @"Bar"};
 
             [Buddy recordTimedMetric:@"MetricKey" andValue:myVals timeout:10 callback:^(BPMetricCompletionHandler *completionHandler, NSError *error) {
