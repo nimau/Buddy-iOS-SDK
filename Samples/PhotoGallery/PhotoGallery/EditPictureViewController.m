@@ -92,10 +92,12 @@
         }
         
         NSLog(@"SavePhotoCallback - success Called");
-        [weakSelf.picture setMetadataWithKey:TAG_META_KEY
-                                 andString:weakSelf.tagString
-                               permissions: BPPermissionsApp
-                                  callback:[weakSelf getSaveTagCallback]];
+        [weakSelf.picture setMetadata: ^(id<BPMetadataProperties> metadataProperties) {
+                    metadataProperties.key =TAG_META_KEY;
+                    metadataProperties.value =weakSelf.tagString;
+                    metadataProperties.permissions =BPPermissionsApp;
+            
+        } callback:[weakSelf getSaveTagCallback]];
         
     };
     
