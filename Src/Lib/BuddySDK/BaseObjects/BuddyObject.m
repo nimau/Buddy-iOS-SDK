@@ -31,7 +31,6 @@
 @synthesize location = _location;
 @synthesize created = _created;
 @synthesize lastModified = _lastModified;
-@synthesize defaultMetadata = _defaultMetadata;
 @synthesize readPermissions = _readPermissions;
 @synthesize writePermissions = _writePermissions;
 @synthesize tag = _tag;
@@ -95,7 +94,6 @@
     [self registerProperty:@selector(location)];
     [self registerProperty:@selector(created)];
     [self registerProperty:@selector(lastModified)];
-    [self registerProperty:@selector(defaultMetadata)];
     [self registerProperty:@selector(readPermissions)];
     [self registerProperty:@selector(writePermissions)];
     [self registerProperty:@selector(tag)];
