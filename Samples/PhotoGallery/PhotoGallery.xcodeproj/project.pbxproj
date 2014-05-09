@@ -106,7 +106,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE595DF718DCCF7700123A12 /* BuddySDK.framework in Frameworks */,
 				016822DC18A937EF00977BCB /* MobileCoreServices.framework in Frameworks */,
 				01AEB8D11890957B003B051A /* CoreLocation.framework in Frameworks */,
 				01AEB8CF189093C7003B051A /* QuartzCore.framework in Frameworks */,
@@ -154,7 +153,6 @@
 		01AEB8851890914C003B051A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EE595DF618DCCF7700123A12 /* BuddySDK.framework */,
 				016822DB18A937EF00977BCB /* MobileCoreServices.framework */,
 				01AEB8D01890957B003B051A /* CoreLocation.framework */,
 				01AEB8CE189093C7003B051A /* QuartzCore.framework */,
@@ -563,6 +561,7 @@
 				GCC_PREFIX_HEADER = "PhotoGallery/PhotoGallery-Prefix.pch";
 				INFOPLIST_FILE = "PhotoGallery/PhotoGallery-Info.plist";
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-framework",
 					CrashReporter,
 				);
@@ -585,6 +584,7 @@
 				GCC_PREFIX_HEADER = "PhotoGallery/PhotoGallery-Prefix.pch";
 				INFOPLIST_FILE = "PhotoGallery/PhotoGallery-Info.plist";
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-framework",
 					CrashReporter,
 				);
