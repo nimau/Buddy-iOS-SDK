@@ -70,7 +70,7 @@ describe(@"BPLocationIntegrationSpec", ^{
         
         it(@"Should allow you to search for a location.", ^{
             __block NSArray *locations;
-            [[Buddy locations] findLocation:^(id<BPLocationProperties,BPSearchProperties> locationProperties) {
+            [[Buddy locations] searchLocation:^(id<BPLocationProperties,BPSearchProperties> locationProperties) {
                 locationProperties.range = BPCoordinateRangeMake(1.2345, 3.4567, 100);
                 locationProperties.limit = 9;
             } callback:^(NSArray *buddyObjects, NSError *error) {
