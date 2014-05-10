@@ -25,8 +25,8 @@
 + (NSString *)requestPath;
 
 + (void)createFromServerWithParameters:(NSDictionary *)parameters client:(id<BPRestProvider>)client callback:(BuddyObjectCallback)callback;
-- (void)deleteMe:(BuddyCompletionCallback)callback;
-- (void)deleteMe;
+- (void)destroy:(BuddyCompletionCallback)callback;
+- (void)destroy;
 - (void)refresh;
 - (void)refresh:(BuddyCompletionCallback)callback;
 - (void)save:(BuddyCompletionCallback)callback;

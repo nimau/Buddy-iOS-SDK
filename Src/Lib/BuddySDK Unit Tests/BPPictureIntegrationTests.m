@@ -208,7 +208,7 @@ describe(@"BPPictureIntegrationSpec", ^{
         
         it(@"Should allow the user to delete pictures", ^{
             return;
-            [newPicture deleteMe:^(NSError *error){
+            [newPicture destroy:^(NSError *error){
                 [[Buddy pictures] getPicture:newPicture.id callback:^(id newBuddyObject, NSError *error) {
                     newPicture = newBuddyObject;
                 }];

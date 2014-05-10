@@ -162,12 +162,12 @@
     }];
 }
 
-- (void)deleteMe
+- (void)destroy
 {
-    [self deleteMe:nil];
+    [self destroy:nil];
 }
 
--(void)deleteMe:(BuddyCompletionCallback)callback
+-(void)destroy:(BuddyCompletionCallback)callback
 {
     NSString *resource = [NSString stringWithFormat:@"%@/%@",
                           [[self class] requestPath],

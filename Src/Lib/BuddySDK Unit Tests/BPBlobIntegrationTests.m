@@ -95,7 +95,7 @@ describe(@"BPBlobIntegrationSpec", ^{
         });
         
         it (@"Should allow the user to delete blobs", ^{
-            [newBlob deleteMe:^(NSError *error) {
+            [newBlob destroy:^(NSError *error) {
                 [[error should] beNil];
                 fin = YES;
             }];

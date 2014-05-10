@@ -86,7 +86,7 @@ describe(@"BPLocationIntegrationSpec", ^{
         });
         
         it(@"Should allow deleting a location.", ^{
-            [tempLocation deleteMe:^(NSError *error) {
+            [tempLocation destroy:^(NSError *error) {
                 [[error should] beNil];
                 fin = YES;
             }];

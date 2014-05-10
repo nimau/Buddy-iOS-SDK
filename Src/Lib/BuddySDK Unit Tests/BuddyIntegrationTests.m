@@ -31,7 +31,7 @@ describe(@"Buddy", ^{
             
             [Buddy login:testCreateDeleteName password:TEST_PASSWORD callback:^(BPUser *loggedInsUser, NSError *error) {
                 if (!error) {
-                    [loggedInsUser deleteMe:^(NSError *error){
+                    [loggedInsUser destroy:^(NSError *error){
                         fin = YES;
                     }];
                 } else {
@@ -122,7 +122,7 @@ describe(@"Buddy", ^{
             
             [Buddy login:testCreateDeleteName password:TEST_PASSWORD callback:^(BPUser *loggedInsUser, NSError *error) {
                 [[error should] beNil];
-                [loggedInsUser deleteMe:^(NSError *error){
+                [loggedInsUser destroy:^(NSError *error){
                     [[error should] beNil];
                     deleted = YES;
                 }];

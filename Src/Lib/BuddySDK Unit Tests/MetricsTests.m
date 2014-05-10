@@ -45,7 +45,7 @@ describe(@"Metrics", ^{
         it(@"Should allow recording timed metrics", ^{
             NSDictionary *myVals = @{@"Foo": @"Bar"};
 
-            [Buddy recordTimedMetric:@"MetricKey" andValue:myVals timeout:10 callback:^(BPMetricCompletionHandler *completionHandler, NSError *error) {
+            [Buddy recordMetric:@"MetricKey" andValue:myVals timeout:10 callback:^(BPMetricCompletionHandler *completionHandler, NSError *error) {
                 [[error should] beNil];
                 [completionHandler signalComplete:^(NSInteger elapsedTimeInMs, NSError *error) {
                     [[theValue(elapsedTimeInMs) should] beGreaterThan:theValue(0)];
