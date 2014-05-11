@@ -75,18 +75,18 @@ typedef void (^BPPingCallback)(NSDecimalNumber *ping);
 /// <summary>
 /// Gets the application name for this client.
 /// </summary>
-@property (readonly, nonatomic, assign) NSString *appID;
+@property (readonly, nonatomic, copy) NSString *appID;
 
 /// <summary>
 /// Gets the application password for this client.
 /// </summary>
-@property (readonly, nonatomic, assign) NSString *appKey;
+@property (readonly, nonatomic, copy) NSString *appKey;
 
 /// <summary>
 /// Gets the optional string that describes the version of the app you are building. This string is used when uploading
 /// device information to Buddy or submitting crash reports. It will default to 1.0.
 /// </summary>
-@property (readonly, nonatomic, assign) NSString *appVersion;
+@property (readonly, nonatomic, copy) NSString *appVersion;
 
 /// <summary>
 /// Gets an object that can be used to record device information about this client or upload crashes.

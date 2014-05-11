@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSDate *lastModified;
 @property (nonatomic, assign) BPPermissions readPermissions;
 @property (nonatomic, assign) BPPermissions writePermissions;
-@property (nonatomic, assign) NSString *tag;
+@property (nonatomic, copy) NSString *tag;
 @property (nonatomic, copy) NSString *id;
 
 @end
@@ -28,8 +28,8 @@
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *endDate;
 @property (nonatomic, assign) NSInteger limit;
-@property (nonatomic, assign) NSString *pagingToken;
-@property (nonatomic, assign) NSString *userID;
+@property (nonatomic, copy) NSString *pagingToken;
+@property (nonatomic, copy) NSString *userID;
 
 @end
 
