@@ -14,10 +14,10 @@
 + (NSDictionary *)mapForProperty:(NSString *)key
 {
     if ([key isEqualToString:@"permissions"]) {
-        return @{NSStringFromSelector(@selector(permissions)) : @{
+        return @{
                          @(BPPermissionsApp) : @"App",
                          @(BPPermissionsUser) : @"User",
-                         }};
+                         };
     }
     
     return nil;
@@ -67,23 +67,6 @@
         [[JAGPropertyConverter converter] setPropertiesOf:self fromDictionary:response];
     }
     return self;
-}
-
-+ (NSDictionary *)mapForProperty:(NSString *)key
-{
-    if ([key isEqualToString:@"permissions"]) {
-        return @{NSStringFromSelector(@selector(permissions)) : @{
-                         @(BPPermissionsApp) : @"App",
-                         @(BPPermissionsUser) : @"User",
-                         }};
-    }
-    
-    return nil;
-}
-
-+ (id)convertValue:(NSString *)value forKey:(NSString *)key
-{
-    return nil;
 }
 
 @end
