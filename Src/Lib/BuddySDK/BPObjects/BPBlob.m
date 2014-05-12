@@ -10,6 +10,12 @@
 #import "BuddyObject+Private.h"
 #import "Buddy.h"
 
+@implementation BPBlobSearch
+
+@synthesize contentLength, contentType, signedUrl, friendlyName;
+
+@end
+
 @interface BPBlob()
 
 @property (nonatomic, copy) NSString *contentType;

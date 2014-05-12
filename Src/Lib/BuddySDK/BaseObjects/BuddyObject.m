@@ -260,3 +260,9 @@ static NSString *metadataRoute = @"metadata";
 }
 
 @end
+
+@implementation BPObjectSearch
+
+@synthesize location, created, lastModified, readPermissions, writePermissions, tag, id;
+
+@end

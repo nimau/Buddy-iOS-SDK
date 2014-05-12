@@ -19,15 +19,11 @@
 
 @end
 
-typedef void(^DescribeVideo)(id<BPVideoProperties>videoProperties);
-typedef void(^SearchVideo)(id<BPVideoProperties, BPSearchProperties>videoSearchProperties);
+@interface BPVideoSearch : BPBlobSearch<BPVideoProperties>
+
+@end
 
 @interface BPVideo : BPBlob<BPVideoProperties>
-
-+ (void)createWithVideo:(NSData *)video
-          describeVideo:(DescribeVideo)describeVideo
-                 client:(id<BPRestProvider>)client
-               callback:(BuddyObjectCallback)callback;
 
 - (void)getVideo:(BuddyDataResponse)callback;
 

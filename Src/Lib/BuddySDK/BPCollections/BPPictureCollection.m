@@ -31,12 +31,9 @@
     [picture savetoServerWithImage:image callback:callback];
 }
 
--(void)searchPictures:(DescribePicture)describePicture callback:(BuddyCollectionCallback)callback
+-(void)searchPictures:(BPSearchPictures *)searchPictures callback:(BuddyCollectionCallback)callback
 {
-    id pictureProperties= [[BPSisterObject alloc] initWithProtocol:@protocol(BPPictureProperties)];
-    describePicture ? describePicture(pictureProperties) : nil;
-    
-    id parameters = [pictureProperties parametersFromProperties:@protocol(BPPictureProperties)];
+    id parameters = [searchPictures parametersFromProperties:@protocol(BPPictureProperties)];
     
     [self search:parameters callback:callback];
 }

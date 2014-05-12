@@ -22,6 +22,7 @@
 
 @end
 
+// Temp
 @protocol BPSearchProperties <NSObject>
 
 @property (nonatomic, strong) BPCoordinateRange *range;

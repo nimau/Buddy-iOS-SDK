@@ -14,7 +14,7 @@
        videoData:(NSData *)videoData
         callback:(BuddyCompletionCallback)callback;
 
-- (void)searchVideos:(SearchVideo)describeVideo callback:(BuddyCollectionCallback)callback;
+- (void)searchVideos:(BPVideoSearch *)searchVideo callback:(BuddyCollectionCallback)callback;
 
 - (void)getVideo:(NSString *)pictureId callback:(BuddyObjectCallback)callback;
 

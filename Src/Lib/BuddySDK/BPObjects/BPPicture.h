@@ -20,8 +20,11 @@
 
 @class BPPicture;
 
+@interface BPSearchPictures : BPObjectSearch<BPPictureProperties>
+
+@end
+
 typedef void(^BuddyImageResponse)(UIImage *image, NSError *error);
-typedef void(^DescribePicture)(id<BPPictureProperties>pictureProperties);
 
 @interface BPPicture : BPBlob<BPPictureProperties>
 

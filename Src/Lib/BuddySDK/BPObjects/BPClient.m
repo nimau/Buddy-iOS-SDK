@@ -25,6 +25,7 @@
 #import "BuddyAppDelegateDecorator.h"
 #import "BPCrashManager.h"
 #import "BPUser+Private.h"
+#import "BuddyObject+Private.h"
 
 #import <CoreFoundation/CoreFoundation.h>
 #define BuddyServiceURL @"BuddyServiceURL"

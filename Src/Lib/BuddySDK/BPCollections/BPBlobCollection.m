@@ -26,7 +26,6 @@
        callback:(BuddyCompletionCallback)callback;
 {
     [blob savetoServerWithData:data callback:callback];
-//    [BPBlob createWithData:data parameters:parameters client:self.client callback:callback];
 }
 
 -(void)getBlobs:(BuddyCollectionCallback)callback
@@ -39,13 +38,9 @@
     [self getItem:blobId callback:callback];
 }
 
-
-- (void)searchBlobs:(DescribeBlob)describeBlob callback:(BuddyCollectionCallback)callback
+- (void)searchBlobs:(BPBlobSearch *)searchBlobs callback:(BuddyCollectionCallback)callback
 {
-    id blobProperties = [[BPSisterObject alloc] initWithProtocols:@[@protocol(BPBlobProperties), @protocol(BPSearchProperties)]];
-    describeBlob ? describeBlob(blobProperties) : nil;
-    
-    id parameters = [blobProperties parametersFromProperties:@protocol(BPBlobProperties)];
+    id parameters = [searchBlobs parametersFromProperties:@protocol(BPBlobProperties)];
     
     [self search:parameters callback:callback];
 }

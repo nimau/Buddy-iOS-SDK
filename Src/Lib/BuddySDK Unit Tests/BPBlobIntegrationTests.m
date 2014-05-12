@@ -88,9 +88,11 @@ describe(@"BPBlobIntegrationSpec", ^{
         });
         
         it(@"Should allow searching for blobs", ^{
-            [[Buddy blobs] searchBlobs:^(id<BPBlobProperties> blobProperties) {
-                blobProperties.friendlyName = @"So friendly";
-            } callback:^(NSArray *buddyObjects, NSError *error) {
+            
+            BPBlobSearch *search = [BPBlobSearch new];
+            search.friendlyName = @"So friendly";
+            
+            [[Buddy blobs] searchBlobs:search callback:^(NSArray *buddyObjects, NSError *error) {
                 [[theValue([buddyObjects count]) should] beGreaterThan:theValue(0)];
                 fin = YES;
             }];

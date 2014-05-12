@@ -10,6 +10,12 @@
 #import "BuddyObject+Private.h"
 #import "BPSisterObject.h"
 
+@implementation BPSearchPictures
+
+@synthesize caption, size, watermark;
+
+@end
+
 @implementation BPPicture
 
 @synthesize caption = _caption;

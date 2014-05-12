@@ -16,8 +16,9 @@
 
 @end
 
-typedef void(^DescribeBlob)(id<BPBlobProperties>blobProperties);
-typedef void(^SearchBlob)(id<BPBlobProperties, BPSearchProperties>blobSearchProperties);
+@interface BPBlobSearch : BPObjectSearch<BPBlobProperties>
+
+@end
 
 @interface BPBlob : BuddyObject<BPBlobProperties, BPAlbumItem>
 
