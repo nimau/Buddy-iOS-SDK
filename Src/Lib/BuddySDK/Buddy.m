@@ -131,12 +131,11 @@
 
 #pragma mark User
 
-+ (void)createUser:(NSString *)username
-                    password:(NSString *)password
-                describeUser:(DescribeUser)describeUser
-                    callback:(BuddyObjectCallback)callback
++ (void)createUser:(BPUser *)user
+          password:(NSString *)password
+          callback:(BuddyObjectCallback)callback
 {
-    [[BPClient defaultClient] createUser:username password:password describeUser:describeUser callback:callback];
+    [[BPClient defaultClient] createUser:user password:password callback:callback];
 }
 
 + (void)login:(NSString *)username password:(NSString *)password callback:(BuddyObjectCallback)callback

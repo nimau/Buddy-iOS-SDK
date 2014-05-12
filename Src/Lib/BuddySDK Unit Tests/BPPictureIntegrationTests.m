@@ -164,9 +164,10 @@ describe(@"BPPictureIntegrationSpec", ^{
         it(@"Should allow searching for images", ^{
             __block NSArray *retrievedPictures;
 
-            [[Buddy pictures] searchPictures:^(id<BPPictureProperties> pictureProperties) {
-                pictureProperties.caption = @"Hakuna matata";
-            } callback:^(NSArray *buddyObjects, NSError *error) {
+            BPSearchPictures *searchPicture = [BPSearchPictures new];
+            searchPicture.caption = @"Hakuna matata";
+            
+            [[Buddy pictures] searchPictures:searchPicture callback:^(NSArray *buddyObjects, NSError *error) {
                 NSArray *p = buddyObjects;
                 
                 for(BPPicture *picture in p) {
@@ -181,9 +182,10 @@ describe(@"BPPictureIntegrationSpec", ^{
         it(@"Should allow searching for images2", ^{
             __block NSArray *retrievedPictures;
             
-            [[Buddy pictures] searchPictures:^(id<BPPictureProperties> pictureProperties) {
-                pictureProperties.caption = @"Hello, caption!";
-            } callback:^(NSArray *buddyObjects, NSError *error) {
+            BPSearchPictures *searchPicture = [BPSearchPictures new];
+            searchPicture.caption = @"Hakuna matata";
+            
+            [[Buddy pictures] searchPictures:searchPicture callback:^(NSArray *buddyObjects, NSError *error) {
                 retrievedPictures = buddyObjects;
             }];
             
@@ -191,7 +193,6 @@ describe(@"BPPictureIntegrationSpec", ^{
         });
         
         it(@"Should allow the user to delete pictures", ^{
-            return;
             [newPicture destroy:^(NSError *error){
                 [[Buddy pictures] getPicture:newPicture.id callback:^(id newBuddyObject, NSError *error) {
                     newPicture = newBuddyObject;

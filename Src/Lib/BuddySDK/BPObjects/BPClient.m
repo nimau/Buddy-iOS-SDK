@@ -258,19 +258,13 @@
     }
 }
 
-- (void)createUser:(NSString *)username
-          password:(NSString *)password
-      describeUser:(DescribeUser)describeUser
-          callback:(BuddyObjectCallback)callback
+- (void)createUser:(BPUser *)user
+    password:(NSString *)password
+    callback:(BuddyObjectCallback)callback
 {
-    NSDictionary *parameters = @{@"username": username,
-                                 @"password": password };
+    NSDictionary *parameters = @{ @"password": password };
     
-    id newUser= [[BPSisterObject alloc] initWithProtocol:@protocol(BPUserProperties)];
-
-    describeUser ? describeUser(newUser) : nil;
-    
-    id options = [newUser parametersFromProperties:@protocol(BPUserProperties)];
+    id options = [user parametersFromProperties:@protocol(BPUserProperties)];
 
     parameters = [NSDictionary dictionaryByMerging:parameters with:options];
     

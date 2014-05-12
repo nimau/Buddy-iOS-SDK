@@ -22,16 +22,17 @@
     
     [Buddy login:TEST_USERNAME password:TEST_PASSWORD callback:^(BPUser *loggedInsUser, NSError *error) {
         
+        BPUser *user = [BPUser new];
+        user.firstName = @"Erik";
+        user.lastName = @"Erik";
+        user.gender = BPUserGender_Male;
+        user.email = @"erik@buddy.com";
+        user.dateOfBirth = [BuddyIntegrationHelper randomDate];
+        
         if(loggedInsUser)
             callback();
         else {
-            [Buddy createUser:TEST_USERNAME password:TEST_PASSWORD describeUser:^(id<BPUserProperties> userProperties) {
-                userProperties.firstName = @"Erik";
-                userProperties.lastName = @"Erik";
-                userProperties.gender = BPUserGender_Male;
-                userProperties.email = @"erik@buddy.com";
-                userProperties.dateOfBirth = [BuddyIntegrationHelper randomDate];
-            } callback:^(BPUser *newBuddyObject, NSError *error) {
+            [Buddy createUser:user password:TEST_PASSWORD callback:^(BPUser *newBuddyObject, NSError *error) {
                 callback();
             }];
         }
