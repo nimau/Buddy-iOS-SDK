@@ -45,7 +45,6 @@
  */
 + (BPUser *)user;
 
-#pragma message ("Implement BPDevice")
 //+ (BuddyDevice *)device;
 
 /**

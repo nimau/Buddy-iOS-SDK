@@ -38,22 +38,11 @@ static NSString *pictureMimeType = @"image/png";
     return pictureMimeType;
 }
 
-+ (void)createWithImage:(UIImage *)image
-          describePicture:(DescribePicture)describePicture
-                 client:(id<BPRestProvider>)client
-               callback:(BuddyObjectCallback)callback
+- (void)savetoServerWithImage:(UIImage *)image callback:(BuddyCompletionCallback)callback
 {
-    //NSData *data = UIImageJPEGRepresentation(image, 1);
     NSData *data = UIImagePNGRepresentation(image);
     
-    id pictureProperties= [[BPSisterObject alloc] initWithProtocol:@protocol(BPPictureProperties)];
-    describePicture ? describePicture(pictureProperties) : nil;
-
-    id parameters = [pictureProperties parametersFromProperties:@protocol(BPPictureProperties)];
-    
-    [self createWithData:data parameters:parameters client:client callback:^(id newBuddyObject, NSError *error) {
-        callback ? callback(newBuddyObject, error) : nil;
-    }];
+    [self savetoServerWithData:data callback:callback];
 }
 
 - (void)getImage:(BuddyImageResponse)callback

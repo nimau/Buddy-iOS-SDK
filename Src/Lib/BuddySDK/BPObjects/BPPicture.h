@@ -25,10 +25,7 @@ typedef void(^DescribePicture)(id<BPPictureProperties>pictureProperties);
 
 @interface BPPicture : BPBlob<BPPictureProperties>
 
-+ (void)createWithImage:(UIImage *)image
-        describePicture:(DescribePicture)describePicture
-                 client:(id<BPRestProvider>)client
-               callback:(BuddyObjectCallback)callback;
+- (void)savetoServerWithImage:(UIImage *)image callback:(BuddyCompletionCallback)callback;
 
 - (void)getImage:(BuddyImageResponse)callback;
 

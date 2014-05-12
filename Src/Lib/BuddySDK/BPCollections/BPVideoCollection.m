@@ -21,11 +21,11 @@
     return self;
 }
 
-- (void)addVideo:(NSData *)video
-   describeVideo:(DescribeVideo)describeVideo
-        callback:(BuddyObjectCallback)callback
+- (void)addVideo:(BPVideo *)video
+       videoData:(NSData *)videoData
+        callback:(BuddyCompletionCallback)callback
 {
-    [[self type] createWithVideo:video describeVideo:describeVideo client:self.client callback:callback];
+    [video savetoServerWithData:videoData callback:callback];
 }
 
 - (void)searchVideos:(SearchVideo)describeVideo callback:(BuddyCollectionCallback)callback;

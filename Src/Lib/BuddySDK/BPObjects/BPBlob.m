@@ -41,8 +41,6 @@ static NSString *blobMimeType = @"application/octet-stream";
     return blobMimeType;
 }
 
-
-
 - (void)savetoServerWithData:(NSData *)data callback:(BuddyCompletionCallback)callback
 {
     NSDictionary *multipartParameters = @{@"data": BOXNIL(data)};

@@ -45,11 +45,10 @@ describe(@"BPVideosIntegrationSpec", ^{
 //            NSString *videoPath = [bundle pathForResource:@"bigbunny" ofType:@"mp4"];
             NSData *video = [NSData dataWithContentsOfFile:videoPath];
             
-            [[Buddy videos] addVideo:video describeVideo:^(id<BPVideoProperties> videoProperties) {
-                videoProperties.title = @"That cliche bunny video.";
-            } callback:^(id newBuddyObject, NSError *error) {
-                tempVideo = newBuddyObject;
-                
+            tempVideo = [BPVideo new];
+            tempVideo.title = @"That cliche bunny video";
+            
+            [[Buddy videos] addVideo:tempVideo videoData:video callback:^(NSError *error) {
                 [[theValue(tempVideo.contentLength) should] beGreaterThan:theValue(1)];
                 [[tempVideo.contentType should] equal:@"video/mp4"];
                 if (tempVideo) {

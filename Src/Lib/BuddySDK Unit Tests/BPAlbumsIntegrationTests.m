@@ -90,10 +90,11 @@ describe(@"BPAlbumIntegrationSpec", ^{
             NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
             UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             
-            [[Buddy pictures] addPicture:image describePicture:^(id<BPPictureProperties> pictureProperties) {
-                pictureProperties.caption = @"Test image for album.";
-            } callback:^(id newBuddyObject, NSError *error) {
-                tempPicture = newBuddyObject;
+            tempPicture = [BPPicture new];
+            tempPicture.caption = @"Test image for album";
+            
+            [[Buddy pictures] addPicture:tempPicture image:image callback:^(NSError *error) {
+                [[error should] beNil];
                 [tempAlbum addItemToAlbum:tempPicture caption:@"Caption" callback:^(id newBuddyObject, NSError *error) {
                     [[error should] beNil];
                     tempItem = newBuddyObject;

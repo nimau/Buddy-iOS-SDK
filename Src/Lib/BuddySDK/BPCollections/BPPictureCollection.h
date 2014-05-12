@@ -11,9 +11,9 @@
 
 @interface BPPictureCollection : BuddyCollection
 
-- (void)addPicture:(UIImage *)picture
-   describePicture:(DescribePicture)describePicture
-        callback:(BuddyObjectCallback)callback;
+- (void)addPicture:(BPPicture *)picture
+             image:(UIImage *)image
+          callback:(BuddyCompletionCallback)callback;
 
 - (void)searchPictures:(DescribePicture)describePicture callback:(BuddyCollectionCallback)callback;
 
