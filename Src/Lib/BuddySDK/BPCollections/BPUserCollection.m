@@ -32,12 +32,9 @@
     [self getItem:userId callback:callback];
 }
 
-- (void)searchUsers:(SearchUsers)searchUsers callback:(BuddyCollectionCallback)callback
+- (void)searchUsers:(BPSearchUsers *)searchUsers callback:(BuddyCollectionCallback)callback
 {
-    id searchPropertiers = [[BPSisterObject alloc] initWithProtocols:@[@protocol(BPUserProperties), @protocol(BPSearchProperties)]];
-    searchUsers ? searchUsers(searchPropertiers) : nil;
-    
-    id parameters = [searchPropertiers parametersFromProperties:@protocol(BPUserProperties)];
+    id parameters = [searchUsers parametersFromProperties:@protocol(BPUserProperties)];
     
     [self search:parameters callback:callback];
 }

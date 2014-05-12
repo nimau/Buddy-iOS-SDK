@@ -49,12 +49,9 @@
     }];
 }
 
-- (void)searchAlbumItems:(DescribeAlbumItem)describe callback:(BuddyObjectCallback)callback
+- (void)searchAlbumItems:(BPSearchAlbumItems *)searchAlbumItems callback:(BuddyObjectCallback)callback
 {
-    id albumItemProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPAlbumItemProperties)];
-    describe ? describe(albumItemProperties) : nil;
-    
-    id parameters = [albumItemProperties parametersFromProperties:@protocol(BPAlbumItemProperties)];
+    id parameters = [searchAlbumItems parametersFromProperties:@protocol(BPAlbumItemProperties)];
     
     [self search:parameters callback:callback];
 }

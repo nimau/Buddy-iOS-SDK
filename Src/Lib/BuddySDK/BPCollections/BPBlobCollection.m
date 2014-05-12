@@ -21,16 +21,11 @@
     return self;
 }
 
-- (void)addBlob:(NSData *)data
-       describe:(DescribeBlob)describe
-       callback:(BuddyObjectCallback)callback
+- (void)addBlob:(BPBlob *)blob
+       data:(NSData *)data
+       callback:(BuddyCompletionCallback)callback;
 {
-    id blobProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPBlobProperties)];
-    describe ? describe(blobProperties) : nil;
-    
-    id parameters = [blobProperties parametersFromProperties:@protocol(BPBlobProperties)];
-        
-    [BPBlob createWithData:data parameters:parameters client:self.client callback:callback];
+    [blob savetoServerWithData:data callback:callback];
 }
 
 -(void)getBlobs:(BuddyCollectionCallback)callback
@@ -43,13 +38,9 @@
     [self getItem:blobId callback:callback];
 }
 
-
-- (void)searchBlobs:(DescribeBlob)describeBlob callback:(BuddyCollectionCallback)callback
+- (void)searchBlobs:(BPBlobSearch *)searchBlobs callback:(BuddyCollectionCallback)callback
 {
-    id blobProperties = [[BPSisterObject alloc] initWithProtocols:@[@protocol(BPBlobProperties), @protocol(BPSearchProperties)]];
-    describeBlob ? describeBlob(blobProperties) : nil;
-    
-    id parameters = [blobProperties parametersFromProperties:@protocol(BPBlobProperties)];
+    id parameters = [searchBlobs parametersFromProperties:@protocol(BPBlobProperties)];
     
     [self search:parameters callback:callback];
 }

@@ -21,19 +21,16 @@
     return self;
 }
 
-- (void)addVideo:(NSData *)video
-   describeVideo:(DescribeVideo)describeVideo
-        callback:(BuddyObjectCallback)callback
+- (void)addVideo:(BPVideo *)video
+       videoData:(NSData *)videoData
+        callback:(BuddyCompletionCallback)callback
 {
-    [[self type] createWithVideo:video describeVideo:describeVideo client:self.client callback:callback];
+    [video savetoServerWithData:videoData callback:callback];
 }
 
-- (void)searchVideos:(SearchVideo)describeVideo callback:(BuddyCollectionCallback)callback;
+- (void)searchVideos:(BPVideoSearch *)searchVideo callback:(BuddyCollectionCallback)callback;
 {
-    id videoProperties = [[BPSisterObject alloc] initWithProtocols:@[@protocol(BPVideoProperties), @protocol(BPSearchProperties)]];
-    describeVideo ? describeVideo(videoProperties) : nil;
-    
-    id parameters = [videoProperties parametersFromProperties:@protocol(BPVideoProperties)];
+    id parameters = [searchVideo parametersFromProperties:@protocol(BPVideoProperties)];
     
     [self search:parameters callback:callback];
 }

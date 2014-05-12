@@ -24,19 +24,16 @@
     return self;
 }
 
-- (void)addPicture:(UIImage *)picture
-   describePicture:(DescribePicture)describePicture
-        callback:(BuddyObjectCallback)callback
+- (void)addPicture:(BPPicture *)picture
+             image:(UIImage *)image
+          callback:(BuddyCompletionCallback)callback
 {
-    [[self type] createWithImage:picture describePicture:describePicture client:self.client callback:callback];
+    [picture savetoServerWithImage:image callback:callback];
 }
 
--(void)searchPictures:(DescribePicture)describePicture callback:(BuddyCollectionCallback)callback
+-(void)searchPictures:(BPSearchPictures *)searchPictures callback:(BuddyCollectionCallback)callback
 {
-    id pictureProperties= [[BPSisterObject alloc] initWithProtocol:@protocol(BPPictureProperties)];
-    describePicture ? describePicture(pictureProperties) : nil;
-    
-    id parameters = [pictureProperties parametersFromProperties:@protocol(BPPictureProperties)];
+    id parameters = [searchPictures parametersFromProperties:@protocol(BPPictureProperties)];
     
     [self search:parameters callback:callback];
 }

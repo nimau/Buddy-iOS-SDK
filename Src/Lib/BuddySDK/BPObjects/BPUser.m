@@ -15,6 +15,12 @@
 #import "BPPicture.h"
 #import "BPSize.h"
 
+@implementation BPSearchUsers
+
+@synthesize firstName, lastName, userName, gender, dateOfBirth, profilePictureUrl, profilePictureID, email, locationFuzzing, celebMode;
+
+@end
+
 @interface BPUser()
 @property (nonatomic, copy) NSString *profilePictureID;
 @property (nonatomic, copy) NSString *profilePictureUrl;

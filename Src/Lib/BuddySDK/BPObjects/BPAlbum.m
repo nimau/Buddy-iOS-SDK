@@ -14,6 +14,12 @@
 #import "BPRestProvider.h"
 #import "BPCLient.h"
 
+@implementation BPSearchAlbum
+
+@synthesize name, caption;
+
+@end
+
 @interface BPAlbum()
 
 @property (nonatomic, strong) BPAlbumItemCollection *items;
@@ -67,9 +73,9 @@ static NSString *albums = @"albums";
     }];
 }
 
-- (void)searchAlbumItems:(DescribeAlbumItem)describe callback:(BuddyCollectionCallback)callback
+- (void)searchAlbumItems:(BPSearchAlbumItems *)searchAlbumItem callback:(BuddyCollectionCallback)callback
 {
-    [self.items searchAlbumItems:describe callback:callback];
+    [self.items searchAlbumItems:searchAlbumItem callback:callback];
 }
 
 - (void)getAlbumItem:(NSString *)itemId callback:(BuddyObjectCallback)callback

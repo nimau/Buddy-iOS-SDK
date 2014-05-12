@@ -90,10 +90,11 @@ describe(@"BPAlbumIntegrationSpec", ^{
             NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
             UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             
-            [[Buddy pictures] addPicture:image describePicture:^(id<BPPictureProperties> pictureProperties) {
-                pictureProperties.caption = @"Test image for album.";
-            } callback:^(id newBuddyObject, NSError *error) {
-                tempPicture = newBuddyObject;
+            tempPicture = [BPPicture new];
+            tempPicture.caption = @"Test image for album";
+            
+            [[Buddy pictures] addPicture:tempPicture image:image callback:^(NSError *error) {
+                [[error should] beNil];
                 [tempAlbum addItemToAlbum:tempPicture caption:@"Caption" callback:^(id newBuddyObject, NSError *error) {
                     [[error should] beNil];
                     tempItem = newBuddyObject;
@@ -118,9 +119,8 @@ describe(@"BPAlbumIntegrationSpec", ^{
             
             [[Buddy albums] searchAlbums:nil callback:^(NSArray *buddyObjects, NSError *error) {
                 BPAlbum *album = [buddyObjects firstObject];
-                [album searchAlbumItems:^(id<BPAlbumItemProperties> albumItemProperties) {
-                    
-                } callback:^(NSArray *buddyObjects, NSError *error) {
+                                
+                [album searchAlbumItems:nil callback:^(NSArray *buddyObjects, NSError *error) {
                     [[error should] beNil];
                     [[buddyObjects shouldNot] beNil];
                     [[theValue([buddyObjects count]) should] beGreaterThan:theValue(0)];
@@ -142,9 +142,7 @@ describe(@"BPAlbumIntegrationSpec", ^{
         });
         it(@"Should allow you to search for items in an album.", ^{
             __block NSArray *retrievedPictures;
-            [tempAlbum searchAlbumItems:^(id<BPAlbumItemProperties> albumItemProperties) {
-                
-            } callback:^(NSArray *buddyObjects, NSError *error) {
+            [tempAlbum searchAlbumItems:nil callback:^(NSArray *buddyObjects, NSError *error) {
                 [[error should] beNil];
                 retrievedPictures = buddyObjects;
             }];

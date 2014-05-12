@@ -12,8 +12,6 @@
 
 @interface BPAlbumItemCollection : BuddyCollection
 
-
-
 - (instancetype)initWithClient:(id<BPRestProvider>)client __attribute__((unavailable("Use initWithAlbum:andClient:")));;
 - (instancetype)initWithAlbum:(BPAlbum *)album andClient:(id<BPRestProvider>)client;
 
@@ -21,7 +19,7 @@
          withCaption:(NSString *)caption
             callback:(BuddyObjectCallback)callback;
 
-- (void)searchAlbumItems:(DescribeAlbumItem)describe callback:(BuddyObjectCallback)callback;
+- (void)searchAlbumItems:(BPSearchAlbumItems *)searchAlbumItems callback:(BuddyObjectCallback)callback;
 
 - (void)getAlbumItem:(NSString *)pictureId callback:(BuddyObjectCallback)callback;
 

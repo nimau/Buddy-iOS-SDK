@@ -45,7 +45,6 @@
  */
 + (BPUser *)user;
 
-#pragma message ("Implement BPDevice")
 //+ (BuddyDevice *)device;
 
 /**
@@ -119,7 +118,7 @@
  *
  * @param options The set of creation options for the user.
  */
-+ (void)createUser:(NSString *)username password:(NSString *)password describeUser:(DescribeUser)describeUser callback:(BuddyObjectCallback)callback;
++ (void)createUser:(BPUser *)user password:(NSString *)password callback:(BuddyObjectCallback)callback;
 
 /**
  *
@@ -149,10 +148,10 @@
 
 + (void)recordMetric:(NSString *)key andValue:(NSDictionary *)value timeout:(NSInteger)seconds callback:(BuddyMetricCallback)callback;
 
-+ (void)setMetadata:(DescribeMetadata)describeMetadata callback:(BuddyCompletionCallback)callback;
-+ (void)setMetadataValues:(DescribeMetadataCollection)describeMetadata callback:(BuddyCompletionCallback)callback;
++ (void)setMetadata:(BPMetadataItem *)metadata callback:(BuddyCompletionCallback)callback;
++ (void)setMetadataValues:(BPMetadataCollection *)metadata callback:(BuddyCompletionCallback)callback;
 + (void)getMetadataWithKey:(NSString *)key permissions:(BPPermissions) permissions callback:(BPMetadataCallback)callback;
-+ (void)searchMetadata:(SearchMetadata)search callback:(BuddyObjectCallback)callback;
++ (void)searchMetadata:(BPSearchMetadata *)search callback:(BuddyObjectCallback)callback;
 + (void)incrementMetadata:(NSString *)key delta:(NSInteger)delta callback:(BuddyCompletionCallback)callback;
 + (void)deleteMetadataWithKey:(NSString *)key permissions:(BPPermissions)permissions callback:(BuddyCompletionCallback)callback;
 

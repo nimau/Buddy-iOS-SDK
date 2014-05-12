@@ -41,16 +41,20 @@ describe(@"BPBlobIntegrationSpec", ^{
             NSString *blobPath = [bundle pathForResource:@"help" ofType:@"jpg"];
             NSData *blobData = [NSData dataWithContentsOfFile:blobPath];
             
-            [[Buddy blobs] addBlob:blobData describe:^(id<BPBlobProperties> blobProperties) {
-                blobProperties.friendlyName = @"So friendly";
-            } callback:^(id newBuddyObject, NSError *error) {
-                newBlob = newBuddyObject;
-            }];
+            newBlob = [BPBlob new];
+            newBlob.friendlyName = @"So friendly";
             
-            [[expectFutureValue(newBlob) shouldEventually] beNonNil];
-            [[expectFutureValue(theValue(newBlob.contentLength)) shouldEventually] equal:theValue(1)];
-            [[expectFutureValue(newBlob.friendlyName) shouldEventually] equal:@"So friendly"];
-            [[expectFutureValue(newBlob.signedUrl) shouldEventually] haveLengthOfAtLeast:1];
+            [[Buddy blobs] addBlob:newBlob data:blobData callback:^(NSError *error) {
+                [[error should] beNil];
+                [[newBlob.id should] beNonNil];
+                [[theValue(newBlob.contentLength) should] equal:theValue(1)];
+                [[newBlob.friendlyName should] equal:@"So friendly"];
+                [[newBlob.signedUrl shouldEventually] haveLengthOfAtLeast:1];
+                fin = YES;
+            }];
+
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
+
         });
         
         it(@"Should allow retrieving blobs", ^{
@@ -84,9 +88,11 @@ describe(@"BPBlobIntegrationSpec", ^{
         });
         
         it(@"Should allow searching for blobs", ^{
-            [[Buddy blobs] searchBlobs:^(id<BPBlobProperties> blobProperties) {
-                blobProperties.friendlyName = @"So friendly";
-            } callback:^(NSArray *buddyObjects, NSError *error) {
+            
+            BPBlobSearch *search = [BPBlobSearch new];
+            search.friendlyName = @"So friendly";
+            
+            [[Buddy blobs] searchBlobs:search callback:^(NSArray *buddyObjects, NSError *error) {
                 [[theValue([buddyObjects count]) should] beGreaterThan:theValue(0)];
                 fin = YES;
             }];

@@ -9,6 +9,18 @@
 #import "BPVideo.h"
 #import "BPSisterObject.h"
 
+@implementation BPVideoSearch
+
+@synthesize title;
+@synthesize friendlyName;
+@synthesize thumbnailOffsetInSeconds;
+@synthesize bitRate;
+@synthesize encoding;
+@synthesize lengthInSeconds;
+@synthesize thumbnailID;
+
+@end
+
 @interface BPVideo()
 
 @property (nonatomic, assign) NSInteger bitRate;
@@ -49,21 +61,6 @@ static NSString *videoMimeType = @"video/mp4";
 + (NSString *)mimeType
 {
     return videoMimeType;
-}
-
-+ (void)createWithVideo:(NSData *)video
-          describeVideo:(DescribeVideo)describeVideo
-                 client:(id<BPRestProvider>)client
-               callback:(BuddyObjectCallback)callback
-{
-    id videoProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPVideoProperties)];
-    describeVideo ? describeVideo(videoProperties) : nil;
-    
-    id parameters = [videoProperties parametersFromProperties:@protocol(BPVideoProperties)];
-    
-    [self createWithData:video parameters:parameters client:client callback:^(id newBuddyObject, NSError *error) {
-        callback ? callback(newBuddyObject, error) : nil;
-    }];
 }
 
 - (void)getVideo:(BuddyDataResponse)callback

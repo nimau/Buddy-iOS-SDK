@@ -15,7 +15,7 @@
      withCaption:(NSString *)caption
         callback:(BuddyObjectCallback)callback;
 
-- (void)searchAlbums:(DescribeAlbum)describeAlbum callback:(BuddyCollectionCallback)callback;
+- (void)searchAlbums:(BPSearchAlbum *)searchAlbum callback:(BuddyCollectionCallback)callback;
 
 - (void)getAlbum:(NSString *)albumId callback:(BuddyObjectCallback)callback;
     

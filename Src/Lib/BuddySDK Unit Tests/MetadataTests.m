@@ -27,33 +27,29 @@ describe(@"Metadata", ^{
         
         beforeAll(^{
             
-            DescribeCheckin d1 = ^(id<BPCheckinProperties> checkinProperties) {
-                checkinProperties.comment = @"Test checkin";
-                checkinProperties.description = @"Test checkin description";
-                checkinProperties.location = BPCoordinateMake(1.2, 3.4);
-            };
-
-            DescribeCheckin d2 = ^(id<BPCheckinProperties> checkinProperties) {
-                checkinProperties.comment = @"Second checkin";
-                checkinProperties.description = @"Test checkin description";
-                checkinProperties.location = BPCoordinateMake(1.2, 3.4);
-            };
             
+            checkin1 = [BPCheckin new];
+            checkin1.comment = @"Test checkin";
+            checkin1.description = @"Test checkin description";
+            checkin1.location = BPCoordinateMake(1.2, 3.4);
+            
+            checkin2 = [BPCheckin new];
+            checkin2.comment = @"Second checkin";
+            checkin2.description = @"Test checkin description";
+            checkin2.location = BPCoordinateMake(1.2, 3.4);
             [BuddyIntegrationHelper bootstrapLogin:^{
                 
-                [[Buddy checkins] checkin:d1
-                 callback:^(id newBuddyObject, NSError *error) {
-                    checkin1 = newBuddyObject;
+                [[Buddy checkins] addCheckin:checkin1 callback:^(NSError *error) {
+                    [[error should] beNil];
                 }];
                 
-                [[Buddy checkins] checkin:d2
-                callback:^(id newBuddyObject, NSError *error) {
-                     checkin2 = newBuddyObject;
-                 }];
+                [[Buddy checkins] addCheckin:checkin2 callback:^(NSError *error) {
+                    [[error should] beNil];
+                }];
             }];
             
-            [[expectFutureValue(checkin1) shouldEventually] beNonNil];
-            [[expectFutureValue(checkin2) shouldEventually] beNonNil];
+            [[expectFutureValue(checkin1.id) shouldEventually] beNonNil];
+            [[expectFutureValue(checkin2.id) shouldEventually] beNonNil];
         });
         
         beforeEach(^{
@@ -72,13 +68,11 @@ describe(@"Metadata", ^{
             __block NSString *targetString4 = @"No Change";
             __block NSInteger targetInteger = 0;
 
-            
-            NSDictionary *kvp = @{@"Hakuna": @"Matata"};
+            BPMetadataCollection *metadata = [BPMetadataCollection new];
+            metadata.values = @{@"Hakuna": @"Matata"};
             
             // App-level Metadata with Key Value Pairs
-            [Buddy setMetadataValues:^(id<BPMetadataCollectionProperties> metadataProperties) {
-                metadataProperties.values = kvp;
-            } callback:^(NSError *error) {
+            [Buddy setMetadataValues:metadata callback:^(NSError *error) {
                 [Buddy getMetadataWithKey:@"Hakuna" permissions:BPPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
                     [[metadata.value should] equal:@"Matata"];
                     targetString = metadata.value;
@@ -86,25 +80,24 @@ describe(@"Metadata", ^{
                 }];
             }];
             
-            
+            BPMetadataItem *item = [BPMetadataItem new];
+            item.key = @"Hey";
+            item.value = @"There";
+            item.permissions = BPPermissionsApp;
             // App-level MetaData with Key/String
-            [Buddy setMetadata:^(id<BPMetadataProperties> metadataProperties) {
-                metadataProperties.key = @"Hey";
-                metadataProperties.value = @"There";
-                metadataProperties.permissions = BPPermissionsApp;
-            } callback:^(NSError *error) {
+            [Buddy setMetadata:item callback:^(NSError *error) {
                 [[error should] beNil];
                 [Buddy getMetadataWithKey:@"Hey" permissions:BPPermissionsApp callback:^(BPMetadataItem *metadata, NSError *error) {
                     targetString2 = metadata.value;
                 }];
             }];
 
+            BPMetadataItem *item2 = [BPMetadataItem new];
+            item2.key = @"HeyHeyyy";
+            item2.value = @"There";
+            item2.permissions = BPPermissionsUser;
             // App-level Metadata - Check permissions (write as User, Get as App should fail)
-            [Buddy setMetadata:^(id<BPMetadataProperties> metadataProperties) {
-                metadataProperties.key = @"HeyHeyyy";
-                metadataProperties.value = @"There";
-                metadataProperties.permissions = BPPermissionsUser;
-            } callback:^(NSError *error) {
+            [Buddy setMetadata:item2 callback:^(NSError *error) {
                 [[error should] beNil];
                 [Buddy getMetadataWithKey:@"HeyHeyyy" permissions:BPPermissionsApp callback:^(BPMetadataItem *metadata, NSError *error) {
                     if(!error)
@@ -120,11 +113,12 @@ describe(@"Metadata", ^{
                 }];
             }];
             
+            BPMetadataItem *item3 = [BPMetadataItem new];
+            item3.key = @"AppInc";
+            item3.value = @(5);
+
             // App-level Metadata - Set int and increment
-            [Buddy setMetadata:^(id<BPMetadataProperties> metadataProperties) {
-                metadataProperties.key = @"AppInc";
-                metadataProperties.value = @(5);
-            } callback:^(NSError *error) {
+            [Buddy setMetadata:item3 callback:^(NSError *error) {
                 [[error should] beNil];
                 [Buddy incrementMetadata:@"AppInc" delta:2 callback:^(NSError *error) {
                     [[error should] beNil];
@@ -140,8 +134,6 @@ describe(@"Metadata", ^{
             [[expectFutureValue(targetString3) shouldEventually] equal:@"No Change"];
             [[expectFutureValue(targetString4) shouldEventually] equal:@"There"];
             [[expectFutureValue(theValue(targetInteger)) shouldEventually] equal:theValue(7)];
-
-            
         });
         
         
@@ -150,10 +142,11 @@ describe(@"Metadata", ^{
             
             __block BPCheckin *c1 = checkin1;
 
-            [checkin1 setMetadata:^(id<BPMetadataProperties> metadataProperties) {
-                metadataProperties.key = @"StringlyMetadata";
-                metadataProperties.value = @"REMOVE";
-            } callback:^(NSError *error) {
+            BPMetadataItem *item = [BPMetadataItem new];
+            item.key = @"StringlyMetadata";
+            item.value = @"REMOVE";
+            
+            [checkin1 setMetadata:item callback:^(NSError *error) {
                 [[error should] beNil];
                 [c1 getMetadataWithKey:@"StringlyMetadata" permissions:BPPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
                     targetString1 = metadata.value;
@@ -171,10 +164,11 @@ describe(@"Metadata", ^{
             __block BPCheckin *c1 = checkin1;
             __block BPCheckin *c2 = checkin2;
             
-            [checkin1 setMetadata:^(id<BPMetadataProperties> metadataProperties) {
-                metadataProperties.key = @"StringlyMetadata";
-                metadataProperties.value = @"Test String";
-            } callback:^(NSError *error) {
+            BPMetadataItem *item = [BPMetadataItem new];
+            item.key = @"StringlyMetadata";
+            item.value = @"Test String";
+            
+            [checkin1 setMetadata:item callback:^(NSError *error) {
                 [[error should] beNil];
                 [c1 getMetadataWithKey:@"StringlyMetadata" permissions:BPPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
                     targetString1 = metadata.value;
@@ -192,11 +186,12 @@ describe(@"Metadata", ^{
             __block NSInteger testInteger = 42;
             __block NSInteger targetInteger = -1;
             
+            BPMetadataItem *item = [BPMetadataItem new];
+            item.key = @"IntlyMetadata";
+            item.value = @(testInteger);
+            
             __block BPCheckin *c = checkin1;
-            [checkin1 setMetadata:^(id<BPMetadataProperties> metadataProperties) {
-                metadataProperties.key = @"IntlyMetadata";
-                metadataProperties.value = @(testInteger);
-            } callback:^(NSError *error) {
+            [checkin1 setMetadata:item callback:^(NSError *error) {
                 [[error should] beNil];
                 [c getMetadataWithKey:@"IntlyMetadata" permissions:BPPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
                     targetInteger = [metadata.value integerValue];
@@ -211,11 +206,12 @@ describe(@"Metadata", ^{
             NSInteger delta = 11;
             __block NSInteger targetInteger = -1;
             
+            BPMetadataItem *item = [BPMetadataItem new];
+            item.key = @"IncrementingMetadata";
+            item.value = @(testInteger);
+            
             __weak BPCheckin *c = checkin1;
-            [checkin1 setMetadata:^(id<BPMetadataProperties> metadataProperties) {
-                metadataProperties.key = @"IncrementingMetadata";
-                metadataProperties.value = @(testInteger);
-            } callback:^(NSError *error) {
+            [checkin1 setMetadata:item callback:^(NSError *error) {
                 [[error should] beNil];
                 
                 [c incrementMetadata:@"IncrementingMetadata" delta:delta callback:^(NSError *error) {
@@ -233,13 +229,14 @@ describe(@"Metadata", ^{
             __block BOOL fin = NO;
             __weak BPCheckin *c = checkin1;
             
+            BPMetadataItem *item = [BPMetadataItem new];
+            item.key = @"MYPREFIXHello";
+            item.value = @(4);
+            
             // Make sure start and end bracked the server timestamp (they may not be completely in sync)
             NSDate *start = [[NSDate date] dateByAddingTimeInterval:-10];
             
-            [checkin1 setMetadata:^(id<BPMetadataProperties> metadataProperties) {
-                metadataProperties.key = @"MYPREFIXHello";
-                metadataProperties.value = @(4);
-            } callback:^(NSError *error) {
+            [checkin1 setMetadata:item callback:^(NSError *error) {
                 [[error should] beNil];
                 fin = YES;
             }];
@@ -247,9 +244,10 @@ describe(@"Metadata", ^{
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
             fin = NO;
 
-            [c searchMetadata:^(id<BPMetadataProperties,BPSearchProperties> metadataSearchProperties) {
-                metadataSearchProperties.keyPrefix = @"MYPREFIX";
-            } callback:^(id newBuddyObject, NSError *error) {
+            BPSearchMetadata *searchMetadata = [BPSearchMetadata new];
+            searchMetadata.keyPrefix = @"MYPREFIX";
+            
+            [c searchMetadata:searchMetadata callback:^(id newBuddyObject, NSError *error) {
                 [[theValue([newBuddyObject count]) should] beGreaterThan:theValue(0)];
                 for(BPMetadataItem *i in newBuddyObject) {
                     [[i.key should] startWithString:@"MYPREFIX"];
@@ -260,9 +258,7 @@ describe(@"Metadata", ^{
             // Make sure start and end bracked the server timestamp (they may not be completely in sync)
             __block NSDate *end =[[NSDate date] dateByAddingTimeInterval:10];
             
-            [c searchMetadata:^(id<BPMetadataProperties,BPSearchProperties> metadataSearchProperties) {
-                //metadataSearchProperties.created = BPDateRangeMake([NSDate dateWithMinutesBeforeNow:5], [NSDate dateWithMinutesFromNow:5]);
-            } callback:^(id newBuddyObject, NSError *error) {
+            [c searchMetadata:nil callback:^(id newBuddyObject, NSError *error) {
                 NSLog(@"METAMETA From: %@ To: %@",start,end);
                 [[theValue([newBuddyObject count]) should] beGreaterThan:theValue(0)];
                 for(BPMetadataItem *i in newBuddyObject) {
@@ -302,15 +298,13 @@ describe(@"Metadata", ^{
             __block id targetString1 = @"Stuff";
             __block id targetString2 = @"Stuff";
             
-            NSDictionary *keysValues = @{@"foo": @"bar"};
-            
             __block BPCheckin *c1 = checkin1;
             __block BPCheckin *c2 = checkin2;
             
+            BPMetadataCollection *items = [BPMetadataCollection new];
+            items.values = @{@"foo": @"bar"};
             
-            [checkin1 setMetadataValues:^(id<BPMetadataCollectionProperties> metadataProperties) {
-                metadataProperties.values = keysValues;
-            } callback:^(NSError *error) {
+            [checkin1 setMetadataValues:items callback:^(NSError *error) {
                 [[error should] beNil];
                 [c1 getMetadataWithKey:@"foo" permissions:BPPermissionsDefault callback:^(BPMetadataItem *metadata, NSError *error) {
                     if(error==nil)

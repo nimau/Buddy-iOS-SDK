@@ -36,11 +36,12 @@ describe(@"BPPictureIntegrationSpec", ^{
             NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
             UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             
-            [[Buddy pictures] addPicture:image describePicture:^(id<BPPictureProperties> pictureProperties) {
-                pictureProperties.caption = @"Hello, caption!";
-            } callback:^(id buddyObject, NSError *error) {
+            __block BPPicture *picture = [BPPicture new];
+            picture.caption = @"Hello, caption!";
+            
+            [[Buddy pictures] addPicture:picture image:image callback:^(NSError *error) {
                 [[error shouldNot] beNil];
-                [[buddyObject should] beNil];
+                [[picture.id should] beNil];
                 [[theValue([error code]) should] equal:theValue(0x107)]; // AuthUserAccessTokenRequired = 0x107
                 fin = YES;
             }];
@@ -48,22 +49,6 @@ describe(@"BPPictureIntegrationSpec", ^{
             [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
-        it(@"Should not allow them to add and describe pictures.", ^{
-            
-            NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-            NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
-            UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
-            
-            [[Buddy pictures] addPicture:image describePicture:^(id<BPPictureProperties>pictureProperties) {
-                pictureProperties.caption = @"Hello, caption!";
-            } callback:^(id newBuddyObject, NSError *error) {
-                [[error shouldNot] beNil];
-                [[newBuddyObject should] beNil];
-                [[theValue([error code]) should] equal:theValue(0x107)]; // AuthUserAccessTokenRequired = 0x107
-                fin = YES;
-            }];
-            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
-        });
     }),
             
     context(@"When a user is logged in", ^{
@@ -91,11 +76,10 @@ describe(@"BPPictureIntegrationSpec", ^{
             NSString *imagePath = [bundle pathForResource:@"test" ofType:@"png"];
             UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
             
-            [[Buddy pictures] addPicture:image describePicture:^(id<BPPictureProperties> pictureProperties) {
-                pictureProperties.caption = @"Hello, caption!";
-            } callback:^(BPPicture *p, NSError *error) {
-                newPicture = p;
-                
+            newPicture = [BPPicture new];
+            newPicture.caption = @"Hello, caption!";
+            
+            [[Buddy pictures] addPicture:newPicture image:image callback:^(NSError *error) {
                 [[error should] beNil];
                 if (error) return;
                 
@@ -180,9 +164,10 @@ describe(@"BPPictureIntegrationSpec", ^{
         it(@"Should allow searching for images", ^{
             __block NSArray *retrievedPictures;
 
-            [[Buddy pictures] searchPictures:^(id<BPPictureProperties> pictureProperties) {
-                pictureProperties.caption = @"Hakuna matata";
-            } callback:^(NSArray *buddyObjects, NSError *error) {
+            BPSearchPictures *searchPicture = [BPSearchPictures new];
+            searchPicture.caption = @"Hakuna matata";
+            
+            [[Buddy pictures] searchPictures:searchPicture callback:^(NSArray *buddyObjects, NSError *error) {
                 NSArray *p = buddyObjects;
                 
                 for(BPPicture *picture in p) {
@@ -197,9 +182,10 @@ describe(@"BPPictureIntegrationSpec", ^{
         it(@"Should allow searching for images2", ^{
             __block NSArray *retrievedPictures;
             
-            [[Buddy pictures] searchPictures:^(id<BPPictureProperties> pictureProperties) {
-                pictureProperties.caption = @"Hello, caption!";
-            } callback:^(NSArray *buddyObjects, NSError *error) {
+            BPSearchPictures *searchPicture = [BPSearchPictures new];
+            searchPicture.caption = @"Hakuna matata";
+            
+            [[Buddy pictures] searchPictures:searchPicture callback:^(NSArray *buddyObjects, NSError *error) {
                 retrievedPictures = buddyObjects;
             }];
             
@@ -207,7 +193,6 @@ describe(@"BPPictureIntegrationSpec", ^{
         });
         
         it(@"Should allow the user to delete pictures", ^{
-            return;
             [newPicture destroy:^(NSError *error){
                 [[Buddy pictures] getPicture:newPicture.id callback:^(id newBuddyObject, NSError *error) {
                     newPicture = newBuddyObject;

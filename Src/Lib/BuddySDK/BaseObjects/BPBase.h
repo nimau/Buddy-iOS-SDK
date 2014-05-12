@@ -22,6 +22,7 @@
 
 @end
 
+// Temp
 @protocol BPSearchProperties <NSObject>
 
 @property (nonatomic, strong) BPCoordinateRange *range;
@@ -41,15 +42,11 @@ typedef void (^BuddyIdCallback)(NSString *buddyId, NSError *error);
 
 - (NSString *) metadataPath:(NSString *)key;
 
-- (void)setMetadata:(DescribeMetadata)describeMetadata callback:(BuddyCompletionCallback)callback;
-- (void)setMetadataValues:(DescribeMetadataCollection)describeMetadata callback:(BuddyCompletionCallback)callback;
-
-- (void)searchMetadata:(SearchMetadata)search callback:(void (^) (NSArray *buddyObjects, NSError *error))callback;
-
+- (void)setMetadata:(BPMetadataItem *)metadata callback:(BuddyCompletionCallback)callback;
+- (void)setMetadataValues:(BPMetadataCollection *)metadata callback:(BuddyCompletionCallback)callback;
+- (void)searchMetadata:(BPSearchMetadata *)search callback:(void (^) (NSArray *buddyObjects, NSError *error))callback;
 - (void)incrementMetadata:(NSString *)key delta:(NSInteger)delta callback:(BuddyCompletionCallback)callback;
-
 - (void)getMetadataWithKey:(NSString *)key permissions:(BPPermissions) permissions callback:(BPMetadataCallback) callback;
-
 - (void)deleteMetadataWithKey:(NSString *)key permissions:(BPPermissions) permissions callback:(BuddyCompletionCallback)callback;
 
 @property (nonatomic, readonly, weak) id<BPRestProvider> client;

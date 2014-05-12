@@ -7,8 +7,40 @@
 //
 
 #import "BPMetadataItem.h"
+#import "BPEnumMapping.h"
 
-@interface BPMetadataItem()
+@implementation BPMetadataBase
+
++ (NSDictionary *)mapForProperty:(NSString *)key
+{
+    if ([key isEqualToString:@"permissions"]) {
+        return @{NSStringFromSelector(@selector(permissions)) : @{
+                         @(BPPermissionsApp) : @"App",
+                         @(BPPermissionsUser) : @"User",
+                         }};
+    }
+    
+    return nil;
+}
+
++ (id)convertValue:(NSString *)value forKey:(NSString *)key
+{
+    return nil;
+}
+
+@end
+
+@interface BPSearchMetadata()<BPEnumMapping>
+
+@end
+
+@implementation BPSearchMetadata
+
+@synthesize key, value, keyPrefix, locationRange, created, modified, permissions;
+
+@end
+
+@interface BPMetadataItem()<BPEnumMapping>
 
 @property (nonatomic, strong) BPDateRange *created;
 @property (nonatomic, strong) BPDateRange *modified;
@@ -36,5 +68,28 @@
     }
     return self;
 }
+
++ (NSDictionary *)mapForProperty:(NSString *)key
+{
+    if ([key isEqualToString:@"permissions"]) {
+        return @{NSStringFromSelector(@selector(permissions)) : @{
+                         @(BPPermissionsApp) : @"App",
+                         @(BPPermissionsUser) : @"User",
+                         }};
+    }
+    
+    return nil;
+}
+
++ (id)convertValue:(NSString *)value forKey:(NSString *)key
+{
+    return nil;
+}
+
+@end
+
+@implementation BPMetadataCollection
+
+@synthesize values, permissions;
 
 @end

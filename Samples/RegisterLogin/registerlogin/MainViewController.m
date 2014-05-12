@@ -197,7 +197,7 @@
     self.HUD.dimBackground = YES;
     self.HUD.delegate=self;
     
-    [[Buddy user] deleteMe:[self getDeleteCallback]];
+    [[Buddy user] destroy:[self getDeleteCallback]];
 }
 
 - (IBAction)doIdentities:(id)sender {

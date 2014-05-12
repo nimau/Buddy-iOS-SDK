@@ -16,14 +16,19 @@
 
 @end
 
-typedef void(^DescribeBlob)(id<BPBlobProperties>blobProperties);
-typedef void(^SearchBlob)(id<BPBlobProperties, BPSearchProperties>blobSearchProperties);
+@interface BPBlobSearch : BPObjectSearch<BPBlobProperties>
+
+@end
 
 @interface BPBlob : BuddyObject<BPBlobProperties, BPAlbumItem>
 
 typedef void(^BuddyDataResponse)(NSData *data, NSError *error);
 
+// Deprecated
 + (void)createWithData:(NSData *)data parameters:(NSDictionary *)parameters client:(id<BPRestProvider>)client callback:(BuddyObjectCallback)callback;
+
+// New
+- (void)savetoServerWithData:(NSData *)data callback:(BuddyCompletionCallback)callback;
 
 - (void)getData:(BuddyDataResponse)callback;
 

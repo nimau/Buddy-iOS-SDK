@@ -165,9 +165,11 @@ describe(@"BPUser", ^{
         });
         
         it(@"Should allow searching for users", ^{
-            [[Buddy users] searchUsers:^(id<BPUserProperties,BPSearchProperties> searchUser) {
-                searchUser.gender = BPUserGender_Unknown;
-            } callback:^(NSArray *buddyObjects, NSError *error) {
+            
+            BPSearchUsers *searchUsers = [BPSearchUsers new];
+            searchUsers.gender = BPUserGender_Unknown;
+            
+            [[Buddy users] searchUsers:searchUsers callback:^(NSArray *buddyObjects, NSError *error) {
                 [[error should] beNil];
                 [[theValue([buddyObjects count]) should] beGreaterThan:theValue(0)];
                 [[theValue([[buddyObjects firstObject] gender]) should] equal:theValue(BPUserGender_Unknown)];

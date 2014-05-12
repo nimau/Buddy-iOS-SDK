@@ -28,7 +28,15 @@
             NSString *name = [[NSString alloc] initWithUTF8String:property_getName(property)];
             id val = [self valueForKey:name];
             
-            if ([val isKindOfClass:[NSNumber class]]) {
+            if([[self class] conformsToProtocol:@protocol(BPEnumMapping)]
+                    && [[self class] mapForProperty:name]) {
+                id map = [[self class] mapForProperty:name];
+                val = map[val];
+                if (!val) {
+                    continue;
+                }
+            }
+            else if ([val isKindOfClass:[NSNumber class]]) {
                 // Don't convert
             } else if ([val respondsToSelector:@selector(stringValue)]) {
                 val = [val stringValue];

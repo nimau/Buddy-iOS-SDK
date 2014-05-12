@@ -10,6 +10,11 @@
 #import "BPDateRange.h"
 #import "BuddyObject.h"
 #import "BPPermissions.h"
+#import "BPEnumMapping.h"
+
+@interface BPMetadataBase : NSObject<BPEnumMapping>
+
+@end
 
 @protocol BPMetadataProperties <NSObject>
 
@@ -32,12 +37,16 @@
 
 @class BPMetadataItem;
 
-typedef void(^DescribeMetadata)(id<BPMetadataProperties>metadataProperties);
-typedef void(^DescribeMetadataCollection)(id<BPMetadataCollectionProperties>metadataProperties);
-typedef void(^SearchMetadata)(id<BPMetadataProperties>metadataSearchProperties);
+@interface BPSearchMetadata : BPMetadataBase<BPMetadataProperties>
+
+@end
+
 typedef void(^BPMetadataCallback)(BPMetadataItem *metadata, NSError *error);
 
-@interface BPMetadataItem : NSObject<BPMetadataProperties>
+@interface BPMetadataItem : BPMetadataBase<BPMetadataProperties>
 - (instancetype)initBuddyWithResponse:(id)response;
 @end
 
+@interface BPMetadataCollection : BPMetadataBase<BPMetadataCollectionProperties>
+
+@end

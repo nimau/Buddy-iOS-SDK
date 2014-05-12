@@ -40,8 +40,9 @@ typedef NS_ENUM(NSInteger, BPUserGender)
 
 @end
 
-typedef void(^DescribeUser)(id<BPUserProperties> userProperties);
-typedef void(^SearchUsers)(id<BPUserProperties, BPSearchProperties> searchUser);
+@interface BPSearchUsers : BPObjectSearch<BPUserProperties>
+
+@end
 
 @interface BPUser : BuddyObject<BPUserProperties>
 

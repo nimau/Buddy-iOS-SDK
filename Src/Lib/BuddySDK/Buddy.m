@@ -131,12 +131,11 @@
 
 #pragma mark User
 
-+ (void)createUser:(NSString *)username
-                    password:(NSString *)password
-                describeUser:(DescribeUser)describeUser
-                    callback:(BuddyObjectCallback)callback
++ (void)createUser:(BPUser *)user
+          password:(NSString *)password
+          callback:(BuddyObjectCallback)callback
 {
-    [[BPClient defaultClient] createUser:username password:password describeUser:describeUser callback:callback];
+    [[BPClient defaultClient] createUser:user password:password callback:callback];
 }
 
 + (void)login:(NSString *)username password:(NSString *)password callback:(BuddyObjectCallback)callback
@@ -170,17 +169,17 @@
     [[BPClient defaultClient] recordMetric:key andValue:value timeout:seconds callback:callback];
 }
 
-+ (void)setMetadata:(DescribeMetadata)describeMetadata callback:(BuddyCompletionCallback)callback
++ (void)setMetadata:(BPMetadataItem *)metadata callback:(BuddyCompletionCallback)callback
 {
-    [[BPClient defaultClient] setMetadata:describeMetadata callback:callback];
+    [[BPClient defaultClient] setMetadata:metadata callback:callback];
 }
 
-+ (void)setMetadataValues:(DescribeMetadataCollection)describeMetadata callback:(BuddyCompletionCallback)callback
++ (void)setMetadataValues:(BPMetadataCollection *)metadata callback:(BuddyCompletionCallback)callback
 {
-    [[BPClient defaultClient] setMetadataValues:describeMetadata callback:callback];
+    [[BPClient defaultClient] setMetadataValues:metadata callback:callback];
 }
 
-+ (void)searchMetadata:(SearchMetadata)search callback:(BuddyObjectCallback)callback
++ (void)searchMetadata:(BPSearchMetadata *)search callback:(BuddyObjectCallback)callback
 {
     [[BPClient defaultClient] searchMetadata:search callback:callback];
 }

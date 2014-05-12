@@ -46,6 +46,14 @@
     }
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self registerProperties];
+    }
+    return self;
+}
 
 - (instancetype)initBuddyWithClient:(id<BPRestProvider>)client
 {
@@ -125,6 +133,13 @@
         
         if([[c class] isSubclassOfClass:[NSDate class]]){
             c = [c serializeDateToJson];
+        } else if([[self class] conformsToProtocol:@protocol(BPEnumMapping)]
+                  && [[self class] mapForProperty:key]) {
+            id map = [[self class] mapForProperty:key];
+            c = map[c];
+            if (!c) {
+                continue;
+            }
         } else if ([c respondsToSelector:@selector(stringValue)]) {
             c = [c stringValue];
         }
@@ -162,6 +177,20 @@
     }];
 }
 
+- (void)savetoServer:(BuddyCompletionCallback)callback
+{
+    // Dictionary of property names/values
+    NSDictionary *parameters = [self buildUpdateDictionary];
+    
+    [self.client POST:[[self class] requestPath] parameters:parameters callback:^(id json, NSError *error) {
+        [[JAGPropertyConverter converter] setPropertiesOf:self fromDictionary:json];
+        if (!error) {
+            self.isDirty = NO;
+        }
+        callback ? callback(error) : nil;
+    }];
+}
+
 - (void)destroy
 {
     [self destroy:nil];
@@ -169,6 +198,11 @@
 
 -(void)destroy:(BuddyCompletionCallback)callback
 {
+    if (!self.id) {
+        callback([NSError invalidObjectOperationError]);
+        return;
+    }
+    
     NSString *resource = [NSString stringWithFormat:@"%@/%@",
                           [[self class] requestPath],
                           _id];
@@ -188,7 +222,11 @@
 
 -(void)refresh:(BuddyCompletionCallback)callback
 {
-    assert(self.id);
+    if (!self.id) {
+        callback([NSError invalidObjectOperationError]);
+        return;
+    }
+    
     NSString *resource = [NSString stringWithFormat:@"%@/%@",
                           [[self class] requestPath],
                           self.id];
@@ -206,6 +244,11 @@
 
 - (void)save:(BuddyCompletionCallback)callback
 {
+    if (!self.id) {
+        callback([NSError invalidObjectOperationError]);
+        return;
+    }
+    
     NSString *resource = [NSString stringWithFormat:@"%@/%@",
                           [[self class] requestPath],
                           self.id];
@@ -232,5 +275,11 @@ static NSString *metadataRoute = @"metadata";
     }
     return [NSString stringWithFormat:@"%@/%@/%@",metadataRoute, self.id, key];
 }
+
+@end
+
+@implementation BPObjectSearch
+
+@synthesize location, created, lastModified, readPermissions, writePermissions, tag, id;
 
 @end

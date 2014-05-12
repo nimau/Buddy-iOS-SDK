@@ -24,7 +24,6 @@
     
     [self registerProperty:@selector(albumID)];
     [self registerProperty:@selector(itemID)];
-    [self registerProperty:@selector(itemType)];
     [self registerProperty:@selector(comment)];
 }
 

@@ -63,16 +63,17 @@ describe(@"Buddy", ^{
         });
         
         it(@"Should allow you to create a user.", ^{
-            
-            __block BPUser *newUser;
             __block NSDate *randomDate = [BuddyIntegrationHelper randomDate];
-            [Buddy createUser:testCreateDeleteName password:TEST_PASSWORD describeUser:^(id<BPUserProperties> userProperties) {
-                userProperties.firstName = @"Erik";
-                userProperties.lastName = @"Kerber";
-                userProperties.gender = BPUserGender_Female;
-                userProperties.email = TEST_EMAIL;
-                userProperties.dateOfBirth = randomDate;
-            } callback:^(BPUser *newBuddyObject, NSError *error) {
+
+            __block BPUser *newUser = [BPUser new];
+            newUser.firstName = @"Erik";
+            newUser.lastName = @"Kerber";
+            newUser.gender = BPUserGender_Female;
+            newUser.email = TEST_EMAIL;
+            newUser.dateOfBirth = randomDate;
+            newUser.userName = testCreateDeleteName;
+            
+            [Buddy createUser:newUser password:TEST_PASSWORD callback:^(BPUser *newBuddyObject, NSError *error) {
                 newUser = newBuddyObject;
                 [[error should] beNil];
                 if (error) {

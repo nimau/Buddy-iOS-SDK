@@ -9,6 +9,12 @@
 #import "BPLocation.h"
 #import "BuddyObject+Private.h"
 
+@implementation BPSearchLocation
+
+@synthesize name, description, address1, address2, city, region, country, postalcode, fax, phone, website, category, isPublic;
+
+@end
+
 @interface BPLocation()
 
 @property (nonatomic, assign) double *distance;

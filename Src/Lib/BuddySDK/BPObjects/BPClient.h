@@ -175,9 +175,8 @@ typedef void (^BPPingCallback)(NSDecimalNumber *ping);
                 options:(NSDictionary *)options
                 delegate:(id<BPClientDelegate>) delegate;
 
-- (void)createUser:(NSString *)username
+- (void)createUser:(BPUser *)user
           password:(NSString *)password
-      describeUser:(DescribeUser)describeUser
           callback:(BuddyObjectCallback)callback;
 
 - (void)login:(NSString *)username password:(NSString *)password callback:(BuddyObjectCallback)callback;
