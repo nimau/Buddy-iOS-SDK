@@ -44,6 +44,7 @@ typedef NS_ENUM(NSInteger, BuddyErrorType)
 
 + (NSError *)noInternetError:(NSInteger)code message:(NSString *)message;
 + (NSError *)buildBuddyError:(id)buddyJSON;
++ (NSError *)invalidObjectOperationError;
 
 - (BOOL)needsLogin;
 - (BOOL)credentialsInvalid;

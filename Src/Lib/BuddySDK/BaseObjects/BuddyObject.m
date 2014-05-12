@@ -198,6 +198,11 @@
 
 -(void)destroy:(BuddyCompletionCallback)callback
 {
+    if (!self.id) {
+        callback([NSError invalidObjectOperationError]);
+        return;
+    }
+    
     NSString *resource = [NSString stringWithFormat:@"%@/%@",
                           [[self class] requestPath],
                           _id];
@@ -217,7 +222,11 @@
 
 -(void)refresh:(BuddyCompletionCallback)callback
 {
-    assert(self.id);
+    if (!self.id) {
+        callback([NSError invalidObjectOperationError]);
+        return;
+    }
+    
     NSString *resource = [NSString stringWithFormat:@"%@/%@",
                           [[self class] requestPath],
                           self.id];
@@ -235,6 +244,11 @@
 
 - (void)save:(BuddyCompletionCallback)callback
 {
+    if (!self.id) {
+        callback([NSError invalidObjectOperationError]);
+        return;
+    }
+    
     NSString *resource = [NSString stringWithFormat:@"%@/%@",
                           [[self class] requestPath],
                           self.id];
