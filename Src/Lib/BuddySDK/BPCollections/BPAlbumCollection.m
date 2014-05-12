@@ -42,12 +42,9 @@
 }
     
 
--(void)searchAlbums:(DescribeAlbum)describeAlbum callback:(BuddyCollectionCallback)callback
+-(void)searchAlbums:(BPSearchAlbum *)searchAlbum callback:(BuddyCollectionCallback)callback
 {
-    id albumProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPAlbumProperties)];
-    describeAlbum ? describeAlbum(albumProperties) : nil;
-    
-    id parameters = [albumProperties parametersFromProperties:@protocol(BPAlbumProperties)];
+    id parameters = [searchAlbum parametersFromProperties:@protocol(BPAlbumProperties)];
     
     [self search:parameters callback:callback];
 }

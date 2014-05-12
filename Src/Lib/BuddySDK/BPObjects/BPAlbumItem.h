@@ -32,10 +32,12 @@ typedef NS_ENUM(NSInteger, BPAlbumItemType) {
 
 @end
 
+@interface BPSearchAlbumItems : BPObjectSearch<BPAlbumItemProperties>
+
+@end
+
 typedef void(^BuddyAlbumItemResponse)(NSData *data, NSError *error);
 typedef void(^BuddyAlbumPictureResponse)(UIImage *data, NSError *error);
-
-typedef void(^DescribeAlbumItem)(id<BPAlbumItemProperties>albumItemProperties);
 
 @interface BPAlbumItem : BuddyObject<BPAlbumItemProperties>
 

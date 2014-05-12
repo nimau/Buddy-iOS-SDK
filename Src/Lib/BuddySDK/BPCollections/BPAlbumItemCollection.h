@@ -19,7 +19,7 @@
          withCaption:(NSString *)caption
             callback:(BuddyObjectCallback)callback;
 
-- (void)searchAlbumItems:(DescribeAlbumItem)describe callback:(BuddyObjectCallback)callback;
+- (void)searchAlbumItems:(BPSearchAlbumItems *)searchAlbumItems callback:(BuddyObjectCallback)callback;
 
 - (void)getAlbumItem:(NSString *)pictureId callback:(BuddyObjectCallback)callback;
 

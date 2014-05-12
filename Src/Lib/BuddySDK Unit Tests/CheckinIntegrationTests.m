@@ -58,9 +58,11 @@ describe(@"BPCheckinIntegrationSpec", ^{
         
         it(@"Should allow you to search checkins.", ^{
             __block NSArray *checkins;
-            [[Buddy checkins] searchCheckins:^(id<BPCheckinProperties> checkinProperties) {
-                checkinProperties.comment = @"Checking in!";
-            } callback:^(NSArray *buddyObjects, NSError *error) {
+            
+            BPSearchCheckins *searchCheckins = [BPSearchCheckins new];
+            searchCheckins.comment = @"Checking in!";
+            
+            [[Buddy checkins] searchCheckins:searchCheckins callback:^(NSArray *buddyObjects, NSError *error) {
                 NSArray *cins = buddyObjects;
                 
                 for(BPCheckin *c in cins) {

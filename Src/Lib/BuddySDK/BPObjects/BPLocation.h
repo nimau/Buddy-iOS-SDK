@@ -24,8 +24,9 @@
 
 @end
 
-typedef void(^DescribeLocation)(id<BPLocationProperties>locationProperties);
-typedef void(^SearchLocation)(id<BPLocationProperties, BPSearchProperties>locationProperties);
+@interface BPSearchLocation : BPObjectSearch<BPLocationProperties>
+
+@end
 
 @interface BPLocation : BuddyObject<BPLocationProperties>
 

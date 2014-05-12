@@ -9,6 +9,12 @@
 #import "BPAlbumItem.h"
 #import "BuddyObject+Private.h"
 
+@implementation BPSearchAlbumItems
+
+@synthesize caption, albumID, itemID, itemType;
+
+@end
+
 @interface BPAlbumItem()
 
 @property (nonatomic, copy) NSString *albumID;

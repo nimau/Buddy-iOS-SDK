@@ -15,7 +15,7 @@
 - (void)checkin:(BPCheckin *)checkin
        callback:(BuddyCompletionCallback)callback;
 
-- (void)searchCheckins:(DescribeCheckin)describeCheckin callback:(BuddyCollectionCallback)callback;
+- (void)searchCheckins:(BPSearchCheckins *)searchCheckin callback:(BuddyCollectionCallback)callback;
 
 - (void)getCheckin:(NSString *)checkinId callback:(BuddyObjectCallback)callback;
 

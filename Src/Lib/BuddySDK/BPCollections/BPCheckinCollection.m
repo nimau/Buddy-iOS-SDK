@@ -30,12 +30,9 @@
     [checkin savetoServer:callback];
 }
 
-- (void)searchCheckins:(DescribeCheckin)describeCheckin callback:(BuddyCollectionCallback)callback;
+- (void)searchCheckins:(BPSearchCheckins *)searchCheckin callback:(BuddyCollectionCallback)callback;
 {
-    id checkinCollection= [[BPSisterObject alloc] initWithProtocol:@protocol(BPCheckinProperties)];
-    describeCheckin ? describeCheckin(checkinCollection) : nil;
-    
-    id parameters = [checkinCollection parametersFromProperties:@protocol(BPCheckinProperties)];
+    id parameters = [searchCheckin parametersFromProperties:@protocol(BPCheckinProperties)];
     
     [self search:parameters callback:callback];
 }

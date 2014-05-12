@@ -16,7 +16,9 @@
 
 @end
 
-typedef void(^DescribeCheckin)(id<BPCheckinProperties> checkinProperties);
+@interface BPSearchCheckins : BPObjectSearch<BPCheckinProperties>
+
+@end
 
 @interface BPCheckin : BuddyObject<BPCheckinProperties>
 

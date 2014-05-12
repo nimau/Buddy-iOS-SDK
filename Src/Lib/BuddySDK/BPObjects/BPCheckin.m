@@ -9,6 +9,12 @@
 #import "BPCheckin.h"
 #import "BuddyObject+Private.h"
 
+@implementation BPSearchCheckins
+
+@synthesize comment, description;
+
+@end
+
 @implementation BPCheckin
 
 @synthesize comment = _comment;

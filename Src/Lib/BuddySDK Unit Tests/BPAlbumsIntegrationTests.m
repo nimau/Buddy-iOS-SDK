@@ -119,9 +119,8 @@ describe(@"BPAlbumIntegrationSpec", ^{
             
             [[Buddy albums] searchAlbums:nil callback:^(NSArray *buddyObjects, NSError *error) {
                 BPAlbum *album = [buddyObjects firstObject];
-                [album searchAlbumItems:^(id<BPAlbumItemProperties> albumItemProperties) {
-                    
-                } callback:^(NSArray *buddyObjects, NSError *error) {
+                                
+                [album searchAlbumItems:nil callback:^(NSArray *buddyObjects, NSError *error) {
                     [[error should] beNil];
                     [[buddyObjects shouldNot] beNil];
                     [[theValue([buddyObjects count]) should] beGreaterThan:theValue(0)];
@@ -143,9 +142,7 @@ describe(@"BPAlbumIntegrationSpec", ^{
         });
         it(@"Should allow you to search for items in an album.", ^{
             __block NSArray *retrievedPictures;
-            [tempAlbum searchAlbumItems:^(id<BPAlbumItemProperties> albumItemProperties) {
-                
-            } callback:^(NSArray *buddyObjects, NSError *error) {
+            [tempAlbum searchAlbumItems:nil callback:^(NSArray *buddyObjects, NSError *error) {
                 [[error should] beNil];
                 retrievedPictures = buddyObjects;
             }];
