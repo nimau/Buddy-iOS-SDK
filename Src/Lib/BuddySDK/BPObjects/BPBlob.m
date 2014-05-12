@@ -41,6 +41,27 @@ static NSString *blobMimeType = @"application/octet-stream";
     return blobMimeType;
 }
 
+
+
+- (void)savetoServerWithData:(NSData *)data callback:(BuddyCompletionCallback)callback
+{
+    NSDictionary *multipartParameters = @{@"data": BOXNIL(data)};
+    
+    NSDictionary *parameters = [self buildUpdateDictionary];
+    
+    [self.client MULTIPART_POST:[[self class] requestPath]
+                parameters:parameters
+                      data:multipartParameters
+                  mimeType:[[self class] mimeType]
+                  callback:^(id json, NSError *error)
+     {
+         if (!error) {
+             [[JAGPropertyConverter converter] setPropertiesOf:self fromDictionary:json];
+         }
+         callback ? callback(error) : nil;
+     }];
+}
+
 + (void)createWithData:(NSData *)data parameters:(NSDictionary *)parameters client:(id<BPRestProvider, BPLocationProvider>)client callback:(BuddyObjectCallback)callback
 
 {

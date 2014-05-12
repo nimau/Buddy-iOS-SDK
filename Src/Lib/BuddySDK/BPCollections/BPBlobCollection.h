@@ -10,9 +10,9 @@
 
 @interface BPBlobCollection : BuddyCollection
 
-- (void)addBlob:(NSData *)data
-       describe:(DescribeBlob)describe
-       callback:(BuddyObjectCallback)callback;
+- (void)addBlob:(BPBlob *)blob
+           data:(NSData *)data
+       callback:(BuddyCompletionCallback)callback;
 
 - (void)getBlobs:(BuddyCollectionCallback)callback;
 

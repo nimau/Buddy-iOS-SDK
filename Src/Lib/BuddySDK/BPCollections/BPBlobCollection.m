@@ -21,16 +21,12 @@
     return self;
 }
 
-- (void)addBlob:(NSData *)data
-       describe:(DescribeBlob)describe
-       callback:(BuddyObjectCallback)callback
+- (void)addBlob:(BPBlob *)blob
+       data:(NSData *)data
+       callback:(BuddyCompletionCallback)callback;
 {
-    id blobProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPBlobProperties)];
-    describe ? describe(blobProperties) : nil;
-    
-    id parameters = [blobProperties parametersFromProperties:@protocol(BPBlobProperties)];
-        
-    [BPBlob createWithData:data parameters:parameters client:self.client callback:callback];
+    [blob savetoServerWithData:data callback:callback];
+//    [BPBlob createWithData:data parameters:parameters client:self.client callback:callback];
 }
 
 -(void)getBlobs:(BuddyCollectionCallback)callback
