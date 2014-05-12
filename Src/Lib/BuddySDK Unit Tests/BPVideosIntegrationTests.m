@@ -120,7 +120,7 @@ describe(@"BPVideosIntegrationSpec", ^{
         it(@"Should allow you to delete a video.", ^{
             __block BOOL fin = NO;
 
-            [tempVideo deleteMe:^(NSError *error) {
+            [tempVideo destroy:^(NSError *error) {
                 [[error should] beNil];
                 fin = YES;
             }];

@@ -154,7 +154,7 @@ describe(@"BPAlbumIntegrationSpec", ^{
         
         it(@"Should allow you to delete an album.", ^{
             __block NSString *deletedId = tempAlbum.id;
-            [tempAlbum deleteMe:^(NSError *error){
+            [tempAlbum destroy:^(NSError *error){
                 [[Buddy albums] getAlbum:deletedId callback:^(id newBuddyObject, NSError *error) {
                     [[error should] beNonNil];
                     tempAlbum = newBuddyObject;

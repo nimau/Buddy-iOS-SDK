@@ -15,6 +15,6 @@
 - (void)addLocation:(DescribeLocation)describe
            callback:(BuddyObjectCallback)callback;
 
-- (void)findLocation:(SearchLocation)search callback:(BuddyCollectionCallback)callback;
+- (void)searchLocation:(SearchLocation)search callback:(BuddyCollectionCallback)callback;
 
 @end

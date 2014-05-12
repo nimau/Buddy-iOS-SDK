@@ -91,6 +91,7 @@ describe(@"Metadata", ^{
             [Buddy setMetadata:^(id<BPMetadataProperties> metadataProperties) {
                 metadataProperties.key = @"Hey";
                 metadataProperties.value = @"There";
+                metadataProperties.permissions = BPPermissionsApp;
             } callback:^(NSError *error) {
                 [[error should] beNil];
                 [Buddy getMetadataWithKey:@"Hey" permissions:BPPermissionsApp callback:^(BPMetadataItem *metadata, NSError *error) {

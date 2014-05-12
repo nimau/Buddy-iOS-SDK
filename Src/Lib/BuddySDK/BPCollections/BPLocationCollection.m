@@ -35,7 +35,7 @@
 }
 
 
-- (void)findLocation:(SearchLocation)search callback:(BuddyCollectionCallback)callback
+- (void)searchLocation:(SearchLocation)search callback:(BuddyCollectionCallback)callback
 {
     id locationProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPSearchProperties)];
     search ? search(locationProperties) : nil;
