@@ -47,8 +47,8 @@ describe(@"BPCheckinIntegrationSpec", ^{
             tempCheckin.description = @"Description";
             tempCheckin.location = BPCoordinateMake(1.2, 3.4);
             
-            [[Buddy checkins] checkin:tempCheckin
-                             callback:^(NSError *error) {
+            [[Buddy checkins] addCheckin:tempCheckin
+                                callback:^(NSError *error) {
                                  [[error should] beNil];
             }];
 

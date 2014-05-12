@@ -39,11 +39,11 @@ describe(@"Metadata", ^{
             checkin2.location = BPCoordinateMake(1.2, 3.4);
             [BuddyIntegrationHelper bootstrapLogin:^{
                 
-                [[Buddy checkins] checkin:checkin1 callback:^(NSError *error) {
+                [[Buddy checkins] addCheckin:checkin1 callback:^(NSError *error) {
                     [[error should] beNil];
                 }];
                 
-                [[Buddy checkins] checkin:checkin2 callback:^(NSError *error) {
+                [[Buddy checkins] addCheckin:checkin2 callback:^(NSError *error) {
                     [[error should] beNil];
                 }];
             }];

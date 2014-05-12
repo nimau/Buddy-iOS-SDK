@@ -24,8 +24,8 @@
     return self;
 }
 
--(void)checkin:(BPCheckin *)checkin
-      callback:(BuddyCompletionCallback)callback
+-(void)addCheckin:(BPCheckin *)checkin
+         callback:(BuddyCompletionCallback)callback
 {
     [checkin savetoServer:callback];
 }

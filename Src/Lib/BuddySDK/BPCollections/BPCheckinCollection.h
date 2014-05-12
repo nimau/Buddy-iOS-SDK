@@ -12,8 +12,8 @@
 
 @interface BPCheckinCollection : BuddyCollection
 
-- (void)checkin:(BPCheckin *)checkin
-       callback:(BuddyCompletionCallback)callback;
+- (void)addCheckin:(BPCheckin *)checkin
+          callback:(BuddyCompletionCallback)callback;
 
 - (void)searchCheckins:(BPSearchCheckins *)searchCheckin callback:(BuddyCollectionCallback)callback;
 
