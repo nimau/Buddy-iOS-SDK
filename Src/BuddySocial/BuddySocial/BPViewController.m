@@ -44,21 +44,13 @@
 
 - (IBAction)checkin:(id)sender {
     
-    [[Buddy pictures] addPicture:[UIImage imageNamed:@"test.png"] describePicture:^(id<BPPictureProperties> pictureProperties) {
-        pictureProperties.caption = @"Hello, caption!";
-    } callback:^(id buddyObject, NSError *error) {
+    BPPicture *pic = [BPPicture new];
+    pic.caption = @"HEllo, caption!";
+    
+    [[Buddy pictures] addPicture:pic image:[UIImage imageNamed:@"test.png"] callback:^(NSError *error) {
         int a = 5;
     }];
     
-//    __block DescribeCheckin d = ^(id<BPCheckinProperties> checkinProperties) {
-//        checkinProperties.comment = @"Checkin";
-//        checkinProperties.description = @"Description";
-//        checkinProperties.location = BPCoordinateMake(1.2, 3.4);;
-//    };
-//    
-//    [[Buddy checkins] checkin:d callback:^(id newBuddyObject, NSError *error) {
-//        //BPCheckin *c = newBuddyObject;
-//    }];
 }
 
 - (IBAction)crash:(id)sender
