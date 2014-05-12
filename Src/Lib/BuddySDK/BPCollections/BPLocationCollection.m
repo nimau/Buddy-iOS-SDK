@@ -23,15 +23,10 @@
 }
 
 
-- (void)addLocation:(DescribeLocation)describe
-           callback:(BuddyObjectCallback)callback
+- (void)addLocation:(BPLocation *)location
+           callback:(BuddyCompletionCallback)callback
 {
-    id locationProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPLocationProperties)];
-    describe ? describe(locationProperties) : nil;
-    
-    id parameters = [locationProperties parametersFromProperties:@protocol(BPLocationProperties)];
-    
-    [self.type createFromServerWithParameters:parameters client:self.client callback:callback];
+    [location savetoServer:callback];
 }
 
 

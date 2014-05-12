@@ -28,13 +28,6 @@
       callback:(BuddyCompletionCallback)callback
 {
     [checkin savetoServer:callback];
-    
-//    id checkinCollection= [[BPSisterObject alloc] initWithProtocol:@protocol(BPCheckinProperties)];
-//    describeCheckin ? describeCheckin(checkinCollection) : nil;
-//
-//    id parameters = [checkinCollection parametersFromProperties:@protocol(BPCheckinProperties)];
-//    
-//    [self.type createFromServerWithParameters:parameters client:self.client callback:callback];
 }
 
 - (void)searchCheckins:(DescribeCheckin)describeCheckin callback:(BuddyCollectionCallback)callback;

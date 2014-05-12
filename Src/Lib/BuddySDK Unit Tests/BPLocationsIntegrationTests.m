@@ -40,17 +40,18 @@ describe(@"BPLocationIntegrationSpec", ^{
         });
         
         it(@"Should allow you create a location.", ^{
-            [[Buddy locations] addLocation:^(id<BPLocationProperties> locationProperties) {
-                locationProperties.name = @"House of Pain";
-                locationProperties.description = @"Where the pain is brought";
-                locationProperties.location = BPCoordinateMake(1.2, 3.4);
-                locationProperties.category = @"So much pain";
-                locationProperties.isPublic = YES;
-                locationProperties.tag = @"Some Tag";
-            } callback:^(id newBuddyObject, NSError *error) {
+            
+            tempLocation = [BPLocation new];
+            tempLocation.name = @"House of Pain";
+            tempLocation.description = @"Where the pain is brought";
+            tempLocation.location = BPCoordinateMake(1.2, 3.4);
+            tempLocation.category = @"So much pain";
+            tempLocation.isPublic = YES;
+            tempLocation.tag = @"Some Tag";
+            
+            [[Buddy locations] addLocation:tempLocation callback:^(NSError *error) {
                 [[error should] beNil];
-                tempLocation = newBuddyObject;
-                [[tempLocation should] beNonNil];
+                [[tempLocation.id should] beNonNil];
                 fin = YES;
             }];
             

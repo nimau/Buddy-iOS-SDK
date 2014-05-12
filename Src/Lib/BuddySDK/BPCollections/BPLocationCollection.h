@@ -12,8 +12,8 @@
 
 @interface BPLocationCollection : BuddyCollection
 
-- (void)addLocation:(DescribeLocation)describe
-           callback:(BuddyObjectCallback)callback;
+- (void)addLocation:(BPLocation *)location
+           callback:(BuddyCompletionCallback)callback;
 
 - (void)searchLocation:(SearchLocation)search callback:(BuddyCollectionCallback)callback;
 
