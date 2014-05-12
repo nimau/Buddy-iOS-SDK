@@ -11,19 +11,7 @@
 
 @implementation BPSearchLocation
 
-@synthesize name;
-@synthesize description;
-@synthesize address1;
-@synthesize address2;
-@synthesize city;
-@synthesize region;
-@synthesize country;
-@synthesize postalcode;
-@synthesize fax;
-@synthesize phone;
-@synthesize website;
-@synthesize category;
-@synthesize isPublic;
+@synthesize name, description, address1, address2, city, region, country, postalcode, fax, phone, website, category, isPublic;
 
 @end
 
