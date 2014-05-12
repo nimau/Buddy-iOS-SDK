@@ -46,6 +46,14 @@
     }
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self registerProperties];
+    }
+    return self;
+}
 
 - (instancetype)initBuddyWithClient:(id<BPRestProvider>)client
 {
@@ -125,6 +133,10 @@
         
         if([[c class] isSubclassOfClass:[NSDate class]]){
             c = [c serializeDateToJson];
+        } else if([[self class] conformsToProtocol:@protocol(BPEnumMapping)]
+                  && [[self class] mapForProperty:key]) {
+            id map = [[self class] mapForProperty:key];
+            c = map[c];
         } else if ([c respondsToSelector:@selector(stringValue)]) {
             c = [c stringValue];
         }
@@ -159,6 +171,20 @@
         [newObject refresh:^(NSError *error){
             callback ? callback(newObject, error) : nil;
         }];
+    }];
+}
+
+- (void)savetoServer:(BuddyCompletionCallback)callback
+{
+    // Dictionary of property names/values
+    NSDictionary *parameters = [self buildUpdateDictionary];
+    
+    [self.client POST:[[self class] requestPath] parameters:parameters callback:^(id json, NSError *error) {
+        [[JAGPropertyConverter converter] setPropertiesOf:self fromDictionary:json];
+        if (!error) {
+            self.isDirty = NO;
+        }
+        callback ? callback(error) : nil;
     }];
 }
 

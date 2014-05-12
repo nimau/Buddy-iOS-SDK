@@ -12,6 +12,7 @@
 #import "BuddyCollection+Private.h"
 #import "BuddyObject+Private.h"
 #import "BPSisterObject.h"
+#import "BuddyObject+Private.h"
 
 @implementation BPCheckinCollection
 
@@ -23,15 +24,17 @@
     return self;
 }
 
--(void)checkin:(DescribeCheckin)describeCheckin
-      callback:(BuddyObjectCallback)callback
+-(void)checkin:(BPCheckin *)checkin
+      callback:(BuddyCompletionCallback)callback
 {
-    id checkinCollection= [[BPSisterObject alloc] initWithProtocol:@protocol(BPCheckinProperties)];
-    describeCheckin ? describeCheckin(checkinCollection) : nil;
-
-    id parameters = [checkinCollection parametersFromProperties:@protocol(BPCheckinProperties)];
+    [checkin savetoServer:callback];
     
-    [self.type createFromServerWithParameters:parameters client:self.client callback:callback];
+//    id checkinCollection= [[BPSisterObject alloc] initWithProtocol:@protocol(BPCheckinProperties)];
+//    describeCheckin ? describeCheckin(checkinCollection) : nil;
+//
+//    id parameters = [checkinCollection parametersFromProperties:@protocol(BPCheckinProperties)];
+//    
+//    [self.type createFromServerWithParameters:parameters client:self.client callback:callback];
 }
 
 - (void)searchCheckins:(DescribeCheckin)describeCheckin callback:(BuddyCollectionCallback)callback;

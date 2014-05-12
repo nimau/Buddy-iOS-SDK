@@ -17,14 +17,10 @@
 @property (nonatomic, readonly, assign) BOOL deleted;
 @property (nonatomic, readonly, assign) BOOL isDirty;
 
-- (instancetype) init __attribute__((unavailable("init not available")));
-+ (instancetype) new __attribute__((unavailable("new not available")));
-
 - (void)registerProperty:(SEL)property;
 
 + (NSString *)requestPath;
 
-+ (void)createFromServerWithParameters:(NSDictionary *)parameters client:(id<BPRestProvider>)client callback:(BuddyObjectCallback)callback;
 - (void)destroy:(BuddyCompletionCallback)callback;
 - (void)destroy;
 - (void)refresh;

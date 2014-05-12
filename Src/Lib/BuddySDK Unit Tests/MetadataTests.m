@@ -27,33 +27,29 @@ describe(@"Metadata", ^{
         
         beforeAll(^{
             
-            DescribeCheckin d1 = ^(id<BPCheckinProperties> checkinProperties) {
-                checkinProperties.comment = @"Test checkin";
-                checkinProperties.description = @"Test checkin description";
-                checkinProperties.location = BPCoordinateMake(1.2, 3.4);
-            };
-
-            DescribeCheckin d2 = ^(id<BPCheckinProperties> checkinProperties) {
-                checkinProperties.comment = @"Second checkin";
-                checkinProperties.description = @"Test checkin description";
-                checkinProperties.location = BPCoordinateMake(1.2, 3.4);
-            };
             
+            checkin1 = [BPCheckin new];
+            checkin1.comment = @"Test checkin";
+            checkin1.description = @"Test checkin description";
+            checkin1.location = BPCoordinateMake(1.2, 3.4);
+//            
+            checkin2 = [BPCheckin new];
+            checkin2.comment = @"Second checkin";
+            checkin2.description = @"Test checkin description";
+            checkin2.location = BPCoordinateMake(1.2, 3.4);
             [BuddyIntegrationHelper bootstrapLogin:^{
                 
-                [[Buddy checkins] checkin:d1
-                 callback:^(id newBuddyObject, NSError *error) {
-                    checkin1 = newBuddyObject;
+                [[Buddy checkins] checkin:checkin1 callback:^(NSError *error) {
+                    [[error should] beNil];
                 }];
                 
-                [[Buddy checkins] checkin:d2
-                callback:^(id newBuddyObject, NSError *error) {
-                     checkin2 = newBuddyObject;
-                 }];
+                [[Buddy checkins] checkin:checkin2 callback:^(NSError *error) {
+                    [[error should] beNil];
+                }];
             }];
             
-            [[expectFutureValue(checkin1) shouldEventually] beNonNil];
-            [[expectFutureValue(checkin2) shouldEventually] beNonNil];
+            [[expectFutureValue(checkin1.id) shouldEventually] beNonNil];
+            [[expectFutureValue(checkin2.id) shouldEventually] beNonNil];
         });
         
         beforeEach(^{

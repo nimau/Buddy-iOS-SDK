@@ -22,7 +22,6 @@ describe(@"BPCheckinIntegrationSpec", ^{
     context(@"When a user is logged in", ^{
         
         __block BPCheckin *tempCheckin;
-        __block NSString *tempCheckinId;
         
         beforeAll(^{
             __block BOOL fin = NO;
@@ -43,18 +42,18 @@ describe(@"BPCheckinIntegrationSpec", ^{
             coordinate.lat = 2.3;
             coordinate.lng = 4.4;
             
-            [[Buddy checkins] checkin:^(id<BPCheckinProperties> checkinProperties) {
-                checkinProperties.comment = @"Checking in!";
-                checkinProperties.description = @"Description";
-                checkinProperties.location = BPCoordinateMake(1.2, 3.4);
-            } callback:^(BPCheckin *checkin, NSError *error) {
-                tempCheckinId = checkin.id;
-                tempCheckin = checkin;
+            tempCheckin = [BPCheckin new];
+            tempCheckin.comment = @"Checking in!";
+            tempCheckin.description = @"Description";
+            tempCheckin.location = BPCoordinateMake(1.2, 3.4);
+            
+            [[Buddy checkins] checkin:tempCheckin
+                             callback:^(NSError *error) {
+                                 [[error should] beNil];
             }];
 
             
-            [[expectFutureValue(tempCheckin.comment) shouldEventually] equal:@"Checking in!"];
-            [[expectFutureValue(tempCheckin.description) shouldEventually] equal:@"Description"];
+            [[expectFutureValue(tempCheckin.id) shouldEventually] beNonNil];
         });
         
         it(@"Should allow you to search checkins.", ^{
@@ -76,7 +75,7 @@ describe(@"BPCheckinIntegrationSpec", ^{
 
         it(@"Should allow you to retrieve a specific checkin.", ^{
             __block BPCheckin *retrievedCheckin;
-            [[Buddy checkins] getCheckin:tempCheckinId callback:^(id newBuddyObject, NSError *error) {
+            [[Buddy checkins] getCheckin:tempCheckin.id callback:^(id newBuddyObject, NSError *error) {
                 retrievedCheckin = newBuddyObject;
             }];
 
