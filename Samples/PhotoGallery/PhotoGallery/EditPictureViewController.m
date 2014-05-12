@@ -220,7 +220,7 @@
         return;
     }
     
-    [self.picture deleteMe:[self getDeletePhotoCallback]];
+    [self.picture destroy:[self getDeletePhotoCallback]];
 
 }
 

@@ -66,31 +66,13 @@
 
 }
 
--(BuddyObjectCallback) getAddPhotoCallback
+-(BuddyCompletionCallback) getAddPhotoCallback
 {
     AddPictureViewController * __weak weakSelf = self;
     
-    return ^(id newBuddyObject, NSError *error)
+    return ^(NSError *error)
     {
-        [weakSelf.HUD hide:TRUE afterDelay:0.1];
-        weakSelf.HUD=nil;
-        
-        if(error!=nil)
-        {
-            NSLog(@"AddPhotoCallback - error Called");
-            UIAlertView *alert =
-            [[UIAlertView alloc] initWithTitle: @"Error Adding Photo"
-                                       message: [error localizedDescription]
-                                      delegate: self
-                             cancelButtonTitle: @"OK"
-                             otherButtonTitles: nil];
-            [alert show];
-            return;
-        }
-        
-        NSLog(@"LoadUserPhotosCallback - success Called");
-        [[CommonAppDelegate userPictures] addPicture: newBuddyObject];
-        [self goBack];
+
         
     };
 
@@ -111,10 +93,32 @@
     self.HUD.labelText= @"Adding Photo";
     self.HUD.dimBackground = YES;
     self.HUD.delegate=self;
-    [[Buddy pictures] addPicture:self.selectedImage describePicture:^(id<BPPictureProperties> pictureProperties)
-     {
-         pictureProperties.caption =self.captionField.text;
-     } callback: [self getAddPhotoCallback]];
+    
+    BPPicture *pic = [BPPicture new];
+    pic.caption = self.captionField.text;
+    AddPictureViewController * __weak weakSelf = self;
+    
+    [[Buddy pictures] addPicture:pic image:self.selectedImage callback:^(NSError *error) {
+        [weakSelf.HUD hide:TRUE afterDelay:0.1];
+        weakSelf.HUD=nil;
+        
+        if(error!=nil)
+        {
+            NSLog(@"AddPhotoCallback - error Called");
+            UIAlertView *alert =
+            [[UIAlertView alloc] initWithTitle: @"Error Adding Photo"
+                                       message: [error localizedDescription]
+                                      delegate: self
+                             cancelButtonTitle: @"OK"
+                             otherButtonTitles: nil];
+            [alert show];
+            return;
+        }
+        
+        NSLog(@"LoadUserPhotosCallback - success Called");
+        [[CommonAppDelegate userPictures] addPicture:pic];
+        [self goBack];
+    }];
 }
 
 -(IBAction)showCamera:(id)sender

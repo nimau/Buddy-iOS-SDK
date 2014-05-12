@@ -164,15 +164,15 @@
     self.HUD.dimBackground = YES;
     self.HUD.delegate=self;
     
-    [Buddy createUser:self.userNameTextField.text
+    BPUser *user = [BPUser new];
+    user.firstName = self.firstNameTextField.text;
+    user.lastName = self.lastNameTextField.text;
+    user.gender = BPUserGender_Unknown;
+    user.dateOfBirth= nil;
+    user.email = self.emailTextField.text;
+    user.userName = self.userNameTextField.text;
+    [Buddy createUser:user
                       password:self.passwordTextField.text
-                      describeUser:^(id<BPUserProperties> userProperties) {
-                          userProperties.firstName = self.firstNameTextField.text;
-                          userProperties.lastName = self.lastNameTextField.text;
-                          userProperties.gender = BPUserGender_Unknown;
-                          userProperties.dateOfBirth= nil;
-                          userProperties.email = self.emailTextField.text;
-                      }
                       callback:[self getRegisterCallback]];
 }
 
