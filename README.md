@@ -29,7 +29,7 @@ For developers the Buddy Platform offers turnkey support for features like the f
 
 To get started with the Buddy Platform SDK, please reference the "Getting Started" series of documents at [dev.buddyplatform.com/docs](http://dev.buddyplatform.com/docs). You will need an App ID and Key before you can use the SDK, and these documents will walk you through obtaining those, and installing the SDK.
 
-App IDs and Keys can be obtained at the Buddy Developer Dashboard at [dev.buddy.com](http://dev.buddyplatform.com).
+App IDs and Keys can be obtained at the Buddy Developer Dashboard at [dev.buddyplatform.com](http://dev.buddyplatform.com).
 
 Full documentation for Buddy's services are available at [dev.buddyplatform.com/docs](http://dev.buddyplatform.com/docs).
 
