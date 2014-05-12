@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                = 'BuddySDK'
-  s.version             = '1.9.6'
+  s.version             = '2.0.0'
   s.license             = { :type => 'Apache 2.0' }
   s.summary             = 'iOS SDK for the Buddy Platform.'
   s.homepage            = 'http://www.buddy.com'
