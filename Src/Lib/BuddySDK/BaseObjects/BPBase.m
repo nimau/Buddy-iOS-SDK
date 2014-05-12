@@ -60,10 +60,6 @@
 {
     id parameters = [metadata parametersFromProperties:@protocol(BPMetadataProperties)];
     
-    if ([parameters[@"permissions"] integerValue]) {
-        parameters[@"permissions"] = [[self class] enumMap][@"readPermissions"][parameters[@"permissions"]];
-    }
-    
     [self.client PUT:[self metadataPath:parameters[@"key"]] parameters:parameters callback:^(id json, NSError *error) {
         callback ? callback(error) : nil;
     }];

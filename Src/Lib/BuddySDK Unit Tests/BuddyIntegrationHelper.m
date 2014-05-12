@@ -28,6 +28,7 @@
         user.gender = BPUserGender_Male;
         user.email = @"erik@buddy.com";
         user.dateOfBirth = [BuddyIntegrationHelper randomDate];
+        user.userName = TEST_USERNAME;
         
         if(loggedInsUser)
             callback();
