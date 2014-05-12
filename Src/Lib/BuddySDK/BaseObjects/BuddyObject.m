@@ -137,6 +137,9 @@
                   && [[self class] mapForProperty:key]) {
             id map = [[self class] mapForProperty:key];
             c = map[c];
+            if (!c) {
+                continue;
+            }
         } else if ([c respondsToSelector:@selector(stringValue)]) {
             c = [c stringValue];
         }

@@ -56,14 +56,11 @@
     return @"";
 }
 
-- (void)setMetadata:(DescribeMetadata)describeMetadata callback:(BuddyCompletionCallback)callback
+- (void)setMetadata:(BPMetadataItem *)metadata callback:(BuddyCompletionCallback)callback
 {
-    id metadataProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPMetadataProperties)];
-    describeMetadata ? describeMetadata(metadataProperties) : nil;
+    id parameters = [metadata parametersFromProperties:@protocol(BPMetadataProperties)];
     
-    id parameters = (NSMutableDictionary *)[metadataProperties parametersFromProperties:@protocol(BPMetadataProperties)];
-    
-    if (parameters[@"permissions"]) {
+    if ([parameters[@"permissions"] integerValue]) {
         parameters[@"permissions"] = [[self class] enumMap][@"readPermissions"][parameters[@"permissions"]];
     }
     
@@ -72,16 +69,9 @@
     }];
 }
 
-- (void)setMetadataValues:(DescribeMetadataCollection)describeMetadata callback:(BuddyCompletionCallback)callback
+- (void)setMetadataValues:(BPMetadataCollection *)metadata callback:(BuddyCompletionCallback)callback
 {
-    id metadataProperties = [[BPSisterObject alloc] initWithProtocol:@protocol(BPMetadataCollectionProperties)];
-    describeMetadata ? describeMetadata(metadataProperties) : nil;
-    
-    id parameters = (NSMutableDictionary *)[metadataProperties parametersFromProperties:@protocol(BPMetadataCollectionProperties)];
-    
-    if (parameters[@"permissions"]) {
-        parameters[@"permissions"] = [[self class] enumMap][@"readPermissions"][parameters[@"permissions"]];
-    }
+    id parameters = [metadata parametersFromProperties:@protocol(BPMetadataCollectionProperties)];
     
     [self.client PUT:[self metadataPath:nil] parameters:parameters callback:^(id json, NSError *error) {
         callback ? callback(error) : nil;
@@ -89,12 +79,9 @@
 }
 
 
-- (void)searchMetadata:(SearchMetadata)search callback:(void (^) (NSArray *buddyObjects, NSError *error))callback
+- (void)searchMetadata:(BPSearchMetadata *)search callback:(BuddyCollectionCallback)callback
 {
-    id searchProperty = [[BPSisterObject alloc] initWithProtocols:@[@protocol(BPMetadataProperties), @protocol(BPSearchProperties)]];
-    search ? search(searchProperty) : nil;
-    
-    id searchParameters = [searchProperty parametersFromProperties:@protocol(BPMetadataProperties)];
+    id searchParameters = [search parametersFromProperties:@protocol(BPMetadataProperties)];
     
     NSString *resource = [self metadataPath:nil];
     

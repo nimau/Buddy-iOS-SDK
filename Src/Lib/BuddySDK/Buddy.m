@@ -169,17 +169,17 @@
     [[BPClient defaultClient] recordMetric:key andValue:value timeout:seconds callback:callback];
 }
 
-+ (void)setMetadata:(DescribeMetadata)describeMetadata callback:(BuddyCompletionCallback)callback
++ (void)setMetadata:(BPMetadataItem *)metadata callback:(BuddyCompletionCallback)callback
 {
-    [[BPClient defaultClient] setMetadata:describeMetadata callback:callback];
+    [[BPClient defaultClient] setMetadata:metadata callback:callback];
 }
 
-+ (void)setMetadataValues:(DescribeMetadataCollection)describeMetadata callback:(BuddyCompletionCallback)callback
++ (void)setMetadataValues:(BPMetadataCollection *)metadata callback:(BuddyCompletionCallback)callback
 {
-    [[BPClient defaultClient] setMetadataValues:describeMetadata callback:callback];
+    [[BPClient defaultClient] setMetadataValues:metadata callback:callback];
 }
 
-+ (void)searchMetadata:(SearchMetadata)search callback:(BuddyObjectCallback)callback
++ (void)searchMetadata:(BPSearchMetadata *)search callback:(BuddyObjectCallback)callback
 {
     [[BPClient defaultClient] searchMetadata:search callback:callback];
 }

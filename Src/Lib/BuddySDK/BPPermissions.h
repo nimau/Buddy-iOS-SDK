@@ -11,9 +11,9 @@
  */
 typedef NS_ENUM(NSInteger, BPPermissions){
     /** Accessible by App. */
-    BPPermissionsApp,
+    BPPermissionsApp = 1,
     /** Accessible by owner. */
-    BPPermissionsUser,
+    BPPermissionsUser = 2,
     /** Default (Accessible by Owner). */
     BPPermissionsDefault = BPPermissionsUser
 };
