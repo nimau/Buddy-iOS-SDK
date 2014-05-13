@@ -15,9 +15,9 @@
 - (instancetype)initWithClient:(id<BPRestProvider>)client __attribute__((unavailable("Use initWithAlbum:andClient:")));;
 - (instancetype)initWithAlbum:(BPAlbum *)album andClient:(id<BPRestProvider>)client;
 
-- (void)addAlbumItem:(NSString *)itemId
-         withCaption:(NSString *)caption
-            callback:(BuddyObjectCallback)callback;
+- (void)addAlbumItem:(BPAlbumItem *)albumItem
+            withItem:(BuddyObject<BPAlbumItem> *)itemToAdd
+            callback:(BuddyCompletionCallback)callback;
 
 - (void)searchAlbumItems:(BPSearchAlbumItems *)searchAlbumItems callback:(BuddyObjectCallback)callback;
 

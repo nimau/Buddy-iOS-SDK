@@ -14,10 +14,6 @@
 - (void)addAlbum:(BPAlbum *)album
         callback:(BuddyCompletionCallback)callback;
 
-- (void)addAlbum:(NSString *)name
-     withCaption:(NSString *)caption
-        callback:(BuddyObjectCallback)callback __attribute__ ((deprecated));
-
 - (void)searchAlbums:(BPSearchAlbum *)searchAlbum callback:(BuddyCollectionCallback)callback;
 
 - (void)getAlbum:(NSString *)albumId callback:(BuddyObjectCallback)callback;

@@ -25,23 +25,8 @@
 - (void)addAlbum:(BPAlbum *)album
         callback:(BuddyCompletionCallback)callback
 {
-    
+    [album savetoServer:callback];
 }
-    
-- (void)addAlbum:(NSString *)name
-     withCaption:(NSString *)caption
-        callback:(BuddyObjectCallback)callback
-{
-    NSDictionary *parameters = @{
-                                 @"name": BOXNIL(name),
-                                 @"caption": BOXNIL(caption)
-                                 };
-    
-    
-    
-    [self.type createFromServerWithParameters:parameters client:self.client callback:callback];
-}
-    
     
 -(void)getAlbums:(BuddyCollectionCallback)callback
 {

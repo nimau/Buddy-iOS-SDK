@@ -13,7 +13,7 @@
 #ifdef kKW_DEFAULT_PROBE_TIMEOUT
 #undef kKW_DEFAULT_PROBE_TIMEOUT
 #endif
-#define kKW_DEFAULT_PROBE_TIMEOUT 60.0
+#define kKW_DEFAULT_PROBE_TIMEOUT 30.0
 
 SPEC_BEGIN(BuddyAlbumSpec)
 
@@ -23,9 +23,9 @@ describe(@"BPAlbumIntegrationSpec", ^{
         __block BPAlbum *tempAlbum;
         __block BPPicture *tempPicture;
         __block BPAlbumItem *tempItem;
-        
+        __block BOOL fin = NO;
+
         beforeAll(^{
-            __block BOOL fin = NO;
             
             [BuddyIntegrationHelper bootstrapLogin:^{
                 fin = YES;
@@ -38,15 +38,25 @@ describe(@"BPAlbumIntegrationSpec", ^{
             
         });
         
+        beforeEach(^{
+            fin = NO;
+        });
+        
         it(@"Should allow you create an album.", ^{
-            [[Buddy albums] addAlbum:@"My album" withCaption:@"Kid pictures" callback:^(id newBuddyObject, NSError *error) {
-                tempAlbum = newBuddyObject;
+            
+            tempAlbum = [BPAlbum new];
+            tempAlbum.name = @"My album";
+            tempAlbum.caption = @"Kid pictures";
+            
+            [[Buddy albums] addAlbum:tempAlbum callback:^(NSError *error) {
+                [[error should] beNil];
+                [[tempAlbum.id shouldNot] beNil];
+                [[tempAlbum.name should] equal:@"My album"];
+                [[tempAlbum.caption should] equal:@"Kid pictures"];
+                fin = YES;
             }];
             
-            [[expectFutureValue(tempAlbum) shouldEventually] beNonNil];
-            [[expectFutureValue(tempAlbum.name) shouldEventually] equal:@"My album"];
-            [[expectFutureValue(tempAlbum.caption) shouldEventually] equal:@"Kid pictures"];
-            
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
         it(@"Should allow you to retrieve an album.", ^{
@@ -95,13 +105,16 @@ describe(@"BPAlbumIntegrationSpec", ^{
             
             [[Buddy pictures] addPicture:tempPicture image:image callback:^(NSError *error) {
                 [[error should] beNil];
-                [tempAlbum addItemToAlbum:tempPicture caption:@"Caption" callback:^(id newBuddyObject, NSError *error) {
+                __block BPAlbumItem *newItem = [BPAlbumItem new];
+                newItem.caption = @"Caption";
+
+                [tempAlbum addItemToAlbum:newItem withItem:tempPicture callback:^(NSError *error) {
                     [[error should] beNil];
-                    tempItem = newBuddyObject;
+                    fin = YES;
                 }];
             }];
             
-            [[expectFutureValue(tempItem) shouldEventually] beNonNil];
+            [[expectFutureValue(theValue(fin)) shouldEventually] beTrue];
         });
         
         
