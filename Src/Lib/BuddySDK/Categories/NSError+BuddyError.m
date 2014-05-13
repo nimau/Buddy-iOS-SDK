@@ -52,7 +52,7 @@ static NSString *NoInternetError = @"NoInternetError";
             self.code == BPErrorAuthAccessTokenInvalid;
 }
 
-+ (NSError *)invalidOperationError
++ (NSError *)invalidObjectOperationError
 {
     NSDictionary *info = @{@"message": @"This operation is not allowed for objects not registered with the server.  Please add the object first via the appropriate create method."};
     return [NSError errorWithDomain:@"UnregisteredObjectError" code:1 userInfo:info];
