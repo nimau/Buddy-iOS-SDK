@@ -33,7 +33,7 @@
         if(loggedInsUser)
             callback();
         else {
-            [Buddy createUser:user password:TEST_PASSWORD callback:^(BPUser *newBuddyObject, NSError *error) {
+            [Buddy createUser:user password:TEST_PASSWORD callback:^(NSError *error) {
                 callback();
             }];
         }

@@ -179,8 +179,14 @@
 
 - (void)savetoServer:(BuddyCompletionCallback)callback
 {
+    [self savetoServerWithSupplementaryParameters:nil callback:callback];
+}
+
+- (void)savetoServerWithSupplementaryParameters:(NSDictionary *)extraParams callback:(BuddyCompletionCallback)callback
+{
     // Dictionary of property names/values
     NSDictionary *parameters = [self buildUpdateDictionary];
+    parameters = [NSDictionary dictionaryByMerging:parameters with:extraParams];
     
     [self.client POST:[[self class] requestPath] parameters:parameters callback:^(id json, NSError *error) {
         [[JAGPropertyConverter converter] setPropertiesOf:self fromDictionary:json];

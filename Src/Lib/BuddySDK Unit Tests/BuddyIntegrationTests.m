@@ -73,8 +73,7 @@ describe(@"Buddy", ^{
             newUser.dateOfBirth = randomDate;
             newUser.userName = testCreateDeleteName;
             
-            [Buddy createUser:newUser password:TEST_PASSWORD callback:^(BPUser *newBuddyObject, NSError *error) {
-                newUser = newBuddyObject;
+            [Buddy createUser:newUser password:TEST_PASSWORD callback:^(NSError *error) {
                 [[error should] beNil];
                 if (error) {
                     fin = YES;
@@ -105,8 +104,6 @@ describe(@"Buddy", ^{
             }];
             
             [[expectFutureValue(newUser.userName) shouldEventually] equal:testCreateDeleteName];
-            //[[expectFutureValue(theValue(newUser.relationshipStatus)) shouldEventually] equal:theValue(BPUserRelationshipStatusOnTheProwl)];
-
         });
         
         it(@"Should raise a notification of changing of a user.", ^{

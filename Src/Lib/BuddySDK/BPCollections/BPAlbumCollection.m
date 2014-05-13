@@ -21,6 +21,12 @@
     }
     return self;
 }
+
+- (void)addAlbum:(BPAlbum *)album
+        callback:(BuddyCompletionCallback)callback
+{
+    
+}
     
 - (void)addAlbum:(NSString *)name
      withCaption:(NSString *)caption
@@ -30,6 +36,8 @@
                                  @"name": BOXNIL(name),
                                  @"caption": BOXNIL(caption)
                                  };
+    
+    
     
     [self.type createFromServerWithParameters:parameters client:self.client callback:callback];
 }
