@@ -11,7 +11,6 @@
 #import "BPClient.h"
 #import "BuddyObject+Private.h"
 #import "BuddyCollection+Private.h"
-#import "BPSisterObject.h"
 #import "Buddy.h"
 
 @implementation BPPictureCollection

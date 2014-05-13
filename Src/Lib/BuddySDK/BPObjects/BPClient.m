@@ -21,7 +21,6 @@
 #import "BPNotificationManager.h"
 #import "BuddyDevice.h"
 #import "BPAppSettings.h"
-#import "BPSisterObject.h"
 #import "BuddyAppDelegateDecorator.h"
 #import "BPCrashManager.h"
 #import "BPUser+Private.h"

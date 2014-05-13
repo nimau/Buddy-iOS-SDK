@@ -7,7 +7,6 @@
 //
 
 #import "BPVideo.h"
-#import "BPSisterObject.h"
 
 @implementation BPVideoSearch
 

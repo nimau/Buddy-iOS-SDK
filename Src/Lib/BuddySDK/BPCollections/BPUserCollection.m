@@ -9,7 +9,6 @@
 #import "BPUserCollection.h"
 #import "BuddyCollection+Private.h"
 #import "NSArray+BPSugar.h"
-#import "BPSisterObject.h"
 
 @implementation BPUserCollection
 

@@ -8,7 +8,6 @@
 
 #import "BPBlobCollection.h"
 #import "BuddyCollection+Private.h"
-#import "BPSisterObject.h"
 #import "BPBlob.h"
 
 @implementation BPBlobCollection

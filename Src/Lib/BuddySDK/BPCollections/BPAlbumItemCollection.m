@@ -9,7 +9,6 @@
 #import "BPAlbumItemCollection.h"
 #import "BuddyCollection+Private.h"
 #import "BPAlbumItem.h"
-#import "BPSisterObject.h"
 
 @interface BPAlbumItemCollection()
 
