@@ -11,9 +11,8 @@
 
 @interface BPAlbumCollection : BuddyCollection
 
-- (void)addAlbum:(NSString *)name
-     withCaption:(NSString *)caption
-        callback:(BuddyObjectCallback)callback;
+- (void)addAlbum:(BPAlbum *)album
+        callback:(BuddyCompletionCallback)callback;
 
 - (void)searchAlbums:(BPSearchAlbum *)searchAlbum callback:(BuddyCollectionCallback)callback;
 

@@ -9,7 +9,6 @@
 #import "BPAlbumCollection.h"
 #import "BuddyCollection+Private.h"
 #import "BuddyObject+Private.h"
-#import "BPSisterObject.h"
 #import "BuddyObject+Private.h"
 #import "BPAlbum.h"
 
@@ -22,19 +21,12 @@
     }
     return self;
 }
-    
-- (void)addAlbum:(NSString *)name
-     withCaption:(NSString *)caption
-        callback:(BuddyObjectCallback)callback
+
+- (void)addAlbum:(BPAlbum *)album
+        callback:(BuddyCompletionCallback)callback
 {
-    NSDictionary *parameters = @{
-                                 @"name": BOXNIL(name),
-                                 @"caption": BOXNIL(caption)
-                                 };
-    
-    [self.type createFromServerWithParameters:parameters client:self.client callback:callback];
+    [album savetoServer:callback];
 }
-    
     
 -(void)getAlbums:(BuddyCollectionCallback)callback
 {

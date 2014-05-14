@@ -11,7 +11,6 @@
 #import "BPClient.h"
 #import "BuddyCollection+Private.h"
 #import "BuddyObject+Private.h"
-#import "BPSisterObject.h"
 #import "BuddyObject+Private.h"
 
 @implementation BPCheckinCollection

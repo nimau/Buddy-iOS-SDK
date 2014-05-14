@@ -21,10 +21,7 @@
 + (NSDictionary *)baseEnumMap;
 + (NSDictionary *)enumMap;
 
-// Deprecated
-+ (void)createFromServerWithParameters:(NSDictionary *)parameters client:(id<BPRestProvider>)client callback:(BuddyObjectCallback)callback;
-
-// New
 - (void)savetoServer:(BuddyCompletionCallback)callback;
+- (void)savetoServerWithSupplementaryParameters:(NSDictionary *)extraParams callback:(BuddyCompletionCallback)callback;
 
 @end

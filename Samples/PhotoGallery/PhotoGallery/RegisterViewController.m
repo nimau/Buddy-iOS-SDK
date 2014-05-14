@@ -63,30 +63,6 @@
     
 }
 
--(BuddyObjectCallback) getRegisterCallback
-{
-    RegisterViewController * __weak weakSelf = self;
-    
-    return ^(id newBuddyObject, NSError *error)
-    {
-        if(error!=nil)
-        {
-            // Only hide in the error case (as we still have to login if register fails
-            [weakSelf.HUD hide:YES afterDelay:0.1];
-            UIAlertView *alert =
-            [[UIAlertView alloc] initWithTitle: @"Register Error"
-                                       message: [error localizedDescription]
-                                      delegate: self
-                             cancelButtonTitle: @"OK"
-                             otherButtonTitles: nil];
-            [alert show];
-            return;
-        }
-        [Buddy login:weakSelf.userNameTextField.text
-            password:weakSelf.passwordTextField.text
-            callback:[weakSelf getLoginCallback]];
-    };
-}
 
 -(BuddyObjectCallback) getLoginCallback
 {
@@ -194,9 +170,29 @@
     user.dateOfBirth=nil;
     user.userName = self.userNameTextField.text;
     
+    __weak RegisterViewController *weakSelf = self;
+    
     [Buddy createUser:user
              password:self.passwordTextField.text
-             callback:[self getRegisterCallback]];
+             callback:^(NSError *error) {
+                 if(error!=nil)
+                 {
+                     // Only hide in the error case (as we still have to login if register fails
+                     [weakSelf.HUD hide:YES afterDelay:0.1];
+                     UIAlertView *alert =
+                     [[UIAlertView alloc] initWithTitle: @"Register Error"
+                                                message: [error localizedDescription]
+                                               delegate: self
+                                      cancelButtonTitle: @"OK"
+                                      otherButtonTitles: nil];
+                     [alert show];
+                     return;
+                 }
+                 [Buddy login:weakSelf.userNameTextField.text
+                     password:weakSelf.passwordTextField.text
+                     callback:[weakSelf getLoginCallback]];
+
+             }];
     
 }
 

@@ -8,7 +8,6 @@
 
 #import "BPBase.h"
 #import "BPEnumMapping.h"
-#import "BPSisterObject.h"
 #import "BPMetadataItem.h"
 #import "JAGPropertyConverter.h"
 

@@ -21,8 +21,7 @@
 
 @interface BPAlbum : BuddyObject<BPAlbumProperties>
 
-- (void)addItemToAlbum:(id)albumItem caption:(NSString *)caption callback:(BuddyObjectCallback)callback;
-- (void)addItemIdToAlbum:(NSString *)itemId caption:(NSString *)caption callback:(BuddyObjectCallback)callback;
+- (void)addItemToAlbum:(BPAlbumItem *)albumItem withItem:(BuddyObject<BPAlbumItem> *)itemToAdd callback:(BuddyCompletionCallback)callback;
 - (void)getAlbumItem:(NSString *)itemId callback:(BuddyObjectCallback)callback;
 - (void)searchAlbumItems:(BPSearchAlbumItems *)searchAlbumItem callback:(BuddyCollectionCallback)callback;
 
