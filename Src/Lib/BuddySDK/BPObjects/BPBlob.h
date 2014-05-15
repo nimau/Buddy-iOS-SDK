@@ -20,7 +20,7 @@
 
 @end
 
-@interface BPBlob : BuddyObject<BPBlobProperties, BPAlbumItem>
+@interface BPBlob : BuddyObject<BPBlobProperties, BPMediaItem>
 
 typedef void(^BuddyDataResponse)(NSData *data, NSError *error);
 

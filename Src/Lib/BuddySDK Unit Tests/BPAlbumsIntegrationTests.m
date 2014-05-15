@@ -110,6 +110,7 @@ describe(@"BPAlbumIntegrationSpec", ^{
 
                 [tempAlbum addItemToAlbum:newItem withItem:tempPicture callback:^(NSError *error) {
                     [[error should] beNil];
+                    tempItem = newItem;
                     fin = YES;
                 }];
             }];

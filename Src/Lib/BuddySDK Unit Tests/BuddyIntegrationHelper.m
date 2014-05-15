@@ -25,8 +25,8 @@
         BPUser *user = [BPUser new];
         user.firstName = @"Erik";
         user.lastName = @"Erik";
-        user.gender = BPUserGender_Male;
-        user.email = @"erik@buddy.com";
+        user.gender = BPUserGender_Unknown;
+        user.email = [NSString stringWithFormat:@"iostests%@@buddy.com", [BuddyIntegrationHelper randomString:10]];
         user.dateOfBirth = [BuddyIntegrationHelper randomDate];
         user.userName = TEST_USERNAME;
         

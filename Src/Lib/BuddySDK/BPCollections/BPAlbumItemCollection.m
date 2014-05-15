@@ -34,7 +34,7 @@
 }
 
 - (void)addAlbumItem:(BPAlbumItem *)albumItem
-            withItem:(BuddyObject<BPAlbumItem> *)itemToAdd
+            withItem:(BuddyObject<BPMediaItem> *)itemToAdd
             callback:(BuddyCompletionCallback)callback
 {
     

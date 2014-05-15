@@ -16,7 +16,7 @@
 - (instancetype)initWithAlbum:(BPAlbum *)album andClient:(id<BPRestProvider>)client;
 
 - (void)addAlbumItem:(BPAlbumItem *)albumItem
-            withItem:(BuddyObject<BPAlbumItem> *)itemToAdd
+            withItem:(BuddyObject<BPMediaItem> *)itemToAdd
             callback:(BuddyCompletionCallback)callback;
 
 - (void)searchAlbumItems:(BPSearchAlbumItems *)searchAlbumItems callback:(BuddyObjectCallback)callback;
