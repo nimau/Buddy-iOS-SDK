@@ -118,7 +118,7 @@
  *
  * @param options The set of creation options for the user.
  */
-+ (void)createUser:(BPUser *)user password:(NSString *)password callback:(BuddyObjectCallback)callback;
++ (void)createUser:(BPUser *)user password:(NSString *)password callback:(BuddyCompletionCallback)callback;
 
 /**
  *

@@ -20,14 +20,10 @@
 
 @end
 
-@interface BPBlob : BuddyObject<BPBlobProperties, BPAlbumItem>
+@interface BPBlob : BuddyObject<BPBlobProperties, BPMediaItem>
 
 typedef void(^BuddyDataResponse)(NSData *data, NSError *error);
 
-// Deprecated
-+ (void)createWithData:(NSData *)data parameters:(NSDictionary *)parameters client:(id<BPRestProvider>)client callback:(BuddyObjectCallback)callback;
-
-// New
 - (void)savetoServerWithData:(NSData *)data callback:(BuddyCompletionCallback)callback;
 
 - (void)getData:(BuddyDataResponse)callback;

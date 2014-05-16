@@ -9,7 +9,6 @@
 #import "BPAlbumItemCollection.h"
 #import "BuddyCollection+Private.h"
 #import "BPAlbumItem.h"
-#import "BPSisterObject.h"
 
 @interface BPAlbumItemCollection()
 
@@ -34,18 +33,21 @@
     return [NSString stringWithFormat:@"albums/%@/", self.album.id];
 }
 
-- (void)addAlbumItem:(NSString *)itemId
-         withCaption:(NSString *)caption
-            callback:(BuddyObjectCallback)callback
+- (void)addAlbumItem:(BPAlbumItem *)albumItem
+            withItem:(BuddyObject<BPMediaItem> *)itemToAdd
+            callback:(BuddyCompletionCallback)callback
 {
-    NSDictionary *params = @{
-                             @"ItemId": itemId,
-                             @"caption": caption
-                             };
+    
+    id params = [albumItem buildUpdateDictionary];
+    
+    // Special ID field name.
+    params = [NSDictionary dictionaryByMerging:params with:@{@"ItemId": itemToAdd.id}];
+    
     NSString *requestPath = [self.requestPrefix stringByAppendingString:[[self type] requestPath]];
     
     [self.client POST:requestPath parameters:params callback:^(id json, NSError *error) {
-        callback(json, error);
+        [[JAGPropertyConverter converter] setPropertiesOf:albumItem fromDictionary:json];
+        callback(error);
     }];
 }
 

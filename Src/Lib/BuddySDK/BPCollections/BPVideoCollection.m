@@ -8,7 +8,6 @@
 
 #import "BPVideoCollection.h"
 #import "BPVideo.h"
-#import "BPSisterObject.h"
 #import "BuddyCollection+Private.h"
 
 @implementation BPVideoCollection

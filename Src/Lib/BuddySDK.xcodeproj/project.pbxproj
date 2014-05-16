@@ -135,8 +135,6 @@
 		C16FE35118944D660033EFAF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C17E2B501803924300F64FB6 /* MobileCoreServices.framework */; };
 		C17E2B4C18038F4B00F64FB6 /* BuddyCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = C17E2B4A18038F4B00F64FB6 /* BuddyCollection.m */; };
 		C18875A8186FFF4E00320A00 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1FBCED817E671A900275F6A /* CoreLocation.framework */; };
-		C1A1E29918A35B1A003CC33A /* BPSisterObject.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A1E29718A35B1A003CC33A /* BPSisterObject.h */; };
-		C1A1E29A18A35B1A003CC33A /* BPSisterObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A1E29818A35B1A003CC33A /* BPSisterObject.m */; };
 		C1A46531189750E800FCCBF9 /* help.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1A46530189750E800FCCBF9 /* help.jpg */; };
 		C1A46533189753AC00FCCBF9 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = C1A46532189753AC00FCCBF9 /* test.png */; };
 		C1A58FFD1890A57A00C5A50F /* MetadataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A58FFC1890A57A00C5A50F /* MetadataTests.m */; };
@@ -340,8 +338,6 @@
 		C17E2B4A18038F4B00F64FB6 /* BuddyCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuddyCollection.m; sourceTree = "<group>"; };
 		C17E2B4E180391D700F64FB6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C17E2B501803924300F64FB6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		C1A1E29718A35B1A003CC33A /* BPSisterObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPSisterObject.h; sourceTree = "<group>"; };
-		C1A1E29818A35B1A003CC33A /* BPSisterObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPSisterObject.m; sourceTree = "<group>"; };
 		C1A46530189750E800FCCBF9 /* help.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help.jpg; sourceTree = "<group>"; };
 		C1A46532189753AC00FCCBF9 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		C1A58FFC1890A57A00C5A50F /* MetadataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetadataTests.m; sourceTree = "<group>"; };
@@ -506,8 +502,6 @@
 				C1427676189ECA2300D5DD85 /* BPMetricCompletionHandler.m */,
 				2F7E079018A2EC08003FC524 /* BuddyAppDelegateDecorator.h */,
 				2F7E079118A2EC08003FC524 /* BuddyAppDelegateDecorator.m */,
-				C1A1E29718A35B1A003CC33A /* BPSisterObject.h */,
-				C1A1E29818A35B1A003CC33A /* BPSisterObject.m */,
 				5B0302F818DFB81C00EA6B08 /* BPPermissions.h */,
 				5BB7738C18E26916007428B8 /* BPLocationProvider.h */,
 				5B5FE15518E3C90C00518440 /* BPNotificationManager.h */,
@@ -819,7 +813,6 @@
 				5BF07F8318DD1BD000CC50E9 /* BPBlobCollection.h in Headers */,
 				C1D7094818832983003D112C /* BPDescriptors.h in Headers */,
 				C1E0D1D11831BAD3001A7A01 /* JAGProperty.h in Headers */,
-				C1A1E29918A35B1A003CC33A /* BPSisterObject.h in Headers */,
 				C1E0D1D41831BAD3001A7A01 /* JAGPropertyConverter-Prefix.pch in Headers */,
 				5BF07F8918DD1BD000CC50E9 /* BPPictureCollection.h in Headers */,
 				C1C2395318789594000D0089 /* BPBlob.h in Headers */,
@@ -1068,7 +1061,6 @@
 				C1427678189ECA2300D5DD85 /* BPMetricCompletionHandler.m in Sources */,
 				C1FEEB4F187E483100B45505 /* BPAlbum.m in Sources */,
 				C17E2B4C18038F4B00F64FB6 /* BuddyCollection.m in Sources */,
-				C1A1E29A18A35B1A003CC33A /* BPSisterObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1134,7 +1126,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 0.1.4;
+				CURRENT_PROJECT_VERSION = 2.0.1;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
@@ -1184,7 +1176,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 0.1.4;
+				CURRENT_PROJECT_VERSION = 2.0.1;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
@@ -1219,7 +1211,7 @@
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
-				CURRENT_PROJECT_VERSION = 2.0.0;
+				CURRENT_PROJECT_VERSION = 2.0.1;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/BuddySDK.dst;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1284,7 +1276,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2.0.0;
+				CURRENT_PROJECT_VERSION = 2.0.1;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/BuddySDK.dst;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1342,7 +1334,7 @@
 		C19ECC3517DEA28D008A9130 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1.9.3;
+				CURRENT_PROJECT_VERSION = 2.0.1;
 				GENERATE_MASTER_OBJECT_FILE = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -1354,7 +1346,7 @@
 		C19ECC3617DEA28D008A9130 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1.9.3;
+				CURRENT_PROJECT_VERSION = 2.0.1;
 				GCC_PREPROCESSOR_DEFINITIONS = "NOLOG=1";
 				GENERATE_MASTER_OBJECT_FILE = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

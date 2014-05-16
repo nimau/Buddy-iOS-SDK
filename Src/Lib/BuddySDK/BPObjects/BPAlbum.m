@@ -31,12 +31,21 @@
 @synthesize name = _name;
 @synthesize caption = _caption;
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self registerProperties];
+        _items = [[BPAlbumItemCollection alloc] initWithAlbum:self andClient:self.client];
+    }
+    return self;
+}
+
 - (instancetype)initBuddyWithClient:(id<BPRestProvider>)client {
     self = [super initBuddyWithClient:client];
     if(self)
     {
-        [self registerProperty:@selector(name)];
-        [self registerProperty:@selector(caption)];
+        [self registerProperties];
         _items = [[BPAlbumItemCollection alloc] initWithAlbum:self andClient:client];
     }
     return self;
@@ -46,11 +55,18 @@
     self = [super initBuddyWithResponse:response andClient:rest];
     if(self)
     {
-        [self registerProperty:@selector(name)];
-        [self registerProperty:@selector(caption)];
+        [self registerProperties];
         _items = [[BPAlbumItemCollection alloc] initWithAlbum:self andClient:rest];
     }
     return self;
+}
+
+- (void)registerProperties
+{
+    [super registerProperties];
+    
+    [self registerProperty:@selector(name)];
+    [self registerProperty:@selector(caption)];
 }
 
 static NSString *albums = @"albums";
@@ -58,19 +74,12 @@ static NSString *albums = @"albums";
     return albums;
 }
 
-- (void)addItemToAlbum:(id<BPAlbumItem>)albumItem caption:(NSString *)caption callback:(BuddyObjectCallback)callback
+- (void)addItemToAlbum:(BPAlbumItem *)albumItem withItem:(BuddyObject<BPMediaItem> *)itemToAdd callback:(BuddyCompletionCallback)callback
 {
-    [self addItemIdToAlbum:[albumItem id] caption:caption callback:callback];
-}
-
-- (void)addItemIdToAlbum:(NSString *)itemId caption:(NSString *)caption callback:(BuddyObjectCallback)callback
-{
-    __weak id<BPRestProvider> weakClient = self.client;
+    assert(self.items);
     
-    [self.items addAlbumItem:itemId withCaption:caption callback:^(id json, NSError *error) {
-        BPAlbumItem *newItem = [[BPAlbumItem alloc] initBuddyWithResponse:json andClient:weakClient];
-        callback ? callback(newItem, error) : nil;
-    }];
+    [self.items addAlbumItem:albumItem withItem:itemToAdd callback:callback];
+    
 }
 
 - (void)searchAlbumItems:(BPSearchAlbumItems *)searchAlbumItem callback:(BuddyCollectionCallback)callback

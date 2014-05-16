@@ -10,7 +10,6 @@
 #import "BPLocationCollection.h"
 #import "BPClient.h"
 #import "BPLocation.h"
-#import "BPSisterObject.h"
 
 @implementation BPLocationCollection
 

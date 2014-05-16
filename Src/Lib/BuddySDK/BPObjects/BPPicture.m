@@ -8,7 +8,6 @@
 
 #import "BPPicture.h"
 #import "BuddyObject+Private.h"
-#import "BPSisterObject.h"
 
 @implementation BPSearchPictures
 

@@ -14,8 +14,7 @@ typedef NS_ENUM(NSInteger, BPAlbumItemType) {
     BPAlbumItemTypeVideo
 };
 
-// Not used for now. But may leverage the concept on BPPicture/BPVideo
-@protocol BPAlbumItem <NSObject>
+@protocol BPMediaItem <NSObject>
 
 @required
 

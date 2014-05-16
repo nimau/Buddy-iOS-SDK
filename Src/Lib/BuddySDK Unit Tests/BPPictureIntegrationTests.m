@@ -183,7 +183,7 @@ describe(@"BPPictureIntegrationSpec", ^{
             __block NSArray *retrievedPictures;
             
             BPSearchPictures *searchPicture = [BPSearchPictures new];
-            searchPicture.caption = @"Hakuna matata";
+            searchPicture.caption = @"Hakuna matataX";
             
             [[Buddy pictures] searchPictures:searchPicture callback:^(NSArray *buddyObjects, NSError *error) {
                 retrievedPictures = buddyObjects;

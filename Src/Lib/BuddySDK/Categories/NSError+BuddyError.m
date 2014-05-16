@@ -36,7 +36,6 @@ static NSString *NoInternetError = @"NoInternetError";
     NSInteger buddyErrorCode = [json[@"errorNumber"] ?: @"0" integerValue];
     id buddyErrorDomain = json[@"error"] ?: @"";
     id message = json[@"message"] ?: @"";
-    //id status = [json[@"status"] integerValue];
     
     return [NSError errorWithDomain:buddyErrorDomain code:buddyErrorCode userInfo:@{@"message": message}];
 }
@@ -52,7 +51,7 @@ static NSString *NoInternetError = @"NoInternetError";
             self.code == BPErrorAuthAccessTokenInvalid;
 }
 
-+ (NSError *)invalidOperationError
++ (NSError *)invalidObjectOperationError
 {
     NSDictionary *info = @{@"message": @"This operation is not allowed for objects not registered with the server.  Please add the object first via the appropriate create method."};
     return [NSError errorWithDomain:@"UnregisteredObjectError" code:1 userInfo:info];

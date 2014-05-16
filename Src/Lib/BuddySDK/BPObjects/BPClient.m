@@ -21,7 +21,6 @@
 #import "BPNotificationManager.h"
 #import "BuddyDevice.h"
 #import "BPAppSettings.h"
-#import "BPSisterObject.h"
 #import "BuddyAppDelegateDecorator.h"
 #import "BPCrashManager.h"
 #import "BPUser+Private.h"
@@ -257,10 +256,9 @@
         _user = nil;
     }
 }
-
 - (void)createUser:(BPUser *)user
-    password:(NSString *)password
-    callback:(BuddyObjectCallback)callback
+          password:(NSString *)password
+          callback:(BuddyCompletionCallback)callback
 {
     NSDictionary *parameters = @{ @"password": password };
     
@@ -268,18 +266,17 @@
 
     parameters = [NSDictionary dictionaryByMerging:parameters with:options];
     
-    // On BPUser for now for consistency. Probably will move.
-    [BPUser createFromServerWithParameters:parameters client:[BPClient defaultClient] callback:^(id newBuddyObject, NSError *error) {
+    [user savetoServerWithSupplementaryParameters:parameters callback:^(NSError *error) {
         if (error) {
-            callback ? callback(nil, error) : nil;
+            callback ? callback(error) : nil;
             return;
         }
-    
-        self.user = newBuddyObject;
+        
+        self.user = user;
         self.appSettings.userToken = self.user.accessToken;
-
+        
         [self.user refresh:^(NSError *error){
-            callback ? callback(self.user, error) : nil;
+            callback ? callback(error) : nil;
         }];
     }];
 }
