@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B03212419294B25003A4127 /* BuddySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B03212319294B25003A4127 /* BuddySDK.framework */; };
 		5B682BC418E005A1005C260B /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B682BC318E005A1005C260B /* CrashReporter.framework */; };
 		C1ACBF4F1877936E0069025B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1ACBF4E1877936E0069025B /* Foundation.framework */; };
 		C1ACBF511877936E0069025B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1ACBF501877936E0069025B /* CoreGraphics.framework */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		1D16C6228B3A41FF899C741A /* libPods-BuddySocial.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BuddySocial.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B03212319294B25003A4127 /* BuddySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BuddySDK.framework; sourceTree = "<group>"; };
 		5B682BC318E005A1005C260B /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CrashReporter.framework; sourceTree = "<group>"; };
 		C1ACBF4B1877936E0069025B /* BuddySocial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuddySocial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1ACBF4E1877936E0069025B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -53,6 +55,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1AEB21A18A9D24F006C88E4 /* MobileCoreServices.framework in Frameworks */,
+				5B03212419294B25003A4127 /* BuddySDK.framework in Frameworks */,
 				C1C239501877CB0F000D0089 /* SystemConfiguration.framework in Frameworks */,
 				C1ACBF511877936E0069025B /* CoreGraphics.framework in Frameworks */,
 				C1ACBF8418779FA10069025B /* FacebookSDK.framework in Frameworks */,
@@ -69,6 +72,7 @@
 		C1ACBF421877936E0069025B = {
 			isa = PBXGroup;
 			children = (
+				5B03212319294B25003A4127 /* BuddySDK.framework */,
 				C1ACBF541877936E0069025B /* BuddySocial */,
 				C1ACBF4D1877936E0069025B /* Frameworks */,
 				C1ACBF4C1877936E0069025B /* Products */,
@@ -353,6 +357,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BuddySocial/BuddySocial-Prefix.pch";
 				INFOPLIST_FILE = "BuddySocial/BuddySocial-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "9DE2BFC6-DB8D-48EF-9361-E830CBAC1C9F";
@@ -376,6 +381,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BuddySocial/BuddySocial-Prefix.pch";
 				INFOPLIST_FILE = "BuddySocial/BuddySocial-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "9DE2BFC6-DB8D-48EF-9361-E830CBAC1C9F";
