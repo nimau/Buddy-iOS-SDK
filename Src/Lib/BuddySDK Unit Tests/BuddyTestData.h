@@ -1,8 +1,9 @@
 
-#define TEST_EMAIL @"test@email.com"
-#define APP_NAME @"bbbbbc.xkdbbdKlvKgj"
-#define APP_KEY @"EFE64026-B01A-4475-A75F-9F86B040094F"
 
-#define TEST_USERNAME @"erik9"
+#pragma message ("Insert your own AppID and Key")
+#define APP_NAME @"YOUR_APP_ID"
+#define APP_KEY @"YOUR_APP_KEY"
+
+#define TEST_USERNAME @"testuser"
 #define TEST_PASSWORD @"password"
 #define TEST_EMAIL @"test@email.com"
