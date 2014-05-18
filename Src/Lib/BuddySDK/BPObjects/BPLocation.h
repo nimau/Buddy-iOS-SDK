@@ -24,7 +24,16 @@
 
 @end
 
-@interface BPSearchLocation : BPObjectSearch<BPLocationProperties>
+@protocol BPSearchLocationProperties <NSObject>
+@property (nonatomic, strong) BPCoordinateRange *locationRange;
+@property (nonatomic, strong) NSDate *startDate;
+@property (nonatomic, strong) NSDate *endDate;
+@property (nonatomic, assign) NSInteger limit;
+@property (nonatomic, copy) NSString *pagingToken;
+@property (nonatomic, copy) NSString *userID;
+@end
+
+@interface BPSearchLocation : BPObjectSearch<BPLocationProperties, BPSearchLocationProperties>
 
 @end
 
